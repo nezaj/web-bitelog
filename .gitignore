@@ -11,6 +11,9 @@
 # production
 /build
 
+# repl file
+repl.js
+
 # misc
 .DS_Store
 .env.local
