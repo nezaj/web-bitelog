@@ -1,25 +1,8 @@
 import React from "react";
 import "./App.css";
 
-import data from "./data/sample.json";
-
 // Helpers
 // ---------------------------------------------------------------------------
-
-// Extract local datestamp from utc timestamp: '2020-06-28T22:06:39.171Z' -> '6/28/2020'
-const extractLocalDate = (utcTimeStamp) =>
-  new Date(utcTimeStamp).toLocaleString().split(",")[0];
-
-// Marshall data to use datestamps as top level keys
-const entriesToDateMap = (entries) => {
-  return entries.reduce((xs, x) => {
-    const dateKey = extractLocalDate(x.eatenAtUTC);
-    xs[dateKey] = xs[dateKey] || [];
-    xs[dateKey] = xs[dateKey].concat(x);
-    return xs;
-  }, {});
-};
-
 const extractNutrient = (nutrients, name) =>
   nutrients.find((x) => x.name === name);
 
@@ -77,23 +60,9 @@ const renderDay = (title, items) => {
   );
 };
 
-// Stateful Components
-// ---------------------------------------------------------------------------
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    const entries = entriesToDateMap(data.entries);
-
-    this.state = { entries };
-  }
-
-  render() {
-    const { entries } = this.state;
-    const dates = Object.keys(entries).map((ds) => renderDay(ds, entries[ds]));
-
-    return <div>{dates}</div>;
-  }
-}
+const App = ({ entries }) => {
+  const dates = Object.keys(entries).map((ds) => renderDay(ds, entries[ds]));
+  return <div>{dates}</div>;
+};
 
 export default App;
