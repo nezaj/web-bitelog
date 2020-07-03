@@ -36,13 +36,11 @@ body {
 .header-title {
     font-family: var(--text-font-family);
     color: var(--primary-color);
-    margin-bottom: 12px;
 }
 
 .header-subtitle {
     font-family: var(--text-font-family);
     color: var(--secondary-color);
-    margin-bottom: 24px;
 }
 
 .separator {
@@ -70,19 +68,19 @@ body {
 .day-date {
     font-size: 14px;
     color: var(--primary-color);
-    font-family: var(--font-family);
+    font-family: var(--text-font-family);
     font-weight: bold;
 }
 
 .day-macros {
     color: var(--info-color);
-    font-family: var(--font-family);
+    font-family: var(--text-font-family);
     font-size: 10px;
     font-weight: bold;
 }
 
 .day-items {
-    font-family: var(--font-family);
+    font-family: var(--text-font-family);
     color: var(--info-color);
     font-size: 8px;
 }
