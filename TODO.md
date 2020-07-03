@@ -1,3 +1,8 @@
 # TODOs
-* For each day, have a list of items eaten, their calories, and the macros
-* Make a spec for a better UI
+* Implement design spec!
+    * Implement navigation
+        * Add conditional routing (no need for react-router IMO)
+        * Add conditional styling based on current route
+
+# Future
+* Think about what could "break" and how to handle it best
