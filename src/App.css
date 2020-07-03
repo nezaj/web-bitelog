@@ -73,27 +73,19 @@ body {
 }
 
 .day-macros {
-    color: var(--info-color);
+    color: var(--secondary-color);
     font-family: var(--text-font-family);
     font-size: 10px;
     font-weight: bold;
-}
-
-.day-items {
-    font-family: var(--text-font-family);
-    color: var(--info-color);
-    font-size: 8px;
 }
 
 .day-images {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--gap-unit);
-    margin-top: 5px;
-    margin-bottom: var(--gap-unit);
 }
 
-@media screen and (min-width: 1001px) {
+@media screen and (min-width: 800px) {
     .header-avatar {
         width: 250px;
         height: 250px;
@@ -120,11 +112,13 @@ body {
     .feed {
         width: 66%;
     }
-    .day {
-        margin-bottom: 50px;
+    .day-title {
+        margin-top: calc(var(--gap-unit) * 2);
+        margin-bottom: calc(var(--gap-unit) * 2);
     }
     .day-date {
         font-size: 24px;
+        margin-bottom: 10px;
     }
     .day-macros {
         font-size: 18px;
@@ -134,7 +128,7 @@ body {
     }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 801px) {
     .header-avatar {
         width: 150px;
         height: 150px;
@@ -157,8 +151,13 @@ body {
     .feed {
         width: 100%;
     }
+    .day-title {
+        margin-top: var(--gap-unit);
+        margin-bottom: var(--gap-unit);
+    }
     .day-date {
         font-size: 18px;
+        margin-bottom: 5px;
     }
     .day-macros {
         font-size: 14px;

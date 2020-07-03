@@ -109,19 +109,20 @@ const renderFeedDay = (ds, items) => {
     carb: Math.round(rawTotals.carb),
   };
 
-  const title = friendlyDate(ds);
-  const foodItems = items.map((i) => i.foodItemName).join(", ");
+  const entryDate = friendlyDate(ds);
 
   // Multiple items can have the same image so we de-dupe and remove missing data
   const images = [...new Set(items.map((i) => i.imageURL).filter((x) => x))];
 
   return (
     <div className="day">
-      <div className="day-date">{title}</div>
-      <div className="day-macros">
-        {label.cal} (Cal) {label.protein} (P) {label.fat}g (F) {label.carb}g (C)
+      <div className="day-title">
+        <div className="day-date">{entryDate}</div>
+        <div className="day-macros">
+          {label.cal} (Cal) {label.protein} (P) {label.fat}g (F) {label.carb}g
+          (C)
+        </div>
       </div>
-      <div className="day-items">{foodItems}</div>
       <div className="day-images">
         {images.map((i) => (
           <img alt="" className="day-image" src={i}></img>
