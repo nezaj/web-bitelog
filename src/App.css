@@ -82,7 +82,6 @@ body {
 .day-images {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--gap-unit);
 }
 
 @media screen and (min-width: 800px) {
@@ -123,8 +122,8 @@ body {
     .day-macros {
         font-size: 18px;
     }
-    .day-items {
-        font-size: 14px;
+    .day-images {
+        gap: var(--gap-unit);
     }
 }
 
@@ -162,7 +161,7 @@ body {
     .day-macros {
         font-size: 14px;
     }
-    .day-items {
-        font-size: 12px;
+    .day-images {
+        gap: 1px;
     }
 }
