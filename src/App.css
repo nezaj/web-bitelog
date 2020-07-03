@@ -52,7 +52,6 @@ body {
 .nav {
     display: flex;
     justify-content: space-around;
-    width: 33%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -109,10 +108,16 @@ body {
     }
     .header-subtitle {
         font-size: 18px;
-        margin-bottom: 48px;
+        margin-bottom: 24px;
     }
     .separator {
         width: 66%;
+    }
+    .nav {
+        margin-top: 24px;
+        margin-bottom: 24px;
+        width: 33%;
+        font-size: 18px;
     }
     .feed {
         width: 66%;
@@ -133,29 +138,34 @@ body {
 
 @media screen and (max-width: 1000px) {
     .header-avatar {
-        width: 125px;
-        height: 125px;
+        width: 150px;
+        height: 150px;
         margin-top: 36px;
-        margin-bottom: 12px;
+        margin-bottom: 18px;
     }
     .header-title {
-        font-size: 24px;
+        font-size: 36px;
         margin-bottom: 12px;
     }
     .header-subtitle {
-        font-size: 14px;
-        margin-bottom: 24px;
+        font-size: 18px;
+        margin-bottom: 18px;
+    }
+    .nav {
+        margin-top: 18px;
+        margin-bottom: 18px;
+        width: 66%;
     }
     .feed {
         width: 100%;
     }
     .day-date {
-        font-size: 14px;
+        font-size: 18px;
     }
     .day-macros {
-        font-size: 10px;
+        font-size: 14px;
     }
     .day-items {
-        font-size: 8px;
+        font-size: 12px;
     }
 }
