@@ -141,6 +141,57 @@ const renderFeedDay = (ds, items) => {
   );
 };
 
+const renderTrends = () => {
+  return (
+    <div className="trends">
+      <div className="trends-date-selector">
+        <div className="trends-date-option">Last 7 Days</div>
+        <div className="trends-date-option">Last 30 Days</div>
+        <div className="trends-date-option">Last 90 Days</div>
+        <div className="trends-date-option">This Year</div>
+      </div>
+
+      <div className="trends-summary">
+        <div className="trends-summary-calories">
+          <div className="trends-summary-calories-title">2000</div>
+          <div className="trends-summary-calories-subtitle">cal / day</div>
+        </div>
+        <div className="trends-summary-macros">
+          <div className="trends-summary-macro">
+            <div className="trends-summary-macro-title">Protein</div>
+            <div className="trends-summary-macro-amount">110g</div>
+            <div className="trends-summary-macro-pct">33%</div>
+          </div>
+          <div className="trends-summary-macro">
+            <div className="trends-summary-macro-title">Fat</div>
+            <div className="trends-summary-macro-amount">110g</div>
+            <div className="trends-summary-macro-pct">33%</div>
+          </div>
+          <div className="trends-summary-macro">
+            <div className="trends-summary-macro-title">Carbs</div>
+            <div className="trends-summary-macro-amount">110g</div>
+            <div className="trends-summary-macro-pct">24%</div>
+          </div>
+        </div>
+      </div>
+      <div className="trends-charts-container">
+        <div className="trends-chart">
+          <div className="trends-chart-title">Calories</div>
+          <div className="trends-chart-data">Chart!</div>
+        </div>
+        <div className="trends-chart">
+          <div className="trends-chart-title">Protein</div>
+          <div className="trends-chart-data">Chart!</div>
+        </div>
+        <div className="trends-chart">
+          <div className="trends-chart-title">Fat and Carbs</div>
+          <div className="trends-chart-data">Chart!</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -160,9 +211,10 @@ class App extends React.Component {
   render() {
     const { entries } = this.props;
     const { tab } = this.state;
-    const dates = Object.keys(entries).map((ds) =>
+    const renderedEntries = Object.keys(entries).map((ds) =>
       renderFeedDay(ds, entries[ds])
     );
+    const renderedTrends = renderTrends();
 
     return (
       <div className="app">
@@ -172,6 +224,7 @@ class App extends React.Component {
           <div className="header-subtitle">This is where I track my food</div>
           <div className="separator"></div>
         </div>
+
         <div className="nav">
           <div
             className={`nav-item ${
@@ -190,8 +243,9 @@ class App extends React.Component {
             TRENDS
           </div>
         </div>
-        {tab === ENTRIES_TAB && <div className="feed">{dates}</div>}
-        {tab === TRENDS_TAB && <div className="feed">HELLO WORLD!</div>}
+
+        {tab === ENTRIES_TAB && <div className="feed">{renderedEntries}</div>}
+        {tab === TRENDS_TAB && renderedTrends}
       </div>
     );
   }
