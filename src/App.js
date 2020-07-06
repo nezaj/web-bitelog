@@ -175,7 +175,7 @@ class App extends React.Component {
         <div className="nav">
           <div
             className={`nav-item ${
-              tab === ENTRIES_TAB ? "nav-item-active" : ""
+              tab === ENTRIES_TAB ? "nav-item-active" : "nav-item-inactive"
             }`}
             onClick={() => this.updateTab(ENTRIES_TAB)}
           >
@@ -183,7 +183,7 @@ class App extends React.Component {
           </div>
           <div
             className={`nav-item ${
-              tab === TRENDS_TAB ? "nav-item-active" : ""
+              tab === TRENDS_TAB ? "nav-item-active" : "nav-item-inactive"
             }`}
             onClick={() => this.updateTab(TRENDS_TAB)}
           >
