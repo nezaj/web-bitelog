@@ -1,10 +1,19 @@
 import React from "react";
 import "./App.css";
 
-// Nutrient Helpers
+const ENTRIES_TAB = "entries";
+const TRENDS_TAB = "trends";
+const DEFAULT_TAB = ENTRIES_TAB;
+
+// Helpers
 // ---------------------------------------------------------------------------
 const extractNutrient = (nutrients, name) =>
   nutrients.find((x) => x.name === name);
+
+const getLocationTab = (queryString) => {
+  const rawValue = new URLSearchParams(queryString).get("tab");
+  return [ENTRIES_TAB, TRENDS_TAB].find((x) => x === rawValue) || DEFAULT_TAB;
+};
 
 // Date Helpers
 // ---------------------------------------------------------------------------
@@ -124,33 +133,68 @@ const renderFeedDay = (ds, items) => {
         </div>
       </div>
       <div className="day-images">
-        {images.map((i) => (
-          <img alt="" className="day-image" src={i}></img>
+        {images.map((i, idx) => (
+          <img alt="" key={idx} className="day-image" src={i}></img>
         ))}
       </div>
     </div>
   );
 };
 
-const App = ({ entries }) => {
-  const dates = Object.keys(entries).map((ds) =>
-    renderFeedDay(ds, entries[ds])
-  );
-  return (
-    <div className="app">
-      <div className="header">
-        <div className="header-avatar"></div>
-        <div className="header-title">Heya I'm Joe!</div>
-        <div className="header-subtitle">This is where I track my food</div>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tab: getLocationTab(window.location.search),
+    };
+  }
+
+  updateTab = (tabName) => {
+    const currentPath = new URLSearchParams(window.location.search);
+    currentPath.set("tab", tabName);
+    const newUrl = window.location.pathname + "?" + currentPath.toString();
+    window.history.pushState(null, "", newUrl);
+    this.setState({ tab: getLocationTab(window.location.search) });
+  };
+
+  render() {
+    const { entries } = this.props;
+    const { tab } = this.state;
+    const dates = Object.keys(entries).map((ds) =>
+      renderFeedDay(ds, entries[ds])
+    );
+
+    return (
+      <div className="app">
+        <div className="header">
+          <div className="header-avatar"></div>
+          <div className="header-title">Heya I'm Joe!</div>
+          <div className="header-subtitle">This is where I track my food</div>
+          <div className="separator"></div>
+        </div>
+        <div className="nav">
+          <div
+            className={`nav-item ${
+              tab === ENTRIES_TAB ? "nav-item-active" : ""
+            }`}
+            onClick={() => this.updateTab(ENTRIES_TAB)}
+          >
+            ENTRIES
+          </div>
+          <div
+            className={`nav-item ${
+              tab === TRENDS_TAB ? "nav-item-active" : ""
+            }`}
+            onClick={() => this.updateTab(TRENDS_TAB)}
+          >
+            TRENDS
+          </div>
+        </div>
+        {tab === ENTRIES_TAB && <div className="feed">{dates}</div>}
+        {tab === TRENDS_TAB && <div className="feed">HELLO WORLD!</div>}
       </div>
-      <hr className="separator"></hr>
-      <div className="nav">
-        <div className="nav-item">ENTRIES</div>
-        <div className="nav-item">TRENDS</div>
-      </div>
-      <div className="feed">{dates}</div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default App;
