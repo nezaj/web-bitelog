@@ -1,3 +1,5 @@
+/* Shared */
+/* ---------------------------------------- */
 :root {
   --background-color: rgba(247, 247, 247, 1);
   --primary-color: rgba(68, 65, 106, 1);
@@ -17,6 +19,32 @@ body {
   background-color: var(--background-color);
 }
 
+.feed,
+.trends {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Mobile */
+@media screen and (max-width: 800px) {
+  .feed,
+  .trends {
+    width: 100%;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 801px) {
+  .feed,
+  .trends {
+    width: 66%;
+  }
+}
+
+/* Headers */
+/* ---------------------------------------- */
 .header {
   display: flex;
   flex-direction: column;
@@ -47,6 +75,50 @@ body {
   border-top: 1px solid var(--disabled-color);
 }
 
+/* Mobile */
+@media screen and (max-width: 800px) {
+  .header-avatar {
+    width: 150px;
+    height: 150px;
+    margin-top: 36px;
+    margin-bottom: 18px;
+  }
+  .header-title {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  .header-subtitle {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+  .separator {
+    width: 100%;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 801px) {
+  .header-avatar {
+    width: 250px;
+    height: 250px;
+    margin-top: 54px;
+    margin-bottom: 24px;
+  }
+  .header-title {
+    font-size: 48px;
+    margin-bottom: 24px;
+  }
+  .header-subtitle {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+  .separator {
+    width: 66%;
+  }
+}
+
+/* Navigation */
+/* ---------------------------------------- */
 .nav {
   display: flex;
   justify-content: space-around;
@@ -64,13 +136,39 @@ body {
   border-top: 1px solid var(--primary-color);
 }
 
-.feed {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
+/* Mobile */
+@media screen and (max-width: 800px) {
+  .nav {
+    margin-top: 18px;
+    margin-bottom: 18px;
+    width: 66%;
+  }
+  .nav-item-active {
+    padding-top: 19px;
+    margin-top: -19px;
+  }
 }
 
+/* Desktop */
+@media screen and (min-width: 801px) {
+  .nav {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    width: 33%;
+    font-size: 18px;
+  }
+  .nav-item-active {
+    padding-top: 25px;
+    margin-top: -25px;
+  }
+  .nav-item-inactive:hover {
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+/* Entries */
+/* ---------------------------------------- */
 .day-date {
   font-size: 14px;
   color: var(--primary-color);
@@ -90,87 +188,8 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
-@media screen and (min-width: 801px) {
-  .header-avatar {
-    width: 250px;
-    height: 250px;
-    margin-top: 54px;
-    margin-bottom: 24px;
-  }
-  .header-title {
-    font-size: 48px;
-    margin-bottom: 24px;
-  }
-  .header-subtitle {
-    font-size: 18px;
-    margin-bottom: 24px;
-  }
-  .separator {
-    width: 66%;
-  }
-  .nav {
-    margin-top: 24px;
-    margin-bottom: 24px;
-    width: 33%;
-    font-size: 18px;
-  }
-  .nav-item-active {
-    padding-top: 25px;
-    margin-top: -25px;
-  }
-  .nav-item-inactive:hover {
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .feed {
-    width: 66%;
-  }
-  .day-title {
-    margin-top: calc(var(--gap-unit) * 2);
-    margin-bottom: calc(var(--gap-unit) * 2);
-  }
-  .day-date {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  .day-macros {
-    font-size: 18px;
-  }
-  .day-images {
-    gap: var(--gap-unit);
-  }
-}
-
+/* Mobile */
 @media screen and (max-width: 800px) {
-  .header-avatar {
-    width: 150px;
-    height: 150px;
-    margin-top: 36px;
-    margin-bottom: 18px;
-  }
-  .header-title {
-    font-size: 36px;
-    margin-bottom: 12px;
-  }
-  .header-subtitle {
-    font-size: 18px;
-    margin-bottom: 18px;
-  }
-  .separator {
-    width: 100%;
-  }
-  .nav {
-    margin-top: 18px;
-    margin-bottom: 18px;
-    width: 66%;
-  }
-  .nav-item-active {
-    padding-top: 19px;
-    margin-top: -19px;
-  }
-  .feed {
-    width: 100%;
-  }
   .day-title {
     margin-top: var(--gap-unit);
     margin-bottom: var(--gap-unit);
@@ -184,5 +203,23 @@ body {
   }
   .day-images {
     gap: 1px;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 801px) {
+  .day-title {
+    margin-top: calc(var(--gap-unit) * 2);
+    margin-bottom: calc(var(--gap-unit) * 2);
+  }
+  .day-date {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .day-macros {
+    font-size: 18px;
+  }
+  .day-images {
+    gap: var(--gap-unit);
   }
 }
