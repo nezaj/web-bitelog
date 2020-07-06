@@ -1,184 +1,184 @@
 :root {
-    --background-color: rgba(247, 247, 247, 1.0); 
-    --primary-color: rgba(68, 65, 106, 1.0);
-    --secondary-color: rgba(0, 0, 0, 0.75);
-    --info-color: rgba(64, 50, 50, 0.75);
-    --disabled-color: rgba(64, 50, 50, 0.30);
-    --text-font-family: Montserrat, Helvetica, sans-serif;
-    --gap-unit: 15px;
+  --background-color: rgba(247, 247, 247, 1);
+  --primary-color: rgba(68, 65, 106, 1);
+  --secondary-color: rgba(0, 0, 0, 0.75);
+  --info-color: rgba(64, 50, 50, 0.75);
+  --disabled-color: rgba(64, 50, 50, 0.3);
+  --text-font-family: Montserrat, Helvetica, sans-serif;
+  --gap-unit: 15px;
 }
 
 img {
-    max-width: 100%;
-    display: block;
+  max-width: 100%;
+  display: block;
 }
 
 body {
-    background-color: var(--background-color);
+  background-color: var(--background-color);
 }
 
 .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header-avatar {
-    background-image: url(./headshot.jpg);
-    background-position-y: 20%;
-    background-size: 105%;
-    border-radius: 125px;
-    border-style: solid;
-    border-width: thin;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-image: url(./headshot.jpg);
+  background-position-y: 20%;
+  background-size: 105%;
+  border-radius: 125px;
+  border-style: solid;
+  border-width: thin;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .header-title {
-    font-family: var(--text-font-family);
-    color: var(--primary-color);
+  font-family: var(--text-font-family);
+  color: var(--primary-color);
 }
 
 .header-subtitle {
-    font-family: var(--text-font-family);
-    color: var(--secondary-color);
+  font-family: var(--text-font-family);
+  color: var(--secondary-color);
 }
 
 .separator {
-    border-top: 1px solid var(--disabled-color);
+  border-top: 1px solid var(--disabled-color);
 }
 
 .nav {
-    display: flex;
-    justify-content: space-around;
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .nav-item {
-    font-family: var(--text-font-family);
+  font-family: var(--text-font-family);
 }
 
 .nav-item-active {
-    color: var(--primary-color);
-    font-weight: bold;
-    border-top: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  font-weight: bold;
+  border-top: 1px solid var(--primary-color);
 }
 
 .feed {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: auto;
-    margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .day-date {
-    font-size: 14px;
-    color: var(--primary-color);
-    font-family: var(--text-font-family);
-    font-weight: bold;
+  font-size: 14px;
+  color: var(--primary-color);
+  font-family: var(--text-font-family);
+  font-weight: bold;
 }
 
 .day-macros {
-    color: var(--secondary-color);
-    font-family: var(--text-font-family);
-    font-size: 10px;
-    font-weight: bold;
+  color: var(--secondary-color);
+  font-family: var(--text-font-family);
+  font-size: 10px;
+  font-weight: bold;
 }
 
 .day-images {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 @media screen and (min-width: 800px) {
-    .header-avatar {
-        width: 250px;
-        height: 250px;
-        margin-top: 54px;
-        margin-bottom: 24px;
-    }
-    .header-title {
-        font-size: 48px;
-        margin-bottom: 24px;
-    }
-    .header-subtitle {
-        font-size: 18px;
-        margin-bottom: 24px;
-    }
-    .separator {
-        width: 66%;
-    }
-    .nav {
-        margin-top: 24px;
-        margin-bottom: 24px;
-        width: 33%;
-        font-size: 18px;
-    }
-    .nav-item-active {
-        padding-top: 25px;
-        margin-top: -25px;
-    }
-    .feed {
-        width: 66%;
-    }
-    .day-title {
-        margin-top: calc(var(--gap-unit) * 2);
-        margin-bottom: calc(var(--gap-unit) * 2);
-    }
-    .day-date {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-    .day-macros {
-        font-size: 18px;
-    }
-    .day-images {
-        gap: var(--gap-unit);
-    }
+  .header-avatar {
+    width: 250px;
+    height: 250px;
+    margin-top: 54px;
+    margin-bottom: 24px;
+  }
+  .header-title {
+    font-size: 48px;
+    margin-bottom: 24px;
+  }
+  .header-subtitle {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+  .separator {
+    width: 66%;
+  }
+  .nav {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    width: 33%;
+    font-size: 18px;
+  }
+  .nav-item-active {
+    padding-top: 25px;
+    margin-top: -25px;
+  }
+  .feed {
+    width: 66%;
+  }
+  .day-title {
+    margin-top: calc(var(--gap-unit) * 2);
+    margin-bottom: calc(var(--gap-unit) * 2);
+  }
+  .day-date {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .day-macros {
+    font-size: 18px;
+  }
+  .day-images {
+    gap: var(--gap-unit);
+  }
 }
 
 @media screen and (max-width: 801px) {
-    .header-avatar {
-        width: 150px;
-        height: 150px;
-        margin-top: 36px;
-        margin-bottom: 18px;
-    }
-    .header-title {
-        font-size: 36px;
-        margin-bottom: 12px;
-    }
-    .header-subtitle {
-        font-size: 18px;
-        margin-bottom: 18px;
-    }
-    .separator {
-        width: 100%;
-    }
-    .nav {
-        margin-top: 18px;
-        margin-bottom: 18px;
-        width: 66%;
-    }
-    .nav-item-active {
-        padding-top: 19px;
-        margin-top: -19px;
-    }
-    .feed {
-        width: 100%;
-    }
-    .day-title {
-        margin-top: var(--gap-unit);
-        margin-bottom: var(--gap-unit);
-    }
-    .day-date {
-        font-size: 18px;
-        margin-bottom: 5px;
-    }
-    .day-macros {
-        font-size: 14px;
-    }
-    .day-images {
-        gap: 1px;
-    }
+  .header-avatar {
+    width: 150px;
+    height: 150px;
+    margin-top: 36px;
+    margin-bottom: 18px;
+  }
+  .header-title {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  .header-subtitle {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+  .separator {
+    width: 100%;
+  }
+  .nav {
+    margin-top: 18px;
+    margin-bottom: 18px;
+    width: 66%;
+  }
+  .nav-item-active {
+    padding-top: 19px;
+    margin-top: -19px;
+  }
+  .feed {
+    width: 100%;
+  }
+  .day-title {
+    margin-top: var(--gap-unit);
+    margin-bottom: var(--gap-unit);
+  }
+  .day-date {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  .day-macros {
+    font-size: 14px;
+  }
+  .day-images {
+    gap: 1px;
+  }
 }
