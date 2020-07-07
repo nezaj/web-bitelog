@@ -225,13 +225,13 @@ body {
 .trends-date-selector {
   display: flex;
   justify-content: space-evenly;
-  width: 85%;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .trends-date-option {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .trends-summary {
@@ -247,7 +247,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px 15px;
+  padding: 24px 18px;
   /* Gradient border with border-radius!
   ** to achieve this we use "background-clip", the inner background
   ** is the same as our page's background and the outer background
@@ -262,17 +262,17 @@ body {
         var(--calorie-summary-end)
       )
       border-box;
-  border-radius: 500px;
+  border-radius: 50px;
   border: 3px solid transparent;
 }
 
 .trends-summary-calories-title {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: lighter;
 }
 
 .trends-summary-calories-subtitle {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .trends-summary-macros {
@@ -289,13 +289,13 @@ body {
 }
 
 .trends-summary-macro-title {
+  font-size: 18px;
   margin-bottom: 10px;
-  font-size: 14px;
 }
 
 .trends-summary-macro-amount,
 .trends-summary-macro-pct {
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 5px;
 }
 
