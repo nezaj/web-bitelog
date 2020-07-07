@@ -128,10 +128,14 @@ body {
   margin-right: auto;
 }
 
-.nav-item-active {
+.nav-option.active {
   color: var(--primary-color);
   font-weight: bold;
   border-top: 1px solid var(--primary-color);
+}
+
+.nav-option.inactive {
+  color: var(--secondary-color);
 }
 
 /* Mobile */
@@ -141,7 +145,7 @@ body {
     margin-bottom: 18px;
     width: 66%;
   }
-  .nav-item-active {
+  .nav-option.active {
     padding-top: 19px;
     margin-top: -19px;
   }
@@ -155,11 +159,11 @@ body {
     width: 33%;
     font-size: 18px;
   }
-  .nav-item-active {
+  .nav-option.active {
     padding-top: 25px;
     margin-top: -25px;
   }
-  .nav-item-inactive:hover {
+  .nav-option.inactive:hover {
     font-weight: bold;
     cursor: pointer;
   }
@@ -234,9 +238,13 @@ body {
   font-size: 14px;
 }
 
-.trends-date-option-active {
+.trends-date-option.active {
   color: var(--primary-color);
   font-weight: bold;
+}
+
+.trends-date-option.inactive {
+  color: var(--secondary-color);
 }
 
 .trends-summary {
@@ -252,7 +260,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 24px 17px;
+  padding: 24px 15px;
   /* Gradient border with border-radius!
   ** to achieve this we use "background-clip", the inner background
   ** is the same as our page's background and the outer background
@@ -312,4 +320,83 @@ body {
 .trends-chart-data {
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+/* Desktop */
+@media screen and (min-width: 801px) {
+  .trends-date-selector {
+    width: 66%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .trends-date-option {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .trends-date-option.active {
+    color: var(--primary-color);
+  }
+
+  .trends-date-option.inactive {
+    color: var(--disabled-color);
+  }
+
+  .trends-date-option.inactive:hover {
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+
+  .trends-summary {
+    width: 66%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .trends-summary-calories {
+    padding: 36px 24px;
+    border-radius: 100px;
+    border: 6px solid transparent;
+  }
+
+  .trends-summary-calories-title {
+    font-size: 36px;
+    font-weight: lighter;
+  }
+
+  .trends-summary-calories-subtitle {
+    font-size: 18px;
+  }
+
+  .trends-summary-macro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .trends-summary-macro-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: lighter;
+  }
+
+  .trends-summary-macro-amount,
+  .trends-summary-macro-pct {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: lighter;
+  }
+
+  .trends-chart-title {
+    font-size: 24px;
+  }
+
+  .trends-chart-data {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
 }

@@ -24,7 +24,8 @@ const INFO_COLOR = "rgba(64, 50, 50, 0.75)";
 const FONT_FAMILY = "Montserrat, Helvetica, sans-serif";
 
 // Chart options
-const CHART_FONT_SIZE = 14;
+// 800px is cut-off in the css for desktop styling
+const CHART_FONT_SIZE = window.screen.width > 800 ? 18 : 14;
 const AXIS_PADDING = 5;
 const MAX_X_AXIS_ROTATION = 0; // Don't rotate dates, we want them to be easy to read :D
 const MAX_TICKS = 5; // Don't crowd the axis
@@ -281,7 +282,11 @@ const LineChart = ({ title, macroData }) => {
       fontFamily: FONT_FAMILY,
       fontSize: CHART_FONT_SIZE,
     },
-    responsive: true,
+    tooltips: {
+      callbacks: {
+        label: (item, _) => `${title}: ${item.yLabel}`,
+      },
+    },
     scales: {
       xAxes: [
         {
@@ -289,6 +294,7 @@ const LineChart = ({ title, macroData }) => {
           gridLines: { display: false },
           time: {
             tooltipFormat: "MMM DD YYYY",
+            minUnit: "day",
           },
           ticks: {
             fontFamily: FONT_FAMILY,
@@ -354,7 +360,6 @@ const FatCarbsChart = ({ title, fatData, carbsData }) => {
     ],
   };
   const options = {
-    responsive: true,
     legend: {
       position: "bottom",
       fontFamily: FONT_FAMILY,
@@ -369,6 +374,7 @@ const FatCarbsChart = ({ title, fatData, carbsData }) => {
           gridLines: { display: false },
           time: {
             tooltipFormat: "MMM DD YYYY",
+            minUnit: "day",
           },
           ticks: {
             fontFamily: FONT_FAMILY,
@@ -423,7 +429,7 @@ const Trends = ({ dateRange, updateDateRange, trendData }) => {
       <div className="trends-date-selector">
         <div
           className={`trends-date-option ${
-            dateRange === LAST_7_DAYS ? "trends-date-option-active" : ""
+            dateRange === LAST_7_DAYS ? "active" : "inactive"
           }`}
           onClick={() => updateDateRange(LAST_7_DAYS)}
         >
@@ -431,7 +437,7 @@ const Trends = ({ dateRange, updateDateRange, trendData }) => {
         </div>
         <div
           className={`trends-date-option ${
-            dateRange === LAST_30_DAYS ? "trends-date-option-active" : ""
+            dateRange === LAST_30_DAYS ? "active" : "inactive"
           }`}
           onClick={() => updateDateRange(LAST_30_DAYS)}
         >
@@ -439,7 +445,7 @@ const Trends = ({ dateRange, updateDateRange, trendData }) => {
         </div>
         <div
           className={`trends-date-option ${
-            dateRange === LAST_90_DAYS ? "trends-date-option-active" : ""
+            dateRange === LAST_90_DAYS ? "active" : "inactive"
           }`}
           onClick={() => updateDateRange(LAST_90_DAYS)}
         >
@@ -447,7 +453,7 @@ const Trends = ({ dateRange, updateDateRange, trendData }) => {
         </div>
         <div
           className={`trends-date-option ${
-            dateRange === THIS_YEAR ? "trends-date-option-active" : ""
+            dateRange === THIS_YEAR ? "active" : "inactive"
           }`}
           onClick={() => updateDateRange(THIS_YEAR)}
         >
@@ -544,16 +550,16 @@ class App extends React.Component {
 
         <div className="nav">
           <div
-            className={`nav-item ${
-              tab === ENTRIES_TAB ? "nav-item-active" : "nav-item-inactive"
+            className={`nav-option ${
+              tab === ENTRIES_TAB ? "active" : "inactive"
             }`}
             onClick={() => this.updateTab(ENTRIES_TAB)}
           >
             ENTRIES
           </div>
           <div
-            className={`nav-item ${
-              tab === TRENDS_TAB ? "nav-item-active" : "nav-item-inactive"
+            className={`nav-option ${
+              tab === TRENDS_TAB ? "active" : "inactive"
             }`}
             onClick={() => this.updateTab(TRENDS_TAB)}
           >
