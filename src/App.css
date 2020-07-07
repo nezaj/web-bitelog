@@ -234,6 +234,11 @@ body {
   font-size: 14px;
 }
 
+.trends-date-option-active {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
 .trends-summary {
   display: flex;
   justify-content: space-evenly;

@@ -4,11 +4,20 @@ import { Bar, Line } from "react-chartjs-2";
 
 import "./App.css";
 
+// Tab options
 const ENTRIES_TAB = "entries";
 const TRENDS_TAB = "trends";
 const DEFAULT_TAB = ENTRIES_TAB;
 
+// Trends date range options
+const LAST_7_DAYS = "lastWeek";
+const LAST_30_DAYS = "last30Days";
+const LAST_90_DAYS = "last90Days";
+const THIS_YEAR = "thisYear";
+const DEFAULT_TRENDS_DATE_RANGE = LAST_7_DAYS;
+
 // Corresponds to CSS color scheme
+// (TODO): Would be nicer to just define these in one place (either in js or css) and re-use
 const PRIMARY_COLOR = "rgba(68, 65, 106, 1)";
 const SECONDARY_COLOR = "rgba(0, 0, 0, 0.75)";
 const INFO_COLOR = "rgba(64, 50, 50, 0.75)";
@@ -18,14 +27,13 @@ const FONT_FAMILY = "Montserrat, Helvetica, sans-serif";
 const CHART_FONT_SIZE = 14;
 const AXIS_PADDING = 5;
 const MAX_X_AXIS_ROTATION = 0; // Don't rotate dates, we want them to be easy to read :D
-const MAX_Y_TICKS = 5; // Don't crowd the y-axis
+const MAX_TICKS = 5; // Don't crowd the axis
 
 // Utils
 // ---------------------------------------------------------------------------
 const sum = (items) => items.reduce((xs, x) => (xs += x), 0);
 const avg = (items) => (items.length ? sum(items) / items.length : null);
 const roundedAvg = (items) => Math.round(avg(items));
-
 const descSort = (a, b) => b - a;
 
 // Nutrient Helpers
@@ -42,7 +50,7 @@ const sumNutrients = (items, name) =>
   );
 
 /*
-Helper for marshalling data into a comfortable format for rendering trend data
+Marshall data into a comfortable format for rendering trend data
 
 Takes in
 {
@@ -154,11 +162,52 @@ const friendlyDate = (dateStr) => {
   return `${weekday}, ${month} ${day}, ${year}`;
 };
 
-// Misc Helpers
+// Trend Helpers
+// ---------------------------------------------------------------------------
+const filterEntriesToDateMap = (dateRange, entriesToDateMap) => {
+  const latestDate = Object.keys(entriesToDateMap).sort(descSort)[0];
+  let minDate;
+  switch (dateRange) {
+    case LAST_30_DAYS:
+      minDate = addDays(latestDate, -30);
+      break;
+    case LAST_90_DAYS:
+      minDate = addDays(latestDate, -90);
+      break;
+    case THIS_YEAR:
+      minDate = new Date(new Date().getFullYear(), 1, 1);
+      break;
+    case LAST_7_DAYS:
+    default:
+      minDate = addDays(latestDate, -7);
+      break;
+  }
+
+  const keep = new Set(
+    Object.keys(entriesToDateMap).filter((x) => new Date(x) > minDate)
+  );
+  return Object.keys(entriesToDateMap)
+    .filter((x) => keep.has(x))
+    .reduce((xs, x) => {
+      xs[x] = entriesToDateMap[x];
+      return xs;
+    }, {});
+};
+
+// Location Helpers
 // ---------------------------------------------------------------------------
 const getLocationTab = (queryString) => {
   const rawValue = new URLSearchParams(queryString).get("tab");
   return [ENTRIES_TAB, TRENDS_TAB].find((x) => x === rawValue) || DEFAULT_TAB;
+};
+
+const getLocationDateRange = (queryString) => {
+  const rawValue = new URLSearchParams(queryString).get("tdr");
+  return (
+    [LAST_7_DAYS, LAST_30_DAYS, LAST_90_DAYS, THIS_YEAR].find(
+      (x) => x === rawValue
+    ) || DEFAULT_TRENDS_DATE_RANGE
+  );
 };
 
 // Functional Components
@@ -246,6 +295,7 @@ const LineChart = ({ title, macroData }) => {
             fontColor: INFO_COLOR,
             fontSize: CHART_FONT_SIZE,
             maxRotation: MAX_X_AXIS_ROTATION,
+            maxTicksLimit: MAX_TICKS,
             padding: AXIS_PADDING,
           },
         },
@@ -257,7 +307,7 @@ const LineChart = ({ title, macroData }) => {
             fontFamily: FONT_FAMILY,
             fontColor: INFO_COLOR,
             fontSize: CHART_FONT_SIZE,
-            maxTicksLimit: MAX_Y_TICKS,
+            maxTicksLimit: MAX_TICKS,
             padding: AXIS_PADDING,
           },
         },
@@ -276,17 +326,13 @@ const LineChart = ({ title, macroData }) => {
 };
 
 const FatCarbsChart = ({ title, fatData, carbsData }) => {
+  // Earliest entries first
   const cleanFatCopy = [...fatData].sort();
   const cleanCarbsCopy = [...carbsData].sort();
-  console.log(cleanFatCopy);
-  console.log(cleanCarbsCopy);
 
   const timeSeries = cleanFatCopy.map((x) => new Date(x[0]));
   const fatCalories = cleanFatCopy.map((x) => Math.round(x[1] * 9.0));
   const carbsCalories = cleanCarbsCopy.map((x) => Math.round(x[1] * 4.5));
-
-  console.log(fatCalories);
-  console.log(carbsCalories);
 
   const data = {
     labels: timeSeries,
@@ -319,6 +365,7 @@ const FatCarbsChart = ({ title, fatData, carbsData }) => {
       xAxes: [
         {
           type: "time",
+          offset: true, // Fixes issue where first/last data was cut off. Thanks: https://stackoverflow.com/a/53496344
           gridLines: { display: false },
           time: {
             tooltipFormat: "MMM DD YYYY",
@@ -328,6 +375,7 @@ const FatCarbsChart = ({ title, fatData, carbsData }) => {
             fontColor: INFO_COLOR,
             fontSize: CHART_FONT_SIZE,
             maxRotation: MAX_X_AXIS_ROTATION,
+            maxTicksLimit: MAX_TICKS,
             padding: AXIS_PADDING,
           },
         },
@@ -339,7 +387,7 @@ const FatCarbsChart = ({ title, fatData, carbsData }) => {
             fontFamily: FONT_FAMILY,
             fontColor: INFO_COLOR,
             fontSize: CHART_FONT_SIZE,
-            maxTicksLimit: MAX_Y_TICKS,
+            maxTicksLimit: MAX_TICKS,
             padding: AXIS_PADDING,
           },
         },
@@ -357,7 +405,7 @@ const FatCarbsChart = ({ title, fatData, carbsData }) => {
   );
 };
 
-const Trends = ({ trendData }) => {
+const Trends = ({ dateRange, updateDateRange, trendData }) => {
   const averageCalories = roundedAvg(trendData.calories.map((x) => x[1]));
   const averageProtein = roundedAvg(trendData.protein.map((x) => x[1]));
   const averageFat = roundedAvg(trendData.fat.map((x) => x[1]));
@@ -373,10 +421,38 @@ const Trends = ({ trendData }) => {
   return (
     <div className="trends">
       <div className="trends-date-selector">
-        <div className="trends-date-option">Last 7 Days</div>
-        <div className="trends-date-option">Last 30 Days</div>
-        <div className="trends-date-option">Last 90 Days</div>
-        <div className="trends-date-option">This Year</div>
+        <div
+          className={`trends-date-option ${
+            dateRange === LAST_7_DAYS ? "trends-date-option-active" : ""
+          }`}
+          onClick={() => updateDateRange(LAST_7_DAYS)}
+        >
+          Last 7 Days
+        </div>
+        <div
+          className={`trends-date-option ${
+            dateRange === LAST_30_DAYS ? "trends-date-option-active" : ""
+          }`}
+          onClick={() => updateDateRange(LAST_30_DAYS)}
+        >
+          Last 30 Days
+        </div>
+        <div
+          className={`trends-date-option ${
+            dateRange === LAST_90_DAYS ? "trends-date-option-active" : ""
+          }`}
+          onClick={() => updateDateRange(LAST_90_DAYS)}
+        >
+          Last 90 Days
+        </div>
+        <div
+          className={`trends-date-option ${
+            dateRange === THIS_YEAR ? "trends-date-option-active" : ""
+          }`}
+          onClick={() => updateDateRange(THIS_YEAR)}
+        >
+          This Year
+        </div>
       </div>
 
       <div className="trends-summary">
@@ -422,27 +498,40 @@ class App extends React.Component {
     super(props);
     this.state = {
       tab: getLocationTab(window.location.search),
+      dateRange: getLocationDateRange(window.location.search),
     };
   }
 
-  updateTab = (tabName) => {
+  updateDateRange = (dateRange) => {
     const currentPath = new URLSearchParams(window.location.search);
-    currentPath.set("tab", tabName);
+    currentPath.set("tdr", dateRange);
     const newUrl = window.location.pathname + "?" + currentPath.toString();
     window.history.pushState(null, "", newUrl);
-    this.setState({ tab: getLocationTab(window.location.search) });
+    this.setState({ dateRange });
+  };
+
+  updateTab = (tab) => {
+    const currentPath = new URLSearchParams(window.location.search);
+    currentPath.set("tab", tab);
+    const newUrl = window.location.pathname + "?" + currentPath.toString();
+    window.history.pushState(null, "", newUrl);
+    this.setState({ tab });
   };
 
   render() {
     const { entriesToDateMap } = this.props;
-    const { tab } = this.state;
+    const { dateRange, tab } = this.state;
 
     // Latest entries first
     const renderedEntries = Object.keys(entriesToDateMap)
       .sort(descSort)
-      .map((ds) => <Entry ds={ds} items={entriesToDateMap[ds]} />);
+      .map((ds, idx) => (
+        <Entry key={idx} ds={ds} items={entriesToDateMap[ds]} />
+      ));
 
-    const trendData = nutrientsToDailyTotalsMap(entriesToDateMap);
+    const trendData = nutrientsToDailyTotalsMap(
+      filterEntriesToDateMap(dateRange, entriesToDateMap)
+    );
 
     return (
       <div className="app">
@@ -473,7 +562,13 @@ class App extends React.Component {
         </div>
 
         {tab === ENTRIES_TAB && <div className="feed">{renderedEntries}</div>}
-        {tab === TRENDS_TAB && <Trends trendData={trendData} />}
+        {tab === TRENDS_TAB && (
+          <Trends
+            dateRange={dateRange}
+            updateDateRange={this.updateDateRange}
+            trendData={trendData}
+          />
+        )}
       </div>
     );
   }
