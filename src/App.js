@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Line } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 
 import "./App.css";
 
@@ -8,10 +8,14 @@ const ENTRIES_TAB = "entries";
 const TRENDS_TAB = "trends";
 const DEFAULT_TAB = ENTRIES_TAB;
 
-// Color and font Scheme
+// Corresponds to CSS color scheme
 const PRIMARY_COLOR = "rgba(68, 65, 106, 1)";
+const SECONDARY_COLOR = "rgba(0, 0, 0, 0.75)";
 const INFO_COLOR = "rgba(64, 50, 50, 0.75)";
 const FONT_FAMILY = "Montserrat, Helvetica, sans-serif";
+
+// Chart options
+const CHART_FONT_SIZE = 14;
 
 // Helpers
 // ---------------------------------------------------------------------------
@@ -167,6 +171,9 @@ const LineChart = ({ title }) => {
   const options = {
     legend: {
       display: false,
+      fontColor: INFO_COLOR,
+      fontFamily: FONT_FAMILY,
+      fontSize: CHART_FONT_SIZE,
     },
     responsive: true,
     scales: {
@@ -176,6 +183,7 @@ const LineChart = ({ title }) => {
           ticks: {
             fontFamily: FONT_FAMILY,
             fontColor: INFO_COLOR,
+            fontSize: CHART_FONT_SIZE,
           },
         },
       ],
@@ -185,6 +193,7 @@ const LineChart = ({ title }) => {
           ticks: {
             fontFamily: FONT_FAMILY,
             fontColor: INFO_COLOR,
+            fontSize: CHART_FONT_SIZE,
           },
         },
       ],
@@ -201,11 +210,64 @@ const LineChart = ({ title }) => {
   );
 };
 
-const BarChart = ({ title }) => {
+const FatCarbsChart = () => {
+  const data = {
+    labels: ["Jan", "Feb", "Mar"],
+    datasets: [
+      {
+        label: "Fat",
+        backgroundColor: PRIMARY_COLOR,
+        borderColor: PRIMARY_COLOR,
+        borderWidth: 1,
+        data: [65, 59, 80],
+      },
+      {
+        label: "Carbs",
+        backgroundColor: SECONDARY_COLOR,
+        borderColor: SECONDARY_COLOR,
+        borderWidth: 1,
+        data: [80, 59, 65],
+      },
+    ],
+  };
+  const options = {
+    responsive: true,
+    legend: {
+      position: "bottom",
+      fontFamily: FONT_FAMILY,
+      fontColor: INFO_COLOR,
+      fontSize: CHART_FONT_SIZE,
+    },
+    scales: {
+      xAxes: [
+        {
+          gridLines: { display: false },
+          ticks: {
+            fontFamily: FONT_FAMILY,
+            fontColor: INFO_COLOR,
+            fontSize: CHART_FONT_SIZE,
+          },
+        },
+      ],
+      yAxes: [
+        {
+          gridLines: { display: false },
+          ticks: {
+            fontFamily: FONT_FAMILY,
+            fontColor: INFO_COLOR,
+            fontSize: CHART_FONT_SIZE,
+          },
+        },
+      ],
+    },
+  };
+
   return (
     <div className="trends-chart">
-      <div className="trends-chart-title">{title}</div>
-      <div className="trends-chart-data">Chart!</div>
+      <div className="trends-chart-title">Fat and Carbs</div>
+      <div className="trends-chart-data">
+        <Bar data={data} options={options} />
+      </div>
     </div>
   );
 };
@@ -246,7 +308,7 @@ const Trends = () => {
       <div className="trends-charts-container">
         <LineChart title="Calories" />
         <LineChart title="Protein" />
-        <BarChart title="Fat and Carbs" />
+        <FatCarbsChart title="Fat and Carbs" />
       </div>
     </div>
   );

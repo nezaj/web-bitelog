@@ -1,8 +1,8 @@
 # TODOs
 * Implement design spec!
-    * Add trend graphs (static?)
     * Hook-up data to trends
     * Implement trend date selection
+    * Implement Deskptop styling
 * Enable ad-hoc / non-app data entry
 
 # Future
