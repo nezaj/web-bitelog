@@ -1,9 +1,17 @@
 import React from "react";
+
+import { Line } from "react-chartjs-2";
+
 import "./App.css";
 
 const ENTRIES_TAB = "entries";
 const TRENDS_TAB = "trends";
 const DEFAULT_TAB = ENTRIES_TAB;
+
+// Color and font Scheme
+const PRIMARY_COLOR = "rgba(68, 65, 106, 1)";
+const INFO_COLOR = "rgba(64, 50, 50, 0.75)";
+const FONT_FAMILY = "Montserrat, Helvetica, sans-serif";
 
 // Helpers
 // ---------------------------------------------------------------------------
@@ -99,7 +107,7 @@ const friendlyDate = (dateStr) => {
 
 // Functional Components
 // ---------------------------------------------------------------------------
-const renderFeedDay = (ds, items) => {
+const Entry = ({ ds, items }) => {
   const rawTotals = items.reduce(
     (xs, x) => {
       xs["cal"] += extractNutrient(x.nutrients, "calories").amount;
@@ -141,7 +149,68 @@ const renderFeedDay = (ds, items) => {
   );
 };
 
-const renderTrends = () => {
+const LineChart = ({ title }) => {
+  const data = {
+    labels: ["Jan", "Feb", "Mar"],
+    datasets: [
+      {
+        borderColor: PRIMARY_COLOR,
+        borderWidth: 1,
+        pointRadius: 2,
+        pointBorderWidth: 2,
+        pointBackgroundColor: PRIMARY_COLOR,
+        fill: false,
+        data: [65, 59, 80],
+      },
+    ],
+  };
+  const options = {
+    legend: {
+      display: false,
+    },
+    responsive: true,
+    scales: {
+      xAxes: [
+        {
+          gridLines: { display: false },
+          ticks: {
+            fontFamily: FONT_FAMILY,
+            fontColor: INFO_COLOR,
+          },
+        },
+      ],
+      yAxes: [
+        {
+          gridLines: { display: false },
+          ticks: {
+            fontFamily: FONT_FAMILY,
+            fontColor: INFO_COLOR,
+          },
+        },
+      ],
+    },
+  };
+
+  return (
+    <div className="trends-chart">
+      <div className="trends-chart-title">{title}</div>
+      <div className="trends-chart-data">
+        <Line data={data} options={options} />
+      </div>
+    </div>
+  );
+};
+
+const BarChart = ({ title }) => {
+  return (
+    <div className="trends-chart">
+      <div className="trends-chart-title">{title}</div>
+      <div className="trends-chart-data">Chart!</div>
+    </div>
+  );
+};
+
+const Trends = () => {
   return (
     <div className="trends">
       <div className="trends-date-selector">
@@ -175,18 +244,9 @@ const renderTrends = () => {
         </div>
       </div>
       <div className="trends-charts-container">
-        <div className="trends-chart">
-          <div className="trends-chart-title">Calories</div>
-          <div className="trends-chart-data">Chart!</div>
-        </div>
-        <div className="trends-chart">
-          <div className="trends-chart-title">Protein</div>
-          <div className="trends-chart-data">Chart!</div>
-        </div>
-        <div className="trends-chart">
-          <div className="trends-chart-title">Fat and Carbs</div>
-          <div className="trends-chart-data">Chart!</div>
-        </div>
+        <LineChart title="Calories" />
+        <LineChart title="Protein" />
+        <BarChart title="Fat and Carbs" />
       </div>
     </div>
   );
@@ -211,10 +271,9 @@ class App extends React.Component {
   render() {
     const { entries } = this.props;
     const { tab } = this.state;
-    const renderedEntries = Object.keys(entries).map((ds) =>
-      renderFeedDay(ds, entries[ds])
-    );
-    const renderedTrends = renderTrends();
+    const renderedEntries = Object.keys(entries).map((ds) => (
+      <Entry ds={ds} items={entries[ds]} />
+    ));
 
     return (
       <div className="app">
@@ -245,7 +304,7 @@ class App extends React.Component {
         </div>
 
         {tab === ENTRIES_TAB && <div className="feed">{renderedEntries}</div>}
-        {tab === TRENDS_TAB && renderedTrends}
+        {tab === TRENDS_TAB && <Trends />}
       </div>
     );
   }
