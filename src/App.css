@@ -239,7 +239,7 @@ body {
   justify-content: space-evenly;
   width: 100%;
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .trends-summary-calories {
@@ -247,7 +247,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 24px 18px;
+  padding: 24px 17px;
   /* Gradient border with border-radius!
   ** to achieve this we use "background-clip", the inner background
   ** is the same as our page's background and the outer background

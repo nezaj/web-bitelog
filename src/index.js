@@ -22,7 +22,7 @@ const entries = entriesToDateMap(data.entries);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App entries={entries} />
+    <App entriesToDateMap={entries} />
   </React.StrictMode>,
   document.getElementById("root")
 );
