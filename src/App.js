@@ -542,7 +542,13 @@ class App extends React.Component {
     return (
       <div className="app">
         <div className="header">
-          <div className="header-avatar"></div>
+          <a
+            href="http://www.joeaverbukh.com"
+            title="Visit my personal website"
+            className="header-link"
+          >
+            <div className="header-avatar"></div>
+          </a>
           <div className="header-title">Heya I'm Joe!</div>
           <div className="header-subtitle">This is where I track my food</div>
           <div className="separator"></div>
