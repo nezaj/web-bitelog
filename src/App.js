@@ -235,7 +235,14 @@ const Entry = ({ ds, items }) => {
   const entryDate = friendlyDate(ds);
 
   // Multiple items can have the same image so we de-dupe and remove missing data
-  const images = [...new Set(items.map((i) => i.imageURL).filter((x) => x))];
+  const images = [
+    ...new Set(
+      items
+        .map((i) => i.imageURL)
+        .filter((x) => x)
+        .reverse() // earliest photos first!
+    ),
+  ];
 
   return (
     <div className="day">
