@@ -12,3 +12,9 @@ deploy:
 	git push origin master
 	@echo "Deploying to github pages..."
 	yarn deploy
+
+update:
+	@echo "Updating and deploying new entries..."
+	ls -t ~/Downloads/bitesnap* | head -1 | xargs -I {} mv {} src/data/sample.json
+	git add .
+	git commit -m "Updated data"
