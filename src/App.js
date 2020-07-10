@@ -3,6 +3,7 @@ import React from "react";
 import { Bar, Line } from "react-chartjs-2";
 
 import "./App.css";
+import DefaultPhoto from "./missing_photo.svg";
 
 // Tab options
 const ENTRIES_TAB = "entries";
@@ -29,6 +30,8 @@ const CHART_FONT_SIZE = window.screen.width > 800 ? 18 : 14;
 const AXIS_PADDING = 5;
 const MAX_X_AXIS_ROTATION = 0; // Don't rotate dates, we want them to be easy to read :D
 const MAX_TICKS = 5; // Don't crowd the axis
+
+const TODAY = new Date();
 
 // Utils
 // ---------------------------------------------------------------------------
@@ -116,11 +119,10 @@ const addDays = (date, days) => {
 };
 
 const isToday = (date) => {
-  const today = new Date();
   return (
-    date.getDate() === today.getDate() &&
-    date.getMonth() === today.getMonth() &&
-    date.getFullYear() === today.getFullYear()
+    date.getDate() === TODAY.getDate() &&
+    date.getMonth() === TODAY.getMonth() &&
+    date.getFullYear() === TODAY.getFullYear()
   );
 };
 
@@ -234,13 +236,10 @@ const Entry = ({ ds, items }) => {
 
   const entryDate = friendlyDate(ds);
 
-  // Multiple items can have the same image so we de-dupe and remove missing data
+  // Multiple items can have the same image so we de-dupe and ensure earliest photos are first
   const images = [
     ...new Set(
-      items
-        .map((i) => i.imageURL)
-        .filter((x) => x)
-        .reverse() // earliest photos first!
+      items.map((i) => i.imageURL || DefaultPhoto).reverse() // earliest photos first!
     ),
   ];
 
@@ -254,8 +253,8 @@ const Entry = ({ ds, items }) => {
         </div>
       </div>
       <div className="day-images">
-        {images.map((i, idx) => (
-          <img alt="" key={idx} className="day-image" src={i}></img>
+        {images.map((url, idx) => (
+          <img alt="" key={idx} className="day-image" src={url}></img>
         ))}
       </div>
     </div>
