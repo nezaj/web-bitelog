@@ -16,7 +16,7 @@ deploy:
 	@echo "Deploying to github pages..."
 	yarn deploy
 
-update-data:
+new-data:
 	# Used for easily updating data
 	@echo "Updating and deploying new entries..."
 	ls -t $(DATA_INPUT_DIR)/bitesnap* | head -1 | xargs -I {} cp {} $(DATA_OUTPUT_DIR)/sample.json

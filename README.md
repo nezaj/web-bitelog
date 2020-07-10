@@ -12,4 +12,4 @@ yarn start
 ### Make commands
 * `make repl` -- Fire up a repl, space for easily importing and iterating
 * `make deploy` -- deploy site
-* `make update-data` -- deploy new data
+* `make new-data` -- deploy new data
