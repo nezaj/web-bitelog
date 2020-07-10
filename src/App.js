@@ -43,7 +43,7 @@ const descSort = (a, b) => b - a;
 // Nutrient Helpers
 // ---------------------------------------------------------------------------
 const extractNutrient = (nutrients, name) =>
-  nutrients.find((x) => x.name === name);
+  nutrients.find((x) => x.name === name) || { amount: 0 };
 
 const sumNutrients = (items, name) =>
   Math.round(
