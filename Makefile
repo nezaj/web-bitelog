@@ -16,10 +16,15 @@ deploy:
 	@echo "Deploying to github pages..."
 	yarn deploy
 
+compress:
+	@echo "Compressing images..."
+	node compress.js
+
 new-data:
 	# Used for easily updating data
 	@echo "Updating and deploying new entries..."
 	ls -t $(DATA_INPUT_DIR)/bitesnap* | head -1 | xargs -I {} cp {} $(DATA_OUTPUT_DIR)/sample.json
+	$(MAKE) compress
 	git add .
 	git commit -m "Update data"
 	$(MAKE) deploy

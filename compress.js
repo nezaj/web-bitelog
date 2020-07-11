@@ -47,17 +47,9 @@ const compressImage = ({ url, id }) => {
   console.log(`\nCompressing ${url}\n`);
 
   const outputPath = path.join(IMAGES_PATH, id);
-  console.log(outputPath);
-  return new Promise((resolve, reject) => {
-    tinify.fromUrl(url).toFile(outputPath, (err) => {
-      if (err) {
-        console.log(err);
-        reject(err, url);
-      } else {
-        resolve(outputPath);
-      }
-    });
-  })
+  return tinify
+    .fromUrl(url)
+    .toFile(outputPath)
     .then((filename) => {
       console.log(`Successful compressed ${url}, saved to ${filename}`);
       return { url, success: SUCCESS_KEY };
