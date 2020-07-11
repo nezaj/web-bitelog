@@ -50,13 +50,13 @@ const compressImage = ({ url, id }) => {
   return tinify
     .fromUrl(url)
     .toFile(outputPath)
-    .then((filename) => {
-      console.log(`Successful compressed ${url}, saved to ${filename}`);
-      return { url, success: SUCCESS_KEY };
+    .then((_) => {
+      console.log(`Successful compressed ${url}, saved to ${outputPath}`);
+      return { url, status: SUCCESS_KEY };
     })
     .catch((err) => {
       onCompressError(err, url);
-      return { url, success: FAILED_KEY };
+      return { url, status: FAILED_KEY };
     });
 };
 
@@ -118,8 +118,7 @@ Promise.all(idsToProcess)
   .then((results) =>
     results.reduce(
       (xs, x) => {
-        console.log(x);
-        const key = x.success;
+        const key = x.status;
         xs[key].push(x.url);
         return xs;
       },
