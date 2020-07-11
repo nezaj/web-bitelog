@@ -61,7 +61,7 @@ body {
 }
 
 .header-avatar {
-  background-image: url(./headshot.jpg);
+  background-image: url(./images/headshot.jpg);
   background-position-y: 20%;
   background-size: 105%;
   border-radius: 125px;

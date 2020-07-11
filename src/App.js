@@ -3,7 +3,7 @@ import React from "react";
 import { Bar, Line } from "react-chartjs-2";
 
 import "./App.css";
-import DEFAULT_PHOTO from "./missing_photo.svg";
+import DEFAULT_PHOTO from "./images/missing_photo.svg";
 import COMPRESSED_LIST from "./data/compressed.js";
 
 // Tab options
@@ -56,7 +56,7 @@ const getImage = (url) => {
   }
   const id = getImageId(url);
 
-  return COMPRESSED_SET.has(id) ? require(`./images/${id}`) : url;
+  return COMPRESSED_SET.has(id) ? require(`./images/food/${id}`) : url;
 };
 
 // Nutrient Helpers
