@@ -3,7 +3,8 @@ import React from "react";
 import { Bar, Line } from "react-chartjs-2";
 
 import "./App.css";
-import DefaultPhoto from "./missing_photo.svg";
+import DEFAULT_PHOTO from "./missing_photo.svg";
+import COMPRESSED_LIST from "./data/compressed.js";
 
 // Tab options
 const ENTRIES_TAB = "entries";
@@ -31,7 +32,11 @@ const AXIS_PADDING = 5;
 const MAX_X_AXIS_ROTATION = 0; // Don't rotate dates, we want them to be easy to read :D
 const MAX_TICKS = 5; // Don't crowd the axis
 
+// Dates
 const TODAY = new Date();
+
+// Compressed Images
+const COMPRESSED_SET = new Set(COMPRESSED_LIST);
 
 // Utils
 // ---------------------------------------------------------------------------
@@ -39,6 +44,20 @@ const sum = (items) => items.reduce((xs, x) => (xs += x), 0);
 const avg = (items) => (items.length ? sum(items) / items.length : null);
 const roundedAvg = (items) => Math.round(avg(items));
 const descSort = (a, b) => b - a;
+
+// (TODO): This should match what is in compress.js -- think of a way to share functions
+// across ES6 and node modules
+const getImageId = (url) => url.split("/media/")[1].replace(/\//g, "");
+
+// Returns local compressed image or loads directly from url if we haven't compressed it yet
+const getImage = (url) => {
+  if (!url) {
+    return DEFAULT_PHOTO;
+  }
+  const id = getImageId(url);
+
+  return COMPRESSED_SET.has(id) ? require(`./images/${id}`) : url;
+};
 
 // Nutrient Helpers
 // ---------------------------------------------------------------------------
@@ -239,7 +258,7 @@ const Entry = ({ ds, items }) => {
   // Multiple items can have the same image so we de-dupe and ensure earliest photos are first
   const images = [
     ...new Set(
-      items.map((i) => i.imageURL || DefaultPhoto).reverse() // earliest photos first!
+      items.map((i) => getImage(i.imageURL)).reverse() // earliest photos first!
     ),
   ];
 
