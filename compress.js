@@ -16,7 +16,7 @@ require("dotenv").config();
 
 // Constants
 // ----------------------------------------------------------------------------
-const IMAGES_PATH = path.resolve(__dirname, "src", "images");
+const IMAGES_PATH = path.resolve(__dirname, "src", "images", "food");
 const COMPRESSED_PATH = path.resolve(__dirname, "src", "data", "compressed.js");
 const SUCCESS_KEY = "succeeded";
 const FAILED_KEY = "failed";
@@ -84,14 +84,14 @@ module.exports = [${imageStr}];
 
 const logOutput = (ids, skipCount, processed, imageCount) => {
   const output = `
--------------------- Output -------------------- 
+-------------------- Output --------------------
 Urls read: ${ids.length}
 Urls skipped: ${skipCount}
 Urls processed: ${processed[SUCCESS_KEY].length + processed[FAILED_KEY].length}
 Urls succeded: ${processed[SUCCESS_KEY].length}
 Urls failed: ${processed[FAILED_KEY].length}
 Urls failed list: ${processed[FAILED_KEY].map((x) => x)}
------------------------------------------------- 
+------------------------------------------------
 
 Total compressed images: ${imageCount}
 Compression count for this month: ${tinify.compressionCount}
