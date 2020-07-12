@@ -267,8 +267,18 @@ const Entry = ({ ds, items }) => {
       <div className="day-title">
         <div className="day-date">{entryDate}</div>
         <div className="day-macros">
-          {label.cal} (Cal) {label.protein} (P) {label.fat}g (F) {label.carb}g
-          (C)
+          <span role="img" aria-label="calories" className="day-macro">
+            🔥{label.cal}
+          </span>
+          <span role="img" aria-label="protein" className="day-macro">
+            🍗{label.protein}g
+          </span>
+          <span role="img" aria-label="fat" className="day-macro">
+            🥑️{label.fat}g
+          </span>
+          <span role="img" aria-label="carbs" className="day-macro">
+            🍎{label.carb}g
+          </span>
         </div>
       </div>
       <div className="day-images">

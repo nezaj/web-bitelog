@@ -189,6 +189,10 @@ body {
   color: var(--secondary-color);
 }
 
+.day-macro {
+  margin-right: 10px;
+}
+
 .day-images {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
