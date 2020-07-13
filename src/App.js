@@ -44,6 +44,7 @@ const sum = (items) => items.reduce((xs, x) => (xs += x), 0);
 const avg = (items) => (items.length ? sum(items) / items.length : null);
 const roundedAvg = (items) => Math.round(avg(items));
 const descSort = (a, b) => b - a;
+const descSortChartDate = (a, b) => new Date(a[0]) - new Date(b[0]);
 
 // (TODO): This should match what is in compress.js -- think of a way to share functions
 // across ES6 and node modules
@@ -292,7 +293,7 @@ const Entry = ({ ds, items }) => {
 
 const LineChart = ({ title, macroData }) => {
   // Earliest entries first
-  const cleanCopy = [...macroData].sort();
+  const cleanCopy = [...macroData].sort(descSortChartDate);
   const xVals = cleanCopy.map((x) => new Date(x[0]));
   const yVals = cleanCopy.map((x) => x[1]);
 
@@ -368,8 +369,8 @@ const LineChart = ({ title, macroData }) => {
 
 const FatCarbsChart = ({ title, fatData, carbsData }) => {
   // Earliest entries first
-  const cleanFatCopy = [...fatData].sort();
-  const cleanCarbsCopy = [...carbsData].sort();
+  const cleanFatCopy = [...fatData].sort(descSortChartDate);
+  const cleanCarbsCopy = [...carbsData].sort(descSortChartDate);
 
   const timeSeries = cleanFatCopy.map((x) => new Date(x[0]));
   const fatCalories = cleanFatCopy.map((x) => Math.round(x[1] * 9.0));
