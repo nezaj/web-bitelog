@@ -5,6 +5,8 @@ import { Bar, Line } from "react-chartjs-2";
 import "./App.css";
 import DEFAULT_PHOTO from "./images/missing_photo.svg";
 import COMPRESSED_LIST from "./data/compressed.js";
+import { FOOD_IMAGES_PATH } from "./constants.js";
+import { getImageId } from "./utils.js";
 
 // Tab options
 const ENTRIES_TAB = "entries";
@@ -46,10 +48,6 @@ const roundedAvg = (items) => Math.round(avg(items));
 const descSort = (a, b) => b - a;
 const descSortChartDate = (a, b) => new Date(a[0]) - new Date(b[0]);
 
-// (TODO): This should match what is in compress.js -- think of a way to share functions
-// across ES6 and node modules
-const getImageId = (url) => url.split("/media/")[1].replace(/\//g, "");
-
 // Returns local compressed image or loads directly from url if we haven't compressed it yet
 const getImage = (url) => {
   if (!url) {
@@ -57,7 +55,7 @@ const getImage = (url) => {
   }
   const id = getImageId(url);
 
-  return COMPRESSED_SET.has(id) ? require(`./images/food/${id}`) : url;
+  return COMPRESSED_SET.has(id) ? require(`${FOOD_IMAGES_PATH}${id}`) : url;
 };
 
 // Nutrient Helpers

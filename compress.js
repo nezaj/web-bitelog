@@ -10,13 +10,15 @@ const path = require("path");
 const tinify = require("tinify");
 
 const compressed = require("./src/data/compressed.js");
+const { getImageId } = require("./src/utils.js");
+const { FOOD_IMAGES_PATH } = require("./src/constants.js");
 
 // Load up environment variables
 require("dotenv").config();
 
 // Constants
 // ----------------------------------------------------------------------------
-const IMAGES_PATH = path.resolve(__dirname, "src", "images", "food");
+const IMAGES_PATH = path.resolve(__dirname, "src", FOOD_IMAGES_PATH);
 const COMPRESSED_PATH = path.resolve(__dirname, "src", "data", "compressed.js");
 const SUCCESS_KEY = "succeeded";
 const FAILED_KEY = "failed";
@@ -27,11 +29,6 @@ const getImageUrls = (data) => {
   const urls = data.entries.map((x) => x.imageURL).filter((x) => x);
   return [...new Set(urls)];
 };
-
-// 'https://storage.googleapis.com/media.getbitesnap.com/prod/media/ad/94/b9e0231e449987c56f15aaa7701b.jpeg'
-// Becomes
-// ad94b9e0231e449987c56f15aaa7701b.jpeg
-const getImageId = (url) => url.split("/media/")[1].replace(/\//g, "");
 
 const onCompressError = (err, url) => {
   let detail;
