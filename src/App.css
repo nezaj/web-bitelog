@@ -573,3 +573,10 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
+
+/* Desktop */
+@media screen and (min-width: 801px) {
+  .detail {
+    display: none;
+  }
+}
