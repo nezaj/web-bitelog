@@ -5,7 +5,6 @@ import { Bar, Line } from "react-chartjs-2";
 import "./App.css";
 import DEFAULT_PHOTO from "./images/missing_photo.svg";
 import COMPRESSED_LIST from "./data/compressed.js";
-import { FOOD_IMAGES_PATH } from "./constants.js";
 import {
   extractCalories,
   extractProtein,
@@ -59,6 +58,9 @@ const getImage = (url) => {
   }
   const id = getImageId(url);
 
+  // (TODO): Webpack is unhappy when I try to interpolate a constant for the image path
+  // this is annoying since if I ever change the image path for food images
+  // I'll need to remember to update it here too
   return COMPRESSED_SET.has(id) ? require(`./images/food/${id}`) : url;
 };
 
