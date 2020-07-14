@@ -166,7 +166,7 @@ const Entry = ({ ds, items, detailMap, onShowDetail }) => {
             alt=""
             key={idx}
             className="day-image"
-            src={x.imageURL}
+            src={getImage(x.imageURL)}
             onClick={() => onShowDetail(x.key)}
           ></img>
         ))}
