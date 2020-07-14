@@ -232,6 +232,9 @@ body {
   .day-images {
     gap: var(--gap-unit);
   }
+  .day-image:hover {
+    cursor: pointer;
+  }
 }
 
 /* Trends */

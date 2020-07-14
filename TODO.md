@@ -2,7 +2,9 @@
 * Implement image detail view
     * Style for Desktop/Landscape mode
     * Support gestures
-    * (BONUS) Implement imageKey shortner
+    * Support keyboard shortcuts (left, right, x/escape)
+    * Implement imageKey shortner
+* Add an about page
 * Enable ad-hoc / non-app data entry
     * Think about how you would want to "enter data"
 
