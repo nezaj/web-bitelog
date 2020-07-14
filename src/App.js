@@ -59,7 +59,7 @@ const getImage = (url) => {
   }
   const id = getImageId(url);
 
-  return COMPRESSED_SET.has(id) ? require(`${FOOD_IMAGES_PATH}${id}`) : url;
+  return COMPRESSED_SET.has(id) ? require(`./images/food/${id}`) : url;
 };
 
 // Trend Helpers
