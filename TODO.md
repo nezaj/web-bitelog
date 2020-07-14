@@ -1,6 +1,8 @@
 # TODOs
 * Implement image detail view
-* Fix trends graphs
+    * Style for Desktop/Landscape mode
+    * Support gestures
+    * (BONUS) Implement imageKey shortner
 * Enable ad-hoc / non-app data entry
     * Think about how you would want to "enter data"
 
@@ -13,6 +15,7 @@
     * Add pagination
 * Add water tracking
 * Add weight tracking
+* Reach out to BiteSnap developers (looks like feedback function is broken) to share bug (data export issue on images) and share your bitelog. (I believe the developer is Michal Wolski)
 
 ### Bugs
 * Why does date stamp appeared as undefined on Grandma's iPad?

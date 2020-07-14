@@ -6,7 +6,14 @@ import "./App.css";
 import DEFAULT_PHOTO from "./images/missing_photo.svg";
 import COMPRESSED_LIST from "./data/compressed.js";
 import { FOOD_IMAGES_PATH } from "./constants.js";
-import { getImageId } from "./utils.js";
+import {
+  extractCalories,
+  extractProtein,
+  extractFat,
+  extractCarbs,
+} from "./nutrients.js";
+import { nutrientsToDailyTotalsMap, imageDetailMap } from "./marshal.js";
+import { addDays, friendlyDate, getImageId } from "./utils.js";
 
 // Tab options
 const ENTRIES_TAB = "entries";
@@ -34,9 +41,6 @@ const AXIS_PADDING = 5;
 const MAX_X_AXIS_ROTATION = 0; // Don't rotate dates, we want them to be easy to read :D
 const MAX_TICKS = 5; // Don't crowd the axis
 
-// Dates
-const TODAY = new Date();
-
 // Compressed Images
 const COMPRESSED_SET = new Set(COMPRESSED_LIST);
 
@@ -56,131 +60,6 @@ const getImage = (url) => {
   const id = getImageId(url);
 
   return COMPRESSED_SET.has(id) ? require(`${FOOD_IMAGES_PATH}${id}`) : url;
-};
-
-// Nutrient Helpers
-// ---------------------------------------------------------------------------
-const extractNutrient = (nutrients, name) =>
-  nutrients.find((x) => x.name === name) || { amount: 0 };
-
-const sumNutrients = (items, name) =>
-  Math.round(
-    items.reduce(
-      (xs, x) => (xs += extractNutrient(x.nutrients, name).amount),
-      0
-    )
-  );
-
-/*
-Marshall data into a comfortable format for rendering trend data
-
-Takes in
-{
-  '6/28/2020' : [ { entry1 }, { entry2 }],
-  '6/27/2020' : [ { entry1 }, { entry2 }],
-  ...
-}
-
-And returns
-{
-  calories: [[ds, amount], ...],
-  protein: [[ds, amount], ...],
-  fat: [[ds, amount], ...]
-  carbs: [[ds, amount], ...]
-}
-*/
-const nutrientsToDailyTotalsMap = (entriesToDateMap) => {
-  return Object.keys(entriesToDateMap).reduce(
-    (xs, ds) => {
-      xs["calories"].push([ds, sumNutrients(entriesToDateMap[ds], "calories")]);
-      xs["protein"].push([ds, sumNutrients(entriesToDateMap[ds], "protein")]);
-      xs["fat"].push([ds, sumNutrients(entriesToDateMap[ds], "totalFat")]);
-      xs["carbs"].push([ds, sumNutrients(entriesToDateMap[ds], "totalCarb")]);
-      return xs;
-    },
-    { calories: [], protein: [], fat: [], carbs: [] }
-  );
-};
-
-// Date Helpers
-// ---------------------------------------------------------------------------
-const WEEKDAYS = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
-
-const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-const addDays = (date, days) => {
-  const copy = new Date(date);
-  copy.setDate(copy.getDate() + days);
-  return copy;
-};
-
-const isToday = (date) => {
-  return (
-    date.getDate() === TODAY.getDate() &&
-    date.getMonth() === TODAY.getMonth() &&
-    date.getFullYear() === TODAY.getFullYear()
-  );
-};
-
-const isYesterday = (date) => {
-  return isToday(addDays(date, 1));
-};
-
-// 1 -> 1st, 2 -> 2nd, 12 -> 12th, 23 -> 23rd, 29 -> 29th
-const getDateSuffix = (day) => {
-  if (day <= 0 || day >= 32) {
-    return "";
-  } // should not happen
-  if (day === 1 || day === 21 || day === 31) {
-    return "st";
-  }
-  if (day === 2 || day === 22) {
-    return "nd";
-  }
-  if (day === 3 || day === 23) {
-    return "rd";
-  }
-  return "th";
-};
-
-// '5/19/2020' -> Tuesday, May 19th, 2020
-const friendlyDate = (dateStr) => {
-  const date = new Date(dateStr);
-  if (isToday(date)) {
-    return "Today";
-  }
-  if (isYesterday(date)) {
-    return "Yesterday";
-  }
-
-  const weekday = WEEKDAYS[date.getDay()];
-  const month = MONTHS[date.getMonth()];
-  const day = `${date.getDate()}${getDateSuffix(date.getDate())}`;
-  const year = date.getFullYear();
-
-  return `${weekday}, ${month} ${day}, ${year}`;
 };
 
 // Trend Helpers
@@ -230,36 +109,37 @@ const getLocationDateRange = (queryString) => {
     ) || DEFAULT_TRENDS_DATE_RANGE
   );
 };
+const getLocationDetailKey = (queryString) => {
+  return new URLSearchParams(queryString).get("detailKey");
+};
 
 // Functional Components
 // ---------------------------------------------------------------------------
-const Entry = ({ ds, items }) => {
+const Entry = ({ ds, items, detailMap, onShowDetail }) => {
   const rawTotals = items.reduce(
     (xs, x) => {
-      xs["cal"] += extractNutrient(x.nutrients, "calories").amount;
-      xs["protein"] += extractNutrient(x.nutrients, "protein").amount;
-      xs["fat"] += extractNutrient(x.nutrients, "totalFat").amount;
-      xs["carb"] += extractNutrient(x.nutrients, "totalCarb").amount;
+      xs["cal"] += extractCalories(x.nutrients);
+      xs["protein"] += extractProtein(x.nutrients);
+      xs["fat"] += extractFat(x.nutrients);
+      xs["carbs"] += extractCarbs(x.nutrients);
       return xs;
     },
-    { cal: 0, protein: 0, fat: 0, carb: 0 }
+    { cal: 0, protein: 0, fat: 0, carbs: 0 }
   );
 
   const label = {
     cal: Math.round(rawTotals.cal),
     protein: Math.round(rawTotals.protein),
     fat: Math.round(rawTotals.fat),
-    carb: Math.round(rawTotals.carb),
+    carbs: Math.round(rawTotals.carbs),
   };
 
   const entryDate = friendlyDate(ds);
 
-  // Multiple items can have the same image so we de-dupe and ensure earliest photos are first
-  const images = [
-    ...new Set(
-      items.map((i) => getImage(i.imageURL)).reverse() // earliest photos first!
-    ),
-  ];
+  // Ensure earliest photos are first
+  const images = Object.keys(detailMap)
+    .map((key) => detailMap[key])
+    .sort((a, b) => (a.utcTimestamp > b.utcTimestamp ? 1 : -1));
 
   return (
     <div className="day">
@@ -276,14 +156,106 @@ const Entry = ({ ds, items }) => {
             🥑️{label.fat}g
           </span>
           <span role="img" aria-label="carbs" className="day-macro">
-            🍎{label.carb}g
+            🍎{label.carbs}g
           </span>
         </div>
       </div>
       <div className="day-images">
-        {images.map((url, idx) => (
-          <img alt="" key={idx} className="day-image" src={url}></img>
+        {images.map((x, idx) => (
+          <img
+            alt=""
+            key={idx}
+            className="day-image"
+            src={x.imageURL}
+            onClick={() => onShowDetail(x.key)}
+          ></img>
         ))}
+      </div>
+    </div>
+  );
+};
+
+const EntryDetailItem = ({
+  title,
+  subtitle,
+  servingQuantity,
+  servingUnits,
+  calories,
+}) => (
+  <div className="detail-item">
+    <div className="detail-item-name">
+      <div className="detail-item-title">{title}</div>
+      <div className="detail-item-subtitle">{subtitle}</div>
+    </div>
+    <div className="detail-item-info">
+      <div className="detail-item-servings">
+        <div className="detail-item-servings-quantity">{servingQuantity}</div>
+        <div className="detail-item-servings-units">{servingUnits}</div>
+      </div>
+      <div className="detail-item-calories">
+        <div className="detail-item-calories-amount">
+          {Math.round(calories)}
+        </div>
+        <div className="detail-item-calories-label">cal</div>
+      </div>
+    </div>
+  </div>
+);
+
+const EntryDetail = ({ detail, onClose, onPrev, onNext }) => {
+  const closeIcon = "X";
+  const prevIcon = "<";
+  const nextIcon = ">";
+  const { imageURL, time, date, macros, items } = detail;
+  return (
+    <div className="detail">
+      <div className="detail-content">
+        <div className="detail-close" onClick={onClose}>
+          {closeIcon}
+        </div>
+        <img className="detail-image" alt="" src={getImage(imageURL)}></img>
+        <div className="detail-info">
+          <div className="detail-info-header">
+            <div className="detail-info-time">{time}</div>
+            <div className="detail-info-date">{friendlyDate(date)}</div>
+            <hr className="detail-info-separator"></hr>
+          </div>
+          <div className="detail-macros">
+            <span role="img" aria-label="calories" className="detail-macro">
+              🔥{Math.round(macros.calories)}
+            </span>
+            <span role="img" aria-label="protein" className="detail-macro">
+              🍗{Math.round(macros.protein)}g
+            </span>
+            <span role="img" aria-label="fat" className="detail-macro">
+              🥑️{Math.round(macros.fat)}g
+            </span>
+            <span role="img" aria-label="carbs" className="detail-macro">
+              🍎{Math.round(macros.carbs)}g
+            </span>
+          </div>
+          <div className="detail-items">
+            {items.map((i, idx) => (
+              <EntryDetailItem key={idx} {...i} />
+            ))}
+          </div>
+        </div>
+        <div className="detail-navs">
+          <div
+            className="detail-nav"
+            onClick={onPrev}
+            style={{ visibility: onPrev ? "visible" : "hidden" }}
+          >
+            {prevIcon}
+          </div>
+          <div
+            className="detail-nav"
+            onClick={onNext}
+            style={{ visibility: onNext ? "visible" : "hidden" }}
+          >
+            {nextIcon}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -539,8 +511,17 @@ class App extends React.Component {
     this.state = {
       tab: getLocationTab(window.location.search),
       dateRange: getLocationDateRange(window.location.search),
+      detailKey: getLocationDetailKey(window.location.search),
     };
   }
+
+  closeDetail = () => {
+    const currentPath = new URLSearchParams(window.location.search);
+    currentPath.delete("detailKey");
+    const newUrl = window.location.pathname + "?" + currentPath.toString();
+    window.history.pushState(null, "", newUrl);
+    this.setState({ detailKey: null });
+  };
 
   updateDateRange = (dateRange) => {
     const currentPath = new URLSearchParams(window.location.search);
@@ -548,6 +529,14 @@ class App extends React.Component {
     const newUrl = window.location.pathname + "?" + currentPath.toString();
     window.history.pushState(null, "", newUrl);
     this.setState({ dateRange });
+  };
+
+  updateDetail = (detailKey) => {
+    const currentPath = new URLSearchParams(window.location.search);
+    currentPath.set("detailKey", detailKey);
+    const newUrl = window.location.pathname + "?" + currentPath.toString();
+    window.history.pushState(null, "", newUrl);
+    this.setState({ detailKey });
   };
 
   updateTab = (tab) => {
@@ -559,19 +548,53 @@ class App extends React.Component {
   };
 
   render() {
-    const { entriesToDateMap } = this.props;
-    const { dateRange, tab } = this.state;
+    const { entriesToDateMap, entryDetailMap } = this.props;
+    const { dateRange, detailKey, tab } = this.state;
 
     // Latest entries first
     const renderedEntries = Object.keys(entriesToDateMap)
       .sort(descSort)
-      .map((ds, idx) => (
-        <Entry key={idx} ds={ds} items={entriesToDateMap[ds]} />
-      ));
+      .map((ds, idx) => {
+        const items = entriesToDateMap[ds];
+        const detailMap = imageDetailMap({ [ds]: items });
+        return (
+          <Entry
+            key={idx}
+            ds={ds}
+            items={entriesToDateMap[ds]}
+            detailMap={detailMap}
+            onShowDetail={this.updateDetail}
+          />
+        );
+      });
 
     const trendData = nutrientsToDailyTotalsMap(
       filterEntriesToDateMap(dateRange, entriesToDateMap)
     );
+
+    const entryDetail = entryDetailMap[detailKey];
+
+    // (TODO): Hacky, clean this up
+    // To render previous/next links we convert our detail map to an array and find the previous / next indices
+    // We order details from oldest -> newest, ensure we are in bounds, and only allow scrolling through details for the same day
+    const entryDetailArray =
+      entryDetail &&
+      Object.keys(entryDetailMap)
+        .map((key) => entryDetailMap[key])
+        .sort((a, b) => (a.utcTimestamp > b.utcTimestamp ? 1 : -1));
+    const entryDetailIndex =
+      entryDetailArray &&
+      entryDetailArray.findIndex((x) => x.key === detailKey);
+    const prevKey =
+      entryDetailIndex &&
+      entryDetailIndex > 0 &&
+      entryDetail.date === entryDetailArray[entryDetailIndex - 1].date &&
+      entryDetailArray[entryDetailIndex - 1].key;
+    const nextKey =
+      entryDetailIndex &&
+      entryDetailIndex < entryDetailArray.length - 1 &&
+      entryDetail.date === entryDetailArray[entryDetailIndex + 1].date &&
+      entryDetailArray[entryDetailIndex + 1].key;
 
     return (
       <div className="app">
@@ -607,6 +630,14 @@ class App extends React.Component {
           </div>
         </div>
 
+        {detailKey && (
+          <EntryDetail
+            detail={entryDetail}
+            onClose={this.closeDetail}
+            onPrev={prevKey ? () => this.updateDetail(prevKey) : null}
+            onNext={nextKey ? () => this.updateDetail(nextKey) : null}
+          />
+        )}
         {tab === ENTRIES_TAB && <div className="feed">{renderedEntries}</div>}
         {tab === TRENDS_TAB && (
           <Trends
