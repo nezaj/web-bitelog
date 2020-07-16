@@ -14,3 +14,5 @@ yarn start
 * `make deploy` -- deploy site
 * `make compress` -- compress images through TinyPNG
 * `make new-data` -- deploy new data
+* `make new-note` -- add and deploy new notes
+* `make edit-notes` -- similar to `make new-note` but more convenient for just editing notes (usually to correct some typo)

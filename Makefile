@@ -38,8 +38,17 @@ generate-notes:
 preview-notes:
 	node notes.js head
 
+edit-notes:
+	# Used for easily editing notes and deploying
+	vim src/data/notes.md
+	$(MAKE) generate-notes
+	$(MAKE) preview-notes
+	git add .
+	git commit -m "Edit notes"
+	$(MAKE) deploy
+
 new-note:
-	# Used for easily adding notes to entries
+	# Used for easily adding notes and deploying
 	node notes.js prepend
 	vim +3 src/data/notes.md
 	$(MAKE) generate-notes
