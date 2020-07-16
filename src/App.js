@@ -638,7 +638,11 @@ class App extends React.Component {
             title="Visit my personal website"
             className="header-link"
           >
-            <div className="header-avatar"></div>
+            <img
+              src={require("./images/headshot.jpg")}
+              alt="Headshot"
+              className="header-avatar"
+            ></img>
           </a>
           <div className="header-title">Heya I'm Joe!</div>
           <div className="header-subtitle">This is where I track my food</div>
