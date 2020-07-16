@@ -3,14 +3,19 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 import { entriesToDateMap, imageDetailMap } from "./marshal.js";
-import data from "./data/sample.json";
+import foodData from "./data/sample.json";
+import { notesData } from "./data/notesData.js";
 
-const entries = entriesToDateMap(data.entries);
+const entries = entriesToDateMap(foodData.entries);
 const entryDetailMap = imageDetailMap(entries);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App entriesToDateMap={entries} entryDetailMap={entryDetailMap} />
+    <App
+      entriesToDateMap={entries}
+      entryDetailMap={entryDetailMap}
+      notesData={notesData}
+    />
   </React.StrictMode>,
   document.getElementById("root")
 );

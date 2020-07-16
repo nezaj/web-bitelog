@@ -12,7 +12,13 @@ import {
   extractCarbs,
 } from "./nutrients.js";
 import { nutrientsToDailyTotalsMap, imageDetailMap } from "./marshal.js";
-import { addDays, friendlyDate, getImageId } from "./utils.js";
+import {
+  addDays,
+  friendlyDate,
+  getImageId,
+  extractLocaleDate,
+} from "./utils.js";
+import { NOTES_DELIMITER } from "./constants";
 
 // Tab options
 const ENTRIES_TAB = "entries";
@@ -58,10 +64,21 @@ const getImage = (url) => {
   }
   const id = getImageId(url);
 
-  // (TODO): Webpack is unhappy when I try to interpolate a constant for the image path
-  // this is annoying since if I ever change the image path for food images
-  // I'll need to remember to update it here too
-  return COMPRESSED_SET.has(id) ? require(`./images/food/${id}`) : url;
+  if (COMPRESSED_SET.has(id)) {
+    try {
+      // (TODO): Webpack is unhappy when I try to interpolate a constant for the image path
+      // this is annoying since if I ever change the image path for food images
+      // I'll need to remember to update it here too
+      return require(`./images/food/${id}`);
+    } catch (err) {
+      console.log(
+        `Error loading compressed image for ${id}, falling back on ${url}`
+      );
+      return url;
+    }
+  }
+
+  return url;
 };
 
 // Trend Helpers
@@ -117,7 +134,7 @@ const getLocationDetailKey = (queryString) => {
 
 // Functional Components
 // ---------------------------------------------------------------------------
-const Entry = ({ ds, items, detailMap, onShowDetail }) => {
+const Entry = ({ ds, items, detailMap, notes, onShowDetail }) => {
   const rawTotals = items.reduce(
     (xs, x) => {
       xs["cal"] += extractCalories(x.nutrients);
@@ -162,6 +179,15 @@ const Entry = ({ ds, items, detailMap, onShowDetail }) => {
           </span>
         </div>
       </div>
+      {notes && (
+        <div className="day-notes">
+          {notes.split(NOTES_DELIMITER).map((note, idx) => (
+            <div key={idx} className="day-note">
+              {note}
+            </div>
+          ))}
+        </div>
+      )}
       <div className="day-images">
         {images.map((x, idx) => (
           <img
@@ -550,7 +576,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { entriesToDateMap, entryDetailMap } = this.props;
+    const { entriesToDateMap, entryDetailMap, notesData } = this.props;
     const { dateRange, detailKey, tab } = this.state;
 
     // Latest entries first
@@ -558,6 +584,11 @@ class App extends React.Component {
       .sort(descSort)
       .map((ds, idx) => {
         const items = entriesToDateMap[ds];
+        // Notes date format doesn't neccesarily have to be the same as entries date format
+        const notesKey = Object.keys(notesData).find(
+          (notesDs) => extractLocaleDate(notesDs) === ds
+        );
+        const notes = notesData[notesKey];
         const detailMap = imageDetailMap({ [ds]: items });
         return (
           <Entry
@@ -565,6 +596,7 @@ class App extends React.Component {
             ds={ds}
             items={entriesToDateMap[ds]}
             detailMap={detailMap}
+            notes={notes}
             onShowDetail={this.updateDetail}
           />
         );

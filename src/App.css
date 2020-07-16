@@ -202,7 +202,7 @@ body {
 @media screen and (max-width: 800px) {
   .day-title {
     margin-top: var(--gap-unit);
-    margin-bottom: var(--gap-unit);
+    margin-bottom: 10px;
   }
   .day-date {
     font-size: 18px;
@@ -210,6 +210,14 @@ body {
   }
   .day-macros {
     font-size: 14px;
+  }
+  .day-notes {
+    font-weight: thin;
+    color: var(--secondary-color);
+    font-size: 14px;
+  }
+  .day-note {
+    margin-bottom: 20px;
   }
   .day-images {
     gap: 1px;
@@ -220,7 +228,7 @@ body {
 @media screen and (min-width: 801px) {
   .day-title {
     margin-top: calc(var(--gap-unit) * 2);
-    margin-bottom: calc(var(--gap-unit) * 2);
+    margin-bottom: 10px;
   }
   .day-date {
     font-size: 24px;
@@ -228,6 +236,17 @@ body {
   }
   .day-macros {
     font-size: 18px;
+  }
+  .day-notes {
+    margin-bottom: 10px;
+  }
+  .day-notes {
+    font-weight: thin;
+    color: var(--secondary-color);
+    font-size: 18px;
+  }
+  .day-note {
+    margin-bottom: 20px;
   }
   .day-images {
     gap: var(--gap-unit);

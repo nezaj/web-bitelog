@@ -86,11 +86,11 @@ const friendlyDate = (dateStr) => {
 };
 
 // Extract local date from utc timestamp: '2020-06-28T22:06:39.171Z' -> '6/28/2020'
-const extractLocalDate = (utcTimeStamp) =>
+const extractLocaleDate = (utcTimeStamp) =>
   new Date(utcTimeStamp).toLocaleDateString();
 
 // Extract local time from utc timestamp: '2020-06-28T22:06:39.171Z' -> '6/28/2020'
-const extractLocalTime = (utcTimeStamp) =>
+const extractLocaleTime = (utcTimeStamp) =>
   new Date(utcTimeStamp).toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
@@ -113,8 +113,8 @@ const createImageDetail = (key, imageURL, utcTimestamp) => ({
   key,
   imageURL,
   utcTimestamp,
-  time: extractLocalTime(utcTimestamp),
-  date: extractLocalDate(utcTimestamp),
+  time: extractLocaleTime(utcTimestamp),
+  date: extractLocaleDate(utcTimestamp),
   macros: { calories: 0, protein: 0, fat: 0, carbs: 0 },
   items: [],
 });
@@ -122,8 +122,8 @@ const createImageDetail = (key, imageURL, utcTimestamp) => ({
 module.exports = {
   addDays,
   createImageDetail,
-  extractLocalDate,
-  extractLocalTime,
+  extractLocaleDate,
+  extractLocaleTime,
   friendlyDate,
   getImageId,
   getImageKey,

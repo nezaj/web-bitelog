@@ -3,7 +3,7 @@
  */
 const {
   createImageDetail,
-  extractLocalDate,
+  extractLocaleDate,
   getImageKey,
 } = require("./utils.js");
 const {
@@ -19,7 +19,7 @@ const {
 // outputted from this function
 const entriesToDateMap = (entries) => {
   return entries.reduce((xs, x) => {
-    const dateKey = extractLocalDate(x.eatenAtUTC);
+    const dateKey = extractLocaleDate(x.eatenAtUTC);
     xs[dateKey] = xs[dateKey] || [];
     xs[dateKey] = xs[dateKey].concat(x);
     return xs;
