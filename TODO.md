@@ -1,12 +1,12 @@
 # TODOs
-* Implement image detail view
-    * Style for Desktop/Landscape mode
-    * Support gestures
-    * Support keyboard shortcuts (left, right, x/escape)
-    * Implement imageKey shortner
-* Add an about page
 * Enable ad-hoc / non-app data entry
     * Think about how you would want to "enter data"
+    * Implement
+* Implement image detail view
+    * Re-factor modal so it can gracefull handle desktop/landscape mode (maybe look up tutorial on implementing FB/Insta style modal)
+    * Support gestures
+    * Support keyboard shortcuts (left, right, x/escape)
+* Add an about page
 
 # Future
 * Think about what could "break" and how to handle it best

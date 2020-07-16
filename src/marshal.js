@@ -82,7 +82,7 @@ const imageDetailMap = (dateToEntriesMap) => {
     .reduce((xs, x) => xs.concat(x), []) // flatten
     .reduce((xs, x) => {
       // Get imageKey
-      const key = getImageKey(x.imageURL, x.eatenAtUTC);
+      const key = getImageKey(x.imageURL, x.mealID);
       xs[key] = xs[key] || createImageDetail(key, x.imageURL, x.eatenAtUTC);
 
       // Update image macros

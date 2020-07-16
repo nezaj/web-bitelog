@@ -632,7 +632,7 @@ class App extends React.Component {
           </div>
         </div>
 
-        {detailKey && (
+        {entryDetail && (
           <EntryDetail
             detail={entryDetail}
             onClose={this.closeDetail}

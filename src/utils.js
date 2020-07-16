@@ -103,9 +103,11 @@ const extractLocalTime = (utcTimeStamp) =>
 // ad94b9e0231e449987c56f15aaa7701b.jpeg
 const getImageId = (url) => url.split("/media/")[1].replace(/\//g, "");
 
-// (TODO): Implement a key shortener
-const getImageKey = (url, utcTimestamp) =>
-  `${url ? getImageId(url).replace(".jpeg", "") : ""}-${utcTimestamp}`;
+// Generated identifiers for imageDetail map / detail view
+// We use both imageURL and mealID to handle cases like when the same photo is used multiple times in a day
+// (for example two missing photos, or the same photo used twice to show the same food was eaten at different times)
+const getImageKey = (url, mealID) =>
+  `${url ? getImageId(url).replace(".jpeg", "") : ""}${mealID}`;
 
 const createImageDetail = (key, imageURL, utcTimestamp) => ({
   key,
