@@ -1,12 +1,11 @@
 # TODOs
-* Enable ad-hoc / non-app data entry
-    * Think about how you would want to "enter data"
-    * Implement
 * Implement image detail view
     * Re-factor modal so it can gracefull handle desktop/landscape mode (maybe look up tutorial on implementing FB/Insta style modal)
     * Support gestures
     * Support keyboard shortcuts (left, right, x/escape)
 * Add an about page
+* Add water tracking
+* Add weight tracking
 
 # Future
 * Think about what could "break" and how to handle it best
@@ -15,8 +14,6 @@
     * Re-size and crop avatar (this is def bigger than needs to be)
     * Re-size food images
     * Add pagination
-* Add water tracking
-* Add weight tracking
 * Reach out to BiteSnap developers (looks like feedback function is broken) to share bug (data export issue on images) and share your bitelog. (I believe the developer is Michal Wolski)
 
 ### Bugs
