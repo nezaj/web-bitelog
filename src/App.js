@@ -25,6 +25,10 @@ const ENTRIES_TAB = "entries";
 const TRENDS_TAB = "trends";
 const DEFAULT_TAB = ENTRIES_TAB;
 
+// Entries
+const MIN_ENTRY_PAGE = 1;
+const ENTRIES_PER_PAGE = 7;
+
 // Trends date range options
 const LAST_7_DAYS = "lastWeek";
 const LAST_30_DAYS = "last30Days";
@@ -80,6 +84,10 @@ const getImage = (url) => {
 
   return url;
 };
+// Entry Helpers
+// ---------------------------------------------------------------------------
+const getMaxEntryPage = (numEntries) =>
+  Math.ceil(numEntries / ENTRIES_PER_PAGE);
 
 // Trend Helpers
 // ---------------------------------------------------------------------------
@@ -130,6 +138,37 @@ const getLocationDateRange = (queryString) => {
 };
 const getLocationDetailKey = (queryString) => {
   return new URLSearchParams(queryString).get("detailKey");
+};
+
+const getLocationEntryPage = (queryString, numEntries) => {
+  const entryPage = new URLSearchParams(queryString).get("entryPage");
+  if (!entryPage || entryPage < MIN_ENTRY_PAGE || isNaN(entryPage)) {
+    updateLocation("entryPage", MIN_ENTRY_PAGE);
+    return 1;
+  }
+
+  // Limit entry page to max page
+  const maxEntryPage = getMaxEntryPage(numEntries);
+  if (entryPage > maxEntryPage) {
+    updateLocation("entryPage", maxEntryPage);
+    return maxEntryPage;
+  }
+
+  return entryPage;
+};
+
+const deleteLocation = (key) => {
+  const currentPath = new URLSearchParams(window.location.search);
+  currentPath.delete(key);
+  const newUrl = window.location.pathname + "?" + currentPath.toString();
+  window.history.pushState(null, "", newUrl);
+};
+
+const updateLocation = (key, value) => {
+  const currentPath = new URLSearchParams(window.location.search);
+  currentPath.set(key, value);
+  const newUrl = window.location.pathname + "?" + currentPath.toString();
+  window.history.pushState(null, "", newUrl);
 };
 
 // Functional Components
@@ -536,52 +575,55 @@ const Trends = ({ dateRange, updateDateRange, trendData }) => {
 class App extends React.Component {
   constructor(props) {
     super(props);
+    const { entriesToDateMap } = this.props;
+    const numEntries = Object.keys(entriesToDateMap).length;
     this.state = {
       tab: getLocationTab(window.location.search),
       dateRange: getLocationDateRange(window.location.search),
       detailKey: getLocationDetailKey(window.location.search),
+      entryPage: getLocationEntryPage(window.location.search, numEntries),
     };
   }
 
   closeDetail = () => {
-    const currentPath = new URLSearchParams(window.location.search);
-    currentPath.delete("detailKey");
-    const newUrl = window.location.pathname + "?" + currentPath.toString();
-    window.history.pushState(null, "", newUrl);
+    deleteLocation("detailKey");
     this.setState({ detailKey: null });
   };
 
   updateDateRange = (dateRange) => {
-    const currentPath = new URLSearchParams(window.location.search);
-    currentPath.set("tdr", dateRange);
-    const newUrl = window.location.pathname + "?" + currentPath.toString();
-    window.history.pushState(null, "", newUrl);
+    updateLocation("dateRange", dateRange);
     this.setState({ dateRange });
   };
 
   updateDetail = (detailKey) => {
-    const currentPath = new URLSearchParams(window.location.search);
-    currentPath.set("detailKey", detailKey);
-    const newUrl = window.location.pathname + "?" + currentPath.toString();
-    window.history.pushState(null, "", newUrl);
+    updateLocation("detailKey", detailKey);
     this.setState({ detailKey });
   };
 
   updateTab = (tab) => {
-    const currentPath = new URLSearchParams(window.location.search);
-    currentPath.set("tab", tab);
-    const newUrl = window.location.pathname + "?" + currentPath.toString();
-    window.history.pushState(null, "", newUrl);
+    updateLocation("tab", tab);
     this.setState({ tab });
+  };
+
+  updateEntryPage = (entryPage) => {
+    updateLocation("entryPage", entryPage);
+    window.scrollTo(0, 0);
+    this.setState({ entryPage });
   };
 
   render() {
     const { entriesToDateMap, entryDetailMap, notesData } = this.props;
-    const { dateRange, detailKey, tab } = this.state;
+    const { dateRange, detailKey, tab, entryPage } = this.state;
 
-    // Latest entries first
+    // Pagination helpers
+    const numEntries = Object.keys(entriesToDateMap).length;
+    const maxEntryPage = getMaxEntryPage(numEntries);
+    const entryStart = (entryPage - 1) * ENTRIES_PER_PAGE;
+    const entryEnd = entryPage * ENTRIES_PER_PAGE;
+
     const renderedEntries = Object.keys(entriesToDateMap)
       .sort(descSort)
+      .slice(entryStart, entryEnd) // Paginate
       .map((ds, idx) => {
         const items = entriesToDateMap[ds];
         // Notes date format doesn't neccesarily have to be the same as entries date format
@@ -676,7 +718,34 @@ class App extends React.Component {
             onNext={nextKey ? () => this.updateDetail(nextKey) : null}
           />
         )}
-        {tab === ENTRIES_TAB && <div className="feed">{renderedEntries}</div>}
+        {tab === ENTRIES_TAB && (
+          <div className="feed">
+            {renderedEntries}
+            {/* Pagination navigation  */}
+            <div className="entry-navs">
+              {entryPage > MIN_ENTRY_PAGE && (
+                <div
+                  className="entry-nav entry-nav-prev"
+                  onClick={() =>
+                    this.updateEntryPage(parseInt(entryPage, 10) - 1)
+                  }
+                >
+                  ←
+                </div>
+              )}
+              {entryPage < maxEntryPage && (
+                <div
+                  className="entry-nav entry-nav-next"
+                  onClick={() =>
+                    this.updateEntryPage(parseInt(entryPage, 10) + 1)
+                  }
+                >
+                  →
+                </div>
+              )}
+            </div>
+          </div>
+        )}
         {tab === TRENDS_TAB && (
           <Trends
             dateRange={dateRange}

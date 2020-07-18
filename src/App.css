@@ -219,6 +219,13 @@ body {
   .day-images {
     gap: 1px;
   }
+  .entry-navs {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 28px;
+    color: var(--primary-color);
+    margin: 20px 0px;
+  }
 }
 
 /* Desktop */
@@ -250,6 +257,17 @@ body {
   }
   .day-image:hover {
     cursor: pointer;
+  }
+  .entry-navs {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 48px;
+    color: var(--primary-color);
+    margin: 40px 0px;
+  }
+  .entry-nav:hover {
+    cursor: pointer;
+    color: var(--info-color);
   }
 }
 
