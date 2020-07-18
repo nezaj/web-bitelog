@@ -1,3 +1,7 @@
+### 7/17/2020
+
+Mini fast in the evening to prepare for a magic evening!
+
 ### 7/15/2020
 
 Ended up fasting almost the entire day to make up for the excess intake the
