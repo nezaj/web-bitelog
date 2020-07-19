@@ -1,3 +1,11 @@
+### 7/18/2020
+
+Another huge calorie day. Was hanging/celebrating with friends. Ate ~2400cals
+alone from snacking in the evening. Had I reigned this in, would have been within
+calorie targets across the two days
+
+Celebrating is good, but gotta be more on top of excess in these situations!
+
 ### 7/17/2020
 
 Mini fast in the evening to prepare for a magic evening!
