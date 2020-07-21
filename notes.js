@@ -8,7 +8,6 @@ const fs = require("fs");
 const path = require("path");
 const yargs = require("yargs");
 
-const { extractDate } = require("./src/utils.js");
 const { NOTES_DELIMITER } = require("./src/constants.js");
 const { notesData } = require("./src/data/notesData.js");
 
