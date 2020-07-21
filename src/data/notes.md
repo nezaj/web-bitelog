@@ -1,3 +1,7 @@
+### 7/19/2020
+
+Today was a travel day and make-up for yesterday's excess!
+
 ### 7/18/2020
 
 Another huge calorie day. Was hanging/celebrating with friends. Ate ~2400cals
