@@ -85,16 +85,30 @@ const friendlyDate = (dateStr) => {
   return `${weekday}, ${month} ${day}, ${year}`;
 };
 
-// Extract local date from utc timestamp: '2020-06-28T22:06:39.171Z' -> '6/28/2020'
-const extractLocaleDate = (utcTimeStamp) =>
-  new Date(utcTimeStamp).toLocaleDateString();
+// Extract date from local time integer: 20200715182210 -> 2020-08-16T01:22:00.000Z
+const localTimeToDate = (localTimeInt) => {
+  const dateStr = localTimeInt.toString();
+  const year = dateStr.slice(0, 4);
+  const month = dateStr.slice(4, 6);
+  const day = dateStr.slice(6, 8);
+  const hour = dateStr.slice(8, 10);
+  const minute = dateStr.slice(10, 12);
+  return new Date(year, month, day, hour, minute);
+};
 
-// Extract local time from utc timestamp: '2020-06-28T22:06:39.171Z' -> '6/28/2020'
-const extractLocaleTime = (utcTimeStamp) =>
-  new Date(utcTimeStamp).toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+// 2020-08-16T01:22:00.000Z -> '8/16/2020'
+const extractDate = (date) =>
+  `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+
+// 2020-08-16T01:22:00.000Z -> '1:22 AM'
+const extractTime = (date) => {
+  const rawHours = date.getHours();
+  const suffix = rawHours > 12 ? "PM" : "AM";
+  const hours = rawHours % 12 ? rawHours % 12 : 12; // convert to 12 hour time format, also 0 hour -> 12
+  const minutes =
+    date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+  return `${hours}:${minutes} ${suffix}`;
+};
 
 // Image Helpers
 // ---------------------------------------------------------------------------
@@ -109,22 +123,23 @@ const getImageId = (url) => url.split("/media/")[1].replace(/\//g, "");
 const getImageKey = (url, mealID) =>
   `${url ? getImageId(url).replace(".jpeg", "") : ""}${mealID}`;
 
-const createImageDetail = (key, imageURL, utcTimestamp) => ({
+const createImageDetail = (key, imageURL, localTimeInt) => ({
   key,
   imageURL,
-  utcTimestamp,
-  time: extractLocaleTime(utcTimestamp),
-  date: extractLocaleDate(utcTimestamp),
+  localTimeInt,
+  time: extractTime(localTimeToDate(localTimeInt)),
+  date: extractDate(localTimeToDate(localTimeInt)),
   macros: { calories: 0, protein: 0, fat: 0, carbs: 0 },
   items: [],
 });
 
-module.exports = {
-  addDays,
-  createImageDetail,
-  extractLocaleDate,
-  extractLocaleTime,
-  friendlyDate,
-  getImageId,
-  getImageKey,
-};
+// Doing this so finding references works in VSCode
+// See: https://github.com/microsoft/vscode/issues/21507#issuecomment-369118734
+module.exports.addDays = addDays;
+module.exports.createImageDetail = createImageDetail;
+module.exports.extractDate = extractDate;
+module.exports.extractTime = extractTime;
+module.exports.friendlyDate = friendlyDate;
+module.exports.getImageId = getImageId;
+module.exports.getImageKey = getImageKey;
+module.exports.localTimeToDate = localTimeToDate;

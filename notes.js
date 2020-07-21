@@ -8,7 +8,7 @@ const fs = require("fs");
 const path = require("path");
 const yargs = require("yargs");
 
-const { extractLocaleDate } = require("./src/utils.js");
+const { extractDate } = require("./src/utils.js");
 const { NOTES_DELIMITER } = require("./src/constants.js");
 const { notesData } = require("./src/data/notesData.js");
 
@@ -17,7 +17,7 @@ const JS_NOTES_PATH = path.resolve(__dirname, "src", "data", "notesData.js");
 
 const DATE_NOTE_DELIMITER = "\n\n";
 
-const TODAY = extractLocaleDate(new Date());
+const TODAY = extractDate(new Date());
 const DATE_PREFIX = "### ";
 const DATE_SUFFIX = "\n\n\n\n";
 const PREPEND_TEXT = `${DATE_PREFIX}${TODAY}${DATE_SUFFIX}`;

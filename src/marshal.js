@@ -3,8 +3,9 @@
  */
 const {
   createImageDetail,
-  extractLocaleDate,
+  extractDate,
   getImageKey,
+  localTimeToDate,
 } = require("./utils.js");
 const {
   extractCalories,
@@ -19,7 +20,7 @@ const {
 // outputted from this function
 const entriesToDateMap = (entries) => {
   return entries.reduce((xs, x) => {
-    const dateKey = extractLocaleDate(x.eatenAtUTC);
+    const dateKey = extractDate(localTimeToDate(x.eatenAtLocalTime));
     xs[dateKey] = xs[dateKey] || [];
     xs[dateKey] = xs[dateKey].concat(x);
     return xs;
@@ -83,7 +84,8 @@ const imageDetailMap = (dateToEntriesMap) => {
     .reduce((xs, x) => {
       // Get imageKey
       const key = getImageKey(x.imageURL, x.mealID);
-      xs[key] = xs[key] || createImageDetail(key, x.imageURL, x.eatenAtUTC);
+      xs[key] =
+        xs[key] || createImageDetail(key, x.imageURL, x.eatenAtLocalTime);
 
       // Update image macros
       xs[key].macros["calories"] += extractCalories(x.nutrients);
@@ -104,8 +106,6 @@ const imageDetailMap = (dateToEntriesMap) => {
     }, {});
 };
 
-module.exports = {
-  entriesToDateMap,
-  imageDetailMap,
-  nutrientsToDailyTotalsMap,
-};
+module.exports.entriesToDateMap = entriesToDateMap;
+module.exports.imageDetailMap = imageDetailMap;
+module.exports.nutrientsToDailyTotalsMap = nutrientsToDailyTotalsMap;

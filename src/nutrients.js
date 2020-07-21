@@ -19,11 +19,9 @@ const sumNutrients = (items, name) =>
     )
   );
 
-module.exports = {
-  extractNutrient,
-  extractCalories,
-  extractProtein,
-  extractFat,
-  extractCarbs,
-  sumNutrients,
-};
+module.exports.extractNutrient = extractNutrient;
+module.exports.extractCalories = extractCalories;
+module.exports.extractProtein = extractProtein;
+module.exports.extractFat = extractFat;
+module.exports.extractCarbs = extractCarbs;
+module.exports.sumNutrients = sumNutrients;

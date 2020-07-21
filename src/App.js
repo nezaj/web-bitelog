@@ -12,12 +12,7 @@ import {
   extractCarbs,
 } from "./nutrients.js";
 import { nutrientsToDailyTotalsMap, imageDetailMap } from "./marshal.js";
-import {
-  addDays,
-  friendlyDate,
-  getImageId,
-  extractLocaleDate,
-} from "./utils.js";
+import { addDays, friendlyDate, getImageId, extractDate } from "./utils.js";
 import { NOTES_DELIMITER } from "./constants";
 
 // Tab options
@@ -197,7 +192,7 @@ const Entry = ({ ds, items, detailMap, notes, onShowDetail }) => {
   // Ensure earliest photos are first
   const images = Object.keys(detailMap)
     .map((key) => detailMap[key])
-    .sort((a, b) => (a.utcTimestamp > b.utcTimestamp ? 1 : -1));
+    .sort((a, b) => (a.localTimeInt > b.localTimeInt ? 1 : -1));
 
   return (
     <div className="day">
@@ -628,7 +623,8 @@ class App extends React.Component {
         const items = entriesToDateMap[ds];
         // Notes date format doesn't neccesarily have to be the same as entries date format
         const notesKey = Object.keys(notesData).find(
-          (notesDs) => extractLocaleDate(notesDs) === ds
+          (notesDs) =>
+            extractDate(new Date(notesDs)) === extractDate(new Date(ds))
         );
         const notes = notesData[notesKey];
         const detailMap = imageDetailMap({ [ds]: items });
@@ -657,7 +653,7 @@ class App extends React.Component {
       entryDetail &&
       Object.keys(entryDetailMap)
         .map((key) => entryDetailMap[key])
-        .sort((a, b) => (a.utcTimestamp > b.utcTimestamp ? 1 : -1));
+        .sort((a, b) => (a.localTimeInt > b.localTimeInt ? 1 : -1));
     const entryDetailIndex =
       entryDetailArray &&
       entryDetailArray.findIndex((x) => x.key === detailKey);
