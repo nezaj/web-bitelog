@@ -17,13 +17,24 @@ const JS_NOTES_PATH = path.resolve(__dirname, "src", "data", "notesData.js");
 
 const DATE_NOTE_DELIMITER = "\n\n";
 
-const TODAY = extractDate(new Date());
+const TODAY = new Date();
 const DATE_PREFIX = "### ";
 const DATE_SUFFIX = "\n\n\n\n";
-const PREPEND_TEXT = `${DATE_PREFIX}${TODAY}${DATE_SUFFIX}`;
 
 // Helpers
 // ----------------------------------------------------------------------------
+const getFormattedDate = (date) => {
+  const month = date.getMonth() + 1; // months start at 0
+  const day = date.getDate();
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
+};
+
+const getPrependText = () => {
+  const date = getFormattedDate(TODAY);
+  return `${DATE_PREFIX}${date}${DATE_SUFFIX}`;
+};
+
 // Transform notes markdown file -> to json string
 // ```
 // ### 7/16/2020
@@ -63,7 +74,7 @@ const markdownToJSON = () => {
 // Commands
 // ----------------------------------------------------------------------------
 const prepend = () => {
-  const head = new Buffer.from(PREPEND_TEXT, "utf8");
+  const head = new Buffer.from(getPrependText(), "utf8");
   const tail = fs.readFileSync(RAW_NOTES_PATH);
   const fd = fs.openSync(RAW_NOTES_PATH, "w+");
   fs.writeSync(fd, head, 0, head.length, 0);
