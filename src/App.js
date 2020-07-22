@@ -572,8 +572,12 @@ class EntryDetail extends React.Component {
     const nextIcon = "→";
 
     return (
-      <div className="detail" onClick={onClose}>
-        <div className="detail-content">
+      // We use onMouseDown to handle dragging sometimes closing the modal when you mouseup outside the modal
+      <div className="detail" onMouseDown={onClose}>
+        <div
+          className="detail-content"
+          onMouseDown={(e) => e.stopPropagation()}
+        >
           <div className="detail-close" onClick={onClose}>
             {closeIcon}
           </div>
