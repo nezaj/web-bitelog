@@ -69,8 +69,14 @@ const getDateSuffix = (day) => {
 
 // '5/19/2020' -> Tuesday, May 19th, 2020
 const friendlyDate = (dateStr) => {
-  const [dateMonth, dateDay, dateYear] = dateStr.split("/");
-  const date = new Date(dateYear, parseInt(dateMonth, 10) - 1, dateDay); // Months start from 0
+  // We get a babel error on `npm run build` which we traced to this line
+  // const [dateMonth, dateDay, dateYear] = dateStr.split("/");
+  // so instead I break apart the pieces manually below
+  const datePieces = dateStr.split("/");
+  const dateMonth = parseInt(datePieces[0], 10) - 1; // Months start from 0
+  const dateDay = datePieces[1];
+  const dateYear = datePieces[2];
+  const date = new Date(dateYear, dateMonth, dateDay);
   if (isToday(date)) {
     return "Today";
   }
@@ -134,13 +140,13 @@ const createImageDetail = (key, imageURL, localTimeInt) => ({
   items: [],
 });
 
-module.exports = {
-  addDays,
-  createImageDetail,
-  extractDate,
-  extractTime,
-  friendlyDate,
-  getImageId,
-  getImageKey,
-  localTimeToDate,
-};
+// Doing this so finding references works in VSCode
+// See: https://github.com/microsoft/vscode/issues/21507#issuecomment-369118734
+module.exports.addDays = addDays;
+module.exports.createImageDetail = createImageDetail;
+module.exports.extractDate = extractDate;
+module.exports.extractTime = extractTime;
+module.exports.friendlyDate = friendlyDate;
+module.exports.getImageId = getImageId;
+module.exports.getImageKey = getImageKey;
+module.exports.localTimeToDate = localTimeToDate;
