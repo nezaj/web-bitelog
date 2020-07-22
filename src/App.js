@@ -524,6 +524,12 @@ class EntryDetail extends React.Component {
     };
   }
 
+  componentWillUnmount() {
+    Mousetrap.unbind(["left"]);
+    Mousetrap.unbind(["right"]);
+    Mousetrap.unbind(["esc", "x"]);
+  }
+
   onChangeIndex = (index) => {
     const { details } = this.props;
     const detailsIndex = mod(index, details.length);
