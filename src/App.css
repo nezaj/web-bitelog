@@ -451,7 +451,7 @@ body {
   }
 }
 
-/* Food Detail */
+/* Detail View */
 /* ---------------------------------------- */
 /* Mobile */
 @media screen and (max-width: 800px) {
@@ -465,6 +465,12 @@ body {
     overflow: auto;
     background-color: rgb(0, 0, 0); /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
+
+  .detail-image-info-container {
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow: hidden;
   }
 
   .detail-content {
@@ -488,6 +494,8 @@ body {
     padding-right: 20px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    height: 40vh;
+    overflow: scroll;
   }
 
   .detail-info-time {
@@ -595,16 +603,17 @@ body {
     color: rgba(255, 255, 255, 0.85);
     display: flex;
     justify-content: space-between;
-    width: 15%;
+    align-items: center;
+    width: 30%;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .detail-nav {
-    font-size: 24px;
+    font-size: 36px;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
+    font-weight: bolder;
   }
 
   .detail-close:hover,
@@ -631,7 +640,7 @@ body {
     top: 50%;
     left: 10%;
     right: 10%;
-    transform: translate(0%, -50%);
+    transform: translateY(-50%);
     position: absolute;
     overflow: scroll;
     margin-bottom: 5%;
@@ -641,6 +650,10 @@ body {
     display: flex;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+  }
+
+  .detail-image-info-container:hover {
+    cursor: pointer;
   }
 
   .detail-image-container {
@@ -769,16 +782,17 @@ body {
     color: rgba(255, 255, 255, 0.85);
     display: flex;
     justify-content: space-between;
-    width: 15%;
+    align-items: center;
+    width: 20%;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .detail-nav {
-    font-size: 24px;
+    font-size: 36px;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
+    font-weight: bolder;
   }
 
   .detail-close:hover,

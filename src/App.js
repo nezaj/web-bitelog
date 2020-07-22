@@ -2,6 +2,9 @@ import React from "react";
 
 import Mousetrap from "mousetrap";
 import { Bar, Line } from "react-chartjs-2";
+import SwipeableViews from "react-swipeable-views";
+import { virtualize } from "react-swipeable-views-utils";
+import { mod } from "react-swipeable-views-core";
 
 import "./App.css";
 import DEFAULT_PHOTO from "./images/missing_photo.svg";
@@ -15,6 +18,8 @@ import {
 import { nutrientsToDailyTotalsMap, imageDetailMap } from "./marshal.js";
 import { addDays, extractDate, friendlyDate, getImageId } from "./utils.js";
 import { NOTES_DELIMITER } from "./constants";
+
+const VirtualizeSwipeableViews = virtualize(SwipeableViews);
 
 // Tab options
 const ENTRIES_TAB = "entries";
@@ -56,6 +61,7 @@ const avg = (items) => (items.length ? sum(items) / items.length : null);
 const roundedAvg = (items) => Math.round(avg(items));
 const descSort = (a, b) => b - a;
 const descSortChartDate = (a, b) => new Date(a[0]) - new Date(b[0]);
+const ascLocalTime = (a, b) => (a.localTimeInt > b.localTimeInt ? 1 : -1);
 
 // Returns local compressed image or loads directly from url if we haven't compressed it yet
 const getImage = (url) => {
@@ -193,7 +199,7 @@ const Entry = ({ ds, items, detailMap, notes, onShowDetail }) => {
   // Ensure earliest photos are first
   const images = Object.keys(detailMap)
     .map((key) => detailMap[key])
-    .sort((a, b) => (a.localTimeInt > b.localTimeInt ? 1 : -1));
+    .sort(ascLocalTime);
 
   return (
     <div className="day">
@@ -233,74 +239,6 @@ const Entry = ({ ds, items, detailMap, notes, onShowDetail }) => {
             onClick={(e) => onShowDetail(e, x.key)}
           ></img>
         ))}
-      </div>
-    </div>
-  );
-};
-
-const EntryDetail = ({ detail, onClose, onPrev, onNext }) => {
-  // Keyboard shortcuts!
-  onClose && Mousetrap.bind(["esc", "x"], onClose);
-  onPrev && Mousetrap.bind(["left"], onPrev);
-  onNext && Mousetrap.bind(["right"], onNext);
-
-  const closeIcon = "╳";
-  const prevIcon = "˂";
-  const nextIcon = "˃";
-  const { imageURL, time, date, macros, items } = detail;
-  return (
-    <div className="detail" onClick={onClose}>
-      <div className="detail-content">
-        <div className="detail-close" onClick={onClose}>
-          {closeIcon}
-        </div>
-        <div className="detail-image-info-container">
-          <div className="detail-image-container">
-            <img className="detail-image" alt="" src={getImage(imageURL)}></img>
-          </div>
-          <div className="detail-info">
-            <div className="detail-info-header">
-              <div className="detail-info-time">{time}</div>
-              <div className="detail-info-date">{friendlyDate(date)}</div>
-              <hr className="detail-info-separator"></hr>
-            </div>
-            <div className="detail-macros">
-              <span role="img" aria-label="calories" className="detail-macro">
-                🔥{Math.round(macros.calories)}
-              </span>
-              <span role="img" aria-label="protein" className="detail-macro">
-                🍗{Math.round(macros.protein)}g
-              </span>
-              <span role="img" aria-label="fat" className="detail-macro">
-                🥑️{Math.round(macros.fat)}g
-              </span>
-              <span role="img" aria-label="carbs" className="detail-macro">
-                🍎{Math.round(macros.carbs)}g
-              </span>
-            </div>
-            <div className="detail-items">
-              {items.map((i, idx) => (
-                <EntryDetailItem key={idx} {...i} />
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="detail-navs">
-          <div
-            className="detail-nav"
-            onClick={onPrev}
-            style={{ visibility: onPrev ? "visible" : "hidden" }}
-          >
-            {prevIcon}
-          </div>
-          <div
-            className="detail-nav"
-            onClick={onNext}
-            style={{ visibility: onNext ? "visible" : "hidden" }}
-          >
-            {nextIcon}
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -577,6 +515,135 @@ const Trends = ({ dateRange, updateDateRange, trendData }) => {
 
 // Stateful Components
 // ---------------------------------------------------------------------------
+class EntryDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    const { detailIndex } = this.props;
+    this.state = {
+      index: detailIndex,
+    };
+  }
+
+  onChangeIndex = (index) => this.setState({ index });
+
+  onPrev = (e) => {
+    e.stopPropagation();
+    const { index } = this.state;
+    // No-op on first photo
+    if (index > 0) {
+      this.onChangeIndex(index - 1);
+    }
+  };
+
+  onNext = (e) => {
+    e.stopPropagation();
+    const { details } = this.props;
+    const { index } = this.state;
+    // No-op on last photo
+    if (index < details.length - 1) {
+      this.onChangeIndex(index + 1);
+    }
+  };
+
+  render() {
+    const { details, onClose } = this.props;
+    const { index } = this.state;
+
+    // Keyboard shortcuts!
+    Mousetrap.bind(["left"], this.onPrev);
+    Mousetrap.bind(["right"], this.onNext);
+    Mousetrap.bind(["esc", "x"], onClose);
+
+    // Navigation icons!
+    const closeIcon = "╳";
+    const prevIcon = "←";
+    const nextIcon = "→";
+
+    return (
+      <div className="detail" onClick={onClose}>
+        <div className="detail-content">
+          <div className="detail-close" onClick={onClose}>
+            {closeIcon}
+          </div>
+          <VirtualizeSwipeableViews
+            enableMouseEvents
+            resistance
+            index={index}
+            style={{
+              borderRadius: "20px",
+            }}
+            onChangeIndex={this.onChangeIndex}
+            slideRenderer={this.renderDetail}
+            slideCount={details.length}
+          />
+          <div className="detail-navs">
+            <div
+              className="detail-nav"
+              onClick={this.onPrev}
+              style={{ visibility: index > 0 ? "visible" : "hidden" }}
+            >
+              {prevIcon}
+            </div>
+            <div
+              className="detail-nav"
+              onClick={this.onNext}
+              style={{
+                visibility: index < details.length - 1 ? "visible" : "hidden",
+              }}
+            >
+              {nextIcon}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderDetail = (params) => {
+    const { details } = this.props;
+    const { index, key } = params;
+    const detail = details[mod(index, details.length)];
+    const { imageURL, time, date, macros, items } = detail;
+    return (
+      <div
+        className="detail-image-info-container"
+        key={key}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="detail-image-container">
+          <img className="detail-image" alt="" src={getImage(imageURL)}></img>
+        </div>
+        <div className="detail-info">
+          <div className="detail-info-header">
+            <div className="detail-info-time">{time}</div>
+            <div className="detail-info-date">{friendlyDate(date)}</div>
+            <hr className="detail-info-separator"></hr>
+          </div>
+          <div className="detail-macros">
+            <span role="img" aria-label="calories" className="detail-macro">
+              🔥{Math.round(macros.calories)}
+            </span>
+            <span role="img" aria-label="protein" className="detail-macro">
+              🍗{Math.round(macros.protein)}g
+            </span>
+            <span role="img" aria-label="fat" className="detail-macro">
+              🥑️{Math.round(macros.fat)}g
+            </span>
+            <span role="img" aria-label="carbs" className="detail-macro">
+              🍎{Math.round(macros.carbs)}g
+            </span>
+          </div>
+          <div className="detail-items">
+            {items.map((i, idx) => (
+              <EntryDetailItem key={idx} {...i} />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -602,7 +669,6 @@ class App extends React.Component {
   };
 
   updateDetail = (e, detailKey) => {
-    e.stopPropagation();
     updateLocation("detailKey", detailKey);
     this.setState({ detailKey });
   };
@@ -628,6 +694,7 @@ class App extends React.Component {
     const entryStart = (entryPage - 1) * ENTRIES_PER_PAGE;
     const entryEnd = entryPage * ENTRIES_PER_PAGE;
 
+    // Entry Feed
     const renderedEntries = Object.keys(entriesToDateMap)
       .sort(descSort)
       .slice(entryStart, entryEnd) // Paginate
@@ -652,33 +719,31 @@ class App extends React.Component {
         );
       });
 
+    // Trends Feed
     const trendData = nutrientsToDailyTotalsMap(
       filterEntriesToDateMap(dateRange, entriesToDateMap)
     );
 
+    // Entry Detail
     const entryDetail = entryDetailMap[detailKey];
-
-    // (TODO): Hacky, clean this up
-    // To render previous/next links we convert our detail map to an array and find the previous / next indices
-    // We order details from oldest -> newest, ensure we are in bounds, and only allow scrolling through details for the same day
-    const entryDetailArray =
-      entryDetail &&
-      Object.keys(entryDetailMap)
+    let renderedEntryDetail;
+    if (entryDetail) {
+      const entryDetailArray = Object.keys(entryDetailMap)
         .map((key) => entryDetailMap[key])
-        .sort((a, b) => (a.localTimeInt > b.localTimeInt ? 1 : -1));
-    const entryDetailIndex =
-      entryDetailArray &&
-      entryDetailArray.findIndex((x) => x.key === detailKey);
-    const prevKey =
-      entryDetailIndex &&
-      entryDetailIndex > 0 &&
-      entryDetail.date === entryDetailArray[entryDetailIndex - 1].date &&
-      entryDetailArray[entryDetailIndex - 1].key;
-    const nextKey =
-      entryDetailIndex &&
-      entryDetailIndex < entryDetailArray.length - 1 &&
-      entryDetail.date === entryDetailArray[entryDetailIndex + 1].date &&
-      entryDetailArray[entryDetailIndex + 1].key;
+        .filter((x) => x.date === entryDetail.date)
+        .sort(ascLocalTime);
+      const entryDetailIndex = entryDetailArray.findIndex(
+        (x) => x.key === detailKey
+      );
+
+      renderedEntryDetail = (
+        <EntryDetail
+          details={entryDetailArray}
+          detailIndex={entryDetailIndex}
+          onClose={(e) => this.closeDetail(e)}
+        />
+      );
+    }
 
     return (
       <div className="app">
@@ -718,14 +783,7 @@ class App extends React.Component {
           </div>
         </div>
 
-        {entryDetail && (
-          <EntryDetail
-            detail={entryDetail}
-            onClose={(e) => this.closeDetail(e)}
-            onPrev={prevKey ? (e) => this.updateDetail(e, prevKey) : null}
-            onNext={nextKey ? (e) => this.updateDetail(e, nextKey) : null}
-          />
-        )}
+        {entryDetail && renderedEntryDetail}
         {tab === ENTRIES_TAB && (
           <div className="feed">
             {renderedEntries}

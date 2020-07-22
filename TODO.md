@@ -1,8 +1,5 @@
 # TODOs
-* Implement image detail view
-    * Re-factor modal so it can gracefully handle desktop/landscape mode (maybe look up tutorial on implementing FB/Insta style modal)
-    * Support gestures
-    * Support keyboard shortcuts (left, right, x/escape)
+* See if you can improve landscape mode on iPhone for Modal
 * Add data validate function
 
 # Future
