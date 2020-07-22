@@ -229,9 +229,72 @@ const Entry = ({ ds, items, detailMap, notes, onShowDetail }) => {
             key={idx}
             className="day-image"
             src={getImage(x.imageURL)}
-            onClick={() => onShowDetail(x.key)}
+            onClick={(e) => onShowDetail(e, x.key)}
           ></img>
         ))}
+      </div>
+    </div>
+  );
+};
+
+const EntryDetail = ({ detail, onClose, onPrev, onNext }) => {
+  const closeIcon = "╳";
+  const prevIcon = "˂";
+  const nextIcon = "˃";
+  const { imageURL, time, date, macros, items } = detail;
+  return (
+    <div className="detail" onClick={onClose}>
+      <div className="detail-content">
+        <div className="detail-close" onClick={onClose}>
+          {closeIcon}
+        </div>
+        <div className="detail-image-info-container">
+          <div className="detail-image-container">
+            <img className="detail-image" alt="" src={getImage(imageURL)}></img>
+          </div>
+          <div className="detail-info">
+            <div className="detail-info-header">
+              <div className="detail-info-time">{time}</div>
+              <div className="detail-info-date">{friendlyDate(date)}</div>
+              <hr className="detail-info-separator"></hr>
+            </div>
+            <div className="detail-macros">
+              <span role="img" aria-label="calories" className="detail-macro">
+                🔥{Math.round(macros.calories)}
+              </span>
+              <span role="img" aria-label="protein" className="detail-macro">
+                🍗{Math.round(macros.protein)}g
+              </span>
+              <span role="img" aria-label="fat" className="detail-macro">
+                🥑️{Math.round(macros.fat)}g
+              </span>
+              <span role="img" aria-label="carbs" className="detail-macro">
+                🍎{Math.round(macros.carbs)}g
+              </span>
+            </div>
+            <div className="detail-items">
+              {items.map((i, idx) => (
+                <EntryDetailItem key={idx} {...i} />
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="detail-navs">
+          <div
+            className="detail-nav"
+            onClick={onPrev}
+            style={{ visibility: onPrev ? "visible" : "hidden" }}
+          >
+            {prevIcon}
+          </div>
+          <div
+            className="detail-nav"
+            onClick={onNext}
+            style={{ visibility: onNext ? "visible" : "hidden" }}
+          >
+            {nextIcon}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -263,65 +326,6 @@ const EntryDetailItem = ({
     </div>
   </div>
 );
-
-const EntryDetail = ({ detail, onClose, onPrev, onNext }) => {
-  const closeIcon = "╳";
-  const prevIcon = "˂";
-  const nextIcon = "˃";
-  const { imageURL, time, date, macros, items } = detail;
-  return (
-    <div className="detail">
-      <div className="detail-content">
-        <div className="detail-close" onClick={onClose}>
-          {closeIcon}
-        </div>
-        <img className="detail-image" alt="" src={getImage(imageURL)}></img>
-        <div className="detail-info">
-          <div className="detail-info-header">
-            <div className="detail-info-time">{time}</div>
-            <div className="detail-info-date">{friendlyDate(date)}</div>
-            <hr className="detail-info-separator"></hr>
-          </div>
-          <div className="detail-macros">
-            <span role="img" aria-label="calories" className="detail-macro">
-              🔥{Math.round(macros.calories)}
-            </span>
-            <span role="img" aria-label="protein" className="detail-macro">
-              🍗{Math.round(macros.protein)}g
-            </span>
-            <span role="img" aria-label="fat" className="detail-macro">
-              🥑️{Math.round(macros.fat)}g
-            </span>
-            <span role="img" aria-label="carbs" className="detail-macro">
-              🍎{Math.round(macros.carbs)}g
-            </span>
-          </div>
-          <div className="detail-items">
-            {items.map((i, idx) => (
-              <EntryDetailItem key={idx} {...i} />
-            ))}
-          </div>
-        </div>
-        <div className="detail-navs">
-          <div
-            className="detail-nav"
-            onClick={onPrev}
-            style={{ visibility: onPrev ? "visible" : "hidden" }}
-          >
-            {prevIcon}
-          </div>
-          <div
-            className="detail-nav"
-            onClick={onNext}
-            style={{ visibility: onNext ? "visible" : "hidden" }}
-          >
-            {nextIcon}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const LineChart = ({ title, macroData }) => {
   // Earliest entries first
@@ -580,7 +584,8 @@ class App extends React.Component {
     };
   }
 
-  closeDetail = () => {
+  closeDetail = (e) => {
+    e.stopPropagation();
     deleteLocation("detailKey");
     this.setState({ detailKey: null });
   };
@@ -590,7 +595,8 @@ class App extends React.Component {
     this.setState({ dateRange });
   };
 
-  updateDetail = (detailKey) => {
+  updateDetail = (e, detailKey) => {
+    e.stopPropagation();
     updateLocation("detailKey", detailKey);
     this.setState({ detailKey });
   };
@@ -709,9 +715,9 @@ class App extends React.Component {
         {entryDetail && (
           <EntryDetail
             detail={entryDetail}
-            onClose={this.closeDetail}
-            onPrev={prevKey ? () => this.updateDetail(prevKey) : null}
-            onNext={nextKey ? () => this.updateDetail(nextKey) : null}
+            onClose={(e) => this.closeDetail(e)}
+            onPrev={prevKey ? (e) => this.updateDetail(e, prevKey) : null}
+            onNext={nextKey ? (e) => this.updateDetail(e, nextKey) : null}
           />
         )}
         {tab === ENTRIES_TAB && (
