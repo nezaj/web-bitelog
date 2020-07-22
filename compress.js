@@ -20,6 +20,11 @@ require("dotenv").config();
 // ----------------------------------------------------------------------------
 const IMAGES_PATH = path.resolve(__dirname, "src", FOOD_IMAGES_PATH);
 const COMPRESSED_PATH = path.resolve(__dirname, "src", "data", "compressed.js");
+const RESIZE_OPTIONS = {
+  method: "fit",
+  width: 350,
+  height: 350,
+};
 const SUCCESS_KEY = "succeeded";
 const FAILED_KEY = "failed";
 
@@ -52,6 +57,7 @@ const compressImage = ({ url, id }) => {
   const outputPath = path.join(IMAGES_PATH, id);
   return tinify
     .fromUrl(url)
+    .resize(RESIZE_OPTIONS)
     .toFile(outputPath)
     .then((_) => {
       console.log(`Successful compressed ${url}, saved to ${outputPath}`);
