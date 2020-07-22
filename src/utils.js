@@ -110,7 +110,7 @@ const extractDate = (date) =>
 // 2020-08-16T01:22:00.000Z -> '1:22 AM'
 const extractTime = (date) => {
   const rawHours = date.getHours();
-  const suffix = rawHours > 12 ? "PM" : "AM";
+  const suffix = rawHours > 11 ? "PM" : "AM";
   const hours = rawHours % 12 ? rawHours % 12 : 12; // convert to 12 hour time format, also 0 hour -> 12
   const minutes =
     date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes(); // minutes look weird without zero-padding
