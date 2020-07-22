@@ -134,13 +134,13 @@ const createImageDetail = (key, imageURL, localTimeInt) => ({
   items: [],
 });
 
-// Doing this so finding references works in VSCode
-// See: https://github.com/microsoft/vscode/issues/21507#issuecomment-369118734
-module.exports.addDays = addDays;
-module.exports.createImageDetail = createImageDetail;
-module.exports.extractDate = extractDate;
-module.exports.extractTime = extractTime;
-module.exports.friendlyDate = friendlyDate;
-module.exports.getImageId = getImageId;
-module.exports.getImageKey = getImageKey;
-module.exports.localTimeToDate = localTimeToDate;
+module.exports = {
+  addDays,
+  createImageDetail,
+  extractDate,
+  extractTime,
+  friendlyDate,
+  getImageId,
+  getImageKey,
+  localTimeToDate,
+};
