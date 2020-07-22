@@ -10,7 +10,7 @@ const path = require("path");
 const tinify = require("tinify");
 
 const compressed = require("./src/data/compressed.js");
-const { getImageId } = require("./src/utils.js");
+const { getImageId, localTimeToDate } = require("./src/utils.js");
 const { FOOD_IMAGES_PATH } = require("./src/constants.js");
 
 // Load up environment variables
@@ -22,8 +22,8 @@ const IMAGES_PATH = path.resolve(__dirname, "src", FOOD_IMAGES_PATH);
 const COMPRESSED_PATH = path.resolve(__dirname, "src", "data", "compressed.js");
 const RESIZE_OPTIONS = {
   method: "fit",
-  width: 350,
-  height: 350,
+  width: 400,
+  height: 400,
 };
 const SUCCESS_KEY = "succeeded";
 const FAILED_KEY = "failed";
@@ -31,7 +31,12 @@ const FAILED_KEY = "failed";
 // Helpers
 // ----------------------------------------------------------------------------
 const getImageUrls = (data) => {
-  const urls = data.entries.map((x) => x.imageURL).filter((x) => x);
+  // const urls = data.entries.map((x) => x.imageURL).filter((x) => x);
+  const urls = data.entries
+    .filter((x) => localTimeToDate(x.eatenAtLocalTime) > new Date("7/14/2020"))
+    .map((x) => x.imageURL)
+    .filter((x) => x);
+
   return [...new Set(urls)];
 };
 
@@ -118,15 +123,15 @@ const dataPath = path.resolve(__dirname, "src", "data", "sample.json");
 const rawData = JSON.parse(fs.readFileSync(dataPath, "utf8"));
 const ids = getImageUrls(rawData).map((url) => ({ url, id: getImageId(url) }));
 const skipCount = ids.filter((x) => compressedSet.has(x.id)).length;
-if (ids.length === skipCount) {
-  const imageCount = fs.readdirSync(IMAGES_PATH).length;
-  console.log("No new images found, nothing to compress!");
-  console.log(`Total compressed images: ${imageCount}`);
-  process.exit(0);
-}
+// if (ids.length === skipCount) {
+//   const imageCount = fs.readdirSync(IMAGES_PATH).length;
+//   console.log("No new images found, nothing to compress!");
+//   console.log(`Total compressed images: ${imageCount}`);
+//   process.exit(0);
+// }
 
 const idsToProcess = ids
-  .filter((x) => !compressedSet.has(x.id))
+  // .filter((x) => !compressedSet.has(x.id))
   .map((x) => compressImage(x));
 Promise.all(idsToProcess)
   // Create results map
