@@ -69,7 +69,8 @@ const getDateSuffix = (day) => {
 
 // '5/19/2020' -> Tuesday, May 19th, 2020
 const friendlyDate = (dateStr) => {
-  const date = new Date(dateStr);
+  const [dateMonth, dateDay, dateYear] = dateStr.split("/");
+  const date = new Date(dateYear, parseInt(dateMonth, 10) - 1, dateDay); // Months start from 0
   if (isToday(date)) {
     return "Today";
   }
@@ -85,11 +86,11 @@ const friendlyDate = (dateStr) => {
   return `${weekday}, ${month} ${day}, ${year}`;
 };
 
-// Extract date from local time integer: 20200715182210 -> 2020-08-16T01:22:00.000Z
+// Extract date from local time integer: 20200715182210 -> 2020-07-16T01:22:00.000Z
 const localTimeToDate = (localTimeInt) => {
   const dateStr = localTimeInt.toString();
   const year = dateStr.slice(0, 4);
-  const month = dateStr.slice(4, 6);
+  const month = parseInt(dateStr.slice(4, 6), 10) - 1; // Months start from 0
   const day = dateStr.slice(6, 8);
   const hour = dateStr.slice(8, 10);
   const minute = dateStr.slice(10, 12);
@@ -98,7 +99,7 @@ const localTimeToDate = (localTimeInt) => {
 
 // 2020-08-16T01:22:00.000Z -> '8/16/2020'
 const extractDate = (date) =>
-  `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+  `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 
 // 2020-08-16T01:22:00.000Z -> '1:22 AM'
 const extractTime = (date) => {
@@ -106,7 +107,7 @@ const extractTime = (date) => {
   const suffix = rawHours > 12 ? "PM" : "AM";
   const hours = rawHours % 12 ? rawHours % 12 : 12; // convert to 12 hour time format, also 0 hour -> 12
   const minutes =
-    date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+    date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes(); // minutes look weird without zero-padding
   return `${hours}:${minutes} ${suffix}`;
 };
 

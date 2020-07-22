@@ -12,7 +12,7 @@ import {
   extractCarbs,
 } from "./nutrients.js";
 import { nutrientsToDailyTotalsMap, imageDetailMap } from "./marshal.js";
-import { addDays, friendlyDate, getImageId, extractDate } from "./utils.js";
+import { addDays, extractDate, friendlyDate, getImageId } from "./utils.js";
 import { NOTES_DELIMITER } from "./constants";
 
 // Tab options
