@@ -1,5 +1,6 @@
 import React from "react";
 
+import Mousetrap from "mousetrap";
 import { Bar, Line } from "react-chartjs-2";
 
 import "./App.css";
@@ -238,6 +239,11 @@ const Entry = ({ ds, items, detailMap, notes, onShowDetail }) => {
 };
 
 const EntryDetail = ({ detail, onClose, onPrev, onNext }) => {
+  // Keyboard shortcuts!
+  onClose && Mousetrap.bind(["esc", "x"], onClose);
+  onPrev && Mousetrap.bind(["left"], onPrev);
+  onNext && Mousetrap.bind(["right"], onNext);
+
   const closeIcon = "╳";
   const prevIcon = "˂";
   const nextIcon = "˃";
