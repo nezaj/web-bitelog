@@ -524,7 +524,13 @@ class EntryDetail extends React.Component {
     };
   }
 
-  onChangeIndex = (index) => this.setState({ index });
+  onChangeIndex = (index) => {
+    const { details } = this.props;
+    const detailsIndex = mod(index, details.length);
+    const detailKey = details[detailsIndex].key;
+    updateLocation("detailKey", detailKey);
+    this.setState({ index });
+  };
 
   onPrev = (e) => {
     e.stopPropagation();
