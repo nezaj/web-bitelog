@@ -265,9 +265,9 @@ const EntryDetailItem = ({
 );
 
 const EntryDetail = ({ detail, onClose, onPrev, onNext }) => {
-  const closeIcon = "X";
-  const prevIcon = "<";
-  const nextIcon = ">";
+  const closeIcon = "╳";
+  const prevIcon = "˂";
+  const nextIcon = "˃";
   const { imageURL, time, date, macros, items } = detail;
   return (
     <div className="detail">
