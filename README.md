@@ -9,7 +9,7 @@ npm i
 yarn start
 ```
 
-### Make commands
+### Useful commands
 * `make repl` -- Fire up a repl, space for easily importing and iterating
 * `make deploy` -- deploy site
 * `make compress` -- compress images through TinyPNG
