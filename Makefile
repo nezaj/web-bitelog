@@ -18,10 +18,16 @@ compress:
 	@echo "Compressing images..."
 	node compress.js
 
+validate-data:
+	@echo "Validating data..."
+	ls -t $(DATA_INPUT_DIR)/bitesnap* | head -1 | xargs -I {} cp {} $(DATA_OUTPUT_DIR)/temp_sample.json
+	node validate.js
+	mv $(DATA_OUTPUT_DIR)/temp_sample.json $(DATA_OUTPUT_DIR)/sample.json
+
 new-data:
 	# Used for easily updating data
 	@echo "Updating and deploying new entries..."
-	ls -t $(DATA_INPUT_DIR)/bitesnap* | head -1 | xargs -I {} cp {} $(DATA_OUTPUT_DIR)/sample.json
+	$(MAKE) validate-data
 	$(MAKE) compress
 	git add .
 	git commit -m "Update data"
