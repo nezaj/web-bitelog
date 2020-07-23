@@ -1,5 +1,4 @@
 # TODOs
-* See if you can improve landscape mode on iPhone for Modal (look into proportional scaling)
 * Add data validate function
 
 # Future

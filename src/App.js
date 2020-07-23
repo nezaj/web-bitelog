@@ -573,7 +573,12 @@ class EntryDetail extends React.Component {
 
     return (
       <div className="detail" onMouseDown={onClose}>
-        {/* We use onMouseDown to handle dragging sometimes closing the modal when you mouseup outside the modal */}
+        {/*
+         * We use onMouseDown to address that dragging can sometimes close the modal when you mouseup outside the modal
+         * Fun fact, apparently having a "//" style comment below return breaks the minified build in production (but works fine in development)
+         * As a result I've moved this comment here
+         * See: https://github.com/facebook/create-react-app/issues/8687
+         */}
         <div
           className="detail-content"
           onMouseDown={(e) => e.stopPropagation()}
