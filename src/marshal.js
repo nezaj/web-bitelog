@@ -17,7 +17,8 @@ const {
 
 // Marshall data to use datestamps as top level keys
 // Note: This is currently the "top-level" marshalling, as the other marshal functions use data
-// outputted from this function
+// outputted from this function. If data format every changes you should only need to update this function
+// and the other marshall functions should work as is
 const entriesToDateMap = (entries) => {
   return entries.reduce((xs, x) => {
     const dateKey = extractDate(localTimeToDate(x.eatenAtLocalTime));

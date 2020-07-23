@@ -236,7 +236,7 @@ const Entry = ({ ds, items, detailMap, notes, onShowDetail }) => {
             key={idx}
             className="day-image"
             src={getImage(x.imageURL)}
-            onClick={(e) => onShowDetail(e, x.key)}
+            onClick={() => onShowDetail(x.key)}
           ></img>
         ))}
       </div>
@@ -538,8 +538,7 @@ class EntryDetail extends React.Component {
     this.setState({ index });
   };
 
-  onPrev = (e) => {
-    e.stopPropagation();
+  onPrev = () => {
     const { index } = this.state;
     // No-op on first photo
     if (index > 0) {
@@ -547,8 +546,7 @@ class EntryDetail extends React.Component {
     }
   };
 
-  onNext = (e) => {
-    e.stopPropagation();
+  onNext = () => {
     const { details } = this.props;
     const { index } = this.state;
     // No-op on last photo
@@ -623,14 +621,11 @@ class EntryDetail extends React.Component {
   renderDetail = (params) => {
     const { details } = this.props;
     const { index, key } = params;
+
     const detail = details[mod(index, details.length)];
     const { imageURL, time, date, macros, items } = detail;
     return (
-      <div
-        className="detail-image-info-container"
-        key={key}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="detail-image-info-container" key={key}>
         <div className="detail-image-container">
           <img className="detail-image" alt="" src={getImage(imageURL)}></img>
         </div>
@@ -678,8 +673,7 @@ class App extends React.Component {
     };
   }
 
-  closeDetail = (e) => {
-    e.stopPropagation();
+  closeDetail = () => {
     deleteLocation("detailKey");
     this.setState({ detailKey: null });
   };
@@ -689,7 +683,7 @@ class App extends React.Component {
     this.setState({ dateRange });
   };
 
-  updateDetail = (e, detailKey) => {
+  updateDetail = (detailKey) => {
     updateLocation("detailKey", detailKey);
     this.setState({ detailKey });
   };
@@ -761,7 +755,7 @@ class App extends React.Component {
         <EntryDetail
           details={entryDetailArray}
           detailIndex={entryDetailIndex}
-          onClose={(e) => this.closeDetail(e)}
+          onClose={this.closeDetail}
         />
       );
     }

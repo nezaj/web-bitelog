@@ -484,6 +484,10 @@ body {
     border-bottom-left-radius: 20px;
   }
 
+  .detail-image-info-container:hover {
+    cursor: pointer;
+  }
+
   .detail-image {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -679,6 +683,8 @@ body {
     padding-right: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    overflow: scroll;
+    max-height: 50vw; /* Same height as image width */
   }
 
   .detail-info-time {

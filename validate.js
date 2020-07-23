@@ -1,3 +1,9 @@
+/*
+ * Script for validating imported BiteSnap data. The intent of this is to catch if the exported data
+ * format changes -- if so will need to update my marshal logic
+ *
+ * Usage: node validate.js
+ */
 const assert = require("assert");
 const fs = require("fs");
 const path = require("path");

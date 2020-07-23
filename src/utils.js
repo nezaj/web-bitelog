@@ -69,9 +69,9 @@ const getDateSuffix = (day) => {
 
 // '5/19/2020' -> Tuesday, May 19th, 2020
 const friendlyDate = (dateStr) => {
-  // We get a babel error on `npm run build` which we traced to this line
+  // We get a babel error on `npm run build` when destructing like so:
   // const [dateMonth, dateDay, dateYear] = dateStr.split("/");
-  // so instead I break apart the pieces manually below
+  // So instead we break apart the pieces manually below *sigh*
   const datePieces = dateStr.split("/");
   const dateMonth = parseInt(datePieces[0], 10) - 1; // Months start from 0
   const dateDay = datePieces[1];
