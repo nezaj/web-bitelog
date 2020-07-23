@@ -1,5 +1,4 @@
 # TODOs
-* Add data validate function
 
 # Future
 * Add water tracking
