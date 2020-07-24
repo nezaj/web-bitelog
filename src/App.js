@@ -585,7 +585,6 @@ class EntryDetail extends React.Component {
             {closeIcon}
           </div>
           <VirtualizeSwipeableViews
-            enableMouseEvents
             resistance
             index={index}
             style={{
