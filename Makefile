@@ -8,6 +8,10 @@ repl:
 	@echo "Starting repl..."
 	node repl.js
 
+dev:
+	@echo "Spinning up dev..."
+	yarn start
+
 deploy:
 	@echo "Verify build still works..."
 	npm run build
