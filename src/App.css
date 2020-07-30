@@ -190,6 +190,10 @@ body {
   margin-right: 10px;
 }
 
+.day-macro-br {
+  display: none;
+}
+
 .day-images {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -207,6 +211,9 @@ body {
   }
   .day-macros {
     font-size: 14px;
+  }
+  .day-macro-br {
+    display: block;
   }
   .day-notes {
     font-weight: thin;

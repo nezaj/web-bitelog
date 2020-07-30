@@ -117,6 +117,26 @@ const extractTime = (date) => {
   return `${hours}:${minutes} ${suffix}`;
 };
 
+// Order doesnt mater
+const getHoursBetween = (d1, d2) => {
+  return Math.abs((new Date(d1) - new Date(d2)) / (1000 * 60 * 60));
+};
+
+// Eating window is just time between starting our first and finishing our last meal rounded up to the nearest whole hour
+// We round up because the last timestamp is when we "started" eating and not when we actually "finished"
+// As a result we round-up to account for "eating" time
+// Note: For days with only one meal will return 1
+const eatingWindow = (dates) => {
+  if (dates.length === 0) {
+    return 0;
+  }
+  let copy = dates;
+  copy.sort((a, b) => new Date(a) - new Date(b));
+  const start = copy[0];
+  const end = copy[copy.length - 1];
+  return Math.ceil(getHoursBetween(start, end)) || 1;
+};
+
 // Image Helpers
 // ---------------------------------------------------------------------------
 // 'https://storage.googleapis.com/media.getbitesnap.com/prod/media/ad/94/b9e0231e449987c56f15aaa7701b.jpeg'
@@ -140,13 +160,21 @@ const createImageDetail = (key, imageURL, localTimeInt) => ({
   items: [],
 });
 
+// Misc
+// ---------------------------------------------------------------------------
+const round = (num, precision) =>
+  Math.round((num + Number.EPSILON) * Math.pow(10, precision)) /
+  Math.pow(10, precision);
+
 // Doing this so finding references works in VSCode
 // See: https://github.com/microsoft/vscode/issues/21507#issuecomment-369118734
 module.exports.addDays = addDays;
 module.exports.createImageDetail = createImageDetail;
+module.exports.eatingWindow = eatingWindow;
 module.exports.extractDate = extractDate;
 module.exports.extractTime = extractTime;
 module.exports.friendlyDate = friendlyDate;
 module.exports.getImageId = getImageId;
 module.exports.getImageKey = getImageKey;
 module.exports.localTimeToDate = localTimeToDate;
+module.exports.round = round;

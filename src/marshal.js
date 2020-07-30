@@ -15,6 +15,48 @@ const {
   sumNutrients,
 } = require("./nutrients.js");
 
+// 236.59ml is 1 US cup
+const ML_TO_CUPS_DIVISOR = 236.59;
+
+const buildHealthMap = (healthData) => {
+  // (TODO) Remove extending 'localDate' once this is added to export
+  const addLocalDateKey = (healthSample) => {
+    let copy = healthSample;
+    copy["localDate"] = extractDate(new Date(healthSample["utcDate"]));
+    return copy;
+  };
+  const refinedHealthData = Object.keys(healthData).reduce(
+    (refinedData, healthKey) => {
+      refinedData[healthKey] = healthData[healthKey].map(addLocalDateKey);
+      return refinedData;
+    },
+    {}
+  );
+
+  return Object.keys(refinedHealthData).reduce((healthMap, healthKey) => {
+    const samples = refinedHealthData[healthKey];
+    samples.forEach((sample) => {
+      const amount = sample["value"];
+      const ds = sample["localDate"];
+      healthMap[ds] = healthMap[ds] || {};
+      healthMap[ds][healthKey] = healthMap[ds][healthKey] || 0;
+      switch (healthKey) {
+        // Use latest entry for weight
+        case "bodyMass":
+          healthMap[ds][healthKey] = parseFloat(amount);
+          break;
+        // Convert amounts (in ml) to cups
+        case "water":
+          healthMap[ds][healthKey] += parseFloat(amount) / ML_TO_CUPS_DIVISOR;
+          break;
+        default:
+          healthMap[ds][healthKey] += parseFloat(amount);
+      }
+    });
+    return healthMap;
+  }, {});
+};
+
 // Marshall data to use datestamps as top level keys
 // Note: This is currently the "top-level" marshalling, as the other marshal functions use data
 // outputted from this function. If data format every changes you should only need to update this function
@@ -107,6 +149,7 @@ const imageDetailMap = (dateToEntriesMap) => {
     }, {});
 };
 
+module.exports.buildHealthMap = buildHealthMap;
 module.exports.entriesToDateMap = entriesToDateMap;
 module.exports.imageDetailMap = imageDetailMap;
 module.exports.nutrientsToDailyTotalsMap = nutrientsToDailyTotalsMap;

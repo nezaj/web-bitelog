@@ -16,7 +16,14 @@ import {
   extractCarbs,
 } from "./nutrients.js";
 import { nutrientsToDailyTotalsMap, imageDetailMap } from "./marshal.js";
-import { addDays, extractDate, friendlyDate, getImageId } from "./utils.js";
+import {
+  addDays,
+  eatingWindow,
+  extractDate,
+  friendlyDate,
+  getImageId,
+  round,
+} from "./utils.js";
 import { NOTES_DELIMITER } from "./constants";
 
 const VirtualizeSwipeableViews = virtualize(SwipeableViews);
@@ -175,7 +182,7 @@ const updateLocation = (key, value) => {
 
 // Functional Components
 // ---------------------------------------------------------------------------
-const Entry = ({ ds, items, detailMap, notes, onShowDetail }) => {
+const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
   const rawTotals = items.reduce(
     (xs, x) => {
       xs["cal"] += extractCalories(x.nutrients);
@@ -187,12 +194,25 @@ const Entry = ({ ds, items, detailMap, notes, onShowDetail }) => {
     { cal: 0, protein: 0, fat: 0, carbs: 0 }
   );
 
-  const label = {
+  // Nutrient info
+  const labels = {
     cal: Math.round(rawTotals.cal),
     protein: Math.round(rawTotals.protein),
     fat: Math.round(rawTotals.fat),
     carbs: Math.round(rawTotals.carbs),
   };
+
+  // Non-macros info
+  const extraLabels = {
+    eatingWindow: eatingWindow(items.map((x) => x.eatenAtUTC)),
+    water:
+      healthItems && healthItems["water"] && round(healthItems["water"], 2),
+    bodyMass: healthItems && healthItems["bodyMass"],
+  };
+  const extraLabelsSize = Object.keys(extraLabels).reduce(
+    (size, key) => (size += extraLabels[key] ? 1 : 0),
+    0
+  );
 
   const entryDate = friendlyDate(ds);
 
@@ -206,18 +226,45 @@ const Entry = ({ ds, items, detailMap, notes, onShowDetail }) => {
       <div className="day-title">
         <div className="day-date">{entryDate}</div>
         <div className="day-macros">
-          <span role="img" aria-label="calories" className="day-macro">
-            🔥{label.cal}
+          <span
+            role="img"
+            aria-label="number of calories"
+            className="day-macro"
+          >
+            🔥{labels.cal}
           </span>
-          <span role="img" aria-label="protein" className="day-macro">
-            🍗{label.protein}g
+          <span role="img" aria-label="grams of protein" className="day-macro">
+            🍗{labels.protein}g
           </span>
-          <span role="img" aria-label="fat" className="day-macro">
-            🥑️{label.fat}g
+          <span role="img" aria-label="grams of fat" className="day-macro">
+            🥑{labels.fat}g
           </span>
-          <span role="img" aria-label="carbs" className="day-macro">
-            🍎{label.carbs}g
+          <span role="img" aria-label="grams of carbs" className="day-macro">
+            🍎{labels.carbs}g
           </span>
+          {/* Hack to add a newline if lots of additional attributes exist */}
+          {extraLabelsSize > 2 && <div className="day-macro-br"></div>}
+          <span
+            role="img"
+            aria-label="eating window in hours"
+            className="day-macro"
+          >
+            ⏱{extraLabels.eatingWindow} hrs
+          </span>
+          {extraLabels.water && (
+            <span role="img" aria-label="cups of water" className="day-macro">
+              💧{extraLabels.water} cups
+            </span>
+          )}
+          {extraLabels.bodyMass && (
+            <span
+              role="img"
+              aria-label="weight in pounds"
+              className="day-macro"
+            >
+              ⚖️{extraLabels.bodyMass} lbs
+            </span>
+          )}
         </div>
       </div>
       {notes && (
@@ -699,7 +746,12 @@ class App extends React.Component {
   };
 
   render() {
-    const { entriesToDateMap, entryDetailMap, notesData } = this.props;
+    const {
+      entriesToDateMap,
+      entryDetailMap,
+      notesData,
+      healthEntries,
+    } = this.props;
     const { dateRange, detailKey, tab, entryPage } = this.state;
 
     // Pagination helpers
@@ -720,6 +772,12 @@ class App extends React.Component {
             extractDate(new Date(notesDs)) === extractDate(new Date(ds))
         );
         const notes = notesData[notesKey];
+
+        const healthKey = Object.keys(healthEntries).find(
+          (healthDs) => healthDs === ds
+        );
+        const health = healthEntries[healthKey];
+
         const detailMap = imageDetailMap({ [ds]: items });
         return (
           <Entry
@@ -727,6 +785,7 @@ class App extends React.Component {
             ds={ds}
             items={entriesToDateMap[ds]}
             detailMap={detailMap}
+            healthItems={health}
             notes={notes}
             onShowDetail={this.updateDetail}
           />
