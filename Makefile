@@ -26,9 +26,9 @@ compress:
 
 validate-data:
 	@echo "Validating data..."
-	ls -t $(DATA_INPUT_DIR)/bitesnap* | head -1 | xargs -I {} cp {} $(DATA_OUTPUT_DIR)/temp_sample.json
+	ls -t $(DATA_INPUT_DIR)/bitesnap* | head -1 | xargs -I {} cp {} $(DATA_OUTPUT_DIR)/temp_food.json
 	node validate.js
-	mv $(DATA_OUTPUT_DIR)/temp_sample.json $(DATA_OUTPUT_DIR)/sample.json
+	mv $(DATA_OUTPUT_DIR)/temp_food.json $(DATA_OUTPUT_DIR)/food.json
 
 new-data:
 	# Used for easily updating data

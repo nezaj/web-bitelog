@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 import { entriesToDateMap, imageDetailMap } from "./marshal.js";
-import foodData from "./data/sample.json";
+import foodData from "./data/food.json";
 import { notesData } from "./data/notesData.js";
 
 const entries = entriesToDateMap(foodData.entries);

@@ -108,7 +108,7 @@ if (!apiKey) {
 tinify.key = apiKey;
 
 const compressedSet = new Set(compressed);
-const dataPath = path.resolve(__dirname, "src", "data", "sample.json");
+const dataPath = path.resolve(__dirname, "src", "data", "food.json");
 const rawData = JSON.parse(fs.readFileSync(dataPath, "utf8"));
 const ids = getImageUrls(rawData).map((url) => ({ url, id: getImageId(url) }));
 const skipCount = ids.filter((x) => compressedSet.has(x.id)).length;

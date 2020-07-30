@@ -18,7 +18,7 @@ const {
 // ----------------------------------------------------------------------------
 try {
   // Import data
-  const dataPath = path.resolve(__dirname, "src", "data", "temp_sample.json");
+  const dataPath = path.resolve(__dirname, "src", "data", "temp_food.json");
   const rawData = JSON.parse(fs.readFileSync(dataPath, "utf8"));
   const entriesData = entriesToDateMap(rawData.entries);
   const trendsData = nutrientsToDailyTotalsMap(entriesData);
