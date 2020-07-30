@@ -24,19 +24,27 @@ compress:
 	@echo "Compressing images..."
 	node compress.js
 
-validate-data:
-	@echo "Validating data..."
+validate-food:
+	@echo "Validating food data..."
 	ls -t $(DATA_INPUT_DIR)/bitesnap* | head -1 | xargs -I {} cp {} $(DATA_OUTPUT_DIR)/temp_food.json
 	node validate.js
 	mv $(DATA_OUTPUT_DIR)/temp_food.json $(DATA_OUTPUT_DIR)/food.json
 
-new-data:
-	# Used for easily updating data
-	@echo "Updating and deploying new entries..."
-	$(MAKE) validate-data
+new-food:
+	# Used for easily updating food data
+	@echo "Updating and deploying new food entries..."
+	$(MAKE) validate-food
 	$(MAKE) compress
 	git add .
-	git commit -m "Update data"
+	git commit -m "Update food data"
+	$(MAKE) deploy
+
+new-health:
+	# Used for easily updating health data
+	@echo "Updating and deploying new health entries..."
+	ls -t $(DATA_INPUT_DIR)/HEOutput* | head -1 | xargs -I {} cp {} $(DATA_OUTPUT_DIR)/health.json
+	git add .
+	git commit -m "Update health data"
 	$(MAKE) deploy
 
 open-notes:
