@@ -9,6 +9,7 @@ import { mod } from "react-swipeable-views-core";
 import "./App.css";
 import DEFAULT_PHOTO from "./images/missing_photo.svg";
 import COMPRESSED_LIST from "./data/compressed.js";
+import { HEALTH_BODY_MASS_KEY, HEALTH_WATER_KEY } from "./constants.js";
 import {
   extractCalories,
   extractProtein,
@@ -206,8 +207,10 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
   const extraLabels = {
     eatingWindow: eatingWindow(items.map((x) => x.eatenAtUTC)),
     water:
-      healthItems && healthItems["water"] && round(healthItems["water"], 2),
-    bodyMass: healthItems && healthItems["bodyMass"],
+      healthItems &&
+      healthItems[HEALTH_WATER_KEY] &&
+      round(healthItems[HEALTH_WATER_KEY], 2),
+    bodyMass: healthItems && healthItems[HEALTH_BODY_MASS_KEY],
   };
   const extraLabelsSize = Object.keys(extraLabels).reduce(
     (size, key) => (size += extraLabels[key] ? 1 : 0),

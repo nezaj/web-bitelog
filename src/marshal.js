@@ -1,6 +1,7 @@
 /*
  * Helpers for marshalling data
  */
+const { HEALTH_WATER_KEY, HEALTH_BODY_MASS_KEY } = require("./constants.js");
 const {
   createImageDetail,
   extractDate,
@@ -19,34 +20,20 @@ const {
 const ML_TO_CUPS_DIVISOR = 236.59;
 
 const buildHealthMap = (healthData) => {
-  // (TODO) Remove extending 'localDate' once this is added to export
-  const addLocalDateKey = (healthSample) => {
-    let copy = healthSample;
-    copy["localDate"] = extractDate(new Date(healthSample["utcDate"]));
-    return copy;
-  };
-  const refinedHealthData = Object.keys(healthData).reduce(
-    (refinedData, healthKey) => {
-      refinedData[healthKey] = healthData[healthKey].map(addLocalDateKey);
-      return refinedData;
-    },
-    {}
-  );
-
-  return Object.keys(refinedHealthData).reduce((healthMap, healthKey) => {
-    const samples = refinedHealthData[healthKey];
+  return Object.keys(healthData).reduce((healthMap, healthKey) => {
+    const samples = healthData[healthKey];
     samples.forEach((sample) => {
       const amount = sample["value"];
-      const ds = sample["localDate"];
+      const ds = extractDate(new Date(sample["date"]));
       healthMap[ds] = healthMap[ds] || {};
       healthMap[ds][healthKey] = healthMap[ds][healthKey] || 0;
       switch (healthKey) {
         // Use latest entry for weight
-        case "bodyMass":
+        case HEALTH_BODY_MASS_KEY:
           healthMap[ds][healthKey] = parseFloat(amount);
           break;
         // Convert amounts (in ml) to cups
-        case "water":
+        case HEALTH_WATER_KEY:
           healthMap[ds][healthKey] += parseFloat(amount) / ML_TO_CUPS_DIVISOR;
           break;
         default:

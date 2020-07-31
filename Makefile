@@ -42,7 +42,15 @@ new-food:
 new-health:
 	# Used for easily updating health data
 	@echo "Updating and deploying new health entries..."
-	ls -t $(DATA_INPUT_DIR)/HEOutput* | head -1 | xargs -I {} cp {} $(DATA_OUTPUT_DIR)/health.json
+
+	# Import and filter data
+	ls -t $(DATA_INPUT_DIR)/HEOutput* | head -1 | xargs -I {} cp {} $(DATA_OUTPUT_DIR)/temp_health.json
+	node health.js
+
+	# Clean-up after ourselves
+	rm $(DATA_OUTPUT_DIR)/temp_health.json
+
+	# Commit and deploy
 	git add .
 	git commit -m "Update health data"
 	$(MAKE) deploy
