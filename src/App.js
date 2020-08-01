@@ -771,7 +771,8 @@ class App extends React.Component {
         const notes = notesData[notesKey];
 
         const healthKey = Object.keys(healthEntries).find(
-          (healthDs) => healthDs === ds
+          (healthDs) =>
+            extractDate(new Date(healthDs)) === extractDate(new Date(ds))
         );
         const health = healthEntries[healthKey];
 
