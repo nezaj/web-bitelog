@@ -236,7 +236,7 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
           <span role="img" aria-label="grams of fat" className="day-macro">
             🥑{foodLabels.fat}g
           </span>
-          <span role="img" aria-label="grams of carbs" className="day-macro">
+          {/* <span role="img" aria-label="grams of carbs" className="day-macro">
             🍎{foodLabels.carbs}g
           </span>
           <span
@@ -245,13 +245,13 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
             className="day-macro"
           >
             ⏱{foodLabels.eatingWindow} hrs
-          </span>
+          </span> */}
           {/* Hack to add a newline if lots of additional attributes exist */}
           {/* Thanks: http://v3.danielmall.com/articles/responsive-line-breaks/ */}
           {/* <span className="day-macro-br"> */}
           {healthLabels.water && (
             <span role="img" aria-label="cups of water" className="day-macro">
-              {healthLabels.water} cups
+              💧{healthLabels.water} cups
             </span>
           )}
           {healthLabels.bodyMass && (
@@ -260,7 +260,7 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
               aria-label="weight in pounds"
               className="day-macro"
             >
-              ️{healthLabels.bodyMass} lbs
+              ⚖️{healthLabels.bodyMass} lbs
             </span>
           )}
           {/* </span> */}
