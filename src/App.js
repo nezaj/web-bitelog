@@ -747,7 +747,7 @@ class App extends React.Component {
       entriesToDateMap,
       entryDetailMap,
       notesData,
-      healthEntries,
+      healthData,
     } = this.props;
     const { dateRange, detailKey, tab, entryPage } = this.state;
 
@@ -770,11 +770,10 @@ class App extends React.Component {
         );
         const notes = notesData[notesKey];
 
-        const healthKey = Object.keys(healthEntries).find(
-          (healthDs) =>
-            extractDate(new Date(healthDs)) === extractDate(new Date(ds))
+        const healthKey = Object.keys(healthData).find(
+          (healthDs) => healthDs === ds
         );
-        const health = healthEntries[healthKey];
+        const health = healthData[healthKey];
 
         const detailMap = imageDetailMap({ [ds]: items });
         return (
