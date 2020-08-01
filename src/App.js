@@ -9,7 +9,7 @@ import { mod } from "react-swipeable-views-core";
 import "./App.css";
 import DEFAULT_PHOTO from "./images/missing_photo.svg";
 import COMPRESSED_LIST from "./data/compressed.js";
-// import { HEALTH_BODY_MASS_KEY, HEALTH_WATER_KEY } from "./constants.js";
+import { HEALTH_BODY_MASS_KEY, HEALTH_WATER_KEY } from "./constants.js";
 import {
   extractCalories,
   extractProtein,
@@ -206,9 +206,9 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
   const healthLabels = {
     water:
       healthItems &&
-      healthItems["HKQuantityTypeIdentifierDietaryWater"] &&
-      round(healthItems["HKQuantityTypeIdentifierDietaryWater"], 2),
-    bodyMass: healthItems && healthItems["HKQuantityTypeIdentifierBodyMass"],
+      healthItems[HEALTH_WATER_KEY] &&
+      round(healthItems[HEALTH_WATER_KEY], 2),
+    bodyMass: healthItems && healthItems[HEALTH_BODY_MASS_KEY],
   };
 
   const entryDate = friendlyDate(ds);
@@ -246,6 +246,7 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
           >
             ⏱{foodLabels.eatingWindow} hrs
           </span>
+          {JSON.stringify(healthItems)}
           <span className="day-macro-br">
             {healthLabels.water && (
               <span role="img" aria-label="cups of water" className="day-macro">
