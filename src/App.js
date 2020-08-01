@@ -204,11 +204,13 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
   };
 
   const healthLabels = {
-    water:
-      healthItems &&
-      healthItems[HEALTH_WATER_KEY] &&
-      round(healthItems[HEALTH_WATER_KEY], 2),
-    bodyMass: healthItems && healthItems[HEALTH_BODY_MASS_KEY],
+    water: 1,
+    bodyMass: 1,
+    // water:
+    //   healthItems &&
+    //   healthItems[HEALTH_WATER_KEY] &&
+    //   round(healthItems[HEALTH_WATER_KEY], 2),
+    // bodyMass: healthItems && healthItems[HEALTH_BODY_MASS_KEY],
   };
 
   const entryDate = friendlyDate(ds);
@@ -246,7 +248,6 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
           >
             ⏱{foodLabels.eatingWindow} hrs
           </span>
-          {JSON.stringify(healthItems)}
           <span className="day-macro-br">
             {healthLabels.water && (
               <span role="img" aria-label="cups of water" className="day-macro">
