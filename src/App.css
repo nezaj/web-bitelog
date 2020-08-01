@@ -191,7 +191,7 @@ body {
 }
 
 .day-macro-br {
-  display: none;
+  display: inline;
 }
 
 .day-images {
@@ -199,7 +199,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
-/* Mobile */
+/* Mobile/Tablet */
 @media screen and (max-width: 800px) {
   .day-title {
     margin-top: var(--gap-unit);

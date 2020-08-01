@@ -195,27 +195,21 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
     { cal: 0, protein: 0, fat: 0, carbs: 0 }
   );
 
-  // Nutrient info
-  const labels = {
+  const foodLabels = {
     cal: Math.round(rawTotals.cal),
     protein: Math.round(rawTotals.protein),
     fat: Math.round(rawTotals.fat),
     carbs: Math.round(rawTotals.carbs),
+    eatingWindow: eatingWindow(items.map((x) => x.eatenAtUTC)),
   };
 
-  // Non-macros info
-  const extraLabels = {
-    eatingWindow: eatingWindow(items.map((x) => x.eatenAtUTC)),
+  const healthLabels = {
     water:
       healthItems &&
       healthItems[HEALTH_WATER_KEY] &&
       round(healthItems[HEALTH_WATER_KEY], 2),
     bodyMass: healthItems && healthItems[HEALTH_BODY_MASS_KEY],
   };
-  const extraLabelsSize = Object.keys(extraLabels).reduce(
-    (size, key) => (size += extraLabels[key] ? 1 : 0),
-    0
-  );
 
   const entryDate = friendlyDate(ds);
 
@@ -234,40 +228,42 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
             aria-label="number of calories"
             className="day-macro"
           >
-            🔥{labels.cal}
+            🔥{foodLabels.cal}
           </span>
           <span role="img" aria-label="grams of protein" className="day-macro">
-            🍗{labels.protein}g
+            🍗{foodLabels.protein}g
           </span>
           <span role="img" aria-label="grams of fat" className="day-macro">
-            🥑{labels.fat}g
+            🥑{foodLabels.fat}g
           </span>
           <span role="img" aria-label="grams of carbs" className="day-macro">
-            🍎{labels.carbs}g
+            🍎{foodLabels.carbs}g
           </span>
-          {/* Hack to add a newline if lots of additional attributes exist */}
-          {extraLabelsSize > 2 && <div className="day-macro-br"></div>}
           <span
             role="img"
             aria-label="eating window in hours"
             className="day-macro"
           >
-            ⏱{extraLabels.eatingWindow} hrs
+            ⏱{foodLabels.eatingWindow} hrs
           </span>
-          {extraLabels.water && (
-            <span role="img" aria-label="cups of water" className="day-macro">
-              💧{extraLabels.water} cups
-            </span>
-          )}
-          {extraLabels.bodyMass && (
-            <span
-              role="img"
-              aria-label="weight in pounds"
-              className="day-macro"
-            >
-              ⚖️{extraLabels.bodyMass} lbs
-            </span>
-          )}
+          {/* Hack to add a newline if lots of additional attributes exist */}
+          {/* Thanks: http://v3.danielmall.com/articles/responsive-line-breaks/ */}
+          <span className="day-macro-br">
+            {healthLabels.water && (
+              <span role="img" aria-label="cups of water" className="day-macro">
+                💧{healthLabels.water} cups
+              </span>
+            )}
+            {healthLabels.bodyMass && (
+              <span
+                role="img"
+                aria-label="weight in pounds"
+                className="day-macro"
+              >
+                ⚖️{healthLabels.bodyMass} lbs
+              </span>
+            )}
+          </span>
         </div>
       </div>
       {notes && (
