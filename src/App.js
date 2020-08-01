@@ -203,16 +203,13 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
     eatingWindow: eatingWindow(items.map((x) => x.eatenAtUTC)),
   };
 
-  let healthTest = { bodyMass: 100 };
-
   const healthLabels = {
     water: 1,
     // water:
     //   healthItems &&
     //   healthItems[HEALTH_WATER_KEY] &&
     //   round(healthItems[HEALTH_WATER_KEY], 2),
-    bodyMass: healthTest["bodyMass"],
-    // bodyMass: healthItems && healthItems[HEALTH_BODY_MASS_KEY],
+    bodyMass: healthItems && healthItems["bodyMass"],
   };
 
   const entryDate = friendlyDate(ds);
