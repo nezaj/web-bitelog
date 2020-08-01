@@ -209,7 +209,7 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
     //   healthItems &&
     //   healthItems[HEALTH_WATER_KEY] &&
     //   round(healthItems[HEALTH_WATER_KEY], 2),
-    bodyMass: healthItems && healthItems["bodyMass"],
+    bodyMass: healthItems && healthItems.bodyMass,
   };
 
   const entryDate = friendlyDate(ds);
