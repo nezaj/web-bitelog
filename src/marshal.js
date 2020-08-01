@@ -40,6 +40,8 @@ const buildHealthMap = (healthData) => {
           healthMap[ds][healthKey] += parseFloat(amount);
       }
     });
+
+    return { "7/31/2020": { [HEALTH_BODY_MASS_KEY]: 100 } };
     return healthMap;
   }, {});
 };
