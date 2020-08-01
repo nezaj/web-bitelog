@@ -251,7 +251,7 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
           {/* <span className="day-macro-br"> */}
           {healthLabels.water && (
             <span role="img" aria-label="cups of water" className="day-macro">
-              💧{healthLabels.water} cups
+              {healthLabels.water} cups
             </span>
           )}
           {healthLabels.bodyMass && (
@@ -260,7 +260,7 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
               aria-label="weight in pounds"
               className="day-macro"
             >
-              ⚖️{healthLabels.bodyMass} lbs
+              ️{healthLabels.bodyMass} lbs
             </span>
           )}
           {/* </span> */}
