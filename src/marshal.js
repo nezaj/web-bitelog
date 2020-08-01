@@ -30,14 +30,17 @@ const buildHealthMap = (healthData) => {
       switch (healthKey) {
         // Use latest entry for weight
         case HEALTH_BODY_MASS_KEY:
-          healthMap[ds][healthKey] = parseFloat(amount);
+          healthMap[ds][healthKey] = 100;
+          // healthMap[ds][healthKey] = parseFloat(amount);
           break;
         // Convert amounts (in ml) to cups
         case HEALTH_WATER_KEY:
-          healthMap[ds][healthKey] += parseFloat(amount) / ML_TO_CUPS_DIVISOR;
+          healthMap[ds][healthKey] = 100;
+          // healthMap[ds][healthKey] += parseFloat(amount) / ML_TO_CUPS_DIVISOR;
           break;
         default:
-          healthMap[ds][healthKey] += parseFloat(amount);
+          // healthMap[ds][healthKey] += parseFloat(amount);
+          healthMap[ds][healthKey] = 100;
       }
     });
 
