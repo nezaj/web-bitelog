@@ -30,7 +30,7 @@ deploy:
 	@echo "Deploying to github pages..."
 	yarn deploy
 
-deploy-all:
+deploy-data:
 	# Easy commit and deploy all data
 	$(MAKE) new-food
 	$(MAKE) new-health
