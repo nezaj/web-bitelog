@@ -35,51 +35,44 @@ deploy-data:
 	$(MAKE) new-food
 	$(MAKE) new-health
 	$(MAKE) new-note
+	git add .
+	git commit -m "Add new data"
 	$(MAKE) deploy
 
 deploy-food:
 	$(MAKE) new-food
+	git add .
+	git commit -m "Add new food data"
 	$(MAKE) deploy
 
 deploy-health:
 	$(MAKE) new-health
+	git add .
+	git commit -m "Add new health data"
 	$(MAKE) deploy
 
 deploy-note:
 	$(MAKE) new-note
+	git add .
+	git commit -m "Add new note"
 	$(MAKE) deploy
 
 new-food:
-	# Easy commit new food data
 	@echo "Updating and deploying new food entries..."
 	$(MAKE) validate-food
 	$(MAKE) compress
-	git add .
-	git commit -m "Update food data"
 
 new-health:
-	# Easy commit new health data
 	@echo "Updating and deploying new health entries..."
-
-	# Import and filter data
 	ls -t $(DATA_INPUT_DIR)/HEOutput* | head -1 | xargs -I {} cp {} $(DATA_OUTPUT_DIR)/temp_health.json
 	node health.js
-
-	# Clean-up after ourselves
 	rm $(DATA_OUTPUT_DIR)/temp_health.json
 
-	# Commit and deploy
-	git add .
-	git commit -m "Update health data"
-
 new-note:
-	# Easy commit new note data
 	node notes.js prepend
 	vim +3 src/data/notes.md
 	$(MAKE) generate-notes
 	$(MAKE) preview-notes
-	git add .
-	git commit -m "Add new note"
 
 open-notes:
 	@echo "Opening raw notes markdown..."
