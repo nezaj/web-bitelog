@@ -1,3 +1,9 @@
+### 8/1/2020
+
+Made a few tweaks to the site! Added water and weight tracking to entries.
+Two weeks ago I also added swiping (left/right) on nobile when previewing
+entries and keyboard shortcuts (left/right) on desktop.
+
 ### 7/19/2020
 
 Today was a travel day and make-up for yesterday's excess!

@@ -30,6 +30,10 @@ deploy:
 	@echo "Deploying to github pages..."
 	yarn deploy
 
+dd:
+	# Alias for deploy-data
+	$(MAKE) deploy-data
+
 deploy-data:
 	# Easy commit and deploy all data
 	$(MAKE) new-food
