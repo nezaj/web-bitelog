@@ -18,9 +18,8 @@ yarn start
 
 ### Useful commands
 * `make repl` -- Fire up a repl, space for easily importing and iterating
-* `make deploy` -- deploy site
 * `make compress` -- compress images through TinyPNG
-* `make new-food` -- deploy new food data
-* `make new-health` -- deploy new health data
-* `make new-note` -- add and deploy new notes
+* `make deploy` -- deploy site as is
+* `make deploy-data` -- process all data and then deploy
+* `make new-note` -- Add and commit a new note
 * `make edit-notes` -- similar to `make new-note` but more convenient for just editing notes (usually to correct some typo)

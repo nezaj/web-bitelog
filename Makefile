@@ -12,14 +12,6 @@ dev:
 	@echo "Spinning up dev..."
 	yarn start
 
-deploy:
-	@echo "Verify build still works..."
-	npm run build
-	@echo "Deploying to master..."
-	git push origin master
-	@echo "Deploying to github pages..."
-	yarn deploy
-
 compress:
 	@echo "Compressing images..."
 	node compress.js
@@ -30,17 +22,43 @@ validate-food:
 	node validate.js
 	mv $(DATA_OUTPUT_DIR)/temp_food.json $(DATA_OUTPUT_DIR)/food.json
 
+deploy:
+	@echo "Verify build still works..."
+	npm run build
+	@echo "Deploying to master..."
+	git push origin master
+	@echo "Deploying to github pages..."
+	yarn deploy
+
+deploy-all:
+	# Easy commit and deploy all data
+	$(MAKE) new-food
+	$(MAKE) new-health
+	$(MAKE) new-note
+	$(MAKE) deploy
+
+deploy-food:
+	$(MAKE) new-food
+	$(MAKE) deploy
+
+deploy-health:
+	$(MAKE) new-health
+	$(MAKE) deploy
+
+deploy-note:
+	$(MAKE) new-note
+	$(MAKE) deploy
+
 new-food:
-	# Used for easily updating food data
+	# Easy commit new food data
 	@echo "Updating and deploying new food entries..."
 	$(MAKE) validate-food
 	$(MAKE) compress
 	git add .
 	git commit -m "Update food data"
-	$(MAKE) deploy
 
 new-health:
-	# Used for easily updating health data
+	# Easy commit new health data
 	@echo "Updating and deploying new health entries..."
 
 	# Import and filter data
@@ -53,7 +71,15 @@ new-health:
 	# Commit and deploy
 	git add .
 	git commit -m "Update health data"
-	$(MAKE) deploy
+
+new-note:
+	# Easy commit new note data
+	node notes.js prepend
+	vim +3 src/data/notes.md
+	$(MAKE) generate-notes
+	$(MAKE) preview-notes
+	git add .
+	git commit -m "Add new note"
 
 open-notes:
 	@echo "Opening raw notes markdown..."
@@ -73,14 +99,4 @@ edit-notes:
 	$(MAKE) preview-notes
 	git add .
 	git commit -m "Edit notes"
-	$(MAKE) deploy
-
-new-note:
-	# Used for easily adding notes and deploying
-	node notes.js prepend
-	vim +3 src/data/notes.md
-	$(MAKE) generate-notes
-	$(MAKE) preview-notes
-	git add .
-	git commit -m "Add new note"
 	$(MAKE) deploy

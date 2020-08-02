@@ -4,6 +4,8 @@ import App from "./App";
 
 import { entriesToDateMap, imageDetailMap } from "./marshal.js";
 import foodData from "./data/food.json";
+
+// (TODO) These can just be json files of marshalled data
 import { healthData } from "./data/healthData.js";
 import { notesData } from "./data/notesData.js";
 
