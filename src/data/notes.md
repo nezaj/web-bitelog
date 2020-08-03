@@ -1,3 +1,7 @@
+### 8/2/2020
+
+Was a bit lower energy today so caloried up. Was low calories yesterday so balances yet. Excited to go exploring tomorrow!
+
 ### 8/1/2020
 
 Made a few tweaks to the site! Added water and weight tracking to entries.
