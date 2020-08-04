@@ -1,3 +1,8 @@
+### 8/3/2020
+
+First day of freedom! Got to meet up with some friends and have some street foods!
+Calories definitely added up, but wow >20k steps from all the exploring :)
+
 ### 8/2/2020
 
 Was a bit lower energy today so caloried up. Was low calories yesterday so balances yet. Excited to go exploring tomorrow!
