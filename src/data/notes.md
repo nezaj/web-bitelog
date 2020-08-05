@@ -1,3 +1,8 @@
+### 8/4/2020
+
+2nd day of freedom! Had some K-BBQ w/ friends. Still a bit excess on calories, but
+ensured to plan better for going out. Also, first run today, felt amazing
+
 ### 8/3/2020
 
 First day of freedom! Got to meet up with some friends and have some street foods!
