@@ -1,3 +1,11 @@
+### 8/8/2020
+Today was a full-day hang! Met up with a buddy Jon for some delicious Goergian food
+and NYC roaming followed by Jiu-Jitsu and homemade tacos with our buddy Jan. Fun day!
+
+### 8/7/2020
+Was working most of day and didn't make time for proper meals so did more snacking. Kept the snacking
+though mostly protein/fats related. In the evening went out with friends for Thai food!
+
 ### 8/4/2020
 
 2nd day of freedom! Had some K-BBQ w/ friends. Still a bit excess on calories, but
