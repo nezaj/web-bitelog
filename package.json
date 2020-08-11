@@ -9,7 +9,6 @@
     "@testing-library/user-event": "^7.1.2",
     "chart.js": "^2.9.3",
     "dotenv": "^8.2.0",
-    "gh-pages": "^3.1.0",
     "mousetrap": "^1.6.5",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
@@ -22,7 +21,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "firebase deploy",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

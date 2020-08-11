@@ -24,7 +24,7 @@ validate-food:
 
 deploy:
 	@echo "Verify build still works..."
-	npm run build
+	yarn build
 	@echo "Deploying to master..."
 	git push origin master
 	@echo "Deploying to github pages..."
