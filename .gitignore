@@ -11,6 +11,10 @@
 # production
 /build
 
+# Firebase
+firebase-debug.log*
+.firebase/
+
 # Custom
 repl.js
 .env
