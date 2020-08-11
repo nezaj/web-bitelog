@@ -1,3 +1,13 @@
+### 8/10/2020
+
+After a culinary weekend back to some home cooking. Felt nice to home food again.
+Noticed I haven't been as good about drinking 8 cups of water last week. Will try
+to be on top of this up again -- I really do think the extra water = extra energy
+
+### 8/9/2020
+
+Met up with some friends in the evening and had some yummy dinner!
+
 ### 8/8/2020
 
 Today was a full-day hang! Met up with a buddy Jon for some delicious Goergian food
