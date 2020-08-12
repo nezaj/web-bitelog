@@ -13,7 +13,7 @@ lots of new things can feel like a chore, so maybe if I'm feeling like it's gett
 too annoying I can cut back on something (maybe replace some workouts with stretch + runs?).
 Will feel this out.
 
-Overall though solid day, really proud of [Export Health!](#https://exporthealth.app),
+Overall though solid day, really proud of <a href="https://exporthealth.app">Export Health!</a>,
 happy to be doing Jiu-Jitsu again, and happy to be eating clean.
 
 ### 8/10/2020
