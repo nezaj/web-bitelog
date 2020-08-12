@@ -1,3 +1,21 @@
+### 8/11/2020
+
+Stayed up a bit late last night so was a bit lower energy. However
+finished up Export Health! with Stopa which felt great. Got some Jiu Jitsu in
+the evening as well. Calories came in a bit lower today and honestly could
+feel it in my workout. I remarked on this yesterday but yea, I want to be
+more on top of drinking water. I'm also trying to incoporate more stretching
+and new foods recommended by Trevor.
+
+I guess there's a been a lot of new stuff incoporated lately. Hanging with people
+more, eating out more often, running outside, training Jiu-Jitsu, stretching. Doing
+lots of new things can feel like a chore, so maybe if I'm feeling like it's getting
+too annoying I can cut back on something (maybe replace some workouts with stretch + runs?).
+Will feel this out.
+
+Overall though solid day, really proud of [Export Health!](#https://exporthealth.app),
+happy to be doing Jiu-Jitsu again, and happy to be eating clean.
+
 ### 8/10/2020
 
 After a culinary weekend back to some home cooking. Felt nice to home food again.
