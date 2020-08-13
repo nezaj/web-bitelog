@@ -16,7 +16,7 @@ import {
   extractFat,
   extractCarbs,
 } from "./nutrients.js";
-import { nutrientsToDailyTotalsMap, imageDetailMap } from "./marshal.js";
+import { healthToDailyTotalsMap, nutrientsToDailyTotalsMap, imageDetailMap } from "./marshal.js";
 import {
   addDays,
   eatingWindow,
@@ -68,7 +68,7 @@ const sum = (items) => items.reduce((xs, x) => (xs += x), 0);
 const avg = (items) => (items.length ? sum(items) / items.length : null);
 const roundedAvg = (items) => Math.round(avg(items));
 const descSort = (a, b) => b - a;
-const descSortChartDate = (a, b) => new Date(a[0]) - new Date(b[0]);
+const sortChartDate = (a, b) => (new Date(a[0]) > new Date(b[0]) ? 1 : -1);
 const ascLocalTime = (a, b) => (a.localTimeInt > b.localTimeInt ? 1 : -1);
 
 // Returns local compressed image or loads directly from url if we haven't compressed it yet
@@ -101,8 +101,9 @@ const getMaxEntryPage = (numEntries) =>
 
 // Trend Helpers
 // ---------------------------------------------------------------------------
+// (TODO): Rename this function and params (this takes a map of dates -> info)
 const filterEntriesToDateMap = (dateRange, entriesToDateMap) => {
-  const latestDate = Object.keys(entriesToDateMap).sort(descSort)[0];
+  const latestDate = Object.keys(entriesToDateMap).sort((a, b) => new Date(a) > new Date(b) ? -1 : 1)[0]
   let minDate;
   switch (dateRange) {
     case LAST_30_DAYS:
@@ -317,7 +318,7 @@ const EntryDetailItem = ({
 
 const LineChart = ({ title, macroData }) => {
   // Earliest entries first
-  const cleanCopy = [...macroData].sort(descSortChartDate);
+  const cleanCopy = [...macroData].sort(sortChartDate);
   const xVals = cleanCopy.map((x) => new Date(x[0]));
   const yVals = cleanCopy.map((x) => x[1]);
 
@@ -336,6 +337,7 @@ const LineChart = ({ title, macroData }) => {
     ],
   };
   const options = {
+    spanGaps: true,
     legend: {
       display: false,
       fontColor: INFO_COLOR,
@@ -393,8 +395,8 @@ const LineChart = ({ title, macroData }) => {
 
 const FatCarbsChart = ({ title, fatData, carbsData }) => {
   // Earliest entries first
-  const cleanFatCopy = [...fatData].sort(descSortChartDate);
-  const cleanCarbsCopy = [...carbsData].sort(descSortChartDate);
+  const cleanFatCopy = [...fatData].sort(sortChartDate);
+  const cleanCarbsCopy = [...carbsData].sort(sortChartDate);
 
   const timeSeries = cleanFatCopy.map((x) => new Date(x[0]));
   const fatCalories = cleanFatCopy.map((x) => Math.round(x[1] * 9.0));
@@ -471,11 +473,11 @@ const FatCarbsChart = ({ title, fatData, carbsData }) => {
   );
 };
 
-const Trends = ({ dateRange, updateDateRange, trendData }) => {
-  const averageCalories = roundedAvg(trendData.calories.map((x) => x[1]));
-  const averageProtein = roundedAvg(trendData.protein.map((x) => x[1]));
-  const averageFat = roundedAvg(trendData.fat.map((x) => x[1]));
-  const averageCarbs = roundedAvg(trendData.carbs.map((x) => x[1]));
+const Trends = ({ dateRange, updateDateRange, nutrientsTrendData, healthTrendData }) => {
+  const averageCalories = roundedAvg(nutrientsTrendData.calories.map((x) => x[1]));
+  const averageProtein = roundedAvg(nutrientsTrendData.protein.map((x) => x[1]));
+  const averageFat = roundedAvg(nutrientsTrendData.fat.map((x) => x[1]));
+  const averageCarbs = roundedAvg(nutrientsTrendData.carbs.map((x) => x[1]));
 
   // Assumption: Fats are 9cals/g, protein and carbs are 4.5g/cal
   // hence fats macros are doubled
@@ -545,12 +547,13 @@ const Trends = ({ dateRange, updateDateRange, trendData }) => {
         </div>
       </div>
       <div className="trends-charts-container">
-        <LineChart title="Calories" macroData={trendData.calories} />
-        <LineChart title="Protein (g)" macroData={trendData.protein} />
+        <LineChart title="Weight (lb)" macroData={healthTrendData.weight} />
+        <LineChart title="Calories" macroData={nutrientsTrendData.calories} />
+        <LineChart title="Protein (g)" macroData={nutrientsTrendData.protein} />
         <FatCarbsChart
           title="Fat and Carbs (cal)"
-          fatData={trendData.fat}
-          carbsData={trendData.carbs}
+          fatData={nutrientsTrendData.fat}
+          carbsData={nutrientsTrendData.carbs}
         />
       </div>
     </div>
@@ -790,8 +793,11 @@ class App extends React.Component {
       });
 
     // Trends Feed
-    const trendData = nutrientsToDailyTotalsMap(
+    const nutrientsTrendData = nutrientsToDailyTotalsMap(
       filterEntriesToDateMap(dateRange, entriesToDateMap)
+    );
+    const healthTrendData = healthToDailyTotalsMap(
+      filterEntriesToDateMap(dateRange, healthData)
     );
 
     // Entry Detail
@@ -886,7 +892,8 @@ class App extends React.Component {
           <Trends
             dateRange={dateRange}
             updateDateRange={this.updateDateRange}
-            trendData={trendData}
+            nutrientsTrendData={nutrientsTrendData}
+            healthTrendData={healthTrendData}
           />
         )}
       </div>

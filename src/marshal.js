@@ -89,6 +89,17 @@ const nutrientsToDailyTotalsMap = (dateToEntriesMap) => {
   );
 };
 
+const healthToDailyTotalsMap = (healthMap) => {
+  return Object.keys(healthMap).reduce(
+    (xs, ds) => {
+      xs["weight"].push([ds, healthMap[ds][HEALTH_BODY_MASS_KEY]]);
+      xs["water"].push([ds, healthMap[ds][HEALTH_WATER_KEY]]);
+      return xs;
+    },
+    { weight: [], water: [] }
+  );
+};
+
 /*
 Marshall data into a comfortable format for rendering image detail data
 
@@ -141,3 +152,4 @@ module.exports.buildHealthMap = buildHealthMap;
 module.exports.entriesToDateMap = entriesToDateMap;
 module.exports.imageDetailMap = imageDetailMap;
 module.exports.nutrientsToDailyTotalsMap = nutrientsToDailyTotalsMap;
+module.exports.healthToDailyTotalsMap = healthToDailyTotalsMap;
