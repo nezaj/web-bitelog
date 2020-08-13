@@ -1,3 +1,12 @@
+### 8/12/2020
+
+Noticed I've been snacking more lately and especially eating lots of the chocolate
+almonds. Will try to get more meal centric. Trevor had a good suggestion to get
+a water jug too -- I think this is a good idea for hitting the 8 cups / water a
+day goal.
+
+New feature added too -- now including trend data for weight!
+
 ### 8/11/2020
 
 Stayed up a bit late last night so was a bit lower energy. However
