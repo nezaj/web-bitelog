@@ -1,3 +1,9 @@
+### 8/15/2020
+
+Action packed day! 7mi bike ride, 10k steps from exploring, and jiu-jitsu in the
+evening. Visited my sis and her bf and had lunch and sweets together. Happy to
+be keeping calories in check
+
 ### 8/12/2020
 
 Noticed I've been snacking more lately and especially eating lots of the chocolate
