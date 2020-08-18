@@ -1,3 +1,7 @@
+### 8/16/2020
+
+Lots of calories today! Had an epic dinner with some friends. Definitely went overboard but oh well, I enjoyed it :)
+
 ### 8/15/2020
 
 Action packed day! 7mi bike ride, 10k steps from exploring, and jiu-jitsu in the
