@@ -1,3 +1,8 @@
+### 8/20/2020
+
+Another big calorie day. Walked/biked all over NYC apartment hunting. Got some
+yummy NYC staples. Street food, shake shack, and local gelato, nom nom
+
 ### 8/16/2020
 
 Lots of calories today! Had an epic dinner with some friends. Definitely went overboard but oh well, I enjoyed it :)
