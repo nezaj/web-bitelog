@@ -1,3 +1,9 @@
+### 8/21/2020
+
+Fasted for most of the day to make up for excess calories! Had decent energy
+throughout the day and even got in two workouts! Was definitely tempted to eat
+in the evening but managed to stay strong!
+
 ### 8/20/2020
 
 Another big calorie day. Walked/biked all over NYC apartment hunting. Got some
