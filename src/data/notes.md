@@ -1,3 +1,17 @@
+### 8/23/2020
+
+Dinner was delicious. Tried cooking the tomatoes and cucumbers with the chicken
+and frozen veggies. Came out wonderful. There's something I really enjoy about
+home cooking.
+
+Overall productive day. Lots of reading and 2x workouts (3+ hours total!)
+
+### 8/22/2020
+
+Lower energy day. Tried getting through trevor's workout but was feeling tired.
+Likely due to the fasting from previous day + lots of hookah (almost every other
+day for the last few weeks now). Will start limiting smoking amount
+
 ### 8/21/2020
 
 Fasted for most of the day to make up for excess calories! Had decent energy
