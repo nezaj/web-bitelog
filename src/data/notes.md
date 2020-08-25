@@ -1,3 +1,8 @@
+### 8/24/2020
+
+Another day of 2x workouts! Energy felt good for most of day. Home cooking / good
+macros makes a difference!
+
 ### 8/23/2020
 
 Dinner was delicious. Tried cooking the tomatoes and cucumbers with the chicken
