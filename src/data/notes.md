@@ -1,3 +1,11 @@
+### 8/25/2020
+
+Chill day. Made eggs again today, so yummy. Makes me think more and more about
+being meal-centric. Perhaps I can work towards doing something like eggs in AM,
+deli-wrap for lunch, and then proper dinner. It is nice to snack a bit mid day
+as a break between work and for re-fueling. But perhaps with more meal-centric
+food will have less need to snack
+
 ### 8/24/2020
 
 Another day of 2x workouts! Energy felt good for most of day. Home cooking / good
