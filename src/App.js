@@ -739,9 +739,9 @@ class App extends React.Component {
     this.setState({ tab });
   };
 
-  updateEntryPage = (entryPage) => {
+  updateEntryPage = (entryPage, doScroll = true) => {
     updateLocation("entryPage", entryPage);
-    window.scrollTo(0, 0);
+    doScroll && window.scrollTo(0, 0);
     this.setState({ entryPage });
   };
 
@@ -862,6 +862,16 @@ class App extends React.Component {
         {entryDetail && renderedEntryDetail}
         {tab === ENTRIES_TAB && (
           <div className="feed">
+            {entryPage && entryPage > 1 && (
+              <span
+                className="feed-home"
+                role="img"
+                aria-label="Home"
+                onClick={() => this.updateEntryPage(1, false)}
+              >
+                🏠
+              </span>
+            )}
             {renderedEntries}
             {/* Pagination navigation  */}
             <div className="entry-navs">
