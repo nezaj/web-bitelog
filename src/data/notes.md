@@ -1,3 +1,7 @@
+### 8/26/2020
+
+Another chill day. Energy levels felt good, workout felt good. Reading-filled day :)
+
 ### 8/25/2020
 
 Chill day. Made eggs again today, so yummy. Makes me think more and more about
