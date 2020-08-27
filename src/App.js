@@ -16,7 +16,11 @@ import {
   extractFat,
   extractCarbs,
 } from "./nutrients.js";
-import { healthToDailyTotalsMap, nutrientsToDailyTotalsMap, imageDetailMap } from "./marshal.js";
+import {
+  healthToDailyTotalsMap,
+  nutrientsToDailyTotalsMap,
+  imageDetailMap,
+} from "./marshal.js";
 import {
   addDays,
   eatingWindow,
@@ -103,7 +107,9 @@ const getMaxEntryPage = (numEntries) =>
 // ---------------------------------------------------------------------------
 // (TODO): Rename this function and params (this takes a map of dates -> info)
 const filterEntriesToDateMap = (dateRange, entriesToDateMap) => {
-  const latestDate = Object.keys(entriesToDateMap).sort((a, b) => new Date(a) > new Date(b) ? -1 : 1)[0]
+  const latestDate = Object.keys(entriesToDateMap).sort((a, b) =>
+    new Date(a) > new Date(b) ? -1 : 1
+  )[0];
   let minDate;
   switch (dateRange) {
     case LAST_30_DAYS:
@@ -473,9 +479,18 @@ const FatCarbsChart = ({ title, fatData, carbsData }) => {
   );
 };
 
-const Trends = ({ dateRange, updateDateRange, nutrientsTrendData, healthTrendData }) => {
-  const averageCalories = roundedAvg(nutrientsTrendData.calories.map((x) => x[1]));
-  const averageProtein = roundedAvg(nutrientsTrendData.protein.map((x) => x[1]));
+const Trends = ({
+  dateRange,
+  updateDateRange,
+  nutrientsTrendData,
+  healthTrendData,
+}) => {
+  const averageCalories = roundedAvg(
+    nutrientsTrendData.calories.map((x) => x[1])
+  );
+  const averageProtein = roundedAvg(
+    nutrientsTrendData.protein.map((x) => x[1])
+  );
   const averageFat = roundedAvg(nutrientsTrendData.fat.map((x) => x[1]));
   const averageCarbs = roundedAvg(nutrientsTrendData.carbs.map((x) => x[1]));
 
