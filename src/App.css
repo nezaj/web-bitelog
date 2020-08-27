@@ -507,10 +507,6 @@ body {
     border-bottom-left-radius: 20px;
   }
 
-  .detail-image-info-container:hover {
-    cursor: pointer;
-  }
-
   .detail-image {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -681,10 +677,6 @@ body {
     display: flex;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-  }
-
-  .detail-image-info-container:hover {
-    cursor: pointer;
   }
 
   .detail-image-container {
@@ -862,10 +854,6 @@ body {
     display: flex;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-  }
-
-  .detail-image-info-container:hover {
-    cursor: pointer;
   }
 
   .detail-image-container {
