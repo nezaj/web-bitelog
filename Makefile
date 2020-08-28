@@ -27,7 +27,7 @@ deploy:
 	yarn build
 	@echo "Deploying to master..."
 	git push origin master
-	@echo "Deploying to github pages..."
+	@echo "Deploying to production..."
 	yarn deploy
 
 dd:
