@@ -1,3 +1,15 @@
+### 8/28/2020
+
+Half-fast today! Making up for previous day excess. One thing that's definitely
+nice about the logging is it makes excess / defciences very visible. This
+enables action. Like in this case since I over-ate yesterday will "under-eat" a
+bit today and continue as normal tomorrow!
+
+### 8/27/2020
+
+Had some Ethopian food with friends tonight. Sooooo yummy. Calories were definitely
+over but oh well. Can make it up tomorrow
+
 ### 8/26/2020
 
 Another chill day. Energy levels felt good, workout felt good. Reading-filled day :)
