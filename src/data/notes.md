@@ -1,3 +1,8 @@
+### 8/29/2020
+
+Bit of sporadic day, eating times were far spread apart which definitely lead
+to more calories, but oh well!
+
 ### 8/28/2020
 
 Half-fast today! Making up for previous day excess. One thing that's definitely
