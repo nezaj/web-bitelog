@@ -1,3 +1,13 @@
+### 8/30/2020
+
+Oof, went overboard on the calories today. We were moving today so wasn't able
+to really eat properly. Had a small brunch and then worked at a cafe for the
+afternoon until dinner. After dinner just had some sugar cravings and gave in.
+I think I'll not worry about making up for excess calories last two days and try
+to get back to normal. May start doing pro-active fasts later this week to build
+up caloric deficencies ahead of time as a buffer for dinners with friends. This
+way I don't need to correct in a reactive way
+
 ### 8/29/2020
 
 Bit of sporadic day, eating times were far spread apart which definitely lead
