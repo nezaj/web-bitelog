@@ -1,3 +1,8 @@
+### 8/31/2020
+
+Another off day in terms of diet -- but now we have proper groceries! Will be
+back on tracking tomorrow :)
+
 ### 8/30/2020
 
 Oof, went overboard on the calories today. We were moving today so wasn't able
