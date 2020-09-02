@@ -1,3 +1,7 @@
+### 9/1/2020
+
+Solid day! Back on the groceries life :)
+
 ### 8/31/2020
 
 Another off day in terms of diet -- but now we have proper groceries! Will be
