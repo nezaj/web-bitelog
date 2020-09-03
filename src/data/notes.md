@@ -1,3 +1,7 @@
+### 9/2/2020
+
+We back on track :)
+
 ### 9/1/2020
 
 Solid day! Back on the groceries life :)
