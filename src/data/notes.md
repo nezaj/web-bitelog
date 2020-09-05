@@ -1,3 +1,11 @@
+### 9/4/2020
+
+Made shrimp for the first time yesterday! Came out pretty good. Had leftovers
+so finished them up today. One thing I've noticed is when I have bigger meals
+(like today breakfast was bigger) I feel sluggish after and then have hunger
+cravings sooner (maybe it's because I have less focus -> giving into distraction)
+Will try having "meals" not be as large
+
 ### 9/2/2020
 
 We back on track :)
