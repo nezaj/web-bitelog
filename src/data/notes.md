@@ -1,3 +1,10 @@
+### 9/6/2020
+
+Very social weekend! Calories were def over. Started dating again and realize
+that I don't want to do the whole alcohol + food thing. Un-neccesary calories,
+drunchies, and feeling sluggish the next day is no fun. Already updated my
+profiles to reflect the distate for alcohol :)
+
 ### 9/4/2020
 
 Made shrimp for the first time yesterday! Came out pretty good. Had leftovers
