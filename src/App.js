@@ -232,36 +232,59 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
         <div className="day-macros">
           <span
             role="img"
-            aria-label="number of calories"
+            title="Number of calories"
+            aria-label="Number of calories"
             className="day-macro"
           >
             🔥{foodLabels.cal}
           </span>
-          <span role="img" aria-label="grams of protein" className="day-macro">
+          <span
+            role="img"
+            title="Grams of protein"
+            aria-label="grams of protein"
+            className="day-macro"
+          >
             🍗{foodLabels.protein}g
           </span>
-          <span role="img" aria-label="grams of fat" className="day-macro">
+          <span
+            role="img"
+            title="Grams of fat"
+            aria-label="Grams of fat"
+            className="day-macro"
+          >
             🥑{foodLabels.fat}g
           </span>
-          <span role="img" aria-label="grams of carbs" className="day-macro">
+          <span
+            role="img"
+            title="Grams of carbs"
+            aria-label="Grams of carbs"
+            className="day-macro"
+          >
             🍎{foodLabels.carbs}g
           </span>
           <span
             role="img"
-            aria-label="eating window in hours"
+            title="Eating window in hours"
+            aria-label="Eating window in hours"
             className="day-macro"
           >
             ⏱{foodLabels.eatingWindow} hrs
           </span>
           <span className="day-macro-br">
             {healthLabels.water && (
-              <span role="img" aria-label="cups of water" className="day-macro">
+              <span
+                role="img"
+                title="Cups of water"
+                aria-label="Cups of water"
+                className="day-macro"
+              >
                 💧{healthLabels.water} cups
               </span>
             )}
             {healthLabels.bodyMass && (
               <span
                 role="img"
+                title="Weight in pounds"
                 aria-label="weight in pounds"
                 className="day-macro"
               >
@@ -697,16 +720,36 @@ class EntryDetail extends React.Component {
             <hr className="detail-info-separator"></hr>
           </div>
           <div className="detail-macros">
-            <span role="img" aria-label="calories" className="detail-macro">
+            <span
+              role="img"
+              title="Calories"
+              aria-label="Calories"
+              className="detail-macro"
+            >
               🔥{Math.round(macros.calories)}
             </span>
-            <span role="img" aria-label="protein" className="detail-macro">
+            <span
+              role="img"
+              title="Grams of protein"
+              aria-label="Grams of protein"
+              className="detail-macro"
+            >
               🍗{Math.round(macros.protein)}g
             </span>
-            <span role="img" aria-label="fat" className="detail-macro">
+            <span
+              role="img"
+              title="Grams of fat"
+              aria-label="Grams of fat"
+              className="detail-macro"
+            >
               🥑️{Math.round(macros.fat)}g
             </span>
-            <span role="img" aria-label="carbs" className="detail-macro">
+            <span
+              role="img"
+              title="Grams of carbs"
+              aria-label="Grams of carbs"
+              className="detail-macro"
+            >
               🍎{Math.round(macros.carbs)}g
             </span>
           </div>
@@ -880,8 +923,9 @@ class App extends React.Component {
             {entryPage && entryPage > 1 && (
               <span
                 className="feed-home"
+                tite="Go back to home page"
                 role="img"
-                aria-label="Home"
+                aria-label="Go back to home page"
                 onClick={() => this.updateEntryPage(1, false)}
               >
                 🏠

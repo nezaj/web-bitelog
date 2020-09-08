@@ -267,6 +267,9 @@ body {
   .day-macros {
     font-size: 18px;
   }
+  .day-macro:hover {
+    cursor: default;
+  }
   .day-notes {
     margin-bottom: 10px;
   }
@@ -827,7 +830,7 @@ body {
   }
 }
 
-/* Larger screen */
+/* Desktop */
 @media screen and (min-width: 1001px) {
   .detail {
     position: fixed;
@@ -904,6 +907,10 @@ body {
     font-size: 24px;
     color: var(--secondary-color);
     font-weight: bold;
+  }
+
+  .detail-macro:hover {
+    cursor: default;
   }
 
   .detail-items {
