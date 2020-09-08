@@ -1,3 +1,7 @@
+### 9/7/2020
+
+Solid day. Love how doing the simple things makes the rest of the day feel good :)
+
 ### 9/6/2020
 
 Very social weekend! Calories were def over. Started dating again and realize
