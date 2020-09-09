@@ -232,8 +232,8 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
         <div className="day-macros">
           <span
             role="img"
-            title="Number of calories"
-            aria-label="Number of calories"
+            title="Calories"
+            aria-label="Calories"
             className="day-macro"
           >
             🔥{foodLabels.cal}
@@ -726,7 +726,7 @@ class EntryDetail extends React.Component {
               aria-label="Calories"
               className="detail-macro"
             >
-              🔥{Math.round(macros.calories)}
+              🔥 {Math.round(macros.calories)}
             </span>
             <span
               role="img"
@@ -734,7 +734,7 @@ class EntryDetail extends React.Component {
               aria-label="Grams of protein"
               className="detail-macro"
             >
-              🍗{Math.round(macros.protein)}g
+              🍗 {Math.round(macros.protein)}g
             </span>
             <span
               role="img"
@@ -742,7 +742,7 @@ class EntryDetail extends React.Component {
               aria-label="Grams of fat"
               className="detail-macro"
             >
-              🥑️{Math.round(macros.fat)}g
+              🥑️ {Math.round(macros.fat)}g
             </span>
             <span
               role="img"
@@ -750,7 +750,7 @@ class EntryDetail extends React.Component {
               aria-label="Grams of carbs"
               className="detail-macro"
             >
-              🍎{Math.round(macros.carbs)}g
+              🍎 {Math.round(macros.carbs)}g
             </span>
           </div>
           <div className="detail-items">

@@ -550,7 +550,7 @@ body {
   }
 
   .detail-macro {
-    margin-right: 15px;
+    margin-right: 10px;
     font-size: 18px;
     color: var(--secondary-color);
     font-weight: bold;
@@ -728,7 +728,7 @@ body {
   }
 
   .detail-macro {
-    margin-right: 15px;
+    margin-right: 10px;
     font-size: 18px;
     color: var(--secondary-color);
     font-weight: bold;
@@ -903,7 +903,7 @@ body {
   }
 
   .detail-macro {
-    margin-right: 15px;
+    margin-right: 10px;
     font-size: 24px;
     color: var(--secondary-color);
     font-weight: bold;
