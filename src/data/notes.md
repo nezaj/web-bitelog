@@ -1,3 +1,9 @@
+### 9/12/2020
+
+Housewarming and bday celebration last night! Very very fun! We had three different cakes!! Lots
+of treats too. Knew today was gonna be a big one in terms of calories. Will make
+up for the excess on Sunday.
+
 ### 9/7/2020
 
 Solid day. Love how doing the simple things makes the rest of the day feel good :)
