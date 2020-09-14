@@ -1,3 +1,7 @@
+### 9/13/2020
+
+Fast day!
+
 ### 9/12/2020
 
 Housewarming and bday celebration last night! Very very fun! We had three different cakes!! Lots
