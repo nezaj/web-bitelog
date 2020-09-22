@@ -1,3 +1,15 @@
+### 9/20/2020
+
+Hosted guests this weekend and definitely did not eat as healthy! One thing I've
+been noticing more and more is that eating things like cake / cheat foods is just
+not worth it. The satisfaction I get from them is vastly lower than before and
+I know I need to make up for it the following days. This is making me want junk
+less and less.
+
+On the up-side, compared to previous excess days, this weekend was far lower than
+usual. I definitely feel like the diet is iterating towards getting cleaner and
+cleaner :)
+
 ### 9/13/2020
 
 Fast day!
