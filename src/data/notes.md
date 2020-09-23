@@ -1,3 +1,10 @@
+### 9/22/2020
+
+Cut my thumb today while prepping food for cooking :( -- nothing serious but
+an inconvenience!
+
+Otherwise good day all around :)
+
 ### 9/20/2020
 
 Hosted guests this weekend and definitely did not eat as healthy! One thing I've
