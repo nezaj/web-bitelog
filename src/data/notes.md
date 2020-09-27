@@ -1,3 +1,8 @@
+### 9/26/2020
+
+Very social last few days! Calories went over the last two days but made it up
+today :)
+
 ### 9/22/2020
 
 Cut my thumb today while prepping food for cooking :( -- nothing serious but
