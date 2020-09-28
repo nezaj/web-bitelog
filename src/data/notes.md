@@ -1,3 +1,63 @@
+### 9/27/2020
+
+A few notes to share:
+
+
+About today: Another full day hang with friends. Had only one real meal (thai food)
+today where I was suuuuuper hungry and definitely had a bigger meal. Because it
+was effectively my first / only meal my calories did not go over. However, I was
+still hungry so when hosting friends after dinner indulged in some snacking.
+Overall was a sporadic eating day
+
+Targets: I've been logging for almost 100 days! My eating target from the onset
+was ~2000 cal/day. Looking at this time period, looks like I've actually been
+averaging 2050-2100/cal a day. Not too far off from the goal! During this time
+period I've also dropped ~10+ lbs, became more consistent with workouts (hit 20 consecutive ring pull-ups today!), and
+overall feeling pretty good! I think this calorie range is pretty sustainable
+so will keep shooting for average ~2000 cal/day. Looking to get down to ~140lb
+morning weight (which translates to be about ~145lb walking around weight)
+
+Thoughts: It's not always easy to eat strictly ~2000 calories a day. I notice
+during the weekdays it's easier for me to restrict calories since I'm focused
+on work and cook at home. On weekends / social evening it's very easy for calories
+to go over. Sometimes it's easy to make healthy choices when going out, but other
+times it's much more difficult (for example eating dinner at a pizza place). Also
+sometimes when I'm out I want to indulge in a treat (like ice-cream, or trying
+canoli for the first time).
+
+I notice as long as my calories aren't too overboard (over 4k)
+I can simply make up for the excess by fasting the next day. This is a bit emotionally
+taxing, but manageable. It's especially easier if I ate healthier food before the
+excess -- the nutrition keeps me fueled and satiated. Perhaps one take-away is
+that even if I'm going to eat out and there are no healthy options -- ensure I
+ate healthy food earlier to reduce my excess appetitie and make it easier to
+restrict calories the following day.
+
+Furthermore, I'm finding it useful to think of my "calorie balance" on a weekly
+basis. My goal Monday - Sunday is to average ~2000 cal/day or 14,000 calories total.
+If I kept under the weekly balance then great! If I went over then I start anew
+the following Monday. Similarly if I was under my balance does not carry over. I've
+been using this approach the last two weeks and like it better than what I was doing
+previously of keeping a running tally of the last seven days. Will see if this
+sticks.
+
+Finally, although most of the time I'm pretty good about logging -- on social
+days there may be longer periods of time where I haven't logged any food. This may
+make it easier to go over budget since I don't have a clear idea of how much
+I've already eaten. On those occassions, I can try to log between social meals
+to get an idea of how many calories I've already consumed (for example, log
+calories between pizza and ice cream). This could help curb excess calories or
+reduce post-social meal snacking (which sometimes just puts me over budget, like
+in the case of this week).
+
+In general I've been pretty good about eating healthy at home. I imagine if I
+never went out it would be much more straightforward to hit nutritional targets.
+The interesting challenge is meeting those targets while still being social. I think
+I'm getting better at it and I think these take-aways (eat healthy as opposed to save
+calories before social meals, think weekly calorie balance as opposed to last seven
+days running total, and log between social meals and snacking to get visibility of
+total consumption) will help!
+
 ### 9/26/2020
 
 Very social last few days! Calories went over the last two days but made it up
