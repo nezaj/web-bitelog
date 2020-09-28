@@ -25,9 +25,10 @@ times it's much more difficult (for example eating dinner at a pizza place). Als
 sometimes when I'm out I want to indulge in a treat (like ice-cream, or trying
 canoli for the first time).
 
-I notice as long as my calories aren't too overboard (over 4k)
-I can simply make up for the excess by fasting the next day. This is a bit emotionally
-taxing, but manageable. It's especially easier if I ate healthier food before the
+I notice as long as my calories aren't too overboard (over 4k) I can simply make up
+for the excess by fasting the next day. As a bonus I feel cleansed the day after fasting.
+Altthough it is a bit emotionally taxing, there is something rejuvenating about
+fasting.  I notice fasting is easier if I ate healthier food before the
 excess -- the nutrition keeps me fueled and satiated. Perhaps one take-away is
 that even if I'm going to eat out and there are no healthy options -- ensure I
 ate healthy food earlier to reduce my excess appetitie and make it easier to
