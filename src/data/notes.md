@@ -1,3 +1,10 @@
+### 10/2/2020
+
+Yesterday was a bigger calorie day due to hosting friends. Was happy that all the
+excess was healthy foods. Made it easier to fast for most of the day. The calories
+I had today were all for workout and hookah afterwards (the apple was during
+hookah so I don't get light-headed)
+
 ### 9/27/2020
 
 A few notes to share:
