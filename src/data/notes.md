@@ -1,3 +1,22 @@
+### 10/5/2020
+
+Was in a bit of a funk over the weekend due to lower calories + odd meal timing.
+Indulged in a ton of Ice cream on Sunday which honestly made me feel better. However
+I definitely was above 2k cals/day average this week. What a shame, were it not
+for the excess ice cream I would have been under! Oh well, new week -- new streak!
+
+That being said, started the week with excess 😅 Hosted my sister and her boyfriend
+for an evening hang today which led to eating some yummy yet sugary snacks.
+
+These excess calories keep happening with evening hangs. My approach so far has
+been to simply allow it and then fast the next day to make up for the calories.
+This is what I will be doing tomorrow.
+
+I don't know if this pattern is sustainable -- perhaps a better alternative would
+be to abstain from the excess calories or budget for it earlier in the day? We'll
+be hosting friends again on Wednesday and I think doing a second fast this week
+will be annoying. I'll abstain on Wednesday and see how that feels
+
 ### 10/2/2020
 
 Yesterday was a bigger calorie day due to hosting friends. Was happy that all the
