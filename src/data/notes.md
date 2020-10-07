@@ -1,3 +1,8 @@
+### 10/6/2020
+
+Lower cals today to make up for previous day excess. Will lilely do lower cals
+tomorrow as well
+
 ### 10/5/2020
 
 Was in a bit of a funk over the weekend due to lower calories + odd meal timing.
