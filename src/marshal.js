@@ -25,6 +25,7 @@ const MS_TO_MIN = 1000 * 60;
 // Hueristics for labeling meals
 const GROUPING_CUTOFF_MIN = 45;
 const MEAL_CALORIES_CUTOFF = 500;
+const LARGE_MEAL_CALORIES_CUTOFF = 1000;
 
 const buildHealthMap = (healthData) => {
   return Object.keys(healthData).reduce((healthMap, healthKey) => {
@@ -225,8 +226,10 @@ of foods withs a meal label
 */
 const labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
   const isFast = (calories) => calories === 0;
-  const isSnack = (calories) => calories <= MEAL_CALORIES_CUTOFF;
-  const isMeal = (calories) => MEAL_CALORIES_CUTOFF < calories;
+  const isSnack = (calories) => 0 < calories && calories < MEAL_CALORIES_CUTOFF;
+  const isMeal = (calories) =>
+    MEAL_CALORIES_CUTOFF <= calories && calories < LARGE_MEAL_CALORIES_CUTOFF;
+  const isLargeMeal = (calories) => LARGE_MEAL_CALORIES_CUTOFF <= calories;
   const getMealLabel = (calories, mealCount, snackCount) => {
     if (isFast(calories)) {
       return "Fast";
@@ -234,6 +237,8 @@ const labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
       return `Snack ${snackCount}`;
     } else if (isMeal(calories)) {
       return `Meal ${mealCount}`;
+    } else if (isLargeMeal(calories)) {
+      return `Meal ${mealCount} (large)`;
     } else {
       return "Unknown";
     }
@@ -250,7 +255,10 @@ const labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
       );
       return {
         labeledFoods: newFoods.concat(labeledFoods), // Similarly Webpack won't build in production if we do [...newFoods, ...labelFoods]
-        mealCount: isMeal(mealCalories) ? mealCount + 1 : mealCount,
+        mealCount:
+          isMeal(mealCalories) || isLargeMeal(mealCalories)
+            ? mealCount + 1
+            : mealCount,
         snackCount: isSnack(mealCalories) ? snackCount + 1 : snackCount,
       };
     },
