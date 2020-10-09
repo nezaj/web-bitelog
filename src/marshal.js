@@ -224,10 +224,19 @@ Helper function for transforming partions of foods into a flattened list
 of foods withs a meal label
 */
 const labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
+  const isFast = (calories) => calories === 0;
   const isSnack = (calories) => calories <= MEAL_CALORIES_CUTOFF;
   const isMeal = (calories) => MEAL_CALORIES_CUTOFF < calories;
   const getMealLabel = (calories, mealCount, snackCount) => {
-    return isMeal(calories) ? `Meal ${mealCount}` : `Snack ${snackCount}`;
+    if (isFast(calories)) {
+      return "Fast";
+    } else if (isSnack(calories)) {
+      return `Snack ${snackCount}`;
+    } else if (isMeal(calories)) {
+      return `Meal ${mealCount}`;
+    } else {
+      return "Unknown";
+    }
   };
 
   return partitionedFoods.reduce(
