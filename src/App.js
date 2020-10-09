@@ -71,9 +71,11 @@ const COMPRESSED_SET = new Set(COMPRESSED_LIST);
 const sum = (items) => items.reduce((xs, x) => (xs += x), 0);
 const avg = (items) => (items.length ? sum(items) / items.length : null);
 const roundedAvg = (items) => Math.round(avg(items));
-const descSort = (a, b) => b - a;
-const sortChartDate = (a, b) => (new Date(a[0]) > new Date(b[0]) ? 1 : -1);
-const ascLocalTime = (a, b) => (a.localTimeInt > b.localTimeInt ? 1 : -1);
+const descSort = (second, first) => second - first;
+const sortChartDate = (second, first) =>
+  new Date(second[0]) <= new Date(first[0]) ? -1 : 1;
+const ascLocalTime = (second, first) =>
+  second.localTimeInt <= first.localTimeInt ? -1 : 1;
 
 // Returns local compressed image or loads directly from url if we haven't compressed it yet
 const getImage = (url) => {
@@ -105,10 +107,9 @@ const getMaxEntryPage = (numEntries) =>
 
 // Trend Helpers
 // ---------------------------------------------------------------------------
-// (TODO): Rename this function and params (this takes a map of dates -> info)
-const filterEntriesToDateMap = (dateRange, entriesToDateMap) => {
-  const latestDate = Object.keys(entriesToDateMap).sort((a, b) =>
-    new Date(a) > new Date(b) ? -1 : 1
+const filterEntries = (dateRange, entriesToDateMap) => {
+  const latestDate = Object.keys(entriesToDateMap).sort((second, first) =>
+    new Date(second) <= new Date(first) ? 1 : -1
   )[0];
   let minDate;
   switch (dateRange) {
@@ -305,13 +306,15 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
       )}
       <div className="day-images">
         {images.map((x, idx) => (
-          <img
-            alt=""
-            key={idx}
-            className="day-image"
-            src={getImage(x.imageURL)}
-            onClick={() => onShowDetail(x.key)}
-          ></img>
+          <div className="day-image">
+            <img
+              alt=""
+              key={idx}
+              src={getImage(x.imageURL)}
+              onClick={() => onShowDetail(x.key)}
+            ></img>
+            <span className="day-image-banner">{x.mealLabel}</span>
+          </div>
         ))}
       </div>
     </div>
@@ -707,11 +710,12 @@ class EntryDetail extends React.Component {
     const { index, key } = params;
 
     const detail = details[mod(index, details.length)];
-    const { imageURL, time, date, macros, items } = detail;
+    const { imageURL, time, date, macros, items, mealLabel } = detail;
     return (
       <div className="detail-image-info-container" key={key}>
         <div className="detail-image-container">
           <img className="detail-image" alt="" src={getImage(imageURL)}></img>
+          <span className="detail-image-banner">{mealLabel}</span>
         </div>
         <div className="detail-info">
           <div className="detail-info-header">
@@ -852,10 +856,10 @@ class App extends React.Component {
 
     // Trends Feed
     const nutrientsTrendData = nutrientsToDailyTotalsMap(
-      filterEntriesToDateMap(dateRange, entriesToDateMap)
+      filterEntries(dateRange, entriesToDateMap)
     );
     const healthTrendData = healthToDailyTotalsMap(
-      filterEntriesToDateMap(dateRange, healthData)
+      filterEntries(dateRange, healthData)
     );
 
     // Entry Detail

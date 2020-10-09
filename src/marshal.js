@@ -19,6 +19,13 @@ const {
 // 236.59ml is 1 US cup
 const ML_TO_CUPS_DIVISOR = 236.59;
 
+// 1000ms -> second, 60 second -> min
+const MS_TO_MIN = 1000 * 60;
+
+// Hueristics for labeling meals
+const GROUPING_CUTOFF_MIN = 45;
+const MEAL_CALORIES_CUTOFF = 500;
+
 const buildHealthMap = (healthData) => {
   return Object.keys(healthData).reduce((healthMap, healthKey) => {
     const samples = healthData[healthKey];
@@ -122,12 +129,14 @@ And returns
 const imageDetailMap = (dateToEntriesMap) => {
   return Object.keys(dateToEntriesMap)
     .map((ds) => dateToEntriesMap[ds])
+    .map((dsFoods) => tagFoodsWithMealGroup(dsFoods))
     .reduce((xs, x) => xs.concat(x), []) // flatten
     .reduce((xs, x) => {
       // Get imageKey
       const key = getImageKey(x.imageURL, x.mealID);
       xs[key] =
-        xs[key] || createImageDetail(key, x.imageURL, x.eatenAtLocalTime);
+        xs[key] ||
+        createImageDetail(key, x.imageURL, x.eatenAtLocalTime, x.mealLabel);
 
       // Update image macros
       xs[key].macros["calories"] += extractCalories(x.nutrients);
@@ -148,8 +157,105 @@ const imageDetailMap = (dateToEntriesMap) => {
     }, {});
 };
 
+/*
+Helper function for partioning a list of foods into meal groups and their
+corresponding total calories
+
+Takes in
+[
+  {foodItemName: ..., nutrients: {calories: 100, ...}, ...},
+  {foodItemName: ..., nutrients: {calories: 200, ...}, ...},
+  {foodItemName: ..., nutrients: {calories: 500, ...}, ...},
+  ...
+[
+
+And returns
+{
+  items: [
+    [
+      {foodItemName: ..., nutrients: {calories: 100, ...}, ...},
+      {foodItemName: ..., nutrients: {calories: 200, ...}, ...},
+    ],
+    [
+      {foodItemName: ..., nutrients: {calories: 500, ...}, ...}
+    ]
+    ...
+  ],
+  calories: [300, 500, ...]
+}
+*/
+const mealFoodsPartition = (foods) => {
+  const minutesBetween = (ts1, ts2) => {
+    return Math.floor(Math.abs(new Date(ts1) - new Date(ts2)) / MS_TO_MIN);
+  };
+
+  return foods
+    .sort((second, first) =>
+      second.eatenAtLocalTime <= first.eatenAtLocalTime ? -1 : 1
+    )
+    .reduce(
+      ({ partitionedFoods, partionedCalories }, food) => {
+        const lastIdx = partitionedFoods.length - 1;
+        const lastPartition = partitionedFoods[lastIdx];
+        const partitionStart = lastPartition && lastPartition[0];
+        const foodCalories = extractCalories(food.nutrients);
+        if (
+          !partitionStart ||
+          GROUPING_CUTOFF_MIN <=
+            minutesBetween(partitionStart.eatenAtUTC, food.eatenAtUTC)
+        ) {
+          return {
+            partitionedFoods: partitionedFoods.concat([[food]]),
+            partionedCalories: partionedCalories.concat(foodCalories),
+          };
+        } else {
+          partitionedFoods[lastIdx] = lastPartition.concat(food);
+          partionedCalories[lastIdx] =
+            partionedCalories[lastIdx] + foodCalories;
+          return { partitionedFoods, partionedCalories };
+        }
+      },
+      { partitionedFoods: [], partionedCalories: [] }
+    );
+};
+
+/*
+Helper function for transforming partions of foods into a flattened list
+of foods withs a meal label
+*/
+const labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
+  const isSnack = (calories) => calories <= MEAL_CALORIES_CUTOFF;
+  const isMeal = (calories) => MEAL_CALORIES_CUTOFF < calories;
+  const getMealLabel = (calories, mealCount, snackCount) => {
+    return isMeal(calories) ? `Meal ${mealCount}` : `Snack ${snackCount}`;
+  };
+
+  return partitionedFoods.reduce(
+    ({ labeledFoods, mealCount, snackCount }, foods, partitionIdx) => {
+      const mealCalories = partionedCalories[partitionIdx];
+      const mealLabel = getMealLabel(mealCalories, mealCount, snackCount);
+      // (XXX): Webpack won't build in production if I do foods.map((food) => ({...food, mealLabel}))
+      // due to an issue with the spread operator. Instead we use Object.assign
+      const newFoods = foods.map((food) =>
+        Object.assign({}, food, { mealLabel })
+      );
+      return {
+        labeledFoods: newFoods.concat(labeledFoods), // Similarly Webpack won't build in production if we do [...newFoods, ...labelFoods]
+        mealCount: isMeal(mealCalories) ? mealCount + 1 : mealCount,
+        snackCount: isSnack(mealCalories) ? snackCount + 1 : snackCount,
+      };
+    },
+    { labeledFoods: [], mealCount: 1, snackCount: 1 }
+  ).labeledFoods;
+};
+
+/* Tags individual foods with their associated meal group */
+const tagFoodsWithMealGroup = (foods) =>
+  labelFoodsWithMealGroup(mealFoodsPartition(foods));
+
 module.exports.buildHealthMap = buildHealthMap;
 module.exports.entriesToDateMap = entriesToDateMap;
 module.exports.imageDetailMap = imageDetailMap;
 module.exports.nutrientsToDailyTotalsMap = nutrientsToDailyTotalsMap;
 module.exports.healthToDailyTotalsMap = healthToDailyTotalsMap;
+module.exports.tagFoodsWithMealGroup = tagFoodsWithMealGroup;

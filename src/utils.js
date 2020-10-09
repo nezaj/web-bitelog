@@ -150,10 +150,11 @@ const getImageId = (url) => url.split("/media/")[1].replace(/\//g, "");
 const getImageKey = (url, mealID) =>
   `${url ? getImageId(url).replace(".jpeg", "") : ""}${mealID}`;
 
-const createImageDetail = (key, imageURL, localTimeInt) => ({
+const createImageDetail = (key, imageURL, localTimeInt, mealLabel) => ({
   key,
   imageURL,
   localTimeInt,
+  mealLabel,
   time: extractTime(localTimeToDate(localTimeInt)),
   date: extractDate(localTimeToDate(localTimeInt)),
   macros: { calories: 0, protein: 0, fat: 0, carbs: 0 },

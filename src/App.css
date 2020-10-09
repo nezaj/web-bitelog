@@ -235,8 +235,23 @@ body {
   .day-images {
     gap: 1px;
   }
+  .day-image {
+    position: relative;
+  }
   .day-image:hover {
     cursor: pointer;
+  }
+  .day-image-banner {
+    position: absolute;
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 0.8;
+    font-size: 0.6em;
+    padding-top: 2px;
+    padding-bottom: 2px;
   }
   .entry-navs {
     display: flex;
@@ -284,8 +299,23 @@ body {
   .day-images {
     gap: var(--gap-unit);
   }
+  .day-image {
+    position: relative;
+  }
   .day-image:hover {
     cursor: pointer;
+  }
+  .day-image-banner {
+    position: absolute;
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 0.8;
+    font-size: 1.2em;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
   .entry-navs {
     display: flex;
@@ -491,6 +521,7 @@ body {
     overflow: auto;
     background-color: rgb(0, 0, 0); /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    z-index: 10;
   }
 
   .detail-content {
@@ -508,6 +539,23 @@ body {
     overflow: hidden;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+  }
+
+  .detail-image-container {
+    position: relative;
+  }
+
+  .detail-image-banner {
+    position: absolute;
+    bottom: 0;
+    background-color: black;
+    color: white;
+    font-size: 1.5em;
+    opacity: 0.8;
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 
   .detail-image {
@@ -664,6 +712,7 @@ body {
     overflow: auto;
     background-color: rgb(0, 0, 0); /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    z-index: 10;
   }
 
   .detail-content {
@@ -688,6 +737,20 @@ body {
     justify-content: center;
     align-items: center;
     flex: 1 1 50%;
+    position: relative;
+  }
+
+  .detail-image-banner {
+    position: absolute;
+    bottom: 0;
+    background-color: black;
+    color: white;
+    font-size: 2em;
+    opacity: 0.8;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .detail-image {
@@ -842,6 +905,7 @@ body {
     overflow: auto;
     background-color: rgb(0, 0, 0); /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    z-index: 10;
   }
 
   .detail-content {
@@ -865,6 +929,20 @@ body {
     justify-content: center;
     align-items: center;
     flex: 1 1 50%;
+    position: relative;
+  }
+
+  .detail-image-banner {
+    position: absolute;
+    bottom: 0;
+    background-color: black;
+    color: white;
+    font-size: 2em;
+    opacity: 0.8;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .detail-image {
