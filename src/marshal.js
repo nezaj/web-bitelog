@@ -7,6 +7,10 @@ const {
   extractDate,
   getImageKey,
   localTimeToDate,
+  isMorning,
+  isAfternoon,
+  isEvening,
+  isLateNight,
 } = require("./utils.js");
 const {
   extractCalories,
@@ -230,24 +234,62 @@ const labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
   const isMeal = (calories) =>
     MEAL_CALORIES_CUTOFF <= calories && calories < LARGE_MEAL_CALORIES_CUTOFF;
   const isLargeMeal = (calories) => LARGE_MEAL_CALORIES_CUTOFF <= calories;
-  const getMealLabel = (calories, mealCount, snackCount) => {
+
+  const mealLabel = (mealHour) => {
+    if (isMorning(mealHour)) {
+      return "Breakfast";
+    } else if (isAfternoon(mealHour)) {
+      return "Lunch";
+    } else if (isEvening(mealHour)) {
+      return "Dinner";
+    } else if (isLateNight(mealHour)) {
+      return "Late night meal";
+    }
+  };
+
+  const snackLabel = (mealHour) => {
+    let prefix;
+    if (isMorning(mealHour)) {
+      prefix = "Morning";
+    } else if (isAfternoon(mealHour)) {
+      prefix = "Afternoon";
+    } else if (isEvening(mealHour)) {
+      prefix = "Evening";
+    } else if (isLateNight(mealHour)) {
+      prefix = "Late night";
+    }
+
+    return `${prefix} snack`;
+  };
+
+  // Differentiate between raw and meal labels because we want to increment
+  // duplicate label types when we display them (e.g. Afternoon snack, Afternoon snack (2))
+  const getRawLabel = (calories, mealHour) => {
     if (isFast(calories)) {
       return "Fast";
     } else if (isSnack(calories)) {
-      return `Snack ${snackCount}`;
-    } else if (isMeal(calories)) {
-      return `Meal ${mealCount}`;
-    } else if (isLargeMeal(calories)) {
-      return `Meal ${mealCount} (large)`;
+      return snackLabel(mealHour);
+    } else if (isMeal(calories) || isLargeMeal(calories)) {
+      return mealLabel(mealHour);
     } else {
       return "Unknown";
     }
   };
 
+  // These labels will be displayed
+  const getMealLabel = (calories, rawLabel, labels) => {
+    const numRepeats = labels.filter((l) => l === rawLabel).length;
+    const numSuffix = numRepeats === 0 ? "" : ` (${numRepeats + 1})`;
+    const largeSuffix = !isLargeMeal(calories) ? "" : " (large)";
+    return `${rawLabel}${numSuffix}${largeSuffix}`;
+  };
+
   return partitionedFoods.reduce(
-    ({ labeledFoods, mealCount, snackCount }, foods, partitionIdx) => {
+    ({ labeledFoods, rawLabels }, foods, partitionIdx) => {
       const mealCalories = partionedCalories[partitionIdx];
-      const mealLabel = getMealLabel(mealCalories, mealCount, snackCount);
+      const mealTime = localTimeToDate(foods[0].eatenAtLocalTime).getHours();
+      const newRawLabel = getRawLabel(mealCalories, mealTime);
+      const mealLabel = getMealLabel(mealCalories, newRawLabel, rawLabels);
       // (XXX): Webpack won't build in production if I do foods.map((food) => ({...food, mealLabel}))
       // due to an issue with the spread operator. Instead we use Object.assign
       const newFoods = foods.map((food) =>
@@ -255,14 +297,10 @@ const labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
       );
       return {
         labeledFoods: newFoods.concat(labeledFoods), // Similarly Webpack won't build in production if we do [...newFoods, ...labelFoods]
-        mealCount:
-          isMeal(mealCalories) || isLargeMeal(mealCalories)
-            ? mealCount + 1
-            : mealCount,
-        snackCount: isSnack(mealCalories) ? snackCount + 1 : snackCount,
+        rawLabels: rawLabels.concat(newRawLabel),
       };
     },
-    { labeledFoods: [], mealCount: 1, snackCount: 1 }
+    { labeledFoods: [], rawLabels: [] }
   ).labeledFoods;
 };
 

@@ -92,6 +92,15 @@ const friendlyDate = (dateStr) => {
   return `${weekday}, ${month} ${day}, ${year}`;
 };
 
+const MORNING_START = 6;
+const AFTERNOON_START = 12;
+const EVENING_START = 17;
+const LATE_NIGHT_START = 20;
+const isMorning = (hour) => MORNING_START <= hour && hour < AFTERNOON_START;
+const isAfternnon = (hour) => AFTERNOON_START <= hour && hour < EVENING_START;
+const isEvening = (hour) => EVENING_START <= hour && hour < LATE_NIGHT_START;
+const isLateNight = (hour) => hour < MORNING_START || LATE_NIGHT_START <= hour;
+
 // Extract date from local time integer: 20200715182210 -> 2020-07-16T01:22:00.000Z
 const localTimeToDate = (localTimeInt) => {
   const dateStr = localTimeInt.toString();
@@ -179,3 +188,7 @@ module.exports.getImageId = getImageId;
 module.exports.getImageKey = getImageKey;
 module.exports.localTimeToDate = localTimeToDate;
 module.exports.round = round;
+module.exports.isMorning = isMorning;
+module.exports.isAfternoon = isAfternnon;
+module.exports.isEvening = isEvening;
+module.exports.isLateNight = isLateNight;
