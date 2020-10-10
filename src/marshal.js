@@ -7,10 +7,17 @@ const {
   extractDate,
   getImageKey,
   localTimeToDate,
+  maxDate,
+  mostRecentWeekDayDate,
   isMorning,
   isAfternoon,
   isEvening,
   isLateNight,
+  addDays,
+  max,
+  min,
+  avg,
+  round,
 } = require("./utils.js");
 const {
   extractCalories,
@@ -25,6 +32,10 @@ const ML_TO_CUPS_DIVISOR = 236.59;
 
 // 1000ms -> second, 60 second -> min
 const MS_TO_MIN = 1000 * 60;
+
+// Used for weekly trend data
+const WEEK_ENDING_ON_DAYNAME = "Sunday";
+const GROUP_SIZE = 7;
 
 // Hueristics for labeling meals
 const GROUPING_CUTOFF_MIN = 45;
@@ -110,6 +121,84 @@ const healthToDailyTotalsMap = (healthMap) => {
     },
     { weight: [], water: [] }
   );
+};
+
+// Groups date value tuples by cut-off dates. Takes in an updater function for flexibility in defining how successive
+// cuttoffs can be updated (e.g. addDays(dateCutoff, -7) to decrement the cutoff by a week)
+const _groupByDateCutoff = (fnCutoffUpdater, dateValueTuples, initialDate) => {
+  return dateValueTuples.reduce(
+    ({ groups, dateCutoff }, tuple) => {
+      const date = tuple[0];
+      if (new Date(dateCutoff) < new Date(date)) {
+        const previousGroups = groups.slice(0, -1);
+        const newGroup = [groups.slice(-1)[0].concat([tuple])]; // intent: append the new tuple the last list of tuples
+        return { groups: previousGroups.concat(newGroup), dateCutoff };
+      } else {
+        const newGroup = [[tuple]];
+        return {
+          groups: groups.concat(newGroup),
+          dateCutoff: fnCutoffUpdater(dateCutoff),
+        };
+      }
+    },
+    { groups: [[]], dateCutoff: initialDate }
+  ).groups;
+};
+
+// Transforms tuples of daily values into a map of weekly statistics
+const _buildWeeklyStats = (dailyTuples) => {
+  const latestDate = maxDate(dailyTuples.map(([date, _]) => date));
+  const filterDate = mostRecentWeekDayDate(latestDate, WEEK_ENDING_ON_DAYNAME);
+  const filtered = dailyTuples
+    .filter(([date, _]) => new Date(date) <= new Date(filterDate))
+    .sort((second, first) =>
+      new Date(first[0]) < new Date(second[0]) ? -1 : 1
+    ); // latest dates first
+
+  const grouped = _groupByDateCutoff(
+    (dateCutoff) => addDays(dateCutoff, -1 * GROUP_SIZE),
+    filtered,
+    addDays(filterDate, -1 * GROUP_SIZE)
+  ).filter((x) => x.length); // remove empty groups
+
+  const minValues = grouped.map((group) => [
+    maxDate(group.map((c) => c[0])),
+    min(group.map((c) => c[1])),
+  ]);
+  const maxValues = grouped.map((group) => [
+    maxDate(group.map((c) => c[0])),
+    max(group.map((c) => c[1])),
+  ]);
+  const averageValues = grouped.map((group) => [
+    maxDate(group.map((c) => c[0])),
+    round(avg(group.map((c) => c[1])), 2),
+  ]);
+  return { minValues, maxValues, averageValues };
+};
+
+const _buildWeeklyStatsMap = (dailyMap, keys) => {
+  return keys.reduce(
+    (res, key) =>
+      Object.assign({}, res, {
+        [key]: _buildWeeklyStats(dailyMap[key]),
+      }),
+    {}
+  );
+};
+
+// Transforms daily nutrient data into weekly statistics
+const weeklyNutrientsStatsMap = (dailyNutrientMap) => {
+  return _buildWeeklyStatsMap(dailyNutrientMap, [
+    "calories",
+    "protein",
+    "fat",
+    "carbs",
+  ]);
+};
+
+// Transforms daily heath data into weekly statistics
+const weeklyHealthStatsMap = (dailyHealthMap) => {
+  return _buildWeeklyStatsMap(dailyHealthMap, ["weight"]);
 };
 
 /*
@@ -276,7 +365,7 @@ const labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
     }
   };
 
-  // These labels will be displayed
+  // These labels will be displayed on the feed
   const getMealLabel = (calories, rawLabel, labels) => {
     const numRepeats = labels.filter((l) => l === rawLabel).length;
     const numSuffix = numRepeats === 0 ? "" : ` (${numRepeats + 1})`;
@@ -314,3 +403,5 @@ module.exports.imageDetailMap = imageDetailMap;
 module.exports.nutrientsToDailyTotalsMap = nutrientsToDailyTotalsMap;
 module.exports.healthToDailyTotalsMap = healthToDailyTotalsMap;
 module.exports.tagFoodsWithMealGroup = tagFoodsWithMealGroup;
+module.exports.weeklyNutrientsStatsMap = weeklyNutrientsStatsMap;
+module.exports.weeklyHealthStatsMap = weeklyHealthStatsMap;

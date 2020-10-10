@@ -32,6 +32,11 @@ const MONTHS = [
   "December",
 ];
 
+const maxDate = (dates) =>
+  dates.reduce((a, b) => (new Date(a) > new Date(b) ? a : b));
+const minDate = (dates) =>
+  dates.reduce((a, b) => (new Date(a) < new Date(b) ? a : b));
+
 const addDays = (date, days) => {
   const copy = new Date(date);
   copy.setDate(copy.getDate() + days);
@@ -100,6 +105,18 @@ const isMorning = (hour) => MORNING_START <= hour && hour < AFTERNOON_START;
 const isAfternnon = (hour) => AFTERNOON_START <= hour && hour < EVENING_START;
 const isEvening = (hour) => EVENING_START <= hour && hour < LATE_NIGHT_START;
 const isLateNight = (hour) => hour < MORNING_START || LATE_NIGHT_START <= hour;
+
+// mostRecentWeekDayDate('10/09/2020', 'Monday') -> '10/5/2020'
+// mostRecentWeekDayDate('10/09/2020', 'Sunday') -> '10/4/2020'
+// mostRecentWeekDayDate('10/05/2020', 'Monday') -> '10/5/2020'
+// Thanks: https://stackoverflow.com/a/63495407
+const mostRecentWeekDayDate = (startDate, weekdayName) => {
+  const target =
+    WEEKDAYS.indexOf(weekdayName) !== -1 ? WEEKDAYS.indexOf(weekdayName) : 0; // default to Sunday if invalid weekday name
+  let copy = new Date(startDate);
+  copy.setDate(copy.getDate() - ((copy.getDay() + (7 - target)) % 7));
+  return extractDate(copy);
+};
 
 // Extract date from local time integer: 20200715182210 -> 2020-07-16T01:22:00.000Z
 const localTimeToDate = (localTimeInt) => {
@@ -175,10 +192,29 @@ const createImageDetail = (key, imageURL, localTimeInt, mealLabel) => ({
 const round = (num, precision) =>
   Math.round((num + Number.EPSILON) * Math.pow(10, precision)) /
   Math.pow(10, precision);
+const _clean = (items) => items.filter((x) => x);
+const sum = (items) => _clean(items).reduce((xs, x) => (xs += x), 0);
+const avg = (items) => {
+  const filtered = _clean(items);
+  return filtered.length ? sum(filtered) / filtered.length : null;
+};
+const max = (items) => Math.max.apply(null, _clean(items)); // work-around for webpack spread-operator issue
+const min = (items) => Math.min.apply(null, _clean(items)); // work-around for webpack spread-operator issue
+
+// chunk([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3) => [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
+// Thanks: https://stackoverflow.com/a/50766024
+const chunk = (arr, size) => {
+  return arr.reduce(
+    (acc, _, i) =>
+      i % size !== 0 ? acc : acc.concat([arr.slice(i, i + size)]),
+    []
+  );
+};
 
 // Doing this so finding references works in VSCode
 // See: https://github.com/microsoft/vscode/issues/21507#issuecomment-369118734
 module.exports.addDays = addDays;
+module.exports.chunk = chunk;
 module.exports.createImageDetail = createImageDetail;
 module.exports.eatingWindow = eatingWindow;
 module.exports.extractDate = extractDate;
@@ -187,7 +223,14 @@ module.exports.friendlyDate = friendlyDate;
 module.exports.getImageId = getImageId;
 module.exports.getImageKey = getImageKey;
 module.exports.localTimeToDate = localTimeToDate;
+module.exports.maxDate = maxDate;
+module.exports.minDate = minDate;
+module.exports.mostRecentWeekDayDate = mostRecentWeekDayDate;
 module.exports.round = round;
+module.exports.sum = sum;
+module.exports.max = max;
+module.exports.min = min;
+module.exports.avg = avg;
 module.exports.isMorning = isMorning;
 module.exports.isAfternoon = isAfternnon;
 module.exports.isEvening = isEvening;

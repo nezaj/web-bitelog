@@ -28,6 +28,8 @@ import {
   friendlyDate,
   getImageId,
   round,
+  sum,
+  avg,
 } from "./utils.js";
 import { NOTES_DELIMITER } from "./constants";
 
@@ -68,8 +70,6 @@ const COMPRESSED_SET = new Set(COMPRESSED_LIST);
 
 // Utils
 // ---------------------------------------------------------------------------
-const sum = (items) => items.reduce((xs, x) => (xs += x), 0);
-const avg = (items) => (items.length ? sum(items) / items.length : null);
 const roundedAvg = (items) => Math.round(avg(items));
 const descSort = (second, first) => second - first;
 const sortChartDate = (second, first) =>
