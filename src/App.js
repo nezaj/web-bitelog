@@ -1,7 +1,7 @@
 import React from "react";
 
 import Mousetrap from "mousetrap";
-import { Bar, Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import SwipeableViews from "react-swipeable-views";
 import { virtualize } from "react-swipeable-views-utils";
 import { mod } from "react-swipeable-views-core";
@@ -20,6 +20,8 @@ import {
   healthToDailyTotalsMap,
   nutrientsToDailyTotalsMap,
   imageDetailMap,
+  weeklyNutrientsStatsMap,
+  weeklyHealthStatsMap,
 } from "./marshal.js";
 import {
   addDays,
@@ -30,6 +32,7 @@ import {
   round,
   sum,
   avg,
+  extractStatValues,
 } from "./utils.js";
 import { NOTES_DELIMITER } from "./constants";
 
@@ -54,6 +57,7 @@ const DEFAULT_TRENDS_DATE_RANGE = LAST_7_DAYS;
 // Corresponds to CSS color scheme
 // (TODO): Would be nicer to just define these in one place (either in js or css) and re-use
 const PRIMARY_COLOR = "rgba(68, 65, 106, 1)";
+// eslint-disable-next-line
 const SECONDARY_COLOR = "rgba(0, 0, 0, 0.75)";
 const INFO_COLOR = "rgba(64, 50, 50, 0.75)";
 const FONT_FAMILY = "Montserrat, Helvetica, sans-serif";
@@ -64,6 +68,7 @@ const CHART_FONT_SIZE = window.screen.width > 800 ? 18 : 14;
 const AXIS_PADDING = 5;
 const MAX_X_AXIS_ROTATION = 0; // Don't rotate dates, we want them to be easy to read :D
 const MAX_TICKS = 5; // Don't crowd the axis
+const STATS_BACKGROUND_COLOR = "rgba(68, 65, 106, 0.3)";
 
 // Compressed Images
 const COMPRESSED_SET = new Set(COMPRESSED_LIST);
@@ -72,8 +77,6 @@ const COMPRESSED_SET = new Set(COMPRESSED_LIST);
 // ---------------------------------------------------------------------------
 const roundedAvg = (items) => Math.round(avg(items));
 const descSort = (second, first) => second - first;
-const sortChartDate = (second, first) =>
-  new Date(second[0]) <= new Date(first[0]) ? -1 : 1;
 const ascLocalTime = (second, first) =>
   second.localTimeInt <= first.localTimeInt ? -1 : 1;
 
@@ -348,23 +351,44 @@ const EntryDetailItem = ({
   </div>
 );
 
-const LineChart = ({ title, macroData }) => {
-  // Earliest entries first
-  const cleanCopy = [...macroData].sort(sortChartDate);
-  const xVals = cleanCopy.map((x) => new Date(x[0]));
-  const yVals = cleanCopy.map((x) => x[1]);
+const MultiLineChart = ({ title, macroData }) => {
+  const { labels } = macroData;
+  const minValues = extractStatValues(macroData.minValues);
+  const averageValues = extractStatValues(macroData.averageValues);
+  const maxValues = extractStatValues(macroData.maxValues);
 
   const data = {
-    labels: xVals,
+    labels,
     datasets: [
+      {
+        borderColor: STATS_BACKGROUND_COLOR,
+        borderWidth: 1,
+        pointRadius: 0,
+        backgroundColor: STATS_BACKGROUND_COLOR,
+        pointBackgroundColor: PRIMARY_COLOR,
+        fill: "+1",
+        label: "Min weight",
+        data: minValues,
+      },
       {
         borderColor: PRIMARY_COLOR,
         borderWidth: 2,
         pointRadius: 2,
         pointBorderWidth: 2,
         pointBackgroundColor: PRIMARY_COLOR,
+        backgroundColor: STATS_BACKGROUND_COLOR,
+        fill: "+1",
+        label: "Average weight",
+        data: averageValues,
+      },
+      {
+        borderColor: STATS_BACKGROUND_COLOR,
+        borderWidth: 1,
+        pointRadius: 0,
+        pointBackgroundColor: PRIMARY_COLOR,
         fill: false,
-        data: yVals,
+        label: "Max weight",
+        data: maxValues,
       },
     ],
   };
@@ -378,7 +402,12 @@ const LineChart = ({ title, macroData }) => {
     },
     tooltips: {
       callbacks: {
-        label: (item, _) => `${title}: ${item.yLabel}`,
+        label: (item, _) => {
+          const maxInfo = ` Max ${title}: ${maxValues[item.index]}`;
+          const avgInfo = ` Average ${title}: ${averageValues[item.index]}`;
+          const minInfo = ` Min ${title}: ${minValues[item.index]}`;
+          return [maxInfo, avgInfo, minInfo];
+        },
       },
     },
     scales: {
@@ -425,91 +454,12 @@ const LineChart = ({ title, macroData }) => {
   );
 };
 
-const FatCarbsChart = ({ title, fatData, carbsData }) => {
-  // Earliest entries first
-  const cleanFatCopy = [...fatData].sort(sortChartDate);
-  const cleanCarbsCopy = [...carbsData].sort(sortChartDate);
-
-  const timeSeries = cleanFatCopy.map((x) => new Date(x[0]));
-  const fatCalories = cleanFatCopy.map((x) => Math.round(x[1] * 9.0));
-  const carbsCalories = cleanCarbsCopy.map((x) => Math.round(x[1] * 4.5));
-
-  const data = {
-    labels: timeSeries,
-    datasets: [
-      {
-        label: "Fat",
-        backgroundColor: PRIMARY_COLOR,
-        borderColor: PRIMARY_COLOR,
-        borderWidth: 1,
-        data: fatCalories,
-      },
-      {
-        label: "Carbs",
-        backgroundColor: SECONDARY_COLOR,
-        borderColor: SECONDARY_COLOR,
-        borderWidth: 1,
-        data: carbsCalories,
-      },
-    ],
-  };
-  const options = {
-    legend: {
-      position: "bottom",
-      fontFamily: FONT_FAMILY,
-      fontColor: INFO_COLOR,
-      fontSize: CHART_FONT_SIZE,
-    },
-    scales: {
-      xAxes: [
-        {
-          type: "time",
-          offset: true, // Fixes issue where first/last data was cut off. Thanks: https://stackoverflow.com/a/53496344
-          gridLines: { display: false },
-          time: {
-            tooltipFormat: "MMM DD YYYY",
-            minUnit: "day",
-          },
-          ticks: {
-            fontFamily: FONT_FAMILY,
-            fontColor: INFO_COLOR,
-            fontSize: CHART_FONT_SIZE,
-            maxRotation: MAX_X_AXIS_ROTATION,
-            maxTicksLimit: MAX_TICKS,
-            padding: AXIS_PADDING,
-          },
-        },
-      ],
-      yAxes: [
-        {
-          gridLines: { display: false },
-          ticks: {
-            fontFamily: FONT_FAMILY,
-            fontColor: INFO_COLOR,
-            fontSize: CHART_FONT_SIZE,
-            maxTicksLimit: MAX_TICKS,
-            padding: AXIS_PADDING,
-          },
-        },
-      ],
-    },
-  };
-
-  return (
-    <div className="trends-chart">
-      <div className="trends-chart-title">{title}</div>
-      <div className="trends-chart-data">
-        <Bar data={data} options={options} />
-      </div>
-    </div>
-  );
-};
-
 const Trends = ({
   dateRange,
   updateDateRange,
   nutrientsTrendData,
-  healthTrendData,
+  nutrientsWeeklyStats,
+  healthWeeklyStats,
 }) => {
   const averageCalories = roundedAvg(
     nutrientsTrendData.calories.map((x) => x[1])
@@ -588,14 +538,18 @@ const Trends = ({
         </div>
       </div>
       <div className="trends-charts-container">
-        <LineChart title="Weight (lb)" macroData={healthTrendData.weight} />
-        <LineChart title="Calories" macroData={nutrientsTrendData.calories} />
-        <LineChart title="Protein (g)" macroData={nutrientsTrendData.protein} />
-        <FatCarbsChart
-          title="Fat and Carbs (cal)"
-          fatData={nutrientsTrendData.fat}
-          carbsData={nutrientsTrendData.carbs}
+        {/* <LineChart title="Weight (lb)" macroData={healthTrendData.weight} /> */}
+        <MultiLineChart title="Weight" macroData={healthWeeklyStats.weight} />
+        <MultiLineChart
+          title="Calories"
+          macroData={nutrientsWeeklyStats.calories}
         />
+        <MultiLineChart
+          title="Protein"
+          macroData={nutrientsWeeklyStats.protein}
+        />
+        <MultiLineChart title="Carbs" macroData={nutrientsWeeklyStats.carbs} />
+        <MultiLineChart title="Fats" macroData={nutrientsWeeklyStats.fat} />
       </div>
     </div>
   );
@@ -858,8 +812,11 @@ class App extends React.Component {
     const nutrientsTrendData = nutrientsToDailyTotalsMap(
       filterEntries(dateRange, entriesToDateMap)
     );
-    const healthTrendData = healthToDailyTotalsMap(
-      filterEntries(dateRange, healthData)
+    const nutrientsWeeklyStats = weeklyNutrientsStatsMap(
+      nutrientsToDailyTotalsMap(entriesToDateMap)
+    );
+    const healthWeeklyStats = weeklyHealthStatsMap(
+      healthToDailyTotalsMap(healthData)
     );
 
     // Entry Detail
@@ -966,7 +923,8 @@ class App extends React.Component {
             dateRange={dateRange}
             updateDateRange={this.updateDateRange}
             nutrientsTrendData={nutrientsTrendData}
-            healthTrendData={healthTrendData}
+            nutrientsWeeklyStats={nutrientsWeeklyStats}
+            healthWeeklyStats={healthWeeklyStats}
           />
         )}
       </div>

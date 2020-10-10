@@ -97,25 +97,6 @@ const friendlyDate = (dateStr) => {
   return `${weekday}, ${month} ${day}, ${year}`;
 };
 
-// mostRecentWeekDayDate('10/09/2020', 'Monday') -> '10/5/2020'
-// mostRecentWeekDayDate('10/09/2020', 'Sunday') -> '10/4/2020'
-// mostRecentWeekDayDate('10/05/2020', 'Monday') -> '10/5/2020'
-// Thanks: https://stackoverflow.com/a/63495407
-const mostRecentWeekDayDate = (startDate, weekdayName) => {
-  const target =
-    WEEKDAYS.indexOf(weekdayName) !== -1 ? WEEKDAYS.indexOf(weekdayName) : 0; // default to Sunday if invalid weekday name
-  let copy = new Date(startDate);
-  copy.setDate(copy.getDate() - ((copy.getDay() + (7 - target)) % 7));
-  return extractDate(copy);
-};
-
-// nextWeekDayDate('10/01/2020', 'Sunday') -> '10/4/2020'
-// nextWeekDayDate('10/01/2020', 'Monday') -> '10/5/2020'
-// nextWeekDayDate('10/05/2020', 'Monday') -> '10/5/2020'
-const nextWeekDayDate = (startDate, weekdayName) => {
-  return mostRecentWeekDayDate(addDays(startDate, 6), weekdayName);
-};
-
 // Extract date from local time integer: 20200715182210 -> 2020-07-16T01:22:00.000Z
 const localTimeToDate = (localTimeInt) => {
   const dateStr = localTimeInt.toString();
@@ -161,6 +142,29 @@ const eatingWindow = (dates) => {
   return Math.ceil(getHoursBetween(start, end)) || 1;
 };
 
+// Weekly stats helpers
+// ---------------------------------------------------------------------------
+const extractStatValues = (stats) => stats.map((x) => x[1]);
+
+// mostRecentWeekDayDate('10/09/2020', 'Monday') -> '10/5/2020'
+// mostRecentWeekDayDate('10/09/2020', 'Sunday') -> '10/4/2020'
+// mostRecentWeekDayDate('10/05/2020', 'Monday') -> '10/5/2020'
+// Thanks: https://stackoverflow.com/a/63495407
+const mostRecentWeekDayDate = (startDate, weekdayName) => {
+  const target =
+    WEEKDAYS.indexOf(weekdayName) !== -1 ? WEEKDAYS.indexOf(weekdayName) : 0; // default to Sunday if invalid weekday name
+  let copy = new Date(startDate);
+  copy.setDate(copy.getDate() - ((copy.getDay() + (7 - target)) % 7));
+  return extractDate(copy);
+};
+
+// nextWeekDayDate('10/01/2020', 'Sunday') -> '10/4/2020'
+// nextWeekDayDate('10/01/2020', 'Monday') -> '10/5/2020'
+// nextWeekDayDate('10/05/2020', 'Monday') -> '10/5/2020'
+const nextWeekDayDate = (startDate, weekdayName) => {
+  return mostRecentWeekDayDate(addDays(startDate, 6), weekdayName);
+};
+
 // Image Helpers
 // ---------------------------------------------------------------------------
 // 'https://storage.googleapis.com/media.getbitesnap.com/prod/media/ad/94/b9e0231e449987c56f15aaa7701b.jpeg'
@@ -190,7 +194,7 @@ const createImageDetail = (key, imageURL, localTimeInt, mealLabel) => ({
 const round = (num, precision) =>
   Math.round((num + Number.EPSILON) * Math.pow(10, precision)) /
   Math.pow(10, precision);
-const _clean = (items) => items.filter((x) => x);
+const _clean = (items) => items.filter((x) => !isNaN(x));
 const sum = (items) => _clean(items).reduce((xs, x) => (xs += x), 0);
 const avg = (items) => {
   const filtered = _clean(items);
@@ -225,6 +229,7 @@ module.exports.maxDate = maxDate;
 module.exports.minDate = minDate;
 module.exports.mostRecentWeekDayDate = mostRecentWeekDayDate;
 module.exports.nextWeekDayDate = nextWeekDayDate;
+module.exports.extractStatValues = extractStatValues;
 module.exports.round = round;
 module.exports.sum = sum;
 module.exports.max = max;

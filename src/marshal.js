@@ -188,7 +188,13 @@ const _buildWeeklyStats = (dailyTuples) => {
     round(avg(grouped[label].map((tup) => tup[1])), 1),
   ]);
 
-  return { rawValues, minValues, maxValues, averageValues };
+  return {
+    labels: nonEmptyLabels,
+    rawValues,
+    minValues,
+    maxValues,
+    averageValues,
+  };
 };
 
 const _buildWeeklyStatsMap = (dailyMap, keys) => {
