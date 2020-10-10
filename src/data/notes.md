@@ -1,3 +1,16 @@
+### 10/9/2020
+
+Oof, last few days were rough i.e. nutrition. Something about the ice cream from
+Sunday set me off and I gave in. Today was a fast to reset and will try to be
+mindful about calories for next two days.
+
+Fasting-wise today felt good. Felt minimal hunger, although considering I ate
+5k calories yesterday that's not unreasonable.
+
+Pushed an update to group foods together as well! I notice just by looking at
+the number of meals and snacks I have in a day I can roughly gauge how clean my
+day was. I aim to use this as an indicator to be more meal-centric and less snacky.
+
 ### 10/6/2020
 
 Lower cals today to make up for previous day excess. Will lilely do lower cals
