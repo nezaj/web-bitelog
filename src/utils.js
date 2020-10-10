@@ -97,15 +97,6 @@ const friendlyDate = (dateStr) => {
   return `${weekday}, ${month} ${day}, ${year}`;
 };
 
-const MORNING_START = 6;
-const AFTERNOON_START = 12;
-const EVENING_START = 17;
-const LATE_NIGHT_START = 20;
-const isMorning = (hour) => MORNING_START <= hour && hour < AFTERNOON_START;
-const isAfternnon = (hour) => AFTERNOON_START <= hour && hour < EVENING_START;
-const isEvening = (hour) => EVENING_START <= hour && hour < LATE_NIGHT_START;
-const isLateNight = (hour) => hour < MORNING_START || LATE_NIGHT_START <= hour;
-
 // mostRecentWeekDayDate('10/09/2020', 'Monday') -> '10/5/2020'
 // mostRecentWeekDayDate('10/09/2020', 'Sunday') -> '10/4/2020'
 // mostRecentWeekDayDate('10/05/2020', 'Monday') -> '10/5/2020'
@@ -116,6 +107,13 @@ const mostRecentWeekDayDate = (startDate, weekdayName) => {
   let copy = new Date(startDate);
   copy.setDate(copy.getDate() - ((copy.getDay() + (7 - target)) % 7));
   return extractDate(copy);
+};
+
+// nextWeekDayDate('10/01/2020', 'Sunday') -> '10/4/2020'
+// nextWeekDayDate('10/01/2020', 'Monday') -> '10/5/2020'
+// nextWeekDayDate('10/05/2020', 'Monday') -> '10/5/2020'
+const nextWeekDayDate = (startDate, weekdayName) => {
+  return mostRecentWeekDayDate(addDays(startDate, 6), weekdayName);
 };
 
 // Extract date from local time integer: 20200715182210 -> 2020-07-16T01:22:00.000Z
@@ -226,12 +224,9 @@ module.exports.localTimeToDate = localTimeToDate;
 module.exports.maxDate = maxDate;
 module.exports.minDate = minDate;
 module.exports.mostRecentWeekDayDate = mostRecentWeekDayDate;
+module.exports.nextWeekDayDate = nextWeekDayDate;
 module.exports.round = round;
 module.exports.sum = sum;
 module.exports.max = max;
 module.exports.min = min;
 module.exports.avg = avg;
-module.exports.isMorning = isMorning;
-module.exports.isAfternoon = isAfternnon;
-module.exports.isEvening = isEvening;
-module.exports.isLateNight = isLateNight;
