@@ -68,10 +68,8 @@ const buildHealthMap = (healthData) => {
   }, {});
 };
 
-// Marshall data to use datestamps as top level keys
-// Note: This is currently the "top-level" marshalling, as the other marshal functions use data
-// outputted from this function. If data format every changes you should only need to update this function
-// and the other marshall functions should work as is
+// Marshall data from BiteSnap to use datestamps as top level keys
+// This is used as the "top-level" data structure for food-related data
 const entriesToDateMap = (entries) => {
   return entries.reduce((xs, x) => {
     const dateKey = extractDate(localTimeToDate(x.eatenAtLocalTime));
@@ -81,8 +79,12 @@ const entriesToDateMap = (entries) => {
   }, {});
 };
 
+// Trends
+// ----------------------------------------------------------------
+
 /*
-Marshall data into a comfortable format for rendering trend data
+Marshall "nutrients" data from BiteSnap into tuples of date values.
+We use this format for roll-ups in our trends screen
 
 Takes in
 {
@@ -112,6 +114,7 @@ const nutrientsToDailyTotalsMap = (dateToEntriesMap) => {
   );
 };
 
+// Similar concept as daily nutrients map, but for data exported from Apple health
 const healthToDailyTotalsMap = (healthMap) => {
   return Object.keys(healthMap).reduce(
     (xs, ds) => {
@@ -121,6 +124,21 @@ const healthToDailyTotalsMap = (healthMap) => {
     },
     { weight: [], water: [] }
   );
+};
+
+// Transforms daily nutrient data into weekly statistics
+const weeklyNutrientsStatsMap = (dailyNutrientMap) => {
+  return _buildWeeklyStatsMap(dailyNutrientMap, [
+    "calories",
+    "protein",
+    "fat",
+    "carbs",
+  ]);
+};
+
+// Transforms daily heath data into weekly statistics
+const weeklyHealthStatsMap = (dailyHealthMap) => {
+  return _buildWeeklyStatsMap(dailyHealthMap, ["weight"]);
 };
 
 // Groups date value tuples by cut-off dates. Takes in an updater function for flexibility in defining how successive
@@ -207,20 +225,8 @@ const _buildWeeklyStatsMap = (dailyMap, keys) => {
   );
 };
 
-// Transforms daily nutrient data into weekly statistics
-const weeklyNutrientsStatsMap = (dailyNutrientMap) => {
-  return _buildWeeklyStatsMap(dailyNutrientMap, [
-    "calories",
-    "protein",
-    "fat",
-    "carbs",
-  ]);
-};
-
-// Transforms daily heath data into weekly statistics
-const weeklyHealthStatsMap = (dailyHealthMap) => {
-  return _buildWeeklyStatsMap(dailyHealthMap, ["weight"]);
-};
+// Image details
+// ----------------------------------------------------------------
 
 /*
 Marshall data into a comfortable format for rendering image detail data
@@ -237,6 +243,7 @@ And returns
   id: ...,
   time: 2:40pm,
   date: Sunday, July 12th, 2020
+  mealLabel: "Afternoon snack",
   macros: {calories: 224, protein: 6, fats: 7, carbs: 35g}
   items: [{name: "Raw Celerey", subtitle: "", servingUnits: 4, servingDetails: "medium stalks", calories: 26}, ...]
 }
@@ -244,7 +251,7 @@ And returns
 const imageDetailMap = (dateToEntriesMap) => {
   return Object.keys(dateToEntriesMap)
     .map((ds) => dateToEntriesMap[ds])
-    .map((dsFoods) => tagFoodsWithMealGroup(dsFoods))
+    .map((dsFoods) => _labelFoodsWithMealGroup(_mealFoodsPartition(dsFoods))) // add meal labels to foods
     .reduce((xs, x) => xs.concat(x), []) // flatten
     .reduce((xs, x) => {
       // Get imageKey
@@ -276,61 +283,64 @@ const imageDetailMap = (dateToEntriesMap) => {
 Helper function for partioning a list of foods into meal groups and their
 corresponding total calories
 
-Takes in
-[
-  {foodItemName: ..., nutrients: {calories: 100, ...}, ...},
-  {foodItemName: ..., nutrients: {calories: 200, ...}, ...},
-  {foodItemName: ..., nutrients: {calories: 500, ...}, ...},
-  ...
-[
-
-And returns
-{
-  items: [
-    [
-      {foodItemName: ..., nutrients: {calories: 100, ...}, ...},
-      {foodItemName: ..., nutrients: {calories: 200, ...}, ...},
-    ],
-    [
-      {foodItemName: ..., nutrients: {calories: 500, ...}, ...}
-    ]
-    ...
-  ],
-  calories: [300, 500, ...]
-}
+Start from earliest eaten food and partition like so:
+Begin with the first food as the head of the first partition
+* Add the next food to the last partition if it was eaten within the cutoff time of the last partition head
+* Otherwise create a new partition with the new food as the head
+Continue until all foods are partitioned
 */
 const _mealFoodsPartition = (foods) => {
   const minutesBetween = (ts1, ts2) => {
     return Math.floor(Math.abs(new Date(ts1) - new Date(ts2)) / MS_TO_MIN);
   };
 
+  // Partition helpers
+  const addPartition = (partitions, newPartition) =>
+    partitions.concat([newPartition]);
+  const dropLastPartition = (partitions) => partitions.slice(0, -1);
+  const extendPartition = (partition, newValue) => partition.concat(newValue);
+  const extractPartitionHead = (partition) => partition && partition[0];
+  const extractLastPartition = (partitions) => partitions.slice(-1)[0];
+  const replaceLastPartition = (partitions, newPartition) =>
+    addPartition(dropLastPartition(partitions), newPartition);
+
   return foods
     .sort((second, first) =>
       second.eatenAtLocalTime <= first.eatenAtLocalTime ? -1 : 1
     )
     .reduce(
-      ({ partitionedFoods, partionedCalories }, food) => {
-        const lastIdx = partitionedFoods.length - 1;
-        const lastPartition = partitionedFoods[lastIdx];
-        const partitionStart = lastPartition && lastPartition[0];
+      ({ partitionedFoods, partionedCalories, lastPartition }, food) => {
+        const partitionHead = extractPartitionHead(lastPartition);
         const foodCalories = extractCalories(food.nutrients);
         if (
-          !partitionStart ||
+          !partitionHead ||
           GROUPING_CUTOFF_MIN <=
-            minutesBetween(partitionStart.eatenAtUTC, food.eatenAtUTC)
+            minutesBetween(partitionHead.eatenAtUTC, food.eatenAtUTC)
         ) {
+          const newPartition = [food];
           return {
-            partitionedFoods: partitionedFoods.concat([[food]]),
-            partionedCalories: partionedCalories.concat(foodCalories),
+            partitionedFoods: addPartition(partitionedFoods, newPartition),
+            partionedCalories: extendPartition(partionedCalories, foodCalories),
+            lastPartition: newPartition,
           };
         } else {
-          partitionedFoods[lastIdx] = lastPartition.concat(food);
-          partionedCalories[lastIdx] =
-            partionedCalories[lastIdx] + foodCalories;
-          return { partitionedFoods, partionedCalories };
+          const updatedLastPartition = extendPartition(lastPartition, food);
+          const updatedLastCalories =
+            extractLastPartition(partionedCalories) + foodCalories;
+          return {
+            partitionedFoods: replaceLastPartition(
+              partitionedFoods,
+              updatedLastPartition
+            ),
+            partionedCalories: replaceLastPartition(
+              partionedCalories,
+              updatedLastCalories
+            ),
+            lastPartition: updatedLastPartition,
+          };
         }
       },
-      { partitionedFoods: [], partionedCalories: [] }
+      { partitionedFoods: [], partionedCalories: [], lastPartition: [] }
     );
 };
 
@@ -339,7 +349,7 @@ Helper function for transforming partions of foods into a flattened list
 of foods withs a meal label
 */
 const _labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
-  // Hueristic helpers
+  // Hueristics
   // ------------------
   const isFast = (calories) => calories === 0;
   const isSnack = (calories) => 0 < calories && calories < MEAL_CALORIES_CUTOFF;
@@ -353,6 +363,8 @@ const _labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
   const isLateNight = (hour) =>
     hour < MORNING_START || LATE_NIGHT_START <= hour;
 
+  // Labels
+  // ------------------
   const mealLabel = (mealHour) => {
     if (isMorning(mealHour)) {
       return "Breakfast";
@@ -380,8 +392,6 @@ const _labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
     return `${prefix} snack`;
   };
 
-  // Label helprs
-  // ------------------
   // Differentiate between raw and meal labels because we want to increment
   // duplicate label types when we display them in the feed (e.g. Afternoon snack, Afternoon snack (2))
   const getRawLabel = (calories, mealHour) => {
@@ -404,7 +414,7 @@ const _labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
     return `${rawLabel}${numSuffix}${largeSuffix}`;
   };
 
-  // Apply labels
+  // Add meal labels to foods (the actual thing we want to do!)
   // ------------------
   return partitionedFoods.reduce(
     ({ labeledFoods, rawLabels }, foods, partitionIdx) => {
@@ -426,15 +436,10 @@ const _labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
   ).labeledFoods;
 };
 
-/* Tags individual foods with their associated meal group */
-const tagFoodsWithMealGroup = (foods) =>
-  _labelFoodsWithMealGroup(_mealFoodsPartition(foods));
-
 module.exports.buildHealthMap = buildHealthMap;
 module.exports.entriesToDateMap = entriesToDateMap;
 module.exports.imageDetailMap = imageDetailMap;
 module.exports.nutrientsToDailyTotalsMap = nutrientsToDailyTotalsMap;
 module.exports.healthToDailyTotalsMap = healthToDailyTotalsMap;
-module.exports.tagFoodsWithMealGroup = tagFoodsWithMealGroup;
 module.exports.weeklyNutrientsStatsMap = weeklyNutrientsStatsMap;
 module.exports.weeklyHealthStatsMap = weeklyHealthStatsMap;
