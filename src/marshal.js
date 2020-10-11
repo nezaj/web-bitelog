@@ -216,13 +216,13 @@ const _buildWeeklyStats = (dailyTuples) => {
 };
 
 const _buildWeeklyStatsMap = (dailyMap, keys) => {
-  return keys.reduce(
-    (res, key) =>
-      Object.assign({}, res, {
-        [key]: _buildWeeklyStats(dailyMap[key]),
-      }),
-    {}
-  );
+  return keys.reduce((res, key) => {
+    // (XXX): Another "yarn build" gotcha -- we cannot do the commented line below
+    // because interpolating [key] does not work when doing production build  :(
+    // Object.assign({}, res, { [key]: _buildWeeklyStates(dailyMap[key])})
+    res[key] = _buildWeeklyStats(dailyMap[key]);
+    return res;
+  }, {});
 };
 
 // Image details
