@@ -32,7 +32,7 @@ body {
 }
 
 /* Mobile */
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
   .feed,
   .trends {
     width: 100%;
@@ -40,7 +40,7 @@ body {
 }
 
 /* Desktop */
-@media screen and (min-width: 801px) {
+@media (min-width: 801px) {
   .feed,
   .trends {
     width: 66%;
@@ -80,7 +80,7 @@ body {
 }
 
 /* Mobile */
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
   .header-avatar {
     width: 150px;
     height: 150px;
@@ -102,7 +102,7 @@ body {
 }
 
 /* Desktop */
-@media screen and (min-width: 801px) {
+@media (min-width: 801px) {
   .header-avatar {
     width: 250px;
     height: 250px;
@@ -145,7 +145,7 @@ body {
 }
 
 /* Mobile */
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
   .nav {
     margin-top: 18px;
     margin-bottom: 18px;
@@ -158,7 +158,7 @@ body {
 }
 
 /* Desktop */
-@media screen and (min-width: 801px) {
+@media (min-width: 801px) {
   .nav {
     margin-top: 24px;
     margin-bottom: 24px;
@@ -205,7 +205,7 @@ body {
 }
 
 /* Mobile/Tablet */
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
   .feed {
     font-size: 1.5em;
   }
@@ -263,7 +263,7 @@ body {
 }
 
 /* Desktop */
-@media screen and (min-width: 801px) {
+@media (min-width: 801px) {
   .feed-home {
     font-size: 2em;
   }
@@ -429,7 +429,7 @@ body {
 }
 
 /* Desktop */
-@media screen and (min-width: 801px) {
+@media (min-width: 801px) {
   .trends-date-selector {
     width: 66%;
     margin-top: 30px;
@@ -510,7 +510,7 @@ body {
 /* Detail View */
 /* ---------------------------------------- */
 /* Mobile */
-@media screen and (max-width: 550px) {
+@media (max-width: 550px) {
   .detail {
     position: fixed;
     top: 50%;
@@ -701,7 +701,7 @@ body {
 }
 
 /* Landscape mobile */
-@media screen and (min-width: 551px) and (max-width: 1000px) {
+@media (min-width: 551px) and (max-width: 1000px) {
   .detail {
     position: fixed;
     top: 50%;
@@ -894,7 +894,7 @@ body {
 }
 
 /* Desktop */
-@media screen and (min-width: 1001px) {
+@media (min-width: 1001px) {
   .detail {
     position: fixed;
     top: 50%;

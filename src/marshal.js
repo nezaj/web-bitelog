@@ -13,6 +13,10 @@ const {
   avg,
   round,
   nextWeekDayDate,
+  getWeekyDayName,
+  scaleDownBubbleValue,
+  scaleUpBubbleValue,
+  getShortWeekyDayName,
 } = require("./utils.js");
 const {
   extractCalories,
@@ -143,6 +147,7 @@ const weeklyHealthStatsMap = (dailyHealthMap) => {
 
 // Groups date value tuples by cut-off dates. Takes in an updater function for flexibility in defining how successive
 // cuttoffs can be updated (e.g. addDays(dateCutoff, 7) to increment the cutoff by a week)
+// (TODO): Add data abstractions to this to ease understanding of how partitions are built (this is similar to trends logic)
 const _groupByDateCutoff = (fnCutoffUpdater, dateValueTuples, initialDate) => {
   const grouped = dateValueTuples.reduce(
     ({ groups, labels, dateCutoff }, tuple) => {
@@ -189,10 +194,12 @@ const _buildWeeklyStats = (dailyTuples) => {
   const nonEmptyLabels = Object.keys(grouped).filter(
     (label) => grouped[label].length
   );
-  const rawValues = nonEmptyLabels.map((label) => [
+  const rawValues = nonEmptyLabels.map((label) => ({
     label,
-    grouped[label].map((tup) => tup[1]),
-  ]);
+    dates: grouped[label].map((tup) => tup[0]),
+    weekdays: grouped[label].map((tup) => getShortWeekyDayName(tup[0])),
+    values: grouped[label].map((tup) => tup[1]),
+  }));
   const minValues = nonEmptyLabels.map((label) => [
     label,
     min(grouped[label].map((tup) => tup[1])),
@@ -205,6 +212,24 @@ const _buildWeeklyStats = (dailyTuples) => {
     label,
     round(avg(grouped[label].map((tup) => tup[1])), 1),
   ]);
+  const bubbleValues = rawValues
+    .map((group) =>
+      group.values.map((val, i) => ({
+        x: group.label,
+        y: group.weekdays[i],
+        r: scaleDownBubbleValue(val),
+      }))
+    )
+    .reduce((xs, x) => xs.concat(x), []);
+
+  const heatMapSeries = ["Sun", "Sat", "Fri", "Thu", "Wed", "Tue", "Mon"].map(
+    (dayName) => ({
+      name: dayName,
+      data: bubbleValues
+        .filter((bv) => bv.y === dayName)
+        .map((bv) => ({ x: bv.x, y: round(scaleUpBubbleValue(bv.r), 0) })),
+    })
+  );
 
   return {
     labels: nonEmptyLabels,
@@ -212,6 +237,8 @@ const _buildWeeklyStats = (dailyTuples) => {
     minValues,
     maxValues,
     averageValues,
+    bubbleValues,
+    heatMapSeries,
   };
 };
 
@@ -219,7 +246,7 @@ const _buildWeeklyStatsMap = (dailyMap, keys) => {
   return keys.reduce((res, key) => {
     // (XXX): Another "yarn build" gotcha -- we cannot do the commented line below
     // because interpolating [key] does not work when doing production build  :(
-    // Object.assign({}, res, { [key]: _buildWeeklyStates(dailyMap[key])})
+    // Object.assign({}, res, { [key]: _buildWeeklyStats(dailyMap[key])})
     res[key] = _buildWeeklyStats(dailyMap[key]);
     return res;
   }, {});

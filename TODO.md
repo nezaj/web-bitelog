@@ -1,7 +1,8 @@
 # TODOs
-* Add a “trend” line to weight + calories + protein graph
-* Implement subscribe
+* Add a weekday (y val) vs date (x val) dot chart with calorie amounts to visual calories for weekdays over time
+* Add a weekday (y val) vs hour (x val) dot chart with calorie amounts to visual calories eaten over hours in the day (make this work with your big number filters)
 * Add a streaks visualization for water
+* Implement subscribe
 * Add a "tips" drawer in the top-right corner with some legend info on the emojis and info about keyboard shortcuts (make this for web first and then think about mobile)
 
 # Future

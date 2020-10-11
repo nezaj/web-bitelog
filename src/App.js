@@ -1,7 +1,8 @@
 import React from "react";
 
 import Mousetrap from "mousetrap";
-import { Line } from "react-chartjs-2";
+import { Bar, Bubble, Line } from "react-chartjs-2";
+import ApexChart from "react-apexcharts";
 import SwipeableViews from "react-swipeable-views";
 import { virtualize } from "react-swipeable-views-utils";
 import { mod } from "react-swipeable-views-core";
@@ -24,6 +25,7 @@ import {
   weeklyHealthStatsMap,
 } from "./marshal.js";
 import {
+  WEEKDAYS,
   addDays,
   eatingWindow,
   extractDate,
@@ -33,6 +35,8 @@ import {
   sum,
   avg,
   extractStatValues,
+  scaleUpBubbleValue,
+  SHORT_MONTHS,
 } from "./utils.js";
 import { NOTES_DELIMITER } from "./constants";
 
@@ -53,6 +57,11 @@ const LAST_30_DAYS = "last30Days";
 const LAST_90_DAYS = "last90Days";
 const THIS_YEAR = "thisYear";
 const DEFAULT_TRENDS_DATE_RANGE = LAST_7_DAYS;
+
+// Heatmap colors
+const LOW_RANGE_COLOR = "#0E728A";
+const TARGET_RANGE_COLOR = "#47AA35";
+const EXCESS_RANGE_COLOR = "#DE281F";
 
 // Corresponds to CSS color scheme
 // (TODO): Would be nicer to just define these in one place (either in js or css) and re-use
@@ -454,6 +463,149 @@ const MultiLineChart = ({ title, macroData }) => {
   );
 };
 
+const formatChartDate = (dateStr) => {
+  const date = new Date(dateStr);
+  console.log(SHORT_MONTHS);
+  const month = SHORT_MONTHS[date.getMonth()];
+  const day = date.getDate();
+  return `${month} ${day}`;
+};
+
+const HeatMap = ({ title, macroData }) => {
+  const { labels, heatMapSeries } = macroData;
+
+  const options = {
+    dataLabels: { enabled: false },
+    stroke: { width: 1 },
+    plotOptions: {
+      heatmap: {
+        useFillColorAsStroke: true,
+        radius: 0,
+        colorScale: {
+          ranges: [
+            {
+              from: 0,
+              to: 1700,
+              name: "low",
+              color: LOW_RANGE_COLOR,
+            },
+            {
+              from: 1701,
+              to: 2300,
+              name: "target",
+              color: TARGET_RANGE_COLOR,
+            },
+            {
+              from: 2301,
+              to: 6000,
+              name: "extreme",
+              color: EXCESS_RANGE_COLOR,
+            },
+          ],
+        },
+      },
+    },
+    xaxis: {
+      type: "category",
+      categories: labels,
+      tickAmount: MAX_TICKS,
+      tickPlacement: "on",
+      labels: {
+        format: "MMM dd",
+        formatter: (value) => formatChartDate(value),
+        rotate: MAX_X_AXIS_ROTATION,
+      },
+    },
+  };
+
+  return (
+    <div className="trends-chart">
+      <div className="trends-chart-title">{title}</div>
+      <div className="trends-chart-data">
+        <ApexChart series={heatMapSeries} options={options} type="heatmap" />
+      </div>
+    </div>
+  );
+};
+
+const extractBubbleRadius = (bubbleValues, item) => bubbleValues[item.index].r;
+const extractOriginalBubbleValue = (bubbleValues, item) =>
+  scaleUpBubbleValue(extractBubbleRadius(bubbleValues, item));
+const BubbleChart = ({ title, macroData }) => {
+  const { bubbleValues } = macroData;
+
+  const data = {
+    datasets: [
+      {
+        borderColor: STATS_BACKGROUND_COLOR,
+        backgroundColor: STATS_BACKGROUND_COLOR,
+        pointBackgroundColor: PRIMARY_COLOR,
+        borderRadius: 0,
+        data: bubbleValues,
+      },
+    ],
+  };
+  const options = {
+    spanGaps: true,
+    legend: {
+      display: false,
+      fontColor: INFO_COLOR,
+      fontFamily: FONT_FAMILY,
+      fontSize: CHART_FONT_SIZE,
+    },
+    tooltips: {
+      callbacks: {
+        label: (item, _) => {
+          const val = extractOriginalBubbleValue(bubbleValues, item);
+          return `Calories: ${val}`;
+        },
+      },
+    },
+    scales: {
+      xAxes: [
+        {
+          type: "time",
+          gridLines: { display: false },
+          time: {
+            tooltipFormat: "MMM DD YYYY",
+            minUnit: "day",
+          },
+          ticks: {
+            fontFamily: FONT_FAMILY,
+            fontColor: INFO_COLOR,
+            fontSize: CHART_FONT_SIZE,
+            maxRotation: MAX_X_AXIS_ROTATION,
+            maxTicksLimit: MAX_TICKS,
+            padding: AXIS_PADDING,
+          },
+        },
+      ],
+      yAxes: [
+        {
+          type: "category",
+          labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          gridLines: { display: false },
+          ticks: {
+            fontFamily: FONT_FAMILY,
+            fontColor: INFO_COLOR,
+            fontSize: CHART_FONT_SIZE,
+            padding: AXIS_PADDING,
+          },
+        },
+      ],
+    },
+  };
+
+  return (
+    <div className="trends-chart">
+      <div className="trends-chart-title">{title}</div>
+      <div className="trends-chart-data">
+        <Bubble data={data} options={options} />
+      </div>
+    </div>
+  );
+};
+
 const Trends = ({
   dateRange,
   updateDateRange,
@@ -540,6 +692,11 @@ const Trends = ({
       <div className="trends-charts-container">
         {/* <LineChart title="Weight (lb)" macroData={healthTrendData.weight} /> */}
         <MultiLineChart title="Weight" macroData={healthWeeklyStats.weight} />
+        <HeatMap title="Calories" macroData={nutrientsWeeklyStats.calories} />
+        <BubbleChart
+          title="Calories"
+          macroData={nutrientsWeeklyStats.calories}
+        />
         <MultiLineChart
           title="Calories"
           macroData={nutrientsWeeklyStats.calories}

@@ -14,8 +14,8 @@ const WEEKDAYS = [
   "Thursday",
   "Friday",
   "Saturday",
-  "Sunday",
 ];
+const SHORT_WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const MONTHS = [
   "January",
@@ -30,6 +30,21 @@ const MONTHS = [
   "October",
   "November",
   "December",
+];
+
+const SHORT_MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
 
 const maxDate = (dates) =>
@@ -71,6 +86,10 @@ const getDateSuffix = (day) => {
   }
   return "th";
 };
+
+// getWeekDayName("10/11/2020") -> "Sunday"
+const getWeekyDayName = (date) => WEEKDAYS[new Date(date).getDay()];
+const getShortWeekyDayName = (date) => SHORT_WEEKDAYS[new Date(date).getDay()];
 
 // '5/19/2020' -> Tuesday, May 19th, 2020
 const friendlyDate = (dateStr) => {
@@ -144,7 +163,15 @@ const eatingWindow = (dates) => {
 
 // Weekly stats helpers
 // ---------------------------------------------------------------------------
+const TARGET_BUBBLE_CALORIES = 2000;
+const TARGET_BUBBLE_RADIUS_SIZE = 10;
+const BUBBLE_SCALE_FACTOR = TARGET_BUBBLE_RADIUS_SIZE / TARGET_BUBBLE_CALORIES;
+
 const extractStatValues = (stats) => stats.map((x) => x[1]);
+const scaleDownBubbleValue = (originalValue) =>
+  (originalValue / TARGET_BUBBLE_CALORIES) * TARGET_BUBBLE_RADIUS_SIZE;
+const scaleUpBubbleValue = (scaledDownValue) =>
+  scaledDownValue * (1 / TARGET_BUBBLE_RADIUS_SIZE) * TARGET_BUBBLE_CALORIES;
 
 // mostRecentWeekDayDate('10/09/2020', 'Monday') -> '10/5/2020'
 // mostRecentWeekDayDate('10/09/2020', 'Sunday') -> '10/4/2020'
@@ -215,7 +242,12 @@ const chunk = (arr, size) => {
 
 // Doing this so finding references works in VSCode
 // See: https://github.com/microsoft/vscode/issues/21507#issuecomment-369118734
+module.exports.WEEKDAYS = WEEKDAYS;
+module.exports.SHORT_WEEKDAYS = SHORT_WEEKDAYS;
+module.exports.SHORT_MONTHS = SHORT_MONTHS;
 module.exports.addDays = addDays;
+module.exports.getWeekyDayName = getWeekyDayName;
+module.exports.getShortWeekyDayName = getShortWeekyDayName;
 module.exports.chunk = chunk;
 module.exports.createImageDetail = createImageDetail;
 module.exports.eatingWindow = eatingWindow;
@@ -229,6 +261,8 @@ module.exports.maxDate = maxDate;
 module.exports.minDate = minDate;
 module.exports.mostRecentWeekDayDate = mostRecentWeekDayDate;
 module.exports.nextWeekDayDate = nextWeekDayDate;
+module.exports.scaleDownBubbleValue = scaleDownBubbleValue;
+module.exports.scaleUpBubbleValue = scaleUpBubbleValue;
 module.exports.extractStatValues = extractStatValues;
 module.exports.round = round;
 module.exports.sum = sum;
