@@ -475,35 +475,8 @@ const MultiLineChart = ({ title, macroData }) => {
   );
 };
 
-// CalorieHeatmap helpers
-const _formatChartDate = (dateStr) => {
-  const date = new Date(dateStr);
-  const month = SHORT_MONTHS[date.getMonth()];
-  const day = date.getDate();
-  return `${month} ${day}`;
-};
-const _extractHeatMapSeries = (heatMapValues) =>
-  heatMapValues.map(({ name, data }) => ({ name, data }));
-const _extractHeatMapDate = (heatMapValues, seriesIdx, dataPointIdx) =>
-  heatMapValues[seriesIdx].dates[dataPointIdx];
-const _extractHeatMapValue = (heatMapValues, seriesIdx, dataPointIdx) =>
-  heatMapValues[seriesIdx].data[dataPointIdx].y;
-const _formatHeatMapTooltip = (
-  heatMapValues,
-  seriesIdx,
-  dataPointIdx,
-  suffix = ""
-) => {
-  const value = _extractHeatMapValue(heatMapValues, seriesIdx, dataPointIdx);
-  const date = _extractHeatMapDate(heatMapValues, seriesIdx, dataPointIdx);
-  const formattedDate = _formatChartDate(date);
-  return `${formattedDate}: ${value}${suffix}`;
-};
-
 const HourlyCalorieHeatMap = ({ macroData }) => {
   const { labels, heatMapSeries } = macroData;
-
-  console.log(heatMapSeries);
   const options = {
     dataLabels: { enabled: false },
     chart: { toolbar: { show: false } },
@@ -552,6 +525,32 @@ const HourlyCalorieHeatMap = ({ macroData }) => {
     </div>
   );
 };
+
+// WeekdayCalorieHeatmap helpers
+const _formatChartDate = (dateStr) => {
+  const date = new Date(dateStr);
+  const month = SHORT_MONTHS[date.getMonth()];
+  const day = date.getDate();
+  return `${month} ${day}`;
+};
+const _extractHeatMapSeries = (heatMapValues) =>
+  heatMapValues.map(({ name, data }) => ({ name, data }));
+const _extractHeatMapDate = (heatMapValues, seriesIdx, dataPointIdx) =>
+  heatMapValues[seriesIdx].dates[dataPointIdx];
+const _extractHeatMapValue = (heatMapValues, seriesIdx, dataPointIdx) =>
+  heatMapValues[seriesIdx].data[dataPointIdx].y;
+const _formatHeatMapTooltip = (
+  heatMapValues,
+  seriesIdx,
+  dataPointIdx,
+  suffix = ""
+) => {
+  const value = _extractHeatMapValue(heatMapValues, seriesIdx, dataPointIdx);
+  const date = _extractHeatMapDate(heatMapValues, seriesIdx, dataPointIdx);
+  const formattedDate = _formatChartDate(date);
+  return `${formattedDate}: ${value}${suffix}`;
+};
+
 const WeekdayCalorieHeatMap = ({ title, macroData }) => {
   const { labels, weekdayHeatMapValues } = macroData;
 

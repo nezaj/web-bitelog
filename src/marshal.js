@@ -42,7 +42,6 @@ const WEEK_ENDING_ON_DAYNAME = "Monday"; // Determines week-day of each data poi
 const GROUP_SIZE = 7;
 const HEATMAP_WEEK_DAYS = rotateArrayToVal(SHORT_WEEKDAYS, "Mon").reverse(); // We reverse so Monday will be top series
 
-// Hourly trend data
 // Hours of the day: 12am -> 11pm
 const HOUR_HEATMAP_LABELS = rotateArrayToVal(
   (() => {

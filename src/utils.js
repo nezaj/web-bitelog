@@ -163,17 +163,6 @@ const eatingWindow = (dates) => {
   return Math.ceil(getHoursBetween(start, end)) || 1;
 };
 
-// Weekly stats helpers
-// ---------------------------------------------------------------------------
-// (TODO): Not using atm, delete if not needed
-const TARGET_BUBBLE_CALORIES = 2000;
-const TARGET_BUBBLE_RADIUS_SIZE = 10;
-
-const scaleDownBubbleValue = (originalValue) =>
-  (originalValue / TARGET_BUBBLE_CALORIES) * TARGET_BUBBLE_RADIUS_SIZE;
-const scaleUpBubbleValue = (scaledDownValue) =>
-  scaledDownValue * (1 / TARGET_BUBBLE_RADIUS_SIZE) * TARGET_BUBBLE_CALORIES;
-
 // mostRecentWeekDayDate('10/09/2020', 'Monday') -> '10/5/2020'
 // mostRecentWeekDayDate('10/09/2020', 'Sunday') -> '10/4/2020'
 // mostRecentWeekDayDate('10/05/2020', 'Monday') -> '10/5/2020'
@@ -219,6 +208,7 @@ const createImageDetail = (key, imageURL, localTimeInt, mealLabel) => ({
 
 // Misc
 // ---------------------------------------------------------------------------
+// round(10.23, 0) => 10
 const round = (num, precision) =>
   Math.round((num + Number.EPSILON) * Math.pow(10, precision)) /
   Math.pow(10, precision);
@@ -255,8 +245,7 @@ const rotateArrayToVal = (arr, val) => {
 // range(3) -> [1, 2, 3]
 const range = (n) => new Array(n).fill(1).map((x, idx) => x + idx);
 
-// Useful for transforming maps from one form to another
-// marshalMap((val) => val + 1, {"a": 1, "b": 2}, ["a"]) => {"a": 2}
+// transformMap((val) => val + 1, {"a": 1, "b": 2}, ["a"]) => {"a": 2}
 const transformMap = (fn, _map, keys) =>
   keys.reduce((res, key) => {
     // (XXX): Another "yarn build" gotcha -- we cannot do the commented line below
@@ -311,7 +300,5 @@ module.exports.nextWeekDayDate = nextWeekDayDate;
 module.exports.range = range;
 module.exports.rotateArrayToVal = rotateArrayToVal;
 module.exports.round = round;
-module.exports.scaleDownBubbleValue = scaleDownBubbleValue;
-module.exports.scaleUpBubbleValue = scaleUpBubbleValue;
 module.exports.sum = sum;
 module.exports.transformMap = transformMap;
