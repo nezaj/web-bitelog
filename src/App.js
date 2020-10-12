@@ -69,7 +69,7 @@ const TARGET_RANGE_COLOR = "#47AA35";
 const EXCESS_RANGE_COLOR = "#DE281F";
 
 // 800px is cut-off in the css for desktop styling
-const HOURLY_HEATMAP_HEIGHT = window.screen.width > 800 ? 200 : 100;
+const HOURLY_HEATMAP_HEIGHT = window.screen.width > 800 ? 200 : 125;
 const MAX_X_AXIS_HOURLY_TICKS = 8;
 
 // Corresponds to CSS color scheme
