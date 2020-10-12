@@ -57,7 +57,14 @@ const LAST_90_DAYS = "last90Days";
 const THIS_YEAR = "thisYear";
 const DEFAULT_TRENDS_DATE_RANGE = LAST_7_DAYS;
 
-// Heatmap colors
+// Heatmap
+const LOW_CALORIES_THRESHOLD_START = 0;
+const LOW_CALORIES_THRESHOLD_END = 1700;
+const TARGET_CALORIES_THRESHOLD_START = LOW_CALORIES_THRESHOLD_END + 1;
+const TARGET_CALORIES_THRESHOLD_END = 2300;
+const EXCESS_CALORIES_THRESHOLD_START = TARGET_CALORIES_THRESHOLD_END + 1;
+const EXCESS_CALORIES_THRESHOLD_END = 9999;
+
 const LOW_RANGE_COLOR = "#3D99AC";
 const TARGET_RANGE_COLOR = "#47AA35";
 const EXCESS_RANGE_COLOR = "#DE281F";
@@ -487,7 +494,7 @@ const _formatHeatMapTooltip = (
   return `${formattedDate}: ${value}${suffix}`;
 };
 
-const HeatMap = ({ title, macroData }) => {
+const CalorieHeatMap = ({ title, macroData }) => {
   const { labels, heatMapValues } = macroData;
 
   const series = _extractHeatMapSeries(heatMapValues);
@@ -516,21 +523,21 @@ const HeatMap = ({ title, macroData }) => {
         colorScale: {
           ranges: [
             {
-              from: 0,
-              to: 1700,
-              name: "low",
+              from: LOW_CALORIES_THRESHOLD_START,
+              to: LOW_CALORIES_THRESHOLD_END,
+              name: `<= ${LOW_CALORIES_THRESHOLD_END} (low)`,
               color: LOW_RANGE_COLOR,
             },
             {
-              from: 1701,
-              to: 2300,
-              name: "target",
+              from: TARGET_CALORIES_THRESHOLD_START,
+              to: TARGET_CALORIES_THRESHOLD_END,
+              name: `${TARGET_CALORIES_THRESHOLD_START} - ${TARGET_CALORIES_THRESHOLD_END} (target)`,
               color: TARGET_RANGE_COLOR,
             },
             {
-              from: 2301,
-              to: 6000,
-              name: "extreme",
+              from: EXCESS_CALORIES_THRESHOLD_START,
+              to: EXCESS_CALORIES_THRESHOLD_END,
+              name: `${EXCESS_CALORIES_THRESHOLD_START}+ (high)`,
               color: EXCESS_RANGE_COLOR,
             },
           ],
@@ -725,9 +732,12 @@ const Trends = ({
       <div className="trends-charts-container">
         {/* <LineChart title="Weight (lb)" macroData={healthTrendData.weight} /> */}
         <MultiLineChart title="Weight" macroData={healthWeeklyStats.weight} />
-        <HeatMap title="Calories" macroData={nutrientsWeeklyStats.calories} />
+        <CalorieHeatMap
+          title="Daily Calories"
+          macroData={nutrientsWeeklyStats.calories}
+        />
         <MultiLineChart
-          title="Calories"
+          title="Weekly Calories"
           macroData={nutrientsWeeklyStats.calories}
         />
         <MultiLineChart
