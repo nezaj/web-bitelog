@@ -1,7 +1,7 @@
 import React from "react";
 
 import Mousetrap from "mousetrap";
-import { Bar, Bubble, Line } from "react-chartjs-2";
+import { Bubble, Line } from "react-chartjs-2";
 import ApexChart from "react-apexcharts";
 import SwipeableViews from "react-swipeable-views";
 import { virtualize } from "react-swipeable-views-utils";
@@ -25,7 +25,6 @@ import {
   weeklyHealthStatsMap,
 } from "./marshal.js";
 import {
-  WEEKDAYS,
   addDays,
   eatingWindow,
   extractDate,
@@ -59,7 +58,7 @@ const THIS_YEAR = "thisYear";
 const DEFAULT_TRENDS_DATE_RANGE = LAST_7_DAYS;
 
 // Heatmap colors
-const LOW_RANGE_COLOR = "#0E728A";
+const LOW_RANGE_COLOR = "#3D99AC";
 const TARGET_RANGE_COLOR = "#47AA35";
 const EXCESS_RANGE_COLOR = "#DE281F";
 
@@ -463,20 +462,53 @@ const MultiLineChart = ({ title, macroData }) => {
   );
 };
 
-const formatChartDate = (dateStr) => {
+// Heatmap helpers
+const _formatChartDate = (dateStr) => {
   const date = new Date(dateStr);
-  console.log(SHORT_MONTHS);
   const month = SHORT_MONTHS[date.getMonth()];
   const day = date.getDate();
   return `${month} ${day}`;
 };
+const _extractHeatMapSeries = (heatMapValues) =>
+  heatMapValues.map(({ name, data }) => ({ name, data }));
+const _extractHeatMapDate = (heatMapValues, seriesIdx, dataPointIdx) =>
+  heatMapValues[seriesIdx].dates[dataPointIdx];
+const _extractHeatMapValue = (heatMapValues, seriesIdx, dataPointIdx) =>
+  heatMapValues[seriesIdx].data[dataPointIdx].y;
+const _formatHeatMapTooltip = (
+  heatMapValues,
+  seriesIdx,
+  dataPointIdx,
+  suffix = ""
+) => {
+  const value = _extractHeatMapValue(heatMapValues, seriesIdx, dataPointIdx);
+  const date = _extractHeatMapDate(heatMapValues, seriesIdx, dataPointIdx);
+  const formattedDate = _formatChartDate(date);
+  return `${formattedDate}: ${value}${suffix}`;
+};
 
 const HeatMap = ({ title, macroData }) => {
-  const { labels, heatMapSeries } = macroData;
+  const { labels, heatMapValues } = macroData;
 
+  const series = _extractHeatMapSeries(heatMapValues);
   const options = {
     dataLabels: { enabled: false },
+    chart: { toolbar: { show: false } },
     stroke: { width: 1 },
+    tooltip: {
+      y: {
+        formatter: (value, { series, seriesIndex, dataPointIndex, w }) =>
+          _formatHeatMapTooltip(
+            heatMapValues,
+            seriesIndex,
+            dataPointIndex,
+            " calories"
+          ),
+        title: {
+          formatter: (seriesName) => "",
+        },
+      },
+    },
     plotOptions: {
       heatmap: {
         useFillColorAsStroke: true,
@@ -512,7 +544,7 @@ const HeatMap = ({ title, macroData }) => {
       tickPlacement: "on",
       labels: {
         format: "MMM dd",
-        formatter: (value) => formatChartDate(value),
+        formatter: (value) => _formatChartDate(value),
         rotate: MAX_X_AXIS_ROTATION,
       },
     },
@@ -522,12 +554,13 @@ const HeatMap = ({ title, macroData }) => {
     <div className="trends-chart">
       <div className="trends-chart-title">{title}</div>
       <div className="trends-chart-data">
-        <ApexChart series={heatMapSeries} options={options} type="heatmap" />
+        <ApexChart series={series} options={options} type="heatmap" />
       </div>
     </div>
   );
 };
 
+// (TODO): Not using atm, delete if not neccesary
 const extractBubbleRadius = (bubbleValues, item) => bubbleValues[item.index].r;
 const extractOriginalBubbleValue = (bubbleValues, item) =>
   scaleUpBubbleValue(extractBubbleRadius(bubbleValues, item));
@@ -693,10 +726,6 @@ const Trends = ({
         {/* <LineChart title="Weight (lb)" macroData={healthTrendData.weight} /> */}
         <MultiLineChart title="Weight" macroData={healthWeeklyStats.weight} />
         <HeatMap title="Calories" macroData={nutrientsWeeklyStats.calories} />
-        <BubbleChart
-          title="Calories"
-          macroData={nutrientsWeeklyStats.calories}
-        />
         <MultiLineChart
           title="Calories"
           macroData={nutrientsWeeklyStats.calories}

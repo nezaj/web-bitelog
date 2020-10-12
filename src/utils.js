@@ -163,10 +163,9 @@ const eatingWindow = (dates) => {
 
 // Weekly stats helpers
 // ---------------------------------------------------------------------------
+// (TODO): Not using atm, delete if not needed
 const TARGET_BUBBLE_CALORIES = 2000;
 const TARGET_BUBBLE_RADIUS_SIZE = 10;
-const BUBBLE_SCALE_FACTOR = TARGET_BUBBLE_RADIUS_SIZE / TARGET_BUBBLE_CALORIES;
-
 const extractStatValues = (stats) => stats.map((x) => x[1]);
 const scaleDownBubbleValue = (originalValue) =>
   (originalValue / TARGET_BUBBLE_CALORIES) * TARGET_BUBBLE_RADIUS_SIZE;
@@ -240,6 +239,17 @@ const chunk = (arr, size) => {
   );
 };
 
+// rotateArrayToVal([1, 2, 3], 2) => [2, 3, 1]
+const rotateArrayToVal = (arr, val) => {
+  const idx = arr.indexOf(val);
+  // Return array as is if val is not in array
+  if (idx === -1) {
+    return arr;
+  }
+
+  return arr.slice(idx).concat(arr.slice(0, idx));
+};
+
 // Doing this so finding references works in VSCode
 // See: https://github.com/microsoft/vscode/issues/21507#issuecomment-369118734
 module.exports.WEEKDAYS = WEEKDAYS;
@@ -249,6 +259,7 @@ module.exports.addDays = addDays;
 module.exports.getWeekyDayName = getWeekyDayName;
 module.exports.getShortWeekyDayName = getShortWeekyDayName;
 module.exports.chunk = chunk;
+module.exports.rotateArrayToVal = rotateArrayToVal;
 module.exports.createImageDetail = createImageDetail;
 module.exports.eatingWindow = eatingWindow;
 module.exports.extractDate = extractDate;

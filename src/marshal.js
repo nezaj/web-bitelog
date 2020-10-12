@@ -13,10 +13,9 @@ const {
   avg,
   round,
   nextWeekDayDate,
-  getWeekyDayName,
-  scaleDownBubbleValue,
-  scaleUpBubbleValue,
   getShortWeekyDayName,
+  rotateArrayToVal,
+  SHORT_WEEKDAYS,
 } = require("./utils.js");
 const {
   extractCalories,
@@ -35,6 +34,7 @@ const MS_TO_MIN = 1000 * 60;
 // Used for weekly trend data
 const WEEK_ENDING_ON_DAYNAME = "Monday"; // Determines week-day of each data point on weekly trends graphs
 const GROUP_SIZE = 7;
+const HEATMAP_WEEK_DAYS = rotateArrayToVal(SHORT_WEEKDAYS, "Mon").reverse(); // We reverse so Monday will be top series
 
 // Hueristics for labeling meals
 const GROUPING_CUTOFF_MIN = 45;
@@ -194,12 +194,6 @@ const _buildWeeklyStats = (dailyTuples) => {
   const nonEmptyLabels = Object.keys(grouped).filter(
     (label) => grouped[label].length
   );
-  const rawValues = nonEmptyLabels.map((label) => ({
-    label,
-    dates: grouped[label].map((tup) => tup[0]),
-    weekdays: grouped[label].map((tup) => getShortWeekyDayName(tup[0])),
-    values: grouped[label].map((tup) => tup[1]),
-  }));
   const minValues = nonEmptyLabels.map((label) => [
     label,
     min(grouped[label].map((tup) => tup[1])),
@@ -212,33 +206,41 @@ const _buildWeeklyStats = (dailyTuples) => {
     label,
     round(avg(grouped[label].map((tup) => tup[1])), 1),
   ]);
-  const bubbleValues = rawValues
+
+  // Bubble and HeatMap series
+  const groupValues = nonEmptyLabels.map((label) => ({
+    label,
+    dates: grouped[label].map((tup) => tup[0]),
+    weekdays: grouped[label].map((tup) => getShortWeekyDayName(tup[0])),
+    values: grouped[label].map((tup) => tup[1]),
+  }));
+  const flatValues = groupValues
     .map((group) =>
-      group.values.map((val, i) => ({
-        x: group.label,
-        y: group.weekdays[i],
-        r: scaleDownBubbleValue(val),
+      group.values.map((value, idx) => ({
+        label: group.label,
+        date: group.dates[idx],
+        weekday: group.weekdays[idx],
+        value,
       }))
     )
     .reduce((xs, x) => xs.concat(x), []);
-
-  const heatMapSeries = ["Sun", "Sat", "Fri", "Thu", "Wed", "Tue", "Mon"].map(
-    (dayName) => ({
+  const heatMapValues = HEATMAP_WEEK_DAYS.map((dayName) => {
+    const filtered = flatValues.filter((fv) => fv.weekday === dayName);
+    return {
       name: dayName,
-      data: bubbleValues
-        .filter((bv) => bv.y === dayName)
-        .map((bv) => ({ x: bv.x, y: round(scaleUpBubbleValue(bv.r), 0) })),
-    })
-  );
+      data: filtered.map((fv) => ({ x: fv.label, y: fv.value })),
+      dates: filtered.map((fv) => fv.date),
+    };
+  });
 
   return {
     labels: nonEmptyLabels,
-    rawValues,
     minValues,
     maxValues,
     averageValues,
-    bubbleValues,
-    heatMapSeries,
+    flatValues,
+    groupValues,
+    heatMapValues,
   };
 };
 
