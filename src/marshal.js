@@ -21,6 +21,12 @@ const {
   collect,
   defaultMap,
   sum,
+  addPartition,
+  extendPartition,
+  extractPartitionHead,
+  extractLastPartition,
+  replaceLastPartition,
+  dropLastPartition,
 } = require("./utils.js");
 const {
   extractCalories,
@@ -178,21 +184,28 @@ const hourlyNutrientsStatsMap = (dateToEntriesMap) => {
 
 // Groups date value tuples by cut-off dates. Takes in an updater function for flexibility in defining how successive
 // cuttoffs can be updated (e.g. addDays(dateCutoff, 7) to increment the cutoff by a week)
-// (TODO): Add data abstractions to this to ease understanding of how partitions are built (this is similar to trends logic)
 const _groupByDateCutoff = (fnCutoffUpdater, dateValueTuples, initialDate) => {
   const grouped = dateValueTuples.reduce(
     ({ groups, labels, dateCutoff }, tuple) => {
       const date = tuple[0];
       if (new Date(date) < new Date(dateCutoff)) {
-        const previousGroups = groups.slice(0, -1);
-        const newGroup = [groups.slice(-1)[0].concat([tuple])]; // intent: append the new tuple the last list of tuples
-        return { groups: previousGroups.concat(newGroup), labels, dateCutoff };
+        const previousGroups = dropLastPartition(groups);
+        const newValue = [tuple];
+        const newGroup = extendPartition(
+          extractLastPartition(groups),
+          newValue
+        );
+        return {
+          groups: addPartition(previousGroups, newGroup),
+          labels,
+          dateCutoff,
+        };
       } else {
-        const newGroup = [[tuple]];
+        const newGroup = [tuple];
         const newDateCutoff = fnCutoffUpdater(dateCutoff);
         return {
-          groups: groups.concat(newGroup),
-          labels: labels.concat(extractDate(new Date(newDateCutoff))),
+          groups: addPartition(groups, newGroup),
+          labels: extendPartition(labels, extractDate(new Date(newDateCutoff))),
           dateCutoff: newDateCutoff,
         };
       }
@@ -420,16 +433,6 @@ const _mealFoodsPartition = (foods) => {
   const minutesBetween = (ts1, ts2) => {
     return Math.floor(Math.abs(new Date(ts1) - new Date(ts2)) / MS_TO_MIN);
   };
-
-  // Partition helpers
-  const addPartition = (partitions, newPartition) =>
-    partitions.concat([newPartition]);
-  const dropLastPartition = (partitions) => partitions.slice(0, -1);
-  const extendPartition = (partition, newValue) => partition.concat(newValue);
-  const extractPartitionHead = (partition) => partition && partition[0];
-  const extractLastPartition = (partitions) => partitions.slice(-1)[0];
-  const replaceLastPartition = (partitions, newPartition) =>
-    addPartition(dropLastPartition(partitions), newPartition);
 
   return foods
     .sort((second, first) =>

@@ -271,6 +271,16 @@ const defaultMap = (keys, defaultVal) =>
     return res;
   }, {});
 
+// Partition helpers
+const addPartition = (partitions, newPartition) =>
+  partitions.concat([newPartition]);
+const dropLastPartition = (partitions) => partitions.slice(0, -1);
+const extendPartition = (partition, newValue) => partition.concat(newValue);
+const extractPartitionHead = (partition) => partition && partition[0];
+const extractLastPartition = (partitions) => partitions.slice(-1)[0];
+const replaceLastPartition = (partitions, newPartition) =>
+  addPartition(dropLastPartition(partitions), newPartition);
+
 // Doing this so finding references works in VSCode
 // See: https://github.com/microsoft/vscode/issues/21507#issuecomment-369118734
 module.exports.SHORT_MONTHS = SHORT_MONTHS;
@@ -302,3 +312,9 @@ module.exports.rotateArrayToVal = rotateArrayToVal;
 module.exports.round = round;
 module.exports.sum = sum;
 module.exports.transformMap = transformMap;
+module.exports.addPartition = addPartition;
+module.exports.dropLastPartition = dropLastPartition;
+module.exports.extendPartition = extendPartition;
+module.exports.extractPartitionHead = extractPartitionHead;
+module.exports.extractLastPartition = extractLastPartition;
+module.exports.replaceLastPartition = replaceLastPartition;
