@@ -1,22 +1,18 @@
 /*
  * Nutrient helpers
  */
-const extractNutrient = (nutrients, name) =>
-  nutrients.find((x) => x.name === name) || { amount: 0 };
-const extractCalories = (nutrients) =>
-  extractNutrient(nutrients, "calories").amount;
-const extractProtein = (nutrients) =>
-  extractNutrient(nutrients, "protein").amount;
-const extractFat = (nutrients) => extractNutrient(nutrients, "totalFat").amount;
-const extractCarbs = (nutrients) =>
-  extractNutrient(nutrients, "totalCarb").amount;
+const extractNutrient = (nutrients, name) => {
+  const { amount } = nutrients.find((x) => x.name === name) || { amount: 0 };
+  return amount;
+};
+const extractCalories = (nutrients) => extractNutrient(nutrients, "calories");
+const extractProtein = (nutrients) => extractNutrient(nutrients, "protein");
+const extractFat = (nutrients) => extractNutrient(nutrients, "totalFat");
+const extractCarbs = (nutrients) => extractNutrient(nutrients, "totalCarb");
 
 const sumNutrients = (items, name) =>
   Math.round(
-    items.reduce(
-      (xs, x) => (xs += extractNutrient(x.nutrients, name).amount),
-      0
-    )
+    items.reduce((xs, x) => (xs += extractNutrient(x.nutrients, name)), 0)
   );
 
 module.exports.extractNutrient = extractNutrient;

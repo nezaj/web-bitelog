@@ -16,6 +16,11 @@ const {
   getShortWeekyDayName,
   rotateArrayToVal,
   SHORT_WEEKDAYS,
+  range,
+  transformMap,
+  collect,
+  defaultMap,
+  sum,
 } = require("./utils.js");
 const {
   extractCalories,
@@ -23,6 +28,7 @@ const {
   extractFat,
   extractCarbs,
   sumNutrients,
+  extractNutrient,
 } = require("./nutrients.js");
 
 // 236.59ml is 1 US cup
@@ -35,6 +41,17 @@ const MS_TO_MIN = 1000 * 60;
 const WEEK_ENDING_ON_DAYNAME = "Monday"; // Determines week-day of each data point on weekly trends graphs
 const GROUP_SIZE = 7;
 const HEATMAP_WEEK_DAYS = rotateArrayToVal(SHORT_WEEKDAYS, "Mon").reverse(); // We reverse so Monday will be top series
+
+// Hourly trend data
+// Hours of the day: 12am -> 11pm
+const HOUR_HEATMAP_LABELS = rotateArrayToVal(
+  (() => {
+    const am = ["12am"].concat(range(11).map((x) => `${x}am`));
+    const pm = ["12pm"].concat(range(11).map((x) => `${x}pm`));
+    return am.concat(pm);
+  })(),
+  "5am"
+);
 
 // Hueristics for labeling meals
 const GROUPING_CUTOFF_MIN = 45;
@@ -145,6 +162,21 @@ const weeklyHealthStatsMap = (dailyHealthMap) => {
   return _buildWeeklyStatsMap(dailyHealthMap, ["weight"]);
 };
 
+// Transforms daily nutrients data into hourly statistics
+const hourlyNutrientsStatsMap = (dateToEntriesMap) => {
+  const flattenedEntries = Object.keys(dateToEntriesMap).reduce(
+    (flat, ds) => flat.concat(dateToEntriesMap[ds]),
+    []
+  );
+  return ["calories", "protein", "fat", "carbs"].reduce((res, key) => {
+    res[key] = {
+      labels: HOUR_HEATMAP_LABELS,
+      heatMapSeries: _buildHourlyNutrientHeatMapSeries(flattenedEntries, key),
+    };
+    return res;
+  }, {});
+};
+
 // Groups date value tuples by cut-off dates. Takes in an updater function for flexibility in defining how successive
 // cuttoffs can be updated (e.g. addDays(dateCutoff, 7) to increment the cutoff by a week)
 // (TODO): Add data abstractions to this to ease understanding of how partitions are built (this is similar to trends logic)
@@ -204,10 +236,10 @@ const _buildWeeklyStats = (dailyTuples) => {
   ]);
   const averageValues = nonEmptyLabels.map((label) => [
     label,
-    round(avg(grouped[label].map((tup) => tup[1])), 1),
+    round(avg(grouped[label].map((tup) => tup[1])), 0),
   ]);
 
-  // Bubble and HeatMap series
+  // HeatMap series
   const groupValues = nonEmptyLabels.map((label) => ({
     label,
     dates: grouped[label].map((tup) => tup[0]),
@@ -224,7 +256,8 @@ const _buildWeeklyStats = (dailyTuples) => {
       }))
     )
     .reduce((xs, x) => xs.concat(x), []);
-  const heatMapValues = HEATMAP_WEEK_DAYS.map((dayName) => {
+
+  const weekdayHeatMapValues = HEATMAP_WEEK_DAYS.map((dayName) => {
     const filtered = flatValues.filter((fv) => fv.weekday === dayName);
     return {
       name: dayName,
@@ -240,18 +273,84 @@ const _buildWeeklyStats = (dailyTuples) => {
     averageValues,
     flatValues,
     groupValues,
-    heatMapValues,
+    weekdayHeatMapValues,
   };
 };
 
-const _buildWeeklyStatsMap = (dailyMap, keys) => {
-  return keys.reduce((res, key) => {
-    // (XXX): Another "yarn build" gotcha -- we cannot do the commented line below
-    // because interpolating [key] does not work when doing production build  :(
-    // Object.assign({}, res, { [key]: _buildWeeklyStats(dailyMap[key])})
-    res[key] = _buildWeeklyStats(dailyMap[key]);
-    return res;
-  }, {});
+const _buildWeeklyStatsMap = (dailyMap, keys) =>
+  transformMap(_buildWeeklyStats, dailyMap, keys);
+
+// _extractHourLabel(20200715182210) -> "6pm" (note: the hour portion is 18)
+const _extractHourLabel = (localTimeInt) => {
+  const rawHour = localTimeToDate(localTimeInt).getHours();
+  if (rawHour === 0) {
+    return "12am";
+  } else if (rawHour < 12) {
+    return `${rawHour}am`;
+  } else if (rawHour === 12) {
+    return `12pm`;
+  } else {
+    return `${rawHour - 12}pm`;
+  }
+};
+
+const _sumFoodsNutrients = (foods, nutrientName) =>
+  sum(foods.map((food) => extractNutrient(food.nutrients, nutrientName))) || 0;
+
+const _numFoodsDays = (foods) => {
+  return new Set(foods.map((food) => extractDate(new Date(food.eatenAtUTC))))
+    .size;
+};
+
+const _avgFoodsNutrients = (foods, nutrientName) => {
+  const numDays = _numFoodsDays(foods);
+  if (!numDays) {
+    return 0;
+  }
+  return _sumFoodsNutrients(foods, nutrientName) / numDays;
+};
+
+const _pctFoodNutrients = (totalNutrients, foods, nutrientName) => {
+  if (!totalNutrients) {
+    return 0;
+  }
+  return _sumFoodsNutrients(foods, nutrientName) / totalNutrients;
+};
+
+const _estimatedFoodNutrients = (
+  avgNutrients,
+  totalNutrients,
+  foods,
+  nutrientName
+) => {
+  return round(
+    avgNutrients * _pctFoodNutrients(totalNutrients, foods, nutrientName),
+    2
+  );
+};
+
+const _buildHourlyNutrientHeatMapSeries = (foods, nutrientName) => {
+  const avgNutrients = _avgFoodsNutrients(foods, nutrientName);
+  const totalNutrients = _sumFoodsNutrients(foods, nutrientName);
+  const groupedByHour = Object.assign(
+    {},
+    defaultMap(HOUR_HEATMAP_LABELS, []), // Ensures values for all labels, even if there are no food entries
+    collect((food) => _extractHourLabel(food.eatenAtLocalTime), foods)
+  );
+  return [
+    {
+      name: "Hours",
+      data: Object.keys(groupedByHour).map((hour) => ({
+        x: hour,
+        y: _estimatedFoodNutrients(
+          avgNutrients,
+          totalNutrients,
+          groupedByHour[hour],
+          nutrientName
+        ),
+      })),
+    },
+  ];
 };
 
 // Image details
@@ -472,3 +571,4 @@ module.exports.nutrientsToDailyTotalsMap = nutrientsToDailyTotalsMap;
 module.exports.healthToDailyTotalsMap = healthToDailyTotalsMap;
 module.exports.weeklyNutrientsStatsMap = weeklyNutrientsStatsMap;
 module.exports.weeklyHealthStatsMap = weeklyHealthStatsMap;
+module.exports.hourlyNutrientsStatsMap = hourlyNutrientsStatsMap;

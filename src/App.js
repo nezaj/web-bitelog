@@ -1,7 +1,7 @@
 import React from "react";
 
 import Mousetrap from "mousetrap";
-import { Bubble, Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import ApexChart from "react-apexcharts";
 import SwipeableViews from "react-swipeable-views";
 import { virtualize } from "react-swipeable-views-utils";
@@ -23,6 +23,7 @@ import {
   imageDetailMap,
   weeklyNutrientsStatsMap,
   weeklyHealthStatsMap,
+  hourlyNutrientsStatsMap,
 } from "./marshal.js";
 import {
   addDays,
@@ -33,8 +34,6 @@ import {
   round,
   sum,
   avg,
-  extractStatValues,
-  scaleUpBubbleValue,
   SHORT_MONTHS,
 } from "./utils.js";
 import { NOTES_DELIMITER } from "./constants";
@@ -57,7 +56,7 @@ const LAST_90_DAYS = "last90Days";
 const THIS_YEAR = "thisYear";
 const DEFAULT_TRENDS_DATE_RANGE = LAST_7_DAYS;
 
-// Heatmap
+// Heatmaps
 const LOW_CALORIES_THRESHOLD_START = 0;
 const LOW_CALORIES_THRESHOLD_END = 1700;
 const TARGET_CALORIES_THRESHOLD_START = LOW_CALORIES_THRESHOLD_END + 1;
@@ -68,6 +67,10 @@ const EXCESS_CALORIES_THRESHOLD_END = 9999;
 const LOW_RANGE_COLOR = "#3D99AC";
 const TARGET_RANGE_COLOR = "#47AA35";
 const EXCESS_RANGE_COLOR = "#DE281F";
+
+// 800px is cut-off in the css for desktop styling
+const HOURLY_HEATMAP_HEIGHT = window.screen.width > 800 ? 200 : 100;
+const MAX_X_AXIS_HOURLY_TICKS = 8;
 
 // Corresponds to CSS color scheme
 // (TODO): Would be nicer to just define these in one place (either in js or css) and re-use
@@ -366,11 +369,14 @@ const EntryDetailItem = ({
   </div>
 );
 
+// MultiLineChart helpers
+const _extractStatValues = (stats) => stats.map((x) => x[1]);
+
 const MultiLineChart = ({ title, macroData }) => {
   const { labels } = macroData;
-  const minValues = extractStatValues(macroData.minValues);
-  const averageValues = extractStatValues(macroData.averageValues);
-  const maxValues = extractStatValues(macroData.maxValues);
+  const minValues = _extractStatValues(macroData.minValues);
+  const averageValues = _extractStatValues(macroData.averageValues);
+  const maxValues = _extractStatValues(macroData.maxValues);
 
   const data = {
     labels,
@@ -469,7 +475,7 @@ const MultiLineChart = ({ title, macroData }) => {
   );
 };
 
-// Heatmap helpers
+// CalorieHeatmap helpers
 const _formatChartDate = (dateStr) => {
   const date = new Date(dateStr);
   const month = SHORT_MONTHS[date.getMonth()];
@@ -494,10 +500,62 @@ const _formatHeatMapTooltip = (
   return `${formattedDate}: ${value}${suffix}`;
 };
 
-const CalorieHeatMap = ({ title, macroData }) => {
-  const { labels, heatMapValues } = macroData;
+const HourlyCalorieHeatMap = ({ macroData }) => {
+  const { labels, heatMapSeries } = macroData;
 
-  const series = _extractHeatMapSeries(heatMapValues);
+  console.log(heatMapSeries);
+  const options = {
+    dataLabels: { enabled: false },
+    chart: { toolbar: { show: false } },
+    title: {
+      text: "Average intraday calorie consumption",
+      align: "center",
+    },
+    stroke: { width: 1 },
+    tooltip: {
+      y: {
+        title: {
+          formatter: (seriesName) => "",
+        },
+      },
+    },
+    plotOptions: {
+      heatmap: {
+        useFillColorAsStroke: true,
+        colors: ["#008FFB"],
+      },
+    },
+    xaxis: {
+      type: "category",
+      categories: labels,
+      tickAmount: MAX_X_AXIS_HOURLY_TICKS,
+      tickPlacement: "on",
+      labels: {
+        rotate: MAX_X_AXIS_ROTATION,
+      },
+    },
+    yaxis: {
+      show: false,
+    },
+  };
+
+  return (
+    <div className="trends-chart">
+      <div className="trends-chart-data">
+        <ApexChart
+          series={heatMapSeries}
+          options={options}
+          type="heatmap"
+          height={HOURLY_HEATMAP_HEIGHT}
+        />
+      </div>
+    </div>
+  );
+};
+const WeekdayCalorieHeatMap = ({ title, macroData }) => {
+  const { labels, weekdayHeatMapValues } = macroData;
+
+  const series = _extractHeatMapSeries(weekdayHeatMapValues);
   const options = {
     dataLabels: { enabled: false },
     chart: { toolbar: { show: false } },
@@ -506,7 +564,7 @@ const CalorieHeatMap = ({ title, macroData }) => {
       y: {
         formatter: (value, { series, seriesIndex, dataPointIndex, w }) =>
           _formatHeatMapTooltip(
-            heatMapValues,
+            weekdayHeatMapValues,
             seriesIndex,
             dataPointIndex,
             " calories"
@@ -519,7 +577,7 @@ const CalorieHeatMap = ({ title, macroData }) => {
     plotOptions: {
       heatmap: {
         useFillColorAsStroke: true,
-        radius: 0,
+        enableShades: true,
         colorScale: {
           ranges: [
             {
@@ -567,90 +625,12 @@ const CalorieHeatMap = ({ title, macroData }) => {
   );
 };
 
-// (TODO): Not using atm, delete if not neccesary
-const extractBubbleRadius = (bubbleValues, item) => bubbleValues[item.index].r;
-const extractOriginalBubbleValue = (bubbleValues, item) =>
-  scaleUpBubbleValue(extractBubbleRadius(bubbleValues, item));
-const BubbleChart = ({ title, macroData }) => {
-  const { bubbleValues } = macroData;
-
-  const data = {
-    datasets: [
-      {
-        borderColor: STATS_BACKGROUND_COLOR,
-        backgroundColor: STATS_BACKGROUND_COLOR,
-        pointBackgroundColor: PRIMARY_COLOR,
-        borderRadius: 0,
-        data: bubbleValues,
-      },
-    ],
-  };
-  const options = {
-    spanGaps: true,
-    legend: {
-      display: false,
-      fontColor: INFO_COLOR,
-      fontFamily: FONT_FAMILY,
-      fontSize: CHART_FONT_SIZE,
-    },
-    tooltips: {
-      callbacks: {
-        label: (item, _) => {
-          const val = extractOriginalBubbleValue(bubbleValues, item);
-          return `Calories: ${val}`;
-        },
-      },
-    },
-    scales: {
-      xAxes: [
-        {
-          type: "time",
-          gridLines: { display: false },
-          time: {
-            tooltipFormat: "MMM DD YYYY",
-            minUnit: "day",
-          },
-          ticks: {
-            fontFamily: FONT_FAMILY,
-            fontColor: INFO_COLOR,
-            fontSize: CHART_FONT_SIZE,
-            maxRotation: MAX_X_AXIS_ROTATION,
-            maxTicksLimit: MAX_TICKS,
-            padding: AXIS_PADDING,
-          },
-        },
-      ],
-      yAxes: [
-        {
-          type: "category",
-          labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-          gridLines: { display: false },
-          ticks: {
-            fontFamily: FONT_FAMILY,
-            fontColor: INFO_COLOR,
-            fontSize: CHART_FONT_SIZE,
-            padding: AXIS_PADDING,
-          },
-        },
-      ],
-    },
-  };
-
-  return (
-    <div className="trends-chart">
-      <div className="trends-chart-title">{title}</div>
-      <div className="trends-chart-data">
-        <Bubble data={data} options={options} />
-      </div>
-    </div>
-  );
-};
-
 const Trends = ({
   dateRange,
   updateDateRange,
   nutrientsTrendData,
   nutrientsWeeklyStats,
+  nutrientsHourlyStats,
   healthWeeklyStats,
 }) => {
   const averageCalories = roundedAvg(
@@ -730,12 +710,12 @@ const Trends = ({
         </div>
       </div>
       <div className="trends-charts-container">
-        {/* <LineChart title="Weight (lb)" macroData={healthTrendData.weight} /> */}
-        <MultiLineChart title="Weight" macroData={healthWeeklyStats.weight} />
-        <CalorieHeatMap
+        <HourlyCalorieHeatMap macroData={nutrientsHourlyStats.calories} />
+        <WeekdayCalorieHeatMap
           title="Daily Calories"
           macroData={nutrientsWeeklyStats.calories}
         />
+        <MultiLineChart title="Weight" macroData={healthWeeklyStats.weight} />
         <MultiLineChart
           title="Weekly Calories"
           macroData={nutrientsWeeklyStats.calories}
@@ -1011,6 +991,9 @@ class App extends React.Component {
     const nutrientsWeeklyStats = weeklyNutrientsStatsMap(
       nutrientsToDailyTotalsMap(entriesToDateMap)
     );
+    const nutrientsHourlyStats = hourlyNutrientsStatsMap(
+      filterEntries(dateRange, entriesToDateMap)
+    );
     const healthWeeklyStats = weeklyHealthStatsMap(
       healthToDailyTotalsMap(healthData)
     );
@@ -1120,6 +1103,7 @@ class App extends React.Component {
             updateDateRange={this.updateDateRange}
             nutrientsTrendData={nutrientsTrendData}
             nutrientsWeeklyStats={nutrientsWeeklyStats}
+            nutrientsHourlyStats={nutrientsHourlyStats}
             healthWeeklyStats={healthWeeklyStats}
           />
         )}

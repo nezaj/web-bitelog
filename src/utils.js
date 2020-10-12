@@ -89,6 +89,8 @@ const getDateSuffix = (day) => {
 
 // getWeekDayName("10/11/2020") -> "Sunday"
 const getWeekyDayName = (date) => WEEKDAYS[new Date(date).getDay()];
+
+// getWeekDayName("10/11/2020") -> "Sun"
 const getShortWeekyDayName = (date) => SHORT_WEEKDAYS[new Date(date).getDay()];
 
 // '5/19/2020' -> Tuesday, May 19th, 2020
@@ -166,7 +168,7 @@ const eatingWindow = (dates) => {
 // (TODO): Not using atm, delete if not needed
 const TARGET_BUBBLE_CALORIES = 2000;
 const TARGET_BUBBLE_RADIUS_SIZE = 10;
-const extractStatValues = (stats) => stats.map((x) => x[1]);
+
 const scaleDownBubbleValue = (originalValue) =>
   (originalValue / TARGET_BUBBLE_CALORIES) * TARGET_BUBBLE_RADIUS_SIZE;
 const scaleUpBubbleValue = (scaledDownValue) =>
@@ -250,33 +252,66 @@ const rotateArrayToVal = (arr, val) => {
   return arr.slice(idx).concat(arr.slice(0, idx));
 };
 
+// range(3) -> [1, 2, 3]
+const range = (n) => new Array(n).fill(1).map((x, idx) => x + idx);
+
+// Useful for transforming maps from one form to another
+// marshalMap((val) => val + 1, {"a": 1, "b": 2}, ["a"]) => {"a": 2}
+const transformMap = (fn, _map, keys) =>
+  keys.reduce((res, key) => {
+    // (XXX): Another "yarn build" gotcha -- we cannot do the commented line below
+    // because interpolating [key] does not work when doing production build  :(
+    // Object.assign({}, res, { [key]: _buildWeeklyStats(dailyMap[key])})
+    res[key] = fn(_map[key]);
+    return res;
+  }, {});
+
+// collect((item) => item % 2 === 0 ? "even" : "odd", [1, 2, 3]) => {"odd": [1, 3], "even": [2]}
+const collect = (fnCollector, items) =>
+  items.reduce((res, item) => {
+    const key = fnCollector(item);
+    res[key] = res[key] || [];
+    res[key].push(item);
+    return res;
+  }, {});
+
+// defaultMap(["a", "b", "c'"], []) => {"a": [], "b": [], "c": []}
+const defaultMap = (keys, defaultVal) =>
+  keys.reduce((res, key) => {
+    res[key] = res[key] || defaultVal;
+    return res;
+  }, {});
+
 // Doing this so finding references works in VSCode
 // See: https://github.com/microsoft/vscode/issues/21507#issuecomment-369118734
-module.exports.WEEKDAYS = WEEKDAYS;
-module.exports.SHORT_WEEKDAYS = SHORT_WEEKDAYS;
 module.exports.SHORT_MONTHS = SHORT_MONTHS;
+module.exports.SHORT_WEEKDAYS = SHORT_WEEKDAYS;
+module.exports.WEEKDAYS = WEEKDAYS;
 module.exports.addDays = addDays;
-module.exports.getWeekyDayName = getWeekyDayName;
-module.exports.getShortWeekyDayName = getShortWeekyDayName;
+module.exports.avg = avg;
 module.exports.chunk = chunk;
-module.exports.rotateArrayToVal = rotateArrayToVal;
+module.exports.collect = collect;
 module.exports.createImageDetail = createImageDetail;
+module.exports.defaultMap = defaultMap;
 module.exports.eatingWindow = eatingWindow;
 module.exports.extractDate = extractDate;
 module.exports.extractTime = extractTime;
 module.exports.friendlyDate = friendlyDate;
 module.exports.getImageId = getImageId;
 module.exports.getImageKey = getImageKey;
+module.exports.getShortWeekyDayName = getShortWeekyDayName;
+module.exports.getWeekyDayName = getWeekyDayName;
 module.exports.localTimeToDate = localTimeToDate;
+module.exports.max = max;
 module.exports.maxDate = maxDate;
+module.exports.min = min;
 module.exports.minDate = minDate;
 module.exports.mostRecentWeekDayDate = mostRecentWeekDayDate;
 module.exports.nextWeekDayDate = nextWeekDayDate;
+module.exports.range = range;
+module.exports.rotateArrayToVal = rotateArrayToVal;
+module.exports.round = round;
 module.exports.scaleDownBubbleValue = scaleDownBubbleValue;
 module.exports.scaleUpBubbleValue = scaleUpBubbleValue;
-module.exports.extractStatValues = extractStatValues;
-module.exports.round = round;
 module.exports.sum = sum;
-module.exports.max = max;
-module.exports.min = min;
-module.exports.avg = avg;
+module.exports.transformMap = transformMap;
