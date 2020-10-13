@@ -619,7 +619,9 @@ const WeekdayCalorieHeatMap = ({ title, macroData }) => {
         formatter: (value) => _formatChartDate(value),
         rotate: MAX_X_AXIS_ROTATION,
       },
+      axisBorder: { show: false },
     },
+    grid: { show: false },
   };
 
   return (
@@ -705,12 +707,7 @@ const WeekdayWaterHeatMap = ({ title, macroData }) => {
     <div className="trends-chart">
       <div className="trends-chart-title">{title}</div>
       <div className="trends-chart-data">
-        <ApexChart
-          series={series}
-          options={options}
-          type="heatmap"
-          height={350}
-        />
+        <ApexChart series={series} options={options} type="heatmap" />
       </div>
     </div>
   );

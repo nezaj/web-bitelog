@@ -12,7 +12,7 @@ const {
   min,
   avg,
   round,
-  nextWeekDayDate,
+  mostRecentWeekDayDate,
   getShortWeekyDayName,
   rotateArrayToVal,
   SHORT_WEEKDAYS,
@@ -31,7 +31,6 @@ const {
   addWeeks,
   tuplesToMap,
   daysBetween,
-  mostRecentWeekDayDate,
 } = require("./utils.js");
 const {
   extractCalories,
@@ -46,9 +45,9 @@ const {
 const ML_TO_CUPS_DIVISOR = 236.59;
 
 // Used for weekly trend data
-// (TODO): These values need to be adjacent to each other or else things will break. Right now it's simply enough
-// to just do Sunday/Monday, but if I wanted more flexibility would want to re-think this
-const WEEK_ENDING_ON_DAYNAME = "Sunday";
+// (TODO): Week start/end needs to match the start of the heatmap week days. May want to clean this up so just
+// need to update one value instead of three
+const WEEK_ENDING_ON_DAYNAME = "Monday";
 const WEEK_STARTING_ON_DAYNAME = "Monday";
 const HEATMAP_WEEK_DAYS = rotateArrayToVal(SHORT_WEEKDAYS, "Mon").reverse(); // We reverse so Monday will be top series
 
@@ -203,7 +202,7 @@ const _buildClosedDailyRange = (startDate, endDate) => {
 const _dailyTupleDate = (tup) => tup[0];
 const _dailyTupleValue = (tup) => tup[1];
 const _groupByWeek = (dateStr) =>
-  nextWeekDayDate(dateStr, WEEK_ENDING_ON_DAYNAME);
+  mostRecentWeekDayDate(dateStr, WEEK_ENDING_ON_DAYNAME);
 const _groupDailyTuplesByWeek = (tup) => _groupByWeek(_dailyTupleDate(tup));
 
 // Transforms tuples of daily values into a map of weekly statistics
