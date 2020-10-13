@@ -47,6 +47,21 @@ const SHORT_MONTHS = [
   "Dec",
 ];
 
+const MS_TO_MS = 1;
+const MS_TO_SEC = MS_TO_MS * 1000;
+const MS_TO_MIN = MS_TO_SEC * 60;
+const MS_TO_HOURS = MS_TO_MIN * 60;
+const MS_TO_DAYS = MS_TO_HOURS * 24;
+const MS_TO_WEEKS = MS_TO_DAYS * 7;
+const MS_TO_UNIT_MAP = {
+  ms: MS_TO_MS,
+  sec: MS_TO_SEC,
+  min: MS_TO_MIN,
+  hours: MS_TO_HOURS,
+  days: MS_TO_DAYS,
+  weeks: MS_TO_WEEKS,
+};
+
 const maxDate = (dates) =>
   dates.reduce((a, b) => (new Date(a) > new Date(b) ? a : b));
 const minDate = (dates) =>
@@ -56,6 +71,10 @@ const addDays = (date, days) => {
   const copy = new Date(date);
   copy.setDate(copy.getDate() + days);
   return copy;
+};
+
+const addWeeks = (date, weeks) => {
+  return addDays(date, 7 * weeks);
 };
 
 const isToday = (date) => {
@@ -143,10 +162,17 @@ const extractTime = (date) => {
   return `${hours}:${minutes} ${suffix}`;
 };
 
-// Order doesnt mater
-const getHoursBetween = (d1, d2) => {
-  return Math.abs((new Date(d1) - new Date(d2)) / (1000 * 60 * 60));
+//
+const _timeBetween = (d1, d2, label) => {
+  const den = MS_TO_UNIT_MAP[label] || MS_TO_MS;
+  return Math.abs((new Date(d1) - new Date(d2)) / den);
 };
+const msBetween = (d1, d2) => _timeBetween(d1, d2, "ms");
+const secondsBetween = (d1, d2) => _timeBetween(d1, d2, "sec");
+const minutesBetween = (d1, d2) => _timeBetween(d1, d2, "min");
+const hoursBetween = (d1, d2) => _timeBetween(d1, d2, "hours");
+const daysBetween = (d1, d2) => _timeBetween(d1, d2, "days");
+const weeksBetween = (d1, d2) => _timeBetween(d1, d2, "weeks");
 
 // Eating window is just time between starting our first and finishing our last meal rounded up to the nearest whole hour
 // We round up because the last timestamp is when we "started" eating and not when we actually "finished"
@@ -160,7 +186,7 @@ const eatingWindow = (dates) => {
   copy.sort((a, b) => new Date(a) - new Date(b));
   const start = copy[0];
   const end = copy[copy.length - 1];
-  return Math.ceil(getHoursBetween(start, end)) || 1;
+  return Math.ceil(hoursBetween(start, end)) || 1;
 };
 
 // mostRecentWeekDayDate('10/09/2020', 'Monday') -> '10/5/2020'
@@ -209,17 +235,17 @@ const createImageDetail = (key, imageURL, localTimeInt, mealLabel) => ({
 // Misc
 // ---------------------------------------------------------------------------
 // round(10.23, 0) => 10
-const round = (num, precision) =>
-  Math.round((num + Number.EPSILON) * Math.pow(10, precision)) /
-  Math.pow(10, precision);
 const _clean = (items) => items.filter((x) => !isNaN(x));
+const min = (items) => Math.min.apply(null, _clean(items)); // work-around for webpack spread-operator issue
+const max = (items) => Math.max.apply(null, _clean(items)); // work-around for webpack spread-operator issue
 const sum = (items) => _clean(items).reduce((xs, x) => (xs += x), 0);
 const avg = (items) => {
   const filtered = _clean(items);
   return filtered.length ? sum(filtered) / filtered.length : null;
 };
-const max = (items) => Math.max.apply(null, _clean(items)); // work-around for webpack spread-operator issue
-const min = (items) => Math.min.apply(null, _clean(items)); // work-around for webpack spread-operator issue
+const round = (num, precision) =>
+  Math.round((num + Number.EPSILON) * Math.pow(10, precision)) /
+  Math.pow(10, precision);
 
 // chunk([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3) => [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
 // Thanks: https://stackoverflow.com/a/50766024
@@ -271,6 +297,12 @@ const defaultMap = (keys, defaultVal) =>
     return res;
   }, {});
 
+const tuplesToMap = (tuples) =>
+  tuples.reduce((res, [k, v]) => {
+    res[k] = v;
+    return res;
+  }, {});
+
 // Partition helpers
 const addPartition = (partitions, newPartition) =>
   partitions.concat([newPartition]);
@@ -286,32 +318,48 @@ const replaceLastPartition = (partitions, newPartition) =>
 module.exports.SHORT_MONTHS = SHORT_MONTHS;
 module.exports.SHORT_WEEKDAYS = SHORT_WEEKDAYS;
 module.exports.WEEKDAYS = WEEKDAYS;
+
 module.exports.addDays = addDays;
-module.exports.avg = avg;
-module.exports.chunk = chunk;
-module.exports.collect = collect;
-module.exports.createImageDetail = createImageDetail;
-module.exports.defaultMap = defaultMap;
+module.exports.addWeeks = addWeeks;
+
 module.exports.eatingWindow = eatingWindow;
 module.exports.extractDate = extractDate;
 module.exports.extractTime = extractTime;
 module.exports.friendlyDate = friendlyDate;
-module.exports.getImageId = getImageId;
-module.exports.getImageKey = getImageKey;
+module.exports.maxDate = maxDate;
+module.exports.minDate = minDate;
 module.exports.getShortWeekyDayName = getShortWeekyDayName;
 module.exports.getWeekyDayName = getWeekyDayName;
 module.exports.localTimeToDate = localTimeToDate;
-module.exports.max = max;
-module.exports.maxDate = maxDate;
-module.exports.min = min;
-module.exports.minDate = minDate;
 module.exports.mostRecentWeekDayDate = mostRecentWeekDayDate;
 module.exports.nextWeekDayDate = nextWeekDayDate;
-module.exports.range = range;
-module.exports.rotateArrayToVal = rotateArrayToVal;
-module.exports.round = round;
+
+module.exports.msBetween = msBetween;
+module.exports.secondsBetween = secondsBetween;
+module.exports.minutesBetween = minutesBetween;
+module.exports.hoursBetween = hoursBetween;
+module.exports.daysBetween = daysBetween;
+module.exports.hoursBetween = hoursBetween;
+module.exports.weeksBetween = weeksBetween;
+
+module.exports.createImageDetail = createImageDetail;
+module.exports.getImageId = getImageId;
+module.exports.getImageKey = getImageKey;
+
+module.exports.min = min;
+module.exports.max = max;
 module.exports.sum = sum;
+module.exports.avg = avg;
+module.exports.round = round;
+
+module.exports.chunk = chunk;
+module.exports.rotateArrayToVal = rotateArrayToVal;
+module.exports.range = range;
 module.exports.transformMap = transformMap;
+module.exports.collect = collect;
+module.exports.defaultMap = defaultMap;
+module.exports.tuplesToMap = tuplesToMap;
+
 module.exports.addPartition = addPartition;
 module.exports.dropLastPartition = dropLastPartition;
 module.exports.extendPartition = extendPartition;

@@ -27,6 +27,12 @@ const {
   extractLastPartition,
   replaceLastPartition,
   dropLastPartition,
+  minutesBetween,
+  weeksBetween,
+  addWeeks,
+  tuplesToMap,
+  minDate,
+  daysBetween,
 } = require("./utils.js");
 const {
   extractCalories,
@@ -39,9 +45,6 @@ const {
 
 // 236.59ml is 1 US cup
 const ML_TO_CUPS_DIVISOR = 236.59;
-
-// 1000ms -> second, 60 second -> min
-const MS_TO_MIN = 1000 * 60;
 
 // Used for weekly trend data
 const WEEK_ENDING_ON_DAYNAME = "Monday"; // Determines week-day of each data point on weekly trends graphs
@@ -164,7 +167,7 @@ const weeklyNutrientsStatsMap = (dailyNutrientMap) => {
 
 // Transforms daily heath data into weekly statistics
 const weeklyHealthStatsMap = (dailyHealthMap) => {
-  return _buildWeeklyStatsMap(dailyHealthMap, ["weight"]);
+  return _buildWeeklyStatsMap(dailyHealthMap, ["weight", "water"]);
 };
 
 // Transforms daily nutrients data into hourly statistics
@@ -221,17 +224,35 @@ const _groupByDateCutoff = (fnCutoffUpdater, dateValueTuples, initialDate) => {
   }, {});
 };
 
+// closedRange(new Date('10/01/20'), new Date('10/19/20')) -> [ '10/1/2020', '10/8/2020', '10/15/2020']
+// closedRange(new Date('10/01/20'), new Date('10/22/20')) -> [ '10/1/2020', '10/8/2020', '10/15/2020', '10/22/2020' ]
+const _buildClosedWeekRange = (startDate, endDate) => {
+  const numWeeks = Math.floor(weeksBetween(startDate, endDate)) + 1;
+  return range(numWeeks).map((x) => extractDate(addWeeks(startDate, x - 1)));
+};
+
+// closedRange(new Date('10/01/20'), new Date('10/03/20')) -> [ '10/1/2020', '10/02/2020', '10/03/2020']
+// closedRange(new Date('10/01/20'), new Date('10/01/20')) -> [ '10/1/2020' ]
+const _buildClosedDailyRange = (startDate, endDate) => {
+  const numDays = Math.floor(daysBetween(startDate, endDate)) + 1;
+  return range(numDays).map((x) => extractDate(addDays(startDate, x - 1)));
+};
+
 // Transforms tuples of daily values into a map of weekly statistics
 const _buildWeeklyStats = (dailyTuples) => {
   // Group labels starting from earliest to latest date
-  const sorted = dailyTuples.sort((second, first) =>
-    new Date(first[0]) < new Date(second[0]) ? 1 : -1
-  );
+  const sorted = dailyTuples
+    .slice()
+    .sort((second, first) =>
+      new Date(first[0]) < new Date(second[0]) ? 1 : -1
+    );
+
   const earliestDate = sorted[0][0];
+  const firstWeek = nextWeekDayDate(earliestDate, WEEK_ENDING_ON_DAYNAME);
   const grouped = _groupByDateCutoff(
     (dateCutoff) => addDays(dateCutoff, GROUP_SIZE),
     sorted,
-    nextWeekDayDate(earliestDate, WEEK_ENDING_ON_DAYNAME)
+    firstWeek
   );
 
   // Calculate statistics
@@ -252,7 +273,7 @@ const _buildWeeklyStats = (dailyTuples) => {
   ]);
 
   // HeatMap series
-  const groupValues = nonEmptyLabels.map((label) => ({
+  const groupValues = Object.keys(grouped).map((label) => ({
     label,
     dates: grouped[label].map((tup) => tup[0]),
     weekdays: grouped[label].map((tup) => getShortWeekyDayName(tup[0])),
@@ -273,7 +294,7 @@ const _buildWeeklyStats = (dailyTuples) => {
     const filtered = flatValues.filter((fv) => fv.weekday === dayName);
     return {
       name: dayName,
-      data: filtered.map((fv) => ({ x: fv.label, y: fv.value })),
+      data: filtered.map((fv) => ({ x: fv.label, y: round(fv.value, 0) })),
       dates: filtered.map((fv) => fv.date),
     };
   });
@@ -430,10 +451,6 @@ Begin with the first food as the head of the first partition
 Continue until all foods are partitioned
 */
 const _mealFoodsPartition = (foods) => {
-  const minutesBetween = (ts1, ts2) => {
-    return Math.floor(Math.abs(new Date(ts1) - new Date(ts2)) / MS_TO_MIN);
-  };
-
   return foods
     .sort((second, first) =>
       second.eatenAtLocalTime <= first.eatenAtLocalTime ? -1 : 1

@@ -624,6 +624,93 @@ const WeekdayCalorieHeatMap = ({ title, macroData }) => {
   );
 };
 
+const WeekdayWaterHeatMap = ({ title, macroData }) => {
+  const { labels, weekdayHeatMapValues } = macroData;
+
+  const series = _extractHeatMapSeries(weekdayHeatMapValues);
+  const options = {
+    chart: {
+      toolbar: { show: false },
+    },
+    stroke: { width: 1 },
+    tooltip: {
+      y: {
+        formatter: (value, { series, seriesIndex, dataPointIndex, w }) =>
+          _formatHeatMapTooltip(
+            weekdayHeatMapValues,
+            seriesIndex,
+            dataPointIndex,
+            " cups"
+          ),
+        title: {
+          formatter: (seriesName) => "",
+        },
+      },
+    },
+    plotOptions: {
+      heatmap: {
+        useFillColorAsStroke: true,
+        enableShades: false,
+        dataLabels: {
+          enabled: true,
+          style: {
+            colors: ["#fff"],
+          },
+        },
+        colorScale: {
+          ranges: [
+            {
+              from: -1,
+              to: -1,
+              name: `Moop`,
+              color: "#fff",
+            },
+            {
+              from: 0,
+              to: 7.99,
+              name: `<= ${LOW_CALORIES_THRESHOLD_END} (low)`,
+              color: LOW_RANGE_COLOR,
+            },
+            {
+              from: 8,
+              to: 100,
+              name: `${TARGET_CALORIES_THRESHOLD_START} - ${TARGET_CALORIES_THRESHOLD_END} (target)`,
+              color: TARGET_RANGE_COLOR,
+            },
+          ],
+        },
+      },
+    },
+    xaxis: {
+      type: "category",
+      categories: labels,
+      tickAmount: MAX_TICKS,
+      tickPlacement: "on",
+      labels: {
+        format: "MMM dd",
+        formatter: (value) => _formatChartDate(value),
+        rotate: MAX_X_AXIS_ROTATION,
+      },
+      axisBorder: { show: false },
+    },
+    grid: { show: false },
+  };
+
+  return (
+    <div className="trends-chart">
+      <div className="trends-chart-title">{title}</div>
+      <div className="trends-chart-data">
+        <ApexChart
+          series={series}
+          options={options}
+          type="heatmap"
+          height={350}
+        />
+      </div>
+    </div>
+  );
+};
+
 const Trends = ({
   dateRange,
   updateDateRange,
@@ -713,6 +800,10 @@ const Trends = ({
         <WeekdayCalorieHeatMap
           title="Daily Calories"
           macroData={nutrientsWeeklyStats.calories}
+        />
+        <WeekdayWaterHeatMap
+          title="Daily Water"
+          macroData={healthWeeklyStats.water}
         />
         <MultiLineChart title="Weight" macroData={healthWeeklyStats.weight} />
         <MultiLineChart
