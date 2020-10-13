@@ -162,7 +162,6 @@ const extractTime = (date) => {
   return `${hours}:${minutes} ${suffix}`;
 };
 
-//
 const _timeBetween = (d1, d2, label) => {
   const den = MS_TO_UNIT_MAP[label] || MS_TO_MS;
   return Math.abs((new Date(d1) - new Date(d2)) / den);
@@ -178,6 +177,7 @@ const weeksBetween = (d1, d2) => _timeBetween(d1, d2, "weeks");
 // We round up because the last timestamp is when we "started" eating and not when we actually "finished"
 // As a result we round-up to account for "eating" time
 // Note: For days with only one meal will return 1
+// (TODO): Consider moving this out of utils -- it's pretty specific to this project
 const eatingWindow = (dates) => {
   if (dates.length === 0) {
     return 0;
@@ -203,9 +203,9 @@ const mostRecentWeekDayDate = (startDate, weekdayName) => {
 
 // nextWeekDayDate('10/01/2020', 'Sunday') -> '10/4/2020'
 // nextWeekDayDate('10/01/2020', 'Monday') -> '10/5/2020'
-// nextWeekDayDate('10/05/2020', 'Monday') -> '10/5/2020'
+// nextWeekDayDate('10/05/2020', 'Monday') -> '10/12/2020'
 const nextWeekDayDate = (startDate, weekdayName) => {
-  return mostRecentWeekDayDate(addDays(startDate, 6), weekdayName);
+  return mostRecentWeekDayDate(addWeeks(startDate, 1), weekdayName);
 };
 
 // Image Helpers
@@ -213,6 +213,7 @@ const nextWeekDayDate = (startDate, weekdayName) => {
 // 'https://storage.googleapis.com/media.getbitesnap.com/prod/media/ad/94/b9e0231e449987c56f15aaa7701b.jpeg'
 // Becomes
 // ad94b9e0231e449987c56f15aaa7701b.jpeg
+// (TODO): Considering moving these out of utils (this is project specific)
 const getImageId = (url) => url.split("/media/")[1].replace(/\//g, "");
 
 // Generated identifiers for imageDetail map / detail view
@@ -297,9 +298,14 @@ const defaultMap = (keys, defaultVal) =>
     return res;
   }, {});
 
+// tuplesToMap(["a", 1], ["b", 2]) => {"a": 1, "b": 2}
 const tuplesToMap = (tuples) =>
-  tuples.reduce((res, [k, v]) => {
-    res[k] = v;
+  tuples.reduce((res, tup) => {
+    // (XXX): Webpack won't build in production if I do array destructuring like below :(
+    // const [key, value] = tup;
+    const key = tup[0];
+    const value = tup[1];
+    res[key] = value;
     return res;
   }, {});
 

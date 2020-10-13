@@ -26,13 +26,12 @@ const {
   extractPartitionHead,
   extractLastPartition,
   replaceLastPartition,
-  dropLastPartition,
   minutesBetween,
   weeksBetween,
   addWeeks,
   tuplesToMap,
-  minDate,
   daysBetween,
+  mostRecentWeekDayDate,
 } = require("./utils.js");
 const {
   extractCalories,
@@ -47,8 +46,10 @@ const {
 const ML_TO_CUPS_DIVISOR = 236.59;
 
 // Used for weekly trend data
-const WEEK_ENDING_ON_DAYNAME = "Monday"; // Determines week-day of each data point on weekly trends graphs
-const GROUP_SIZE = 7;
+// (TODO): These values need to be adjacent to each other or else things will break. Right now it's simply enough
+// to just do Sunday/Monday, but if I wanted more flexibility would want to re-think this
+const WEEK_ENDING_ON_DAYNAME = "Sunday";
+const WEEK_STARTING_ON_DAYNAME = "Monday";
 const HEATMAP_WEEK_DAYS = rotateArrayToVal(SHORT_WEEKDAYS, "Mon").reverse(); // We reverse so Monday will be top series
 
 // Hours of the day: 12am -> 11pm
@@ -185,45 +186,6 @@ const hourlyNutrientsStatsMap = (dateToEntriesMap) => {
   }, {});
 };
 
-// Groups date value tuples by cut-off dates. Takes in an updater function for flexibility in defining how successive
-// cuttoffs can be updated (e.g. addDays(dateCutoff, 7) to increment the cutoff by a week)
-const _groupByDateCutoff = (fnCutoffUpdater, dateValueTuples, initialDate) => {
-  const grouped = dateValueTuples.reduce(
-    ({ groups, labels, dateCutoff }, tuple) => {
-      const date = tuple[0];
-      if (new Date(date) < new Date(dateCutoff)) {
-        const previousGroups = dropLastPartition(groups);
-        const newValue = [tuple];
-        const newGroup = extendPartition(
-          extractLastPartition(groups),
-          newValue
-        );
-        return {
-          groups: addPartition(previousGroups, newGroup),
-          labels,
-          dateCutoff,
-        };
-      } else {
-        const newGroup = [tuple];
-        const newDateCutoff = fnCutoffUpdater(dateCutoff);
-        return {
-          groups: addPartition(groups, newGroup),
-          labels: extendPartition(labels, extractDate(new Date(newDateCutoff))),
-          dateCutoff: newDateCutoff,
-        };
-      }
-    },
-    { groups: [[]], labels: [initialDate], dateCutoff: initialDate }
-  );
-
-  const { groups, labels } = grouped;
-  return labels.reduce((res, label, idx) => {
-    res[label] = res[label] || [];
-    res[label] = res[label].concat(groups[idx]);
-    return res;
-  }, {});
-};
-
 // closedRange(new Date('10/01/20'), new Date('10/19/20')) -> [ '10/1/2020', '10/8/2020', '10/15/2020']
 // closedRange(new Date('10/01/20'), new Date('10/22/20')) -> [ '10/1/2020', '10/8/2020', '10/15/2020', '10/22/2020' ]
 const _buildClosedWeekRange = (startDate, endDate) => {
@@ -238,21 +200,29 @@ const _buildClosedDailyRange = (startDate, endDate) => {
   return range(numDays).map((x) => extractDate(addDays(startDate, x - 1)));
 };
 
+const _dailyTupleDate = (tup) => tup[0];
+const _dailyTupleValue = (tup) => tup[1];
+const _groupByWeek = (dateStr) =>
+  nextWeekDayDate(dateStr, WEEK_ENDING_ON_DAYNAME);
+const _groupDailyTuplesByWeek = (tup) => _groupByWeek(_dailyTupleDate(tup));
+
 // Transforms tuples of daily values into a map of weekly statistics
 const _buildWeeklyStats = (dailyTuples) => {
-  // Group labels starting from earliest to latest date
+  // Group labels by week (earliest to latest)
   const sorted = dailyTuples
     .slice()
     .sort((second, first) =>
-      new Date(first[0]) < new Date(second[0]) ? 1 : -1
+      new Date(_dailyTupleDate(second)) < new Date(_dailyTupleDate(first))
+        ? -1
+        : 1
     );
-
-  const earliestDate = sorted[0][0];
-  const firstWeek = nextWeekDayDate(earliestDate, WEEK_ENDING_ON_DAYNAME);
-  const grouped = _groupByDateCutoff(
-    (dateCutoff) => addDays(dateCutoff, GROUP_SIZE),
-    sorted,
-    firstWeek
+  const firstWeek = _groupDailyTuplesByWeek(sorted[0]);
+  const lastWeek = _groupDailyTuplesByWeek(sorted[sorted.length - 1]);
+  const weekRange = _buildClosedWeekRange(firstWeek, lastWeek);
+  const grouped = Object.assign(
+    {},
+    defaultMap(weekRange, []),
+    collect(_groupDailyTuplesByWeek, sorted)
   );
 
   // Calculate statistics
@@ -261,41 +231,38 @@ const _buildWeeklyStats = (dailyTuples) => {
   );
   const minValues = nonEmptyLabels.map((label) => [
     label,
-    min(grouped[label].map((tup) => tup[1])),
+    min(grouped[label].map(_dailyTupleValue)),
   ]);
   const maxValues = nonEmptyLabels.map((label) => [
     label,
-    max(grouped[label].map((tup) => tup[1])),
+    max(grouped[label].map(_dailyTupleValue)),
   ]);
   const averageValues = nonEmptyLabels.map((label) => [
     label,
-    round(avg(grouped[label].map((tup) => tup[1])), 0),
+    round(avg(grouped[label].map(_dailyTupleValue)), 0),
   ]);
 
   // HeatMap series
-  const groupValues = Object.keys(grouped).map((label) => ({
-    label,
-    dates: grouped[label].map((tup) => tup[0]),
-    weekdays: grouped[label].map((tup) => getShortWeekyDayName(tup[0])),
-    values: grouped[label].map((tup) => tup[1]),
-  }));
-  const flatValues = groupValues
-    .map((group) =>
-      group.values.map((value, idx) => ({
-        label: group.label,
-        date: group.dates[idx],
-        weekday: group.weekdays[idx],
-        value,
-      }))
-    )
-    .reduce((xs, x) => xs.concat(x), []);
+  // Adjusting first day so we have full data for each heatmap series
+  const adjustedFirstDay = mostRecentWeekDayDate(
+    _dailyTupleDate(sorted[0]),
+    WEEK_STARTING_ON_DAYNAME
+  );
+  const lastDay = _dailyTupleDate(sorted[sorted.length - 1]);
+  const dailyRange = _buildClosedDailyRange(adjustedFirstDay, lastDay);
 
+  const dailyMap = tuplesToMap(dailyTuples);
   const weekdayHeatMapValues = HEATMAP_WEEK_DAYS.map((dayName) => {
-    const filtered = flatValues.filter((fv) => fv.weekday === dayName);
+    const dates = dailyRange.filter(
+      (day) => dayName === getShortWeekyDayName(day)
+    );
     return {
       name: dayName,
-      data: filtered.map((fv) => ({ x: fv.label, y: round(fv.value, 0) })),
-      dates: filtered.map((fv) => fv.date),
+      dates,
+      data: dates.map((date) => ({
+        x: _groupByWeek(date),
+        y: isNaN(dailyMap[date]) ? -1 : round(dailyMap[date], 0),
+      })),
     };
   });
 
@@ -304,8 +271,6 @@ const _buildWeeklyStats = (dailyTuples) => {
     minValues,
     maxValues,
     averageValues,
-    flatValues,
-    groupValues,
     weekdayHeatMapValues,
   };
 };

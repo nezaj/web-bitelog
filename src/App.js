@@ -56,21 +56,25 @@ const LAST_90_DAYS = "last90Days";
 const THIS_YEAR = "thisYear";
 const DEFAULT_TRENDS_DATE_RANGE = LAST_7_DAYS;
 
-// Heatmaps
+// Heatmap Options
+const HOURLY_HEATMAP_HEIGHT = window.screen.width > 800 ? 200 : 125;
+const MAX_X_AXIS_HOURLY_TICKS = 8;
+
+// Calorie Heatmp
 const LOW_CALORIES_THRESHOLD_START = 0;
 const LOW_CALORIES_THRESHOLD_END = 1700;
 const TARGET_CALORIES_THRESHOLD_START = LOW_CALORIES_THRESHOLD_END + 1;
 const TARGET_CALORIES_THRESHOLD_END = 2300;
 const EXCESS_CALORIES_THRESHOLD_START = TARGET_CALORIES_THRESHOLD_END + 1;
 const EXCESS_CALORIES_THRESHOLD_END = 9999;
-
 const LOW_RANGE_COLOR = "#3D99AC";
 const TARGET_RANGE_COLOR = "#47AA35";
 const EXCESS_RANGE_COLOR = "#DE281F";
 
-// 800px is cut-off in the css for desktop styling
-const HOURLY_HEATMAP_HEIGHT = window.screen.width > 800 ? 200 : 125;
-const MAX_X_AXIS_HOURLY_TICKS = 8;
+// Water Heatmap
+const GOAL_WATER_THRESHOLD = 8;
+const BELOW_GOAL_WATER_COLOR = "#2DC7FF";
+const GOAL_WATER_COLOR = "#7BC00C";
 
 // Corresponds to CSS color scheme
 // (TODO): Would be nicer to just define these in one place (either in js or css) and re-use
@@ -87,6 +91,8 @@ const AXIS_PADDING = 5;
 const MAX_X_AXIS_ROTATION = 0; // Don't rotate dates, we want them to be easy to read :D
 const MAX_TICKS = 5; // Don't crowd the axis
 const STATS_BACKGROUND_COLOR = "rgba(68, 65, 106, 0.3)";
+const NO_DATA_TOOLTIP_VALUE = "N/A";
+const NO_DATA_COLOR = "#fff";
 
 // Compressed Images
 const COMPRESSED_SET = new Set(COMPRESSED_LIST);
@@ -545,10 +551,12 @@ const _formatHeatMapTooltip = (
   dataPointIdx,
   suffix = ""
 ) => {
-  const value = _extractHeatMapValue(heatMapValues, seriesIdx, dataPointIdx);
+  const rawValue = _extractHeatMapValue(heatMapValues, seriesIdx, dataPointIdx);
+  const formattedValue =
+    rawValue === -1 ? NO_DATA_TOOLTIP_VALUE : `${rawValue}${suffix}`;
   const date = _extractHeatMapDate(heatMapValues, seriesIdx, dataPointIdx);
   const formattedDate = _formatChartDate(date);
-  return `${formattedDate}: ${value}${suffix}`;
+  return `${formattedDate}: ${formattedValue}`;
 };
 
 const WeekdayCalorieHeatMap = ({ title, macroData }) => {
@@ -632,6 +640,9 @@ const WeekdayWaterHeatMap = ({ title, macroData }) => {
     chart: {
       toolbar: { show: false },
     },
+    dataLabels: {
+      enabled: false,
+    },
     stroke: { width: 1 },
     tooltip: {
       y: {
@@ -650,32 +661,26 @@ const WeekdayWaterHeatMap = ({ title, macroData }) => {
     plotOptions: {
       heatmap: {
         useFillColorAsStroke: true,
-        enableShades: false,
-        dataLabels: {
-          enabled: true,
-          style: {
-            colors: ["#fff"],
-          },
-        },
+        enableShades: true,
         colorScale: {
           ranges: [
             {
               from: -1,
-              to: -1,
-              name: `Moop`,
-              color: "#fff",
+              to: 0,
+              name: `No data`,
+              color: NO_DATA_COLOR,
             },
             {
               from: 0,
               to: 7.99,
-              name: `<= ${LOW_CALORIES_THRESHOLD_END} (low)`,
-              color: LOW_RANGE_COLOR,
+              name: `< ${GOAL_WATER_THRESHOLD} (below goal)`,
+              color: BELOW_GOAL_WATER_COLOR,
             },
             {
               from: 8,
-              to: 100,
-              name: `${TARGET_CALORIES_THRESHOLD_START} - ${TARGET_CALORIES_THRESHOLD_END} (target)`,
-              color: TARGET_RANGE_COLOR,
+              to: 16,
+              name: `${GOAL_WATER_THRESHOLD}+ (target)`,
+              color: GOAL_WATER_COLOR,
             },
           ],
         },

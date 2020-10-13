@@ -1,8 +1,7 @@
 # TODOs
-* Add a streaks visualization for water
-* Implement subscribe
 * Add legend (Inform about clicking picture to enlarge / keyboard shortcuts / swiping)
 * Add about page
+* Implement subscribe
 
 # Future
 * Generalize / write generator for JoeLogs (maybe create a tutorial for how to use it)
