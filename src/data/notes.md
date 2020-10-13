@@ -1,3 +1,15 @@
+### 10/12/2020
+
+Pushed out a few updates!
+* Images are tagged by their "meal group" which is determined based on time between other images (makes the actual groupings)
+and labeled based on time of day (breakfast/lunch/dinner) and total calories of meal group (snack/meal/large meal)
+* Daily trends are now weekly trends amd each data point includes the min, average, and max value for that week
+* New heatmap for showing average intra-day calorie consumption (values are based on last 7 days, last 30 days, etc.)
+* New heatmap for showing daily calories
+* New heatmap for sharing water consumption
+
+Although I'm happy to have pushed this out I didn't make time for actual workouts! 😅 Let's get back on it :)
+
 ### 10/9/2020
 
 Oof, last few days were rough i.e. nutrition. Something about the ice cream from
