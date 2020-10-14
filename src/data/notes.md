@@ -1,3 +1,7 @@
+### 10/13/2020
+
+Back on track!
+
 ### 10/12/2020
 
 Pushed out a few updates!
