@@ -404,6 +404,9 @@ const imageDetailMap = (dateToEntriesMap) => {
     }, {});
 };
 
+// Meal grouping
+// ----------------------------------------------------------------
+
 /*
 Helper function for partioning a list of foods into meal groups and their
 corresponding total calories
@@ -455,84 +458,81 @@ const _mealFoodsPartition = (foods) => {
     );
 };
 
+// Meal/time hueristics
+// ------------------
+const _isFast = (calories) => calories === 0;
+const _isSnack = (calories) => 0 < calories && calories < MEAL_CALORIES_CUTOFF;
+const _isMeal = (calories) =>
+  MEAL_CALORIES_CUTOFF <= calories && calories < LARGE_MEAL_CALORIES_CUTOFF;
+const _isLargeMeal = (calories) => LARGE_MEAL_CALORIES_CUTOFF <= calories;
+
+const _isMorning = (hour) => MORNING_START <= hour && hour < AFTERNOON_START;
+const _isAfternoon = (hour) => AFTERNOON_START <= hour && hour < EVENING_START;
+const _isEvening = (hour) => EVENING_START <= hour && hour < LATE_NIGHT_START;
+const _isLateNight = (hour) => hour < MORNING_START || LATE_NIGHT_START <= hour;
+
+// Meal labels
+// ------------------
+const _mealLabel = (mealHour) => {
+  if (_isMorning(mealHour)) {
+    return "Breakfast";
+  } else if (_isAfternoon(mealHour)) {
+    return "Lunch";
+  } else if (_isEvening(mealHour)) {
+    return "Dinner";
+  } else if (_isLateNight(mealHour)) {
+    return "Late night meal";
+  }
+};
+
+const _snackLabel = (mealHour) => {
+  let prefix;
+  if (_isMorning(mealHour)) {
+    prefix = "Morning";
+  } else if (_isAfternoon(mealHour)) {
+    prefix = "Afternoon";
+  } else if (_isEvening(mealHour)) {
+    prefix = "Evening";
+  } else if (_isLateNight(mealHour)) {
+    prefix = "Late night";
+  }
+
+  return `${prefix} snack`;
+};
+
+// Differentiate between raw and meal labels because we want to increment
+// duplicate label types when we display them in the feed (e.g. Afternoon snack, Afternoon snack (2))
+const _getRawLabel = (calories, mealHour) => {
+  if (_isFast(calories)) {
+    return "Fast";
+  } else if (_isSnack(calories)) {
+    return _snackLabel(mealHour);
+  } else if (_isMeal(calories) || _isLargeMeal(calories)) {
+    return _mealLabel(mealHour);
+  } else {
+    return "Unknown";
+  }
+};
+
+// These labels will be displayed on the feed
+const _getMealLabel = (calories, rawLabel, labels) => {
+  const numRepeats = labels.filter((l) => l === rawLabel).length;
+  const numSuffix = numRepeats === 0 ? "" : ` (${numRepeats + 1})`;
+  const largeSuffix = !_isLargeMeal(calories) ? "" : " (large)";
+  return `${rawLabel}${numSuffix}${largeSuffix}`;
+};
+
 /*
 Helper function for transforming partions of foods into a flattened list
 of foods withs a meal label
 */
 const _labelFoodsWithMealGroup = ({ partitionedFoods, partionedCalories }) => {
-  // Hueristics
-  // ------------------
-  const isFast = (calories) => calories === 0;
-  const isSnack = (calories) => 0 < calories && calories < MEAL_CALORIES_CUTOFF;
-  const isMeal = (calories) =>
-    MEAL_CALORIES_CUTOFF <= calories && calories < LARGE_MEAL_CALORIES_CUTOFF;
-  const isLargeMeal = (calories) => LARGE_MEAL_CALORIES_CUTOFF <= calories;
-
-  const isMorning = (hour) => MORNING_START <= hour && hour < AFTERNOON_START;
-  const isAfternoon = (hour) => AFTERNOON_START <= hour && hour < EVENING_START;
-  const isEvening = (hour) => EVENING_START <= hour && hour < LATE_NIGHT_START;
-  const isLateNight = (hour) =>
-    hour < MORNING_START || LATE_NIGHT_START <= hour;
-
-  // Labels
-  // ------------------
-  const mealLabel = (mealHour) => {
-    if (isMorning(mealHour)) {
-      return "Breakfast";
-    } else if (isAfternoon(mealHour)) {
-      return "Lunch";
-    } else if (isEvening(mealHour)) {
-      return "Dinner";
-    } else if (isLateNight(mealHour)) {
-      return "Late night meal";
-    }
-  };
-
-  const snackLabel = (mealHour) => {
-    let prefix;
-    if (isMorning(mealHour)) {
-      prefix = "Morning";
-    } else if (isAfternoon(mealHour)) {
-      prefix = "Afternoon";
-    } else if (isEvening(mealHour)) {
-      prefix = "Evening";
-    } else if (isLateNight(mealHour)) {
-      prefix = "Late night";
-    }
-
-    return `${prefix} snack`;
-  };
-
-  // Differentiate between raw and meal labels because we want to increment
-  // duplicate label types when we display them in the feed (e.g. Afternoon snack, Afternoon snack (2))
-  const getRawLabel = (calories, mealHour) => {
-    if (isFast(calories)) {
-      return "Fast";
-    } else if (isSnack(calories)) {
-      return snackLabel(mealHour);
-    } else if (isMeal(calories) || isLargeMeal(calories)) {
-      return mealLabel(mealHour);
-    } else {
-      return "Unknown";
-    }
-  };
-
-  // These labels will be displayed on the feed
-  const getMealLabel = (calories, rawLabel, labels) => {
-    const numRepeats = labels.filter((l) => l === rawLabel).length;
-    const numSuffix = numRepeats === 0 ? "" : ` (${numRepeats + 1})`;
-    const largeSuffix = !isLargeMeal(calories) ? "" : " (large)";
-    return `${rawLabel}${numSuffix}${largeSuffix}`;
-  };
-
-  // Add meal labels to foods (the actual thing we want to do!)
-  // ------------------
   return partitionedFoods.reduce(
     ({ labeledFoods, rawLabels }, foods, partitionIdx) => {
       const mealCalories = partionedCalories[partitionIdx];
       const mealTime = localTimeToDate(foods[0].eatenAtLocalTime).getHours();
-      const newRawLabel = getRawLabel(mealCalories, mealTime);
-      const mealLabel = getMealLabel(mealCalories, newRawLabel, rawLabels);
+      const newRawLabel = _getRawLabel(mealCalories, mealTime);
+      const mealLabel = _getMealLabel(mealCalories, newRawLabel, rawLabels);
       // (XXX): Webpack won't build in production if I do foods.map((food) => ({...food, mealLabel}))
       // due to an issue with the spread operator. Instead we use Object.assign
       const newFoods = foods.map((food) =>
