@@ -13,6 +13,10 @@
   --calorie-summary-end: rgba(92, 205, 205, 1);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -233,13 +237,16 @@ body {
     margin-bottom: 20px;
   }
   .day-images {
-    gap: 1px;
+    gap: 5px;
   }
   .day-image {
     position: relative;
   }
   .day-image:hover {
     cursor: pointer;
+  }
+  .day-image-raw {
+    border-radius: 10px;
   }
   .day-image-banner {
     position: absolute;
@@ -248,10 +255,12 @@ body {
     bottom: 0;
     width: 100%;
     text-align: center;
-    opacity: 0.95;
-    font-size: 0.6em;
+    font-size: 0.5em;
     padding-top: 2px;
     padding-bottom: 2px;
+    border: 1px solid var(--primary-color);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
   .entry-navs {
     display: flex;
@@ -302,6 +311,9 @@ body {
   .day-image {
     position: relative;
   }
+  .day-image-raw {
+    border-radius: 20px;
+  }
   .day-image:hover {
     cursor: pointer;
   }
@@ -312,10 +324,12 @@ body {
     bottom: 0;
     width: 100%;
     text-align: center;
-    opacity: 0.95;
     font-size: 1.2em;
     padding-top: 5px;
     padding-bottom: 5px;
+    border: 1px solid var(--primary-color);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
   .entry-navs {
     display: flex;

@@ -336,6 +336,7 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
           <div className="day-image">
             <img
               alt=""
+              className="day-image-raw"
               key={idx}
               src={getImage(x.imageURL)}
               onClick={() => onShowDetail(x.key)}
