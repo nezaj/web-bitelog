@@ -73,8 +73,8 @@ const EXCESS_RANGE_COLOR = "#DE281F";
 
 // Water Heatmap
 const GOAL_WATER_THRESHOLD = 8;
-const BELOW_GOAL_WATER_COLOR = "#2DC7FF";
-const GOAL_WATER_COLOR = "#7BC00C";
+const BELOW_GOAL_WATER_COLOR = "#CFCCCC";
+const GOAL_WATER_COLOR = "#2DC7FF";
 
 // Corresponds to CSS color scheme
 // (TODO): Would be nicer to just define these in one place (either in js or css) and re-use
