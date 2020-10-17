@@ -336,6 +336,12 @@ body {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }
+  .day-image:hover .day-image-banner {
+    color: white;
+    background-color: black;
+    opacity: 0.8;
+    transition: 0.3s;
+  }
   .entry-navs {
     display: flex;
     justify-content: space-evenly;
