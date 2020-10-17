@@ -481,7 +481,7 @@ const _mealLabel = (mealHour) => {
   } else if (_isEvening(mealHour)) {
     return "Dinner";
   } else if (_isLateNight(mealHour)) {
-    return "Late night meal";
+    return "Late Night Meal";
   }
 };
 
@@ -494,10 +494,10 @@ const _snackLabel = (mealHour) => {
   } else if (_isEvening(mealHour)) {
     prefix = "Evening";
   } else if (_isLateNight(mealHour)) {
-    prefix = "Late night";
+    prefix = "Late Night";
   }
 
-  return `${prefix} snack`;
+  return `${prefix} Snack`;
 };
 
 // Differentiate between raw and meal labels because we want to increment
@@ -514,12 +514,16 @@ const _getRawLabel = (calories, mealHour) => {
   }
 };
 
+const _numPrefix = (x) => {
+  return x < 4 ? ["1st", "2nd", "3rd"][x - 1] : "4th";
+};
+
 // These labels will be displayed on the feed
 const _getMealLabel = (calories, rawLabel, labels) => {
   const numRepeats = labels.filter((l) => l === rawLabel).length;
-  const numSuffix = numRepeats === 0 ? "" : ` (${numRepeats + 1})`;
-  const largeSuffix = !_isLargeMeal(calories) ? "" : " (large)";
-  return `${rawLabel}${numSuffix}${largeSuffix}`;
+  const numPrefix = numRepeats === 0 ? "" : `${_numPrefix(numRepeats + 1)} `;
+  const largePrefix = !_isLargeMeal(calories) ? "" : "Large ";
+  return `${largePrefix}${numPrefix}${rawLabel}`;
 };
 
 /*
