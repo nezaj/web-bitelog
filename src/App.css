@@ -7,7 +7,8 @@
   --info-color: rgba(64, 50, 50, 0.75);
   --disabled-color: rgba(64, 50, 50, 0.3);
   --text-font-family: Montserrat, Helvetica, sans-serif;
-  --gap-unit: 15px;
+  --mobile-gap-unit: 15px;
+  --desktop-gap-unit: 30px;
 
   --calorie-summary-start: rgba(128, 118, 241, 1);
   --calorie-summary-end: rgba(92, 205, 205, 1);
@@ -215,7 +216,7 @@ body {
   }
 
   .day-title {
-    margin-top: var(--gap-unit);
+    margin-top: var(--desktop-gap-unit);
     margin-bottom: 10px;
   }
   .day-date {
@@ -237,7 +238,8 @@ body {
     margin-bottom: 20px;
   }
   .day-images {
-    gap: 5px;
+    gap: var(--mobile-gap-unit);
+    margin-top: var(--mobile-gap-unit);
   }
   .day-image {
     position: relative;
@@ -247,6 +249,7 @@ body {
   }
   .day-image-raw {
     border-radius: 10px;
+    box-shadow: 2px 2px 6px var(--info-color);
   }
   .day-image-banner {
     position: absolute;
@@ -281,7 +284,7 @@ body {
     cursor: pointer;
   }
   .day-title {
-    margin-top: calc(var(--gap-unit) * 2);
+    margin-top: calc(var(--desktop-gap-unit) * 2);
     margin-bottom: 10px;
   }
   .day-date {
@@ -306,13 +309,15 @@ body {
     margin-bottom: 20px;
   }
   .day-images {
-    gap: var(--gap-unit);
+    gap: var(--desktop-gap-unit);
+    margin-top: var(--desktop-gap-unit);
   }
   .day-image {
     position: relative;
   }
   .day-image-raw {
     border-radius: 20px;
+    box-shadow: 4px 4px 12px var(--info-color);
   }
   .day-image:hover {
     cursor: pointer;
