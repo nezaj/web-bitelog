@@ -103,6 +103,8 @@ const roundedAvg = (items) => Math.round(avg(items));
 const descSort = (second, first) => second - first;
 const ascLocalTime = (second, first) =>
   second.localTimeInt <= first.localTimeInt ? -1 : 1;
+const descCalorieSort = (second, first) =>
+  second.calories < first.calories ? 1 : -1;
 
 // Returns local compressed image or loads directly from url if we haven't compressed it yet
 const getImage = (url) => {
@@ -934,6 +936,7 @@ class EntryDetail extends React.Component {
 
     const detail = details[mod(index, details.length)];
     const { imageURL, time, date, macros, items, mealLabel } = detail;
+    const sortedItems = items.slice().sort(descCalorieSort);
     return (
       <div className="detail-image-info-container" key={key}>
         <div className="detail-image-container">
@@ -981,7 +984,7 @@ class EntryDetail extends React.Component {
             </span>
           </div>
           <div className="detail-items">
-            {items.map((i, idx) => (
+            {sortedItems.map((i, idx) => (
               <EntryDetailItem key={idx} {...i} />
             ))}
           </div>
