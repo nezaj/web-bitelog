@@ -843,6 +843,13 @@ class EntryDetail extends React.Component {
     Mousetrap.unbind(["esc", "x"]);
   }
 
+  componentDidMount() {
+    const { onClose } = this.props;
+    Mousetrap.bind(["left"], this.onPrev);
+    Mousetrap.bind(["right"], this.onNext);
+    Mousetrap.bind(["esc", "x"], onClose);
+  }
+
   onChangeIndex = (index) => {
     const { details } = this.props;
     const detailsIndex = mod(index, details.length);
@@ -871,11 +878,6 @@ class EntryDetail extends React.Component {
   render() {
     const { details, onClose } = this.props;
     const { index } = this.state;
-
-    // Keyboard shortcuts!
-    Mousetrap.bind(["left"], this.onPrev);
-    Mousetrap.bind(["right"], this.onNext);
-    Mousetrap.bind(["esc", "x"], onClose);
 
     // Navigation icons!
     const closeIcon = "╳";
