@@ -35,6 +35,8 @@ import {
   sum,
   avg,
   SHORT_MONTHS,
+  removeNonAlphaFromString,
+  isAlphaString,
 } from "./utils.js";
 import { NOTES_DELIMITER } from "./constants";
 
@@ -220,6 +222,33 @@ const updateLocation = (key, value) => {
 
 // Functional Components
 // ---------------------------------------------------------------------------
+const _getImageDetailSubtitle = (imageDetail) => {
+  // We'll use the food that contributed the most calories as the image's subtitle
+  // (TODO): Considering moving this logic into building the image detail instead
+  // of doing it ad-hoc here
+  const mainFoodName = imageDetail.items.slice().sort(descCalorieSort)[0].title;
+  return _getFoodSubtitle(mainFoodName);
+};
+
+// We show at most first three words of a food
+// Special case: There is a non-alphabetical character in the second word,
+// in this case we only show the first two words and remove all non-alphabetical
+// characters
+// Special case: Return empty string if this was a fast
+const _getFoodSubtitle = (foodTitle) => {
+  const split = foodTitle.split(" ").slice(0, 3);
+  // ["Mixed", "Nuts,", "Dry"] -> "Mixed Nuts"
+  let subtitle;
+  if (split.length > 1 && !isAlphaString(split[1])) {
+    const trimmed = split.slice(0, 2).join(" ");
+    subtitle = removeNonAlphaFromString(trimmed);
+  } else {
+    subtitle = removeNonAlphaFromString(split.join(" "));
+  }
+
+  return subtitle === "Fast" ? "" : subtitle;
+};
+
 const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
   const rawTotals = items.reduce(
     (xs, x) => {
@@ -251,7 +280,7 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
   const entryDate = friendlyDate(ds);
 
   // Ensure earliest photos are first
-  const images = Object.keys(detailMap)
+  const imageDetails = Object.keys(detailMap)
     .map((key) => detailMap[key])
     .sort(ascLocalTime);
 
@@ -334,16 +363,23 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
         </div>
       )}
       <div className="day-images">
-        {images.map((x, idx) => (
+        {imageDetails.map((imageDetail, idx) => (
           <div className="day-image">
             <img
               alt=""
               className="day-image-raw"
               key={idx}
-              src={getImage(x.imageURL)}
-              onClick={() => onShowDetail(x.key)}
+              src={getImage(imageDetail.imageURL)}
+              onClick={() => onShowDetail(imageDetail.key)}
             ></img>
-            <span className="day-image-banner">{x.mealLabel}</span>
+            <span className="day-image-banner">
+              <div className="day-image-banner-title">
+                {imageDetail.mealLabel}
+              </div>
+              <div className="day-image-banner-subtitle">
+                {_getImageDetailSubtitle(imageDetail)}
+              </div>
+            </span>
           </div>
         ))}
       </div>
@@ -837,17 +873,17 @@ class EntryDetail extends React.Component {
     };
   }
 
-  componentWillUnmount() {
-    Mousetrap.unbind(["left"]);
-    Mousetrap.unbind(["right"]);
-    Mousetrap.unbind(["esc", "x"]);
-  }
-
   componentDidMount() {
     const { onClose } = this.props;
     Mousetrap.bind(["left"], this.onPrev);
     Mousetrap.bind(["right"], this.onNext);
     Mousetrap.bind(["esc", "x"], onClose);
+  }
+
+  componentWillUnmount() {
+    Mousetrap.unbind(["left"]);
+    Mousetrap.unbind(["right"]);
+    Mousetrap.unbind(["esc", "x"]);
   }
 
   onChangeIndex = (index) => {
@@ -939,11 +975,15 @@ class EntryDetail extends React.Component {
     const detail = details[mod(index, details.length)];
     const { imageURL, time, date, macros, items, mealLabel } = detail;
     const sortedItems = items.slice().sort(descCalorieSort);
+    const mealSubtitle = _getFoodSubtitle(sortedItems[0].title);
     return (
       <div className="detail-image-info-container" key={key}>
         <div className="detail-image-container">
           <img className="detail-image" alt="" src={getImage(imageURL)}></img>
-          <span className="detail-image-banner">{mealLabel}</span>
+          <span className="detail-image-banner">
+            <div className="detail-image-banner-title">{mealLabel}</div>
+            <div className="detail-image-banner-subtitle">{mealSubtitle}</div>
+          </span>
         </div>
         <div className="detail-info">
           <div className="detail-info-header">

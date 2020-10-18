@@ -319,6 +319,10 @@ const extractLastPartition = (partitions) => partitions.slice(-1)[0];
 const replaceLastPartition = (partitions, newPartition) =>
   addPartition(dropLastPartition(partitions), newPartition);
 
+// String helpers
+const isAlphaString = (str) => !/[^a-zA-Z]/.test(str);
+const removeNonAlphaFromString = (str) => str.replace(/[^a-z ]/gi, "");
+
 // Doing this so finding references works in VSCode
 // See: https://github.com/microsoft/vscode/issues/21507#issuecomment-369118734
 module.exports.SHORT_MONTHS = SHORT_MONTHS;
@@ -372,3 +376,6 @@ module.exports.extendPartition = extendPartition;
 module.exports.extractPartitionHead = extractPartitionHead;
 module.exports.extractLastPartition = extractLastPartition;
 module.exports.replaceLastPartition = replaceLastPartition;
+
+module.exports.isAlphaString = isAlphaString;
+module.exports.removeNonAlphaFromString = removeNonAlphaFromString;

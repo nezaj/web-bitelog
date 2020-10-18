@@ -258,11 +258,16 @@ body {
     bottom: 0;
     width: 100%;
     text-align: center;
-    font-size: 0.5em;
     padding: 2px;
     border: 1px solid var(--primary-color);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+  }
+  .day-image-banner-title {
+    font-size: 0.45em;
+  }
+  .day-image-banner-subtitle {
+    font-size: 0.4em;
   }
   .entry-navs {
     display: flex;
@@ -328,18 +333,28 @@ body {
     bottom: 0;
     width: 100%;
     text-align: center;
-    font-size: 1.2em;
     padding-top: 5px;
     padding-bottom: 5px;
     border: 1px solid var(--primary-color);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }
+  .day-image-banner-title {
+    font-size: 1.2em;
+  }
+  .day-image-banner-subtitle {
+    font-size: 1em;
+    color: var(--info-color);
+  }
+
   .day-image:hover .day-image-banner {
-    color: white;
     background-color: black;
     opacity: 0.8;
     transition: 0.3s;
+  }
+  .day-image:hover .day-image-banner-title,
+  .day-image:hover .day-image-banner-subtitle {
+    color: white;
   }
   .entry-navs {
     display: flex;
@@ -574,12 +589,18 @@ body {
     bottom: 0;
     background-color: black;
     color: white;
-    font-size: 1.5em;
     opacity: 0.8;
     width: 100%;
     text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
+  }
+  .detail-image-banner-title {
+    font-size: 1.5em;
+  }
+  .detail-image-banner-subtitle {
+    font-size: 1.2em;
+    font-weight: 200;
   }
 
   .detail-image {
@@ -769,12 +790,18 @@ body {
     bottom: 0;
     background-color: black;
     color: white;
-    font-size: 2em;
     opacity: 0.8;
     width: 100%;
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+  .detail-image-banner-title {
+    font-size: 2em;
+  }
+  .detail-image-banner-subtitle {
+    font-size: 1.5em;
+    font-weight: 200;
   }
 
   .detail-image {
@@ -961,12 +988,18 @@ body {
     bottom: 0;
     background-color: black;
     color: white;
-    font-size: 2em;
     opacity: 0.8;
     width: 100%;
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+  .detail-image-banner-title {
+    font-size: 2em;
+  }
+  .detail-image-banner-subtitle {
+    font-size: 1.5em;
+    font-weight: 200;
   }
 
   .detail-image {
