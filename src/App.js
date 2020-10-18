@@ -231,22 +231,21 @@ const _getImageDetailSubtitle = (imageDetail) => {
 };
 
 // We show at most first three words of a food
+// Special case: Return empty string if this was a fast
 // Special case: There is a non-alphabetical character in the second word,
 // in this case we only show the first two words and remove all non-alphabetical
 // characters
-// Special case: Return empty string if this was a fast
 const _getFoodSubtitle = (foodTitle) => {
+  if (foodTitle === "Fast") return "";
+
   const split = foodTitle.split(" ").slice(0, 3);
   // ["Mixed", "Nuts,", "Dry"] -> "Mixed Nuts"
-  let subtitle;
   if (split.length > 1 && !isAlphaString(split[1])) {
     const trimmed = split.slice(0, 2).join(" ");
-    subtitle = removeNonAlphaFromString(trimmed);
+    return removeNonAlphaFromString(trimmed);
   } else {
-    subtitle = removeNonAlphaFromString(split.join(" "));
+    return removeNonAlphaFromString(split.join(" "));
   }
-
-  return subtitle === "Fast" ? "" : subtitle;
 };
 
 const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
