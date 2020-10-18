@@ -68,7 +68,7 @@ const LARGE_MEAL_CALORIES_CUTOFF = 1000;
 const MORNING_START = 6;
 const AFTERNOON_START = 12;
 const EVENING_START = 17;
-const LATE_NIGHT_START = 20;
+const LATE_NIGHT_START = 21;
 
 // Used by health.js to export map of health data
 const buildHealthMap = (healthData) => {
