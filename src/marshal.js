@@ -238,7 +238,7 @@ const _buildWeeklyStats = (dailyTuples) => {
   ]);
   const averageValues = nonEmptyLabels.map((label) => [
     label,
-    round(avg(grouped[label].map(_dailyTupleValue)), 0),
+    round(avg(grouped[label].map(_dailyTupleValue)), 1),
   ]);
 
   // HeatMap series
