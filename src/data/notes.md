@@ -1,3 +1,7 @@
+### 10/18/2020
+
+Cleanest week to date :)
+
 ### 10/13/2020
 
 Back on track!
