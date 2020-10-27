@@ -1,3 +1,27 @@
+### 10/26/2020
+
+Even after that amazing dinner with friends came home and snacked a ton. Resulted
+in another day of excess calories.
+
+I also missed Trevor's workouts four days in a row now... time to get back on
+schedule!
+
+### 10/25/2020
+
+Oof the late night drunchies hit hard. We also spent the whole day with friends
+who cooked delicious food. A gastronmic day overall.
+
+
+### 10/24/2020
+
+Today was overall lower calories until the evening. Had a date and ended
+up drinking a beer, this would set off some serious drunchies after...
+
+### 10/23/2020
+
+Had Georgian food with some friends in the evening! So yummy. Was able to keep
+calories mostly in control.
+
 ### 10/18/2020
 
 Cleanest week to date :)
