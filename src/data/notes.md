@@ -1,3 +1,7 @@
+### 10/27/2020
+
+Lots of workouts, made up calories from previous days, Today felt like a reset!
+
 ### 10/26/2020
 
 Even after that amazing dinner with friends came home and snacked a ton. Resulted
