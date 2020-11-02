@@ -1,3 +1,11 @@
+### 11/2/2020
+
+Gonna start trying to do reviews of the previous week on Mondays. This past week was a bit all over the place. Started the week off after a huge caloric weekend which spilled over a bit to last Monday. For the most part though the excess calories were cleaner. I started training at a Jiu-Jitsu gym this week which definitely led to an increased appetitie. Calories were a bit higher this week but food was relatively clean. Saturday was Halloween and Sunday was Jordan's birthday so indulged in some sweets but was able to make up for it by mostly fasting on Sunday.
+
+Average calories came out to 2126 and macros were 115g protein, 111g fat, 182g carbs. Again weekend/social eating was the biggest offender in terms of diet, although this week was much better. I also notice I've been eating a lot of nuts and sometimes excess dates. Will try to keep both foods to two servings max per day and substitue with more veggies and/or protein -- this should lower calories a bit and make more room for protein.
+
+Looking at the heat-map, calories were not consistent. We have Stopa's birthday this week so may be a challenege to keep things all green -- but will shoot for that anyway :)
+
 ### 10/27/2020
 
 Lots of workouts, made up calories from previous days, Today felt like a reset!
