@@ -28,12 +28,10 @@ firebase login
 
 Now should be able to use `yarn deploy` and make things work as expected :)
 
-Note: Firebase serves content directly from `build`, so ensure `yarn build` has run ever using `firebase deploy` directly. Better to use `yarn deploy` unless you have a specific reason not to.
+Note: Firebase serves content directly from `build`, so ensure `yarn build` runs before using `firebase deploy`. Better to use `make deploy` which takes care of this unless you have a specific reason not to.
 
 ### Useful commands
+I use `make` for managing my commands. Take a look at the `Makefile` to see a list of all commands. Here are the most common ones I use
 * `make repl` -- Fire up a repl, space for easily importing and iterating
-* `make compress` -- compress images through TinyPNG
 * `make deploy` -- deploy site as is
-* `make deploy-data` -- process all data and then deploy
-* `make new-note` -- Add and commit a new note
-* `make edit-notes` -- similar to `make new-note` but more convenient for just editing notes (usually to correct some typo)
+* `make dd` -- process all data, optionally add/edit notes, and then deploy
