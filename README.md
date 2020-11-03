@@ -13,7 +13,7 @@ So to solve my own problems I built Bitelog :)
 ```
 git clone ...
 npm i
-yarn start
+make start
 ```
 
 ### Deploy set-up
@@ -26,9 +26,7 @@ npm install -g firebase-tools
 firebase login
 ```
 
-Now should be able to use `yarn deploy` and make things work as expected :)
-
-Note: Firebase serves content directly from `build`, so ensure `yarn build` runs before using `firebase deploy`. Better to use `make deploy` which takes care of this unless you have a specific reason not to.
+Now should be able to use `make deploy` and make things work as expected :)
 
 ### Useful commands
 I use `make` for managing my commands. Take a look at the `Makefile` to see a list of all commands. Here are the most common ones I use
