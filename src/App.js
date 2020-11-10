@@ -355,11 +355,10 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
       {notes && <ReactMarkdown className="day-notes">{notes}</ReactMarkdown>}
       <div className="day-images">
         {imageDetails.map((imageDetail, idx) => (
-          <div className="day-image">
+          <div className="day-image" key={idx}>
             <img
               alt=""
               className="day-image-raw"
-              key={idx}
               src={getImage(imageDetail.imageURL)}
               onClick={() => onShowDetail(imageDetail.key)}
             ></img>
