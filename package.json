@@ -1,47 +1,48 @@
 {
-  "name": "bitelog",
-  "version": "0.1.0",
-  "private": true,
-  "homepage": "http://joelogs.com",
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "apexcharts": "^3.22.0",
-    "chart.js": "^2.9.3",
-    "dotenv": "^8.2.0",
-    "mousetrap": "^1.6.5",
-    "react": "^16.13.1",
-    "react-apexcharts": "^1.3.7",
-    "react-chartjs-2": "^2.9.0",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "react-swipeable": "^5.5.1",
-    "react-swipeable-views": "^0.13.9",
-    "tinify": "^1.6.0-beta.2",
-    "yargs": "^15.4.1"
-  },
-  "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "firebase deploy",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "bitelog",
+    "version": "0.1.0",
+    "private": true,
+    "homepage": "http://joelogs.com",
+    "dependencies": {
+        "@testing-library/jest-dom": "^4.2.4",
+        "@testing-library/react": "^9.3.2",
+        "@testing-library/user-event": "^7.1.2",
+        "apexcharts": "^3.22.0",
+        "chart.js": "^2.9.3",
+        "dotenv": "^8.2.0",
+        "mousetrap": "^1.6.5",
+        "react": "^16.13.1",
+        "react-apexcharts": "^1.3.7",
+        "react-chartjs-2": "^2.9.0",
+        "react-dom": "^16.13.1",
+        "react-markdown": "^5.0.2",
+        "react-scripts": "3.4.1",
+        "react-swipeable": "^5.5.1",
+        "react-swipeable-views": "^0.13.9",
+        "tinify": "^1.6.0-beta.2",
+        "yargs": "^15.4.1"
+    },
+    "scripts": {
+        "predeploy": "npm run build",
+        "deploy": "firebase deploy",
+        "start": "PORT=3006 react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }

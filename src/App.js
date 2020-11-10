@@ -1,5 +1,6 @@
 import React from "react";
 
+import ReactMarkdown from "react-markdown";
 import Mousetrap from "mousetrap";
 import { Line } from "react-chartjs-2";
 import ApexChart from "react-apexcharts";
@@ -38,7 +39,6 @@ import {
   removeNonAlphaFromString,
   isAlphaString,
 } from "./utils.js";
-import { NOTES_DELIMITER } from "./constants";
 
 const VirtualizeSwipeableViews = virtualize(SwipeableViews);
 
@@ -352,15 +352,7 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
           </span>
         </div>
       </div>
-      {notes && (
-        <div className="day-notes">
-          {notes.split(NOTES_DELIMITER).map((note, idx) => (
-            <div key={idx} className="day-note">
-              {note}
-            </div>
-          ))}
-        </div>
-      )}
+      {notes && <ReactMarkdown className="day-notes">{notes}</ReactMarkdown>}
       <div className="day-images">
         {imageDetails.map((imageDetail, idx) => (
           <div className="day-image">
