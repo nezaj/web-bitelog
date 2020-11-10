@@ -3,15 +3,21 @@
 Goals for this week:
 
 * All greens (no excuses)
+
 * Wake up 6:45am every day (Sa/Sun included)
 
 Calorie-wise this was the heaviest week since I started logging. Several things happened this week
 
 * Got tired of cooking every meal so tried ordering out, had a gyro from Halal Guys and a burrito from Chiptole
+
 * It is actually reasonable to get healthy food from ordering out!
+
 * However the food is loaded with sodium, so I don't feel as satiated vs. if I cooked at home
+
 * It was Stopa's bday this week and we celebrated hardcore with Ben and Jerrys -- had ice cream three times this week!
+
 * I indulged in our catered party food. Ended up eating lots of yummy turkish food, chocolates, and cake.
+
 * Not sure if this actually impacted anything, curiously though, it was election week, things were stressful in the nation.
 
 I noticed myself making lots of excuses this week. Ice cream for a birthday is reasonable. Trying the food we are serving to our guests is reasonable, etc. It's easy to justify why it's okay to let diet slide, but it really is just an excuse.
