@@ -1,3 +1,23 @@
+### 11/9/2020
+
+Goals for this week:
+* All greens (no excuses)
+* Wake up 6:45am every day (Sa/Sun included)
+
+Calorie-wise this was the heaviest week since I started logging. Several things happened this week
+* Got tired of cooking every meal so tried ordering out, had a gyro from Halal Guys and a burrito from Chiptole
+* It is actually reasonable to get healthy food from ordering out!
+* However the food is loaded with sodium, so I don't feel as satiated vs. if I cooked at home
+* It was Stopa's bday this week and we celebrated hardcore with Ben and Jerrys -- had ice cream three times this week!
+* I indulged in our catered party food. Ended up eating lots of yummy turkish food, chocolates, and cake.
+* Not sure if this actually impacted anything, curiously though, it was election week, things were stressful in the nation.
+
+I noticed myself making lots of excuses this week. Ice cream for a birthday is reasonable. Trying the food we are serving to our guests is reasonable, etc. It's easy to justify why it's okay to let diet slide, but it really is just an excuse.
+
+I didn't do any Trevor workouts on my own either this week. So in addition to poor diet -- wasn't on top of fitness either. However, I did go to Jiu-Jitsu 2x and it's feeling much easier on my body. Very happy to be back to training.
+
+Last week I wanted to reduce the nuts and dates. Heh I did do that, but indulged in other things. This week I want to reset back to clean diet -- keeping in mind "no excuses". Also, I need to wake up 6:45am on MWF to make it to Jiu-Jitsu. That's definitely early, but I like that by the time I'm done with class and back home I already feel great and it's pretty much the time I was starting to work at before. If I wake up daily 6:45 it will probably be a better schedule than just MWF -- so will try that out!
+
 ### 11/2/2020
 
 Gonna start trying to do reviews of the previous week on Mondays. This past week was a bit all over the place. Started the week off after a huge caloric weekend which spilled over a bit to last Monday. For the most part though the excess calories were cleaner. I started training at a Jiu-Jitsu gym this week which definitely led to an increased appetitie. Calories were a bit higher this week but food was relatively clean. Saturday was Halloween and Sunday was Jordan's birthday so indulged in some sweets but was able to make up for it by mostly fasting on Sunday.
