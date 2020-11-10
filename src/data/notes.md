@@ -2,23 +2,17 @@
 
 Goals for this week:
 
-* All greens (no excuses)
-
-* Wake up 6:45am every day (Sa/Sun included)
+-   All greens (no excuses)
+-   Wake up 6:45am every day (Sa/Sun included)
 
 Calorie-wise this was the heaviest week since I started logging. Several things happened this week
 
-* Got tired of cooking every meal so tried ordering out, had a gyro from Halal Guys and a burrito from Chiptole
-
-* It is actually reasonable to get healthy food from ordering out!
-
-* However the food is loaded with sodium, so I don't feel as satiated vs. if I cooked at home
-
-* It was Stopa's bday this week and we celebrated hardcore with Ben and Jerrys -- had ice cream three times this week!
-
-* I indulged in our catered party food. Ended up eating lots of yummy turkish food, chocolates, and cake.
-
-* Not sure if this actually impacted anything, curiously though, it was election week, things were stressful in the nation.
+-   Got tired of cooking every meal so tried ordering out, had a gyro from Halal Guys and a burrito from Chiptole
+-   It is actually reasonable to get healthy food from ordering out!
+-   However the food is loaded with sodium, so I don't feel as satiated vs. if I cooked at home
+-   It was Stopa's bday this week and we celebrated hardcore with Ben and Jerrys -- had ice cream three times this week!
+-   I indulged in our catered party food. Ended up eating lots of yummy turkish food, chocolates, and cake.
+-   Not sure if this actually impacted anything, curiously though, it was election week, things were stressful in the nation.
 
 I noticed myself making lots of excuses this week. Ice cream for a birthday is reasonable. Trying the food we are serving to our guests is reasonable, etc. It's easy to justify why it's okay to let diet slide, but it really is just an excuse.
 
@@ -51,7 +45,6 @@ schedule!
 Oof the late night drunchies hit hard. We also spent the whole day with friends
 who cooked delicious food. A gastronmic day overall.
 
-
 ### 10/24/2020
 
 Today was overall lower calories until the evening. Had a date and ended
@@ -75,14 +68,10 @@ Back on track!
 Pushed out a few updates!
 
 1. Images are tagged by their "meal group" which is determined based on time between other images (makes the actual groupings)
-and labeled based on time of day (breakfast/lunch/dinner) and total calories of meal group (snack/meal/large meal)
-
+   and labeled based on time of day (breakfast/lunch/dinner) and total calories of meal group (snack/meal/large meal)
 2. Daily trends are now weekly trends amd each data point includes the min, average, and max value for that week
-
 3. New heatmap for showing average intra-day calorie consumption (values are based on last 7 days, last 30 days, etc.)
-
 4. New heatmap for showing daily calories
-
 5. New heatmap for sharing water consumption
 
 Although I'm happy to have pushed this out I didn't make time for actual workouts! 😅 Let's get back on it :)
@@ -135,7 +124,6 @@ hookah so I don't get light-headed)
 
 A few notes to share:
 
-
 About today: Another full day hang with friends. Had only one real meal (thai food)
 today where I was suuuuuper hungry and definitely had a bigger meal. Because it
 was effectively my first / only meal my calories did not go over. However, I was
@@ -159,9 +147,7 @@ sometimes when I'm out I want to indulge in a treat (like ice-cream, or trying
 canoli for the first time).
 
 I notice as long as my calories aren't too overboard (over 4k) I can simply make up
-for the excess by fasting the next day. As a bonus I feel cleansed the day after fasting.
-Altthough it is a bit emotionally taxing, there is something rejuvenating about
-fasting.  I notice fasting is easier if I ate healthier food before the
+for the excess by fasting the next day. As a bonus I feel cleansed the day after fasting.Altthough it is a bit emotionally taxing, there is something rejuvenating about fasting. I notice fasting is easier if I ate healthier food before the
 excess -- the nutrition keeps me fueled and satiated. Perhaps one take-away is
 that even if I'm going to eat out and there are no healthy options -- ensure I
 ate healthy food earlier to reduce my excess appetitie and make it easier to
