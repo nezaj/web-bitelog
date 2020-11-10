@@ -1,10 +1,12 @@
 ### 11/9/2020
 
 Goals for this week:
+
 * All greens (no excuses)
 * Wake up 6:45am every day (Sa/Sun included)
 
 Calorie-wise this was the heaviest week since I started logging. Several things happened this week
+
 * Got tired of cooking every meal so tried ordering out, had a gyro from Halal Guys and a burrito from Chiptole
 * It is actually reasonable to get healthy food from ordering out!
 * However the food is loaded with sodium, so I don't feel as satiated vs. if I cooked at home
