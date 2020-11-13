@@ -31,14 +31,18 @@ deploy:
 	yarn deploy
 
 dd:
-	# Alias for deploy-data
-	$(MAKE) deploy-data
-
-deploy-data:
 	# Easy commit and deploy all data
 	$(MAKE) new-food
 	$(MAKE) new-health
 	$(MAKE) new-note
+	git add .
+	git commit -m "Add new data"
+	$(MAKE) deploy
+
+df:
+	# Similar to dd but w/o adding a note
+	$(MAKE) new-food
+	$(MAKE) new-health
 	git add .
 	git commit -m "Add new data"
 	$(MAKE) deploy
