@@ -1,3 +1,8 @@
+### 11/13/2020
+
+Another clean day :) So far M-F this week has been all greens -- feels good! I've been consistent with all my other habits this week as well. Definitely notice that
+consistently eating clean + doing habits results in being more productive and happy. Will keep it green for this weekend as well!
+
 ### 11/9/2020
 
 Goals for this week:
