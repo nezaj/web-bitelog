@@ -1,3 +1,13 @@
+### 11/15/2020
+
+Succeeded with all greens this week! Feels good :)
+
+Was nice to mix in some eating out as well, even fit in an ice cream that worked
+with the calories and macros. Worked out everyday and hit almost all my habits
+every day this week. I think hitting my habits in addition to clean diet + exercise makes me feel good overall.
+
+Getting some wisdom teeth extracted tomorrow so will be restricted in terms of workout and some eating. Nonethless, let's get another week of all greens in :)
+
 ### 11/13/2020
 
 Another clean day :) So far M-F this week has been all greens -- feels good! I've been consistent with all my other habits this week as well. Definitely notice that
