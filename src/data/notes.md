@@ -1,3 +1,8 @@
+### 11/19/2020
+
+So far wisdom teeth recovery has gone well! Started eating cooked food and working out today. Ended up eating lots of grapes today, not sure why, just really wanted
+some carbs. Will aim to keep the reminaing days in the green :)
+
 ### 11/15/2020
 
 Succeeded with all greens this week! Feels good :)
