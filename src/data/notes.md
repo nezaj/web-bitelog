@@ -1,3 +1,7 @@
+### 11/21/2020
+
+Felt a bit heavy last few days so decided to do a fast day today!
+
 ### 11/19/2020
 
 So far wisdom teeth recovery has gone well! Started eating cooked food and working out today. Ended up eating lots of grapes today, not sure why, just really wanted
