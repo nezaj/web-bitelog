@@ -1,3 +1,33 @@
+### 11/22/2020
+
+This was a bit of a strange week. Definitely did not hit all greens. On the positive side, average calories were still <2000.
+
+Overview:
+
+* Had two wisdom teeth extracted on Monday
+* Could not exercise until Thursday
+* Only worked out twice this week
+* No Jiu-Jitsu
+* Ate delivery 5 / 7 days
+* Lots of carbs/sodium Wednesday onwards
+* Three red days, weight drifted up intra-week
+* Made up for it by fasting
+* Had ice-cream again end-of-week (fit into calories)
+
+Thankfully my wisdom teeth operation was quick and painless and the recovery so far has been pretty easy. Was able to be productive work wise Tuesday onwards.
+
+However, was not able to do Jiu-Jitsu (and won't be able to until Wednesday) and workout as much. I only worked out twice this week (Thursday and Saturday) and overall moved a lot less than usual.
+
+Although my calorie average came out to <2000, there were three red days. My carb + sodium in-take went way up (ate lots of fruits and ate out) Wednesday onwards which resulted in my weight drifting up and feeling bloated. To counter this I did a full-day fast -- which balanced things out.
+
+Next week is turkey day. Will likely have excess calories that day. Will likely make up for the excess on Friday. Will allow a potential excess on Sunday too if it fits in with my calories/macros.
+
+Goals for next week:
+* < 2000 cals/avg
+* < 200 carbs/avg
+* 5+ green days
+* Exercise everyday (potential hike on Sunday can count as exercise as well)
+
 ### 11/21/2020
 
 Felt a bit heavy last few days so decided to do a fast day today!
