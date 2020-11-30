@@ -1,3 +1,29 @@
+### 11/30/2020
+
+Quick thoughts for this week
+* Thanksgiving week turned out to be a doozy in terms of diet and fitness.
+* Ate pretty clean Monday -> Wednesday
+* Thursday -> Saturday was rougher.
+* Ate >4K calories on Thanksgiving, although this was expected
+* Tried fasting for most of Friday, but gave in to cravings and ate cake which lead to >3K calories
+* Fasted for most of Friday but had dinner with friends and then ice cream
+* Successfully fasted full day on Sunday
+* Ended up with 3 green days, 2 red days, and 2 blue days. Did not hit 5+ green days.
+* Overall calories were >2k avg for the week, but not as bad as coudl have been given it was Turkey day week
+* Did not exercise though Thursday -> Sunday.
+
+Looking at my goals from last week, I literally did not hit a single one. Somewhat
+disappointing. Reflecting on exercise, I realize I've been getting disconnected
+with my workouts. I want to re-connect with them and put more heart into my fitness.
+
+In general I know it's hard for me to break through the 150lb range. I know I can do
+it though. I'm feeling pumped.
+
+For this week will try to sit different goals:
+
+* 2 or less red days. Thinking < X red days I think is more realistic than Y green days. Since if a red day does happen, I may want to make up for it with a blue day.
+* Be connected to at least 3 workouts this week. I can evaluate for myself whether I'm truly into my workout.
+
 ### 11/22/2020
 
 This was a bit of a strange week. Definitely did not hit all greens. On the positive side, average calories were still <2000.
