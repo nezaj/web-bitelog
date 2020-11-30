@@ -1,4 +1,4 @@
-### 11/30/2020
+### 11/29/2020
 
 Quick thoughts for this week
 * Thanksgiving week turned out to be a doozy in terms of diet and fitness.
