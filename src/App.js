@@ -56,6 +56,8 @@ const LAST_7_DAYS = "lastWeek";
 const LAST_30_DAYS = "last30Days";
 const LAST_90_DAYS = "last90Days";
 const THIS_YEAR = "thisYear";
+const ALL_TIME = "allTime";
+const YEAR_2020 = "year2020";
 const DEFAULT_TRENDS_DATE_RANGE = LAST_7_DAYS;
 
 // Heatmap Options
@@ -139,9 +141,11 @@ const getMaxEntryPage = (numEntries) =>
 // Trend Helpers
 // ---------------------------------------------------------------------------
 const filterEntries = (dateRange, entriesToDateMap) => {
-  const latestDate = Object.keys(entriesToDateMap).sort((second, first) =>
+  const sortedDate = Object.keys(entriesToDateMap).sort((second, first) =>
     new Date(second) <= new Date(first) ? 1 : -1
-  )[0];
+  );
+  const latestDate = sortedDate[0];
+  const earliestDate = sortedDate.slice(-1)[0];
   let minDate;
   switch (dateRange) {
     case LAST_30_DAYS:
@@ -151,7 +155,13 @@ const filterEntries = (dateRange, entriesToDateMap) => {
       minDate = addDays(latestDate, -90);
       break;
     case THIS_YEAR:
-      minDate = new Date(new Date().getFullYear(), 1, 1);
+      minDate = new Date(new Date().getFullYear(), 0, 1);
+      break;
+    case ALL_TIME:
+      minDate = addDays(earliestDate, -1);
+      break;
+    case YEAR_2020:
+      minDate = new Date(2020, 0, 1);
       break;
     case LAST_7_DAYS:
     default:
@@ -180,9 +190,14 @@ const getLocationTab = (queryString) => {
 const getLocationDateRange = (queryString) => {
   const rawValue = new URLSearchParams(queryString).get("tdr");
   return (
-    [LAST_7_DAYS, LAST_30_DAYS, LAST_90_DAYS, THIS_YEAR].find(
-      (x) => x === rawValue
-    ) || DEFAULT_TRENDS_DATE_RANGE
+    [
+      LAST_7_DAYS,
+      LAST_30_DAYS,
+      LAST_90_DAYS,
+      THIS_YEAR,
+      ALL_TIME,
+      YEAR_2020,
+    ].find((x) => x === rawValue) || DEFAULT_TRENDS_DATE_RANGE
   );
 };
 const getLocationDetailKey = (queryString) => {
@@ -769,38 +784,61 @@ const Trends = ({
   return (
     <div className="trends">
       <div className="trends-date-selector">
-        <div
-          className={`trends-date-option ${
-            dateRange === LAST_7_DAYS ? "active" : "inactive"
-          }`}
-          onClick={() => updateDateRange(LAST_7_DAYS)}
-        >
-          Last 7 Days
+        <div className="trends-date-selector-row">
+          <div
+            className={`trends-date-option ${
+              dateRange === LAST_7_DAYS ? "active" : "inactive"
+            }`}
+            onClick={() => updateDateRange(LAST_7_DAYS)}
+          >
+            Last 7 Days
+          </div>
+          <div
+            className={`trends-date-option ${
+              dateRange === LAST_30_DAYS ? "active" : "inactive"
+            }`}
+            onClick={() => updateDateRange(LAST_30_DAYS)}
+          >
+            Last 30 Days
+          </div>
+          <div
+            className={`trends-date-option ${
+              dateRange === LAST_90_DAYS ? "active" : "inactive"
+            }`}
+            onClick={() => updateDateRange(LAST_90_DAYS)}
+          >
+            Last 90 Days
+          </div>
+          <div
+            className={`trends-date-option ${
+              dateRange === ALL_TIME ? "active" : "inactive"
+            }`}
+            onClick={() => updateDateRange(ALL_TIME)}
+          >
+            All Time
+          </div>
         </div>
-        <div
-          className={`trends-date-option ${
-            dateRange === LAST_30_DAYS ? "active" : "inactive"
-          }`}
-          onClick={() => updateDateRange(LAST_30_DAYS)}
-        >
-          Last 30 Days
+        {/* (TODO:) Uncomment below block in 2021 :) */}
+        {/*
+        <div className="trends-date-selector-row">
+          <div
+            className={`trends-date-option ${
+              dateRange === THIS_YEAR ? "active" : "inactive"
+            }`}
+            onClick={() => updateDateRange(THIS_YEAR)}
+          >
+            This Year
+          </div>
+          <div
+            className={`trends-date-option ${
+              dateRange === YEAR_2020 ? "active" : "inactive"
+            }`}
+            onClick={() => updateDateRange(YEAR_2020)}
+          >
+            2020
+          </div>
         </div>
-        <div
-          className={`trends-date-option ${
-            dateRange === LAST_90_DAYS ? "active" : "inactive"
-          }`}
-          onClick={() => updateDateRange(LAST_90_DAYS)}
-        >
-          Last 90 Days
-        </div>
-        <div
-          className={`trends-date-option ${
-            dateRange === THIS_YEAR ? "active" : "inactive"
-          }`}
-          onClick={() => updateDateRange(THIS_YEAR)}
-        >
-          This Year
-        </div>
+        */}
       </div>
 
       <div className="trends-summary">

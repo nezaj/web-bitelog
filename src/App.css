@@ -372,15 +372,20 @@ body {
 /* Trends */
 /* ---------------------------------------- */
 .trends-date-selector {
-  display: flex;
-  justify-content: space-evenly;
-  width: 95%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
+.trends-date-selector-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
 .trends-date-option {
   font-size: 14px;
+  padding: 0.5em 0.5em;
 }
 
 .trends-date-option.active {
@@ -470,7 +475,7 @@ body {
 /* Desktop */
 @media (min-width: 801px) {
   .trends-date-selector {
-    width: 66%;
+    width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
   }
