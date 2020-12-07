@@ -7,6 +7,7 @@ const {
   extractDate,
   getImageKey,
   localTimeToDate,
+  addHours,
   addDays,
   max,
   min,
@@ -101,7 +102,13 @@ const buildHealthMap = (healthData) => {
 // This is used as the "top-level" data structure for food-related data
 const entriesToDateMap = (entries) => {
   return entries.reduce((xs, x) => {
-    const dateKey = extractDate(localTimeToDate(x.eatenAtLocalTime));
+    // Adjust hours so entries are grouped starting from 4am
+    // This is to adjust for "late night" eating. E.g. food at 3am should
+    // be grouped with the previous day instead of the next day since I am
+    // most likely eating at the "end" of the day instead of the beginning
+    const localDate = localTimeToDate(x.eatenAtLocalTime);
+    const dateKey = extractDate(addHours(localDate, -4));
+
     xs[dateKey] = xs[dateKey] || [];
     xs[dateKey] = xs[dateKey].concat(x);
     return xs;

@@ -67,6 +67,12 @@ const maxDate = (dates) =>
 const minDate = (dates) =>
   dates.reduce((a, b) => (new Date(a) < new Date(b) ? a : b));
 
+const addHours = (date, hours) => {
+  const copy = new Date(date);
+  copy.setHours(copy.getHours() + hours);
+  return copy;
+};
+
 const addDays = (date, days) => {
   const copy = new Date(date);
   copy.setDate(copy.getDate() + days);
@@ -329,6 +335,7 @@ module.exports.SHORT_MONTHS = SHORT_MONTHS;
 module.exports.SHORT_WEEKDAYS = SHORT_WEEKDAYS;
 module.exports.WEEKDAYS = WEEKDAYS;
 
+module.exports.addHours = addHours;
 module.exports.addDays = addDays;
 module.exports.addWeeks = addWeeks;
 
