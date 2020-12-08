@@ -10,10 +10,10 @@ Thoughts for this week
 -   Lowest weight: Monday, 147.8 (post fast from previous week)
 -   Highest weight: Saturday, 154.6 (post 6k calories on Friday)
 -   Despite extremes, met goal of <2 red days. Also kept average carbs to <200/day
--   Also was connected to at least 3 workouts -- but barely.
+-   Was connected to at least 3 workouts -- but barely.
 
 This was another strange week. Monday -> Thursday were pretty good with solid
-workouts on Monday + Wednesdays. Started Jiu-Jitsu again this week which was great.
+workouts on Monday, Wednesday, and doing 100 pull-ups test. Started Jiu-Jitsu again this week which was great.
 On Friday however I went to a friend's party and let go. To top it off, I ate
 2lbs of ice cream after coming home. This was my biggest calorie day since I started
 logging. This also caused a huge (but temporary) increase on the scale, leading to
@@ -27,14 +27,14 @@ to push harder on the workout goal so will be more ambitious for next week.
 
 I'm aware we've been ordering out more and more. I prefer not to cook
 during the day/afternoon now since it interferes with our working schedule.
-We don't eat junk when we do delivierywhich is good, But still some of the food
+We don't eat junk when we do deliviery which is good, But still some of the food
 is loaded with sodium and I know that's not optimal for work-outs + Jiu-Jitsu.
 Last week I tried cooking in the evening for consumption the following day. This
 worked out pretty well and I want to try making this a habit going forward.
 
-I also ordered some bananas, bread, and sunflower-seed butter again. I noticed
+I got back on bananas, bread, and sunflower-seed butter this week. I noticed
 that eating a carb-centric meal 2-3 hours before working out with Trevor or Jiu-Jitsu
-has a noticeable impact on my energy levels. Previously I would eat a more carb
+has a positive impact on my energy levels. Previously I would eat a more carb
 heavy meal earlier in the day and a protein heavy meal for dinner. Will try
 switching it up so that the protein heavy meal is for breakfast/lunch and the carb
 loaded meal is for dinner M-F.
