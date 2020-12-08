@@ -1,16 +1,65 @@
+### 12/6/2020
+
+Thoughts for this week
+
+-   Ate pretty clean M -> TH
+-   Got some baked cookies from a friend, was a great gift and indulged a bit.
+-   Ate >6K calories on Friday, which was extreme. Ended up just letting go
+-   To make up for the extreme excess, I fasted for two days straight, also extreme
+-   This week had the largest intra-week weight difference ~6.8lbs.
+-   Lowest weight: Monday, 147.8 (post fast from previous week)
+-   Highest weight: Saturday, 154.6 (post 6k calories on Friday)
+-   Despite extremes, met goal of <2 red days. Also kept average carbs to <200/day
+-   Also was connected to at least 3 workouts -- but barely.
+
+This was another strange week. Monday -> Thursday were pretty good with solid
+workouts on Monday + Wednesdays. Started Jiu-Jitsu again this week which was great.
+On Friday however I went to a friend's party and let go. To top it off, I ate
+2lbs of ice cream after coming home. This was my biggest calorie day since I started
+logging. This also caused a huge (but temporary) increase on the scale, leading to
+my largest intra-week weight range. To make up for this I fasted for 2 days straight,
+or what came out to be ~55hours between the ice cream and my next meal. Another
+record since starting to record.
+
+Despite these extremes happy to say I did meet both my goals last week (although
+somewhat barely i.e. working out). I'm glad the goals were more realistic. I want
+to push harder on the workout goal so will be more ambitious for next week.
+
+I'm aware we've been ordering out more and more. I prefer not to cook
+during the day/afternoon now since it interferes with our working schedule.
+We don't eat junk when we do delivierywhich is good, But still some of the food
+is loaded with sodium and I know that's not optimal for work-outs + Jiu-Jitsu.
+Last week I tried cooking in the evening for consumption the following day. This
+worked out pretty well and I want to try making this a habit going forward.
+
+I also ordered some bananas, bread, and sunflower-seed butter again. I noticed
+that eating a carb-centric meal 2-3 hours before working out with Trevor or Jiu-Jitsu
+has a noticeable impact on my energy levels. Previously I would eat a more carb
+heavy meal earlier in the day and a protein heavy meal for dinner. Will try
+switching it up so that the protein heavy meal is for breakfast/lunch and the carb
+loaded meal is for dinner M-F.
+
+For the following week will shoot for these goals.
+
+-   2 or less red days
+-   Workout all 7 days, following new schedule (VT + runs + test + weekend workouts)
+-   Cook food for next day at least 3x
+-   Jiu-Jitsu at least 3x
+
 ### 11/29/2020
 
 Quick thoughts for this week
-* Thanksgiving week turned out to be a doozy in terms of diet and fitness.
-* Ate pretty clean Monday -> Wednesday
-* Thursday -> Saturday was rougher.
-* Ate >4K calories on Thanksgiving, although this was expected
-* Tried fasting for most of Friday, but gave in to cravings and ate cake which lead to >3K calories
-* Fasted for most of Friday but had dinner with friends and then ice cream
-* Successfully fasted full day on Sunday
-* Ended up with 3 green days, 2 red days, and 2 blue days. Did not hit 5+ green days.
-* Overall calories were >2k avg for the week, but not as bad as coudl have been given it was Turkey day week
-* Did not exercise though Thursday -> Sunday.
+
+-   Thanksgiving week turned out to be a doozy in terms of diet and fitness.
+-   Ate pretty clean Monday -> Wednesday
+-   Thursday -> Saturday was rougher.
+-   Ate >4K calories on Thanksgiving, although this was expected
+-   Tried fasting for most of Friday, but gave in to cravings and ate cake which lead to >3K calories
+-   Fasted for most of Friday but had dinner with friends and then ice cream
+-   Successfully fasted full day on Sunday
+-   Ended up with 3 green days, 2 red days, and 2 blue days. Did not hit 5+ green days.
+-   Overall calories were >2k avg for the week, but not as bad as coudl have been given it was Turkey day week
+-   Did not exercise though Thursday -> Sunday.
 
 Looking at my goals from last week, I literally did not hit a single one. Somewhat
 disappointing. Reflecting on exercise, I realize I've been getting disconnected
@@ -21,8 +70,8 @@ it though. I'm feeling pumped.
 
 For this week will try to sit different goals:
 
-* 2 or less red days. Thinking < X red days I think is more realistic than Y green days. Since if a red day does happen, I may want to make up for it with a blue day.
-* Be connected to at least 3 workouts this week. I can evaluate for myself whether I'm truly into my workout.
+-   2 or less red days. Thinking < X red days I think is more realistic than Y green days. Since if a red day does happen, I may want to make up for it with a blue day.
+-   Be connected to at least 3 workouts this week. I can evaluate for myself whether I'm truly into my workout.
 
 ### 11/22/2020
 
@@ -30,15 +79,15 @@ This was a bit of a strange week. Definitely did not hit all greens. On the posi
 
 Overview:
 
-* Had two wisdom teeth extracted on Monday
-* Could not exercise until Thursday
-* Only worked out twice this week
-* No Jiu-Jitsu
-* Ate delivery 5 / 7 days
-* Lots of carbs/sodium Wednesday onwards
-* Three red days, weight drifted up intra-week
-* Made up for it by fasting
-* Had ice-cream again end-of-week (fit into calories)
+-   Had two wisdom teeth extracted on Monday
+-   Could not exercise until Thursday
+-   Only worked out twice this week
+-   No Jiu-Jitsu
+-   Ate delivery 5 / 7 days
+-   Lots of carbs/sodium Wednesday onwards
+-   Three red days, weight drifted up intra-week
+-   Made up for it by fasting
+-   Had ice-cream again end-of-week (fit into calories)
 
 Thankfully my wisdom teeth operation was quick and painless and the recovery so far has been pretty easy. Was able to be productive work wise Tuesday onwards.
 
@@ -49,10 +98,11 @@ Although my calorie average came out to <2000, there were three red days. My car
 Next week is turkey day. Will likely have excess calories that day. Will likely make up for the excess on Friday. Will allow a potential excess on Sunday too if it fits in with my calories/macros.
 
 Goals for next week:
-* < 2000 cals/avg
-* < 200 carbs/avg
-* 5+ green days
-* Exercise everyday (potential hike on Sunday can count as exercise as well)
+
+-   < 2000 cals/avg
+-   < 200 carbs/avg
+-   5+ green days
+-   Exercise everyday (potential hike on Sunday can count as exercise as well)
 
 ### 11/21/2020
 
