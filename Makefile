@@ -31,6 +31,7 @@ deploy:
 	yarn deploy
 
 dd:
+	# Deploy data
 	# Easy commit and deploy all data
 	$(MAKE) new-food
 	$(MAKE) new-health
@@ -40,6 +41,7 @@ dd:
 	$(MAKE) deploy
 
 df:
+	# Deploy fitness
 	# Similar to dd but w/o adding a note
 	$(MAKE) new-food
 	$(MAKE) new-health
