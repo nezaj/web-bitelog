@@ -328,6 +328,7 @@ const replaceLastPartition = (partitions, newPartition) =>
 // String helpers
 const isAlphaString = (str) => !/[^a-zA-Z]/.test(str);
 const removeNonAlphaFromString = (str) => str.replace(/[^a-z ]/gi, "");
+const numWords = (str) => str.split(" ").length
 
 // Doing this so finding references works in VSCode
 // See: https://github.com/microsoft/vscode/issues/21507#issuecomment-369118734
@@ -386,3 +387,4 @@ module.exports.replaceLastPartition = replaceLastPartition;
 
 module.exports.isAlphaString = isAlphaString;
 module.exports.removeNonAlphaFromString = removeNonAlphaFromString;
+module.exports.numWords = numWords;

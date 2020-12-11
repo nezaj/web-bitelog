@@ -38,6 +38,7 @@ import {
   SHORT_MONTHS,
   removeNonAlphaFromString,
   isAlphaString,
+  numWords,
 } from "./utils.js";
 
 const VirtualizeSwipeableViews = virtualize(SwipeableViews);
@@ -45,6 +46,7 @@ const VirtualizeSwipeableViews = virtualize(SwipeableViews);
 // Tab options
 const ENTRIES_TAB = "entries";
 const TRENDS_TAB = "trends";
+const REFLECTIONS_TAB = "reflections";
 const DEFAULT_TAB = ENTRIES_TAB;
 
 // Entries
@@ -97,6 +99,9 @@ const MAX_TICKS = 5; // Don't crowd the axis
 const STATS_BACKGROUND_COLOR = "rgba(68, 65, 106, 0.3)";
 const NO_DATA_TOOLTIP_VALUE = "N/A";
 const NO_DATA_COLOR = "#fff";
+
+// Reflections
+const REFLECTION_THRESHOLD = 80;
 
 // Compressed Images
 const COMPRESSED_SET = new Set(COMPRESSED_LIST);
@@ -184,7 +189,7 @@ const filterEntries = (dateRange, entriesToDateMap) => {
 // ---------------------------------------------------------------------------
 const getLocationTab = (queryString) => {
   const rawValue = new URLSearchParams(queryString).get("tab");
-  return [ENTRIES_TAB, TRENDS_TAB].find((x) => x === rawValue) || DEFAULT_TAB;
+  return [ENTRIES_TAB, TRENDS_TAB, REFLECTIONS_TAB].find((x) => x === rawValue) || DEFAULT_TAB;
 };
 
 const getLocationDateRange = (queryString) => {
@@ -1221,6 +1226,14 @@ class App extends React.Component {
           >
             TRENDS
           </div>
+          <div
+            className={`nav-option ${
+              tab === REFLECTIONS_TAB ? "active" : "inactive"
+            }`}
+            onClick={() => this.updateTab(REFLECTIONS_TAB)}
+          >
+            REFLECTIONS
+          </div>
         </div>
 
         {entryDetail && renderedEntryDetail}
@@ -1272,6 +1285,16 @@ class App extends React.Component {
             nutrientsHourlyStats={nutrientsHourlyStats}
             healthWeeklyStats={healthWeeklyStats}
           />
+        )}
+        {tab === REFLECTIONS_TAB && (
+          <div className="reflections">
+            {Object.keys(notesData).map(ds => numWords(notesData[ds]) > REFLECTION_THRESHOLD && (
+              <div className="reflection">
+              <div className="day-date">{ds}</div>
+<ReactMarkdown className="day-notes">{notesData[ds]}</ReactMarkdown>
+              </div>
+            ))}
+          </div>
         )}
       </div>
     );
