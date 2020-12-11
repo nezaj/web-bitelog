@@ -1290,7 +1290,7 @@ class App extends React.Component {
           <div className="reflections">
             {Object.keys(notesData).map(ds => numWords(notesData[ds]) > REFLECTION_THRESHOLD && (
               <div className="reflection">
-              <div className="day-date">{ds}</div>
+              <div className="day-date">{friendlyDate(ds)}</div>
 <ReactMarkdown className="day-notes">{notesData[ds]}</ReactMarkdown>
               </div>
             ))}
