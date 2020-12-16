@@ -1,3 +1,42 @@
+### 12/15/2020
+
+I missed writing a reflection on Sunday but still wanted to get one in for the
+week.
+
+Goals from previous week:
+-   (Success, 1 red day) 2 or less red days
+-   (Fail, worked-out 3x) Workout all 7 days, following new schedule (VT + runs + test + weekend workouts)
+-   (Fail, cooked 2x) Cook food for next day at least 3x
+-   (Success, 3x Jiu-Jitsu) Jiu-Jitsu at least 3x
+
+Thoughts for the week
+
+* Ate clean again M -> TH
+* F -> Su was very social and lots of excess
+* Ate a few home-cooked meals which where great
+* However, wasn't motivated enough to cook more than 2x, it definitely takes some energy to follow-through at night
+* Failed the 7x workout early on, missed both my runs on Tuesday/Thursday mainly because it was hard to wake up early and it was cold outside
+* Although I had only 1 red day, calories were higher on average this week at ~2.25k
+* Was able to hit BJJ 3x which felt great. Ideally will be going 5x but it's hard to make that 7:30am morning class
+
+The beginning of last week started off great, but once the weekend came things went off the rails. We
+were very social last weekend, going to the same Georgia restaurant twice and hosting folks. Not only
+did this lead to excess calories, but I smoked a lot of hookah and got < 6 hours of sleep 3 nights in
+a row. This was very tough on my body and made me let go of my other habits (like writing a reflection).
+Thankfully I'm now feeling reset.
+
+Going forward, I want to be more aware of weekend excess. A part of me wanted to let loose, but it was too much. Not
+sure how to formulate this goal more concretely yet. One thing I do know though is that I want to cut back on hookah.
+Although I'm setting this mid-week, here's my goals for the upcoming week.
+
+* 2 or less red days
+* Run at least 1x, Workout at least 2x F -> Sun
+* Don't smoke hookah more than 2x
+
+In other news, small update to the website -- I added a reflections tab! I've noticed I've been wanting
+this for a few weeks now so decided to add it in. I use a hueristic (> X words) to determine what
+qualifies as a "reflection" and then collect all my notes that fulfill that criteria and list it on one page.
+
 ### 12/6/2020
 
 Thoughts for this week
