@@ -217,7 +217,7 @@ const _buildWeeklyStats = (dailyTuples) => {
   // Group labels by week (earliest to latest)
   const sorted = dailyTuples
     .slice()
-    .filter(_dailyTupleValue)
+    .filter((tup) => _dailyTupleValue(tup) !== undefined)
     .sort((second, first) =>
       new Date(_dailyTupleDate(second)) < new Date(_dailyTupleDate(first))
         ? -1
