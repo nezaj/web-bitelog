@@ -228,13 +228,20 @@ const getImageId = (url) => url.split("/media/")[1].replace(/\//g, "");
 const getImageKey = (url, mealID) =>
   `${url ? getImageId(url).replace(".jpeg", "") : ""}${mealID}`;
 
-const createImageDetail = (key, imageURL, localTimeInt, mealLabel) => ({
+const createImageDetail = (
+  key,
+  imageURL,
+  localTimeInt,
+  dateKey,
+  mealLabel
+) => ({
   key,
   imageURL,
   localTimeInt,
   mealLabel,
   time: extractTime(localTimeToDate(localTimeInt)),
   date: extractDate(localTimeToDate(localTimeInt)),
+  dateKey,
   macros: { calories: 0, protein: 0, fat: 0, carbs: 0 },
   items: [],
 });
@@ -328,7 +335,7 @@ const replaceLastPartition = (partitions, newPartition) =>
 // String helpers
 const isAlphaString = (str) => !/[^a-zA-Z]/.test(str);
 const removeNonAlphaFromString = (str) => str.replace(/[^a-z ]/gi, "");
-const numWords = (str) => str.split(" ").length
+const numWords = (str) => str.split(" ").length;
 
 // Doing this so finding references works in VSCode
 // See: https://github.com/microsoft/vscode/issues/21507#issuecomment-369118734

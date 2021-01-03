@@ -1175,7 +1175,7 @@ class App extends React.Component {
     if (entryDetail) {
       const entryDetailArray = Object.keys(entryDetailMap)
         .map((key) => entryDetailMap[key])
-        .filter((x) => x.date === entryDetail.date)
+        .filter((x) => x.dateKey === entryDetail.dateKey)
         .sort(ascLocalTime);
       const entryDetailIndex = entryDetailArray.findIndex(
         (x) => x.key === detailKey

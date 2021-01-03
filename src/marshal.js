@@ -108,6 +108,7 @@ const entriesToDateMap = (entries) => {
     // most likely eating at the "end" of the day instead of the beginning
     const localDate = localTimeToDate(x.eatenAtLocalTime);
     const dateKey = extractDate(addHours(localDate, -4));
+    x.dateKey = dateKey;
 
     xs[dateKey] = xs[dateKey] || [];
     xs[dateKey] = xs[dateKey].concat(x);
@@ -391,7 +392,13 @@ const imageDetailMap = (dateToEntriesMap) => {
       const key = getImageKey(x.imageURL, x.mealID);
       xs[key] =
         xs[key] ||
-        createImageDetail(key, x.imageURL, x.eatenAtLocalTime, x.mealLabel);
+        createImageDetail(
+          key,
+          x.imageURL,
+          x.eatenAtLocalTime,
+          x.dateKey,
+          x.mealLabel
+        );
 
       // Update image macros
       xs[key].macros["calories"] += extractCalories(x.nutrients);
