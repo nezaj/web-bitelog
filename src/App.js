@@ -160,7 +160,7 @@ const filterEntries = (dateRange, entriesToDateMap) => {
       minDate = addDays(latestDate, -90);
       break;
     case THIS_YEAR:
-      minDate = new Date(new Date().getFullYear(), 0, 1);
+      minDate = new Date(new Date().getFullYear(), 0, 0);
       break;
     case ALL_TIME:
       minDate = addDays(earliestDate, -1);
