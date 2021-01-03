@@ -189,7 +189,10 @@ const filterEntries = (dateRange, entriesToDateMap) => {
 // ---------------------------------------------------------------------------
 const getLocationTab = (queryString) => {
   const rawValue = new URLSearchParams(queryString).get("tab");
-  return [ENTRIES_TAB, TRENDS_TAB, REFLECTIONS_TAB].find((x) => x === rawValue) || DEFAULT_TAB;
+  return (
+    [ENTRIES_TAB, TRENDS_TAB, REFLECTIONS_TAB].find((x) => x === rawValue) ||
+    DEFAULT_TAB
+  );
 };
 
 const getLocationDateRange = (queryString) => {
@@ -823,8 +826,6 @@ const Trends = ({
             All Time
           </div>
         </div>
-        {/* (TODO:) Uncomment below block in 2021 :) */}
-        {/*
         <div className="trends-date-selector-row">
           <div
             className={`trends-date-option ${
@@ -843,7 +844,6 @@ const Trends = ({
             2020
           </div>
         </div>
-        */}
       </div>
 
       <div className="trends-summary">
@@ -1288,12 +1288,17 @@ class App extends React.Component {
         )}
         {tab === REFLECTIONS_TAB && (
           <div className="reflections">
-            {Object.keys(notesData).map(ds => numWords(notesData[ds]) > REFLECTION_THRESHOLD && (
-              <div className="reflection">
-              <div className="day-date">{friendlyDate(ds)}</div>
-<ReactMarkdown className="day-notes">{notesData[ds]}</ReactMarkdown>
-              </div>
-            ))}
+            {Object.keys(notesData).map(
+              (ds) =>
+                numWords(notesData[ds]) > REFLECTION_THRESHOLD && (
+                  <div className="reflection">
+                    <div className="day-date">{friendlyDate(ds)}</div>
+                    <ReactMarkdown className="day-notes">
+                      {notesData[ds]}
+                    </ReactMarkdown>
+                  </div>
+                )
+            )}
           </div>
         )}
       </div>
