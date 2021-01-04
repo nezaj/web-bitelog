@@ -1,6 +1,7 @@
 import React from "react";
 
 import ReactMarkdown from "react-markdown";
+import gfm from "remark-gfm";
 import Mousetrap from "mousetrap";
 import { Line } from "react-chartjs-2";
 import ApexChart from "react-apexcharts";
@@ -375,7 +376,11 @@ const Entry = ({ ds, items, detailMap, notes, healthItems, onShowDetail }) => {
           </span>
         </div>
       </div>
-      {notes && <ReactMarkdown className="day-notes">{notes}</ReactMarkdown>}
+      {notes && (
+        <ReactMarkdown plugins={[gfm]} className="day-notes">
+          {notes}
+        </ReactMarkdown>
+      )}
       <div className="day-images">
         {imageDetails.map((imageDetail, idx) => (
           <div className="day-image" key={idx}>
@@ -1293,7 +1298,7 @@ class App extends React.Component {
                 numWords(notesData[ds]) > REFLECTION_THRESHOLD && (
                   <div className="reflection">
                     <div className="day-date">{friendlyDate(ds)}</div>
-                    <ReactMarkdown className="day-notes">
+                    <ReactMarkdown plugins={[gfm]} className="day-notes">
                       {notesData[ds]}
                     </ReactMarkdown>
                   </div>
