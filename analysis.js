@@ -82,6 +82,9 @@ const foods2020 = () => {
 };
 
 function initializeContext(context) {
+  context.allFoods = allFoods;
+  context.allFoodsByDate = allFoodsByDate;
+  context.orderedByCalories = orderedByCalories;
   context.foods2020 = foods2020;
 }
 

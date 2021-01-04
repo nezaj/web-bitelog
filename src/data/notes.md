@@ -1,9 +1,67 @@
+### 1/3/2021
+
+My eating/fitness was deifnitely not in-line with my overall goals during the holidays.
+
+That being said, the holidays have come and gone and it's now 2021 -- w00t! Time to bring back those good habits :)
+
+**Goals for next week:**
+
+-   Average <= 2,050cals/week
+-   Trevor workout 7/7
+
+For my own curiousity I did a quick and dirty analysis of my foods since I started tracking.
+
+Two things stood out to me:
+
+-   11 of the foods are “snacky”, 7 foods are “mealy”, and 2 foods were desert
+-   Looks like on average when I ate B&J ice cream I would eat a whole pints worth
+
+Some take-aways
+
+-   Will work on cutting down the average dessert intake. One idea is to introduce more frequent smaller treats. I realize I actually did this for awhile back in August / September with the chocolate almonds and I didn't touch ice cream during that time. Having a little bit of sugar instead of a lot at once is probably better than what I've been doing the last few weeks
+-   Will get back into cooking to increase pct of calories that come from "meal-centric" foods. I think bulk cooking will be a huge help for this!
+
+Other thoughts
+
+-   I recorded 6 full day fasts during this time period in addition to a few < 500cal days. Most often these full day fasts were re-active due to an excess the previous day. I believe only once or twice it was a pro-active fast. I actually like fasting because it feels like a cleanse. However I would rather do it more pro-actively than re-actively.
+-   For 2021 will try to be better at managing the wild swings to caloric ranges
+-   The main offenders for caloric excess seem to fall in the following categories
+    -   Gave in to excess eating (e.g. B&J). This became a problem after I stopped buying the chocolate almonds. To counter this will introduce small dessert snacking again.
+    -   Eating out in restaurants with friends. In these situations I will try to be mindful of how much and how fast I am eating. I think I should still enjoy my time out with friends, but instead simply eat slower and eat less
+    -   Hosting friends and over-snacking. Often times I also want to partake in the snacking. I can try to plan ahead and adjust my caloric so I can indulge. Regardless I should practice mindful eating in those situations. Eat slower and portion out the snacks instead of just grabbing them
+
+Below is the list of the top 20 foods which contributed roughly ~80% of my caloric intake
+
+| food                      | totalCals | count | avgCals |  pct  |
+| ------------------------- | :-------: | :---: | :-----: | :---: |
+| Mixed Nuts, Dry Roasted   |   42644   |  147  |   290   | 13.12 |
+| Date                      |   21927   |  213  |   103   | 6.75  |
+| Greek Yogurt: Vanilla     |   19947   |  83   |   240   | 6.14  |
+| Salami                    |   16717   |  106  |   158   | 5.14  |
+| Greek Yogurt              |   15715   |  60   |   262   | 4.83  |
+| Havarti Cheese            |   14830   |  107  |   139   | 4.56  |
+| Sunflower Seed Butter     |   14750   |  62   |   238   | 4.54  |
+| Ben and Jerry's Ice Cream |   11967   |  10   |  1197   | 3.68  |
+| Grapes                    |   11958   |  69   |   173   | 3.68  |
+| Salmon                    |   11645   |  32   |   364   | 3.58  |
+| Dark Chocolate Almonds    |   10453   |  58   |   180   | 3.22  |
+| Fried Egg                 |   9281    |  45   |   206   | 2.86  |
+| Grilled Chicken           |   9060    |  30   |   302   | 2.79  |
+| Avocado Oil               |   7980    |  57   |   140   | 2.45  |
+| Ground Beef               |   6901    |  22   |   314   | 2.12  |
+| PB acai Bowl              |   6683    |  13   |   514   | 2.06  |
+| Protein Powder            |   5697    |  36   |   158   | 1.75  |
+| Strawberries              |   5669    |  66   |   86    | 1.74  |
+| Raw Carrots               |   5363    |  82   |   65    | 1.65  |
+| Apple                     |   4280    |  44   |   97    | 1.32  |
+
 ### 12/15/2020
 
 I missed writing a reflection on Sunday but still wanted to get one in for the
 week.
 
 Goals from previous week:
+
 -   (Success, 1 red day) 2 or less red days
 -   (Fail, worked-out 3x) Workout all 7 days, following new schedule (VT + runs + test + weekend workouts)
 -   (Fail, cooked 2x) Cook food for next day at least 3x
@@ -11,13 +69,13 @@ Goals from previous week:
 
 Thoughts for the week
 
-* Ate clean again M -> TH
-* F -> Su was very social and lots of excess
-* Ate a few home-cooked meals which where great
-* However, wasn't motivated enough to cook more than 2x, it definitely takes some energy to follow-through at night
-* Failed the 7x workout early on, missed both my runs on Tuesday/Thursday mainly because it was hard to wake up early and it was cold outside
-* Although I had only 1 red day, calories were higher on average this week at ~2.25k
-* Was able to hit BJJ 3x which felt great. Ideally will be going 5x but it's hard to make that 7:30am morning class
+-   Ate clean again M -> TH
+-   F -> Su was very social and lots of excess
+-   Ate a few home-cooked meals which where great
+-   However, wasn't motivated enough to cook more than 2x, it definitely takes some energy to follow-through at night
+-   Failed the 7x workout early on, missed both my runs on Tuesday/Thursday mainly because it was hard to wake up early and it was cold outside
+-   Although I had only 1 red day, calories were higher on average this week at ~2.25k
+-   Was able to hit BJJ 3x which felt great. Ideally will be going 5x but it's hard to make that 7:30am morning class
 
 The beginning of last week started off great, but once the weekend came things went off the rails. We
 were very social last weekend, going to the same Georgia restaurant twice and hosting folks. Not only
@@ -29,9 +87,9 @@ Going forward, I want to be more aware of weekend excess. A part of me wanted to
 sure how to formulate this goal more concretely yet. One thing I do know though is that I want to cut back on hookah.
 Although I'm setting this mid-week, here's my goals for the upcoming week.
 
-* 2 or less red days
-* Run at least 1x, Workout at least 2x F -> Sun
-* Don't smoke hookah more than 2x
+-   2 or less red days
+-   Run at least 1x, Workout at least 2x F -> Sun
+-   Don't smoke hookah more than 2x
 
 In other news, small update to the website -- I added a reflections tab! I've noticed I've been wanting
 this for a few weeks now so decided to add it in. I use a hueristic (> X words) to determine what
