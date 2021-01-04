@@ -33,7 +33,7 @@ Other thoughts
 Below is the list of the top 20 foods which contributed roughly ~80% of my caloric intake
 
 | food                      | totalCals | count | avgCals |  pct  |
-| ------------------------- | :-------: | :---: | :-----: | :---: |
+| :------------------------ | :-------: | :---: | :-----: | :---: |
 | Mixed Nuts, Dry Roasted   |   42644   |  147  |   290   | 13.12 |
 | Date                      |   21927   |  213  |   103   | 6.75  |
 | Greek Yogurt: Vanilla     |   19947   |  83   |   240   | 6.14  |
