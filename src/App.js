@@ -153,6 +153,7 @@ const filterEntries = (dateRange, entriesToDateMap) => {
   const latestDate = sortedDate[0];
   const earliestDate = sortedDate.slice(-1)[0];
   let minDate;
+  let maxDate = new Date();
   switch (dateRange) {
     case LAST_30_DAYS:
       minDate = addDays(latestDate, -30);
@@ -167,7 +168,8 @@ const filterEntries = (dateRange, entriesToDateMap) => {
       minDate = addDays(earliestDate, -1);
       break;
     case YEAR_2020:
-      minDate = new Date(2020, 0, 1);
+      minDate = new Date(2020, 0, 0);
+      maxDate = new Date(2021, 0, 1);
       break;
     case LAST_7_DAYS:
     default:
@@ -176,7 +178,9 @@ const filterEntries = (dateRange, entriesToDateMap) => {
   }
 
   const keep = new Set(
-    Object.keys(entriesToDateMap).filter((x) => new Date(x) > minDate)
+    Object.keys(entriesToDateMap).filter(
+      (x) => new Date(x) > minDate && (maxDate ? new Date(x) <= maxDate : true)
+    )
   );
   return Object.keys(entriesToDateMap)
     .filter((x) => keep.has(x))
@@ -987,7 +991,9 @@ class EntryDetail extends React.Component {
             <div
               className="detail-nav"
               onClick={this.onPrev}
-              style={{ visibility: index > 0 ? "visible" : "hidden" }}
+              style={{
+                visibility: index > 0 ? "visible" : "hidden",
+              }}
             >
               {prevIcon}
             </div>
