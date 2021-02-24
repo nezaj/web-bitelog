@@ -61,6 +61,7 @@ const LAST_90_DAYS = "last90Days";
 const THIS_YEAR = "thisYear";
 const ALL_TIME = "allTime";
 const YEAR_2020 = "year2020";
+const HEATMAP_DAYS = "heatmapdays";
 const DEFAULT_TRENDS_DATE_RANGE = LAST_7_DAYS;
 
 // Heatmap Options
@@ -68,7 +69,6 @@ const HOURLY_HEATMAP_HEIGHT = window.screen.width > 800 ? 200 : 125;
 const MAX_X_AXIS_HOURLY_TICKS = 8;
 
 // Calorie Heatmp
-const LOW_CALORIES_THRESHOLD_START = 0;
 const LOW_CALORIES_THRESHOLD_END = 1600;
 const TARGET_CALORIES_THRESHOLD_START = LOW_CALORIES_THRESHOLD_END + 1;
 const TARGET_CALORIES_THRESHOLD_END = 2400;
@@ -170,6 +170,9 @@ const filterEntries = (dateRange, entriesToDateMap) => {
     case YEAR_2020:
       minDate = new Date(2020, 0, 0);
       maxDate = new Date(2021, 0, 1);
+      break;
+    case HEATMAP_DAYS:
+      minDate = addDays(maxDate, -182 - maxDate.getDay());
       break;
     case LAST_7_DAYS:
     default:
@@ -649,7 +652,13 @@ const WeekdayCalorieHeatMap = ({ title, macroData }) => {
         colorScale: {
           ranges: [
             {
-              from: LOW_CALORIES_THRESHOLD_START,
+              from: -1,
+              to: 0,
+              name: `No data`,
+              color: NO_DATA_COLOR,
+            },
+            {
+              from: 0,
               to: LOW_CALORIES_THRESHOLD_END,
               name: `<= ${LOW_CALORIES_THRESHOLD_END} (low)`,
               color: LOW_RANGE_COLOR,
@@ -1171,13 +1180,13 @@ class App extends React.Component {
       filterEntries(dateRange, entriesToDateMap)
     );
     const nutrientsWeeklyStats = weeklyNutrientsStatsMap(
-      nutrientsToDailyTotalsMap(entriesToDateMap)
+      nutrientsToDailyTotalsMap(filterEntries(HEATMAP_DAYS, entriesToDateMap))
     );
     const nutrientsHourlyStats = hourlyNutrientsStatsMap(
       filterEntries(dateRange, entriesToDateMap)
     );
     const healthWeeklyStats = weeklyHealthStatsMap(
-      healthToDailyTotalsMap(healthData)
+      healthToDailyTotalsMap(filterEntries(HEATMAP_DAYS, healthData))
     );
 
     // Entry Detail
