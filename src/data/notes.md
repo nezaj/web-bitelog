@@ -1,3 +1,21 @@
+### 4/11/2021
+
+Shared my six-pack goal with my buddy Jan and he said he wanted to join. We agreed to send each other
+weekly reviews so I'm back to writing reflections -- sweet!
+
+I'll reflect on the last two weeks here. Two weeks ago was when I was re-invigorated to wotk towards
+the six pack again. The first week went excellent -- my calories were very clean and I only ate out
+once. This week I ate out four times, which made it much harder to keep overall calories low. I was
+able to offset the excess calories a bit by eating less on the non eating out days, but this certainly
+took a mental toll.
+
+I ate out four times due to social gatherings with friends. Although I love seeing my friends, going forward
+I will be limiting eating out to no more than twice a week. This means I will be turning down dinner plans. In
+the last two weeks I've given up smoking and it's definitely had a positve impact on my fitness and overall
+feeling of wellness. I imagine restricting eating out will have similar benefits.
+
+Looking forward to the week ahead!
+
 ### 1/3/2021
 
 My eating/fitness was deifnitely not in-line with my overall goals during the holidays.
