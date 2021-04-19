@@ -1,3 +1,18 @@
+### 4/18/2021
+
+Overall this was a great week in terms of diet! Calories were below target and macros were on-point! Every day was a green or blue day so no excess of calories. Last time I ate this clean was week of Nov 9th (aka 6 months ago). I would say
+this primarily due to the fact I had no dinner plans this week so never ate out. Thanks to Snapkitchen + some groceries was easy to eat clean
+
+I also got braces (invisalign) on Tuesday which definitely makes eating / drinking
+annoying. On the plus side, this means it will be easier to turn down dinner plans due to the hassle of needing to clean teeth afterwards. Of course I will still do dinners every now and then (we have a birthday dinner coming up for a friend), but
+I'm actually happy to have an excuse to turn down spontaenous dinner plans for now.
+
+I did Jiu-Jitsu 5x this week and lifted 3x which was great. However, I did not run Tuesday, Thursday, and Saturday. Went on a run on Sunday, but Sunday is supposed to be test day for workouts, which I'll skip today because I'm pooped. I skipped the runs due to a combination of it being rainy last week + adjusting to braces life. Tl;dr I hope to be more on point with running this week.
+
+I'm checking out a Judo school as well tomorrow -- very excited about that! If I like the school will sign up immediately. Judo is 3x a week and it conflicts with BJJ. However, BJJ is 6x a week. As a result, I'm really gonna try to prioritize doing both BJJ and Judo 3x a week (Judo MWF, BJJ TuThuSa) so 6x a week workouts in addition to running and lifting. There will be exceptions of course (like the birthday dinner) -- but I will make those more rare than in the past with last minute dinner plans. I can also do double classes for BJJ on Tuesday and Saturday (Gi + No-Gi) so will try that this week too!
+
+Let's gooooo!
+
 ### 4/11/2021
 
 Shared my six-pack goal with my buddy Jan and he said he wanted to join. We agreed to send each other
