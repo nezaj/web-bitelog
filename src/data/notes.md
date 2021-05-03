@@ -8,6 +8,14 @@ Exercise-wise I lifted 3x, ran 1x, Jiu-Jitsu 2x, and Judo 3x. In addition I bike
 
 For this week I want to be more mindful about not giving into late-night cravings and keep caloric intake steady. For the month of April I only had one green-dominant week and that was definitely the week I felt the best. Let's get back to that!
 
+### 4/26/2021
+
+This was a pretty wild week for me. Very social and lots of eating out (4x this week). Not a single green day last week — everything was either over or under calories. Overall calories came in around 200 above target. I did lots of BJJ/Judo/Runs so was able to offset excess a bit to bring weight slightly down vs last week.
+
+This week should be much better for the diet since I currently have no dinners planned!
+
+Exercise-wise I ran 3x, BJJ 3x Judo 2x and lifted 2x. Happy about all except lifting — I’ve been doing 2x for most of the last six weeks. Will try to hit 4x this week!
+
 ### 4/18/2021
 
 Overall this was a great week in terms of diet! Calories were below target and macros were on-point! Every day was a green or blue day so no excess of calories. Last time I ate this clean was week of Nov 9th (aka 6 months ago). I would say
