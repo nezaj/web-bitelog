@@ -1,3 +1,13 @@
+### 5/3/2021
+
+Last week was tougher than I thought. I had three red days, three blue days, and one green -- lots of caloric variance. I averaged ~2100/cal per day vs my goal of 1950. This was slightly better than last week. Similarly weight-wise moved down slightly, back to sub 150 terrority, averaging 149.7lb.
+
+Early in the week I felt hungrier and ate excess calories. I tried to offset this in the following days and would eat low calories for most of the day. However, at night I would "crack" and eat a ton. Although late night eating was mostly clean, it meant I again would eat little the following day. This was tough to endure mentally. I was able to mostly offset calories by end of week, but due to eating out with friends, still came in higher than target.
+
+Exercise-wise I lifted 3x, ran 1x, Jiu-Jitsu 2x, and Judo 3x. In addition I biked 4x for 30min-1hr. Overall lots of exercise this week, and the body definitely felt it. I still want to be better about lifting and keep my eye on running -- definitely ran less last week. I spent a lot of time watching BJJ/Judo videos last week so it was tougher to fit in non-class based workouts.
+
+For this week I want to be more mindful about not giving into late-night cravings and keep caloric intake steady. For the month of April I only had one green-dominant week and that was definitely the week I felt the best. Let's get back to that!
+
 ### 4/18/2021
 
 Overall this was a great week in terms of diet! Calories were below target and macros were on-point! Every day was a green or blue day so no excess of calories. Last time I ate this clean was week of Nov 9th (aka 6 months ago). I would say
