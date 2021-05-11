@@ -204,7 +204,7 @@ const getLocationTab = (queryString) => {
 };
 
 const getLocationDateRange = (queryString) => {
-  const rawValue = new URLSearchParams(queryString).get("tdr");
+  const rawValue = new URLSearchParams(queryString).get("dateRange");
   return (
     [
       LAST_7_DAYS,
