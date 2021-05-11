@@ -1,3 +1,11 @@
+### 5/10/2021
+
+This week averaged 150.3lb weight, ~2555cals/day, lifted 2x, BJJ 3x, ran 1x, did a Muay Thai class, and no Judo. My average weight increased this week over last and my calories were way above target mostly due to eating out with friends. This happened towards the end of the week, for the most of the week I ate pretty clean and consistently which led me to having a great mood. I certainly should have reigned it in when eating out, but I definitely let myself go a bit this week. Maybe I needed it, it's been six week since I started and was potentially feeling some diet stress.
+
+Exercise-wise pretty happy with last week. No Judo was a shame but couldn't fit it in due to social gatherings and wanting to do more BJJ. I will be starting a new schedule this week where I'll be waking up early during the work week. This is to enable a schedule of BJJ 5x a week + Judo 3x a week. Furthermore will still aim for lifting 3x a week (2x a week is guarenteed thanks to training with Trevor, so just need to do one on my own) and reduce running down to 1x.
+
+Coming into this new week I'm feeling strong and energized for workouts. I want this week to be consistent like the beginning of last week, and just more strict about eating out.
+
 ### 5/3/2021
 
 Last week was tougher than I thought. I had three red days, three blue days, and one green -- lots of caloric variance. I averaged ~2100/cal per day vs my goal of 1950. This was slightly better than last week. Similarly weight-wise moved down slightly, back to sub 150 terrority, averaging 149.7lb.
