@@ -256,7 +256,7 @@ const _buildWeeklyStats = (dailyTuples) => {
     _dailyTupleDate(sorted[0]),
     WEEK_STARTING_ON_DAYNAME
   );
-  const lastDay = _dailyTupleDate(sorted[sorted.length - 1]);
+  const lastDay = addDays(_dailyTupleDate(sorted[sorted.length - 1]), 1);
   const dailyRange = _buildClosedDailyRange(adjustedFirstDay, lastDay);
 
   const dailyMap = tuplesToMap(dailyTuples);
