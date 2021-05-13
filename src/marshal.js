@@ -214,6 +214,7 @@ const _groupByWeek = (dateStr) =>
 const _groupDailyTuplesByWeek = (tup) => _groupByWeek(_dailyTupleDate(tup));
 
 // Transforms tuples of daily values into a map of weekly statistics
+// (TODO): This currently mixes building weekly stats for line graphs and heatmaps, probably would be nicer to split into separate functions
 const _buildWeeklyStats = (dailyTuples) => {
   // Group labels by week (earliest to latest)
   const sorted = dailyTuples
@@ -234,9 +235,8 @@ const _buildWeeklyStats = (dailyTuples) => {
   );
 
   // Calculate statistics
-  const nonEmptyLabels = Object.keys(grouped).filter(
-    (label) => grouped[label].length
-  );
+  const allLabels = Object.keys(grouped);
+  const nonEmptyLabels = allLabels.filter((label) => grouped[label].length);
   const minValues = nonEmptyLabels.map((label) => [
     label,
     min(grouped[label].map(_dailyTupleValue)),
@@ -280,6 +280,7 @@ const _buildWeeklyStats = (dailyTuples) => {
     maxValues,
     averageValues,
     weekdayHeatMapValues,
+    heatMapLabels: allLabels,
   };
 };
 

@@ -624,7 +624,7 @@ const _formatHeatMapTooltip = (
 };
 
 const WeekdayCalorieHeatMap = ({ title, macroData }) => {
-  const { labels, weekdayHeatMapValues } = macroData;
+  const { heatMapLabels, weekdayHeatMapValues } = macroData;
 
   const series = _extractHeatMapSeries(weekdayHeatMapValues);
   const options = {
@@ -681,7 +681,7 @@ const WeekdayCalorieHeatMap = ({ title, macroData }) => {
     },
     xaxis: {
       type: "category",
-      categories: labels,
+      categories: heatMapLabels,
       tickAmount: MAX_TICKS,
       tickPlacement: "on",
       labels: {
@@ -705,7 +705,7 @@ const WeekdayCalorieHeatMap = ({ title, macroData }) => {
 };
 
 const WeekdayWaterHeatMap = ({ title, macroData }) => {
-  const { labels, weekdayHeatMapValues } = macroData;
+  const { heatMapLabels, weekdayHeatMapValues } = macroData;
 
   const series = _extractHeatMapSeries(weekdayHeatMapValues);
   const options = {
@@ -760,7 +760,7 @@ const WeekdayWaterHeatMap = ({ title, macroData }) => {
     },
     xaxis: {
       type: "category",
-      categories: labels,
+      categories: heatMapLabels,
       tickAmount: MAX_TICKS,
       tickPlacement: "on",
       labels: {
