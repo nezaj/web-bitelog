@@ -738,12 +738,6 @@ const WeekdayWaterHeatMap = ({ title, macroData }) => {
           ranges: [
             {
               from: -1,
-              to: 0,
-              name: `No data`,
-              color: NO_DATA_COLOR,
-            },
-            {
-              from: 0,
               to: 7.99,
               name: `< ${GOAL_WATER_THRESHOLD} (below goal)`,
               color: BELOW_GOAL_WATER_COLOR,
