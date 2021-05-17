@@ -50,7 +50,8 @@ const ML_TO_CUPS_DIVISOR = 236.59;
 // need to update one value instead of three
 const WEEK_ENDING_ON_DAYNAME = "Monday";
 const WEEK_STARTING_ON_DAYNAME = "Monday";
-const HEATMAP_WEEK_DAYS = rotateArrayToVal(SHORT_WEEKDAYS, "Mon").reverse(); // We reverse so Monday will be top series
+const ORDERED_WEEKDAYS = rotateArrayToVal(SHORT_WEEKDAYS, "Mon");
+const HEATMAP_WEEK_DAYS = ORDERED_WEEKDAYS.slice().reverse(); // We reverse so Monday will be top series
 
 // Hours of the day: 12am -> 11pm
 const HOUR_HEATMAP_LABELS = rotateArrayToVal(
@@ -178,6 +179,21 @@ const weeklyHealthStatsMap = (dailyHealthMap) => {
   return _buildWeeklyStatsMap(dailyHealthMap, ["weight", "water"]);
 };
 
+// Transforms daily nutrients data into weekday statistics
+const weekdayNutrientsStatsMap = (dateToEntriesMap) => {
+  const flattenedEntries = Object.keys(dateToEntriesMap).reduce(
+    (flat, ds) => flat.concat(dateToEntriesMap[ds]),
+    []
+  );
+  return ["calories", "protein", "fat", "carbs"].reduce((res, key) => {
+    res[key] = {
+      labels: ORDERED_WEEKDAYS,
+      heatMapSeries: _buildWeekdayNutrientHeatMapSeries(flattenedEntries, key),
+    };
+    return res;
+  }, {});
+};
+
 // Transforms daily nutrients data into hourly statistics
 const hourlyNutrientsStatsMap = (dateToEntriesMap) => {
   const flattenedEntries = Object.keys(dateToEntriesMap).reduce(
@@ -301,12 +317,13 @@ const _extractHourLabel = (localTimeInt) => {
   }
 };
 
+const _extractWeekdayLabel = (dateKey) => getShortWeekyDayName(dateKey);
+
 const _sumFoodsNutrients = (foods, nutrientName) =>
   sum(foods.map((food) => extractNutrient(food.nutrients, nutrientName))) || 0;
 
 const _numFoodsDays = (foods) => {
-  return new Set(foods.map((food) => extractDate(new Date(food.eatenAtUTC))))
-    .size;
+  return new Set(foods.map((food) => food.dateKey)).size;
 };
 
 const _avgFoodsNutrients = (foods, nutrientName) => {
@@ -355,6 +372,23 @@ const _buildHourlyNutrientHeatMapSeries = (foods, nutrientName) => {
           groupedByHour[hour],
           nutrientName
         ),
+      })),
+    },
+  ];
+};
+
+const _buildWeekdayNutrientHeatMapSeries = (foods, nutrientName) => {
+  const groupedBy = Object.assign(
+    {},
+    defaultMap(ORDERED_WEEKDAYS, []), // Ensures values for all labels, even if there are no food entries
+    collect((food) => _extractWeekdayLabel(food.dateKey), foods)
+  );
+  return [
+    {
+      name: "Weekday",
+      data: Object.keys(groupedBy).map((weekday) => ({
+        x: weekday,
+        y: round(_avgFoodsNutrients(groupedBy[weekday], nutrientName), 0),
       })),
     },
   ];
@@ -574,4 +608,5 @@ module.exports.nutrientsToDailyTotalsMap = nutrientsToDailyTotalsMap;
 module.exports.healthToDailyTotalsMap = healthToDailyTotalsMap;
 module.exports.weeklyNutrientsStatsMap = weeklyNutrientsStatsMap;
 module.exports.weeklyHealthStatsMap = weeklyHealthStatsMap;
+module.exports.weekdayNutrientsStatsMap = weekdayNutrientsStatsMap;
 module.exports.hourlyNutrientsStatsMap = hourlyNutrientsStatsMap;
