@@ -1,3 +1,11 @@
+### 5/17/2021
+
+This was a tough week, was sick from Wednesday onwards (still a little sick today). Didn't get around to weighing myself once. Averaged ~2661cals/day (well above 2000cals/day target). I lifted, judo-d, and jiu-jitsued 1x, and ran 2x. Basically from Wednesday onwards I took it easy with just a couple bike rides and one run. I let myself go Saturday night after Stopa brought home some cookies -- ate two pints of ben and jerrys and several oreos. I haven't done that in awhile, I think I was fed up with being sick and trying to stick with diet goals. I ate excess calories earlier in the week and was doing a good job offsetting it, but the hunger/stress caught up with me. Offsetting excess definitely takes a toll.
+
+I also discovered towards the end of the week I've been under-estimating my peanut butter and dates calories -- resulting in under-reporting anywhere between 300-800 calories each day. I discovered this by 1. Using an actual tablespoon to measure a PB serving and realizing I was eating roughly 2x the amount and 2. Looking closer at the nutritional information of the dates and realizing it was ~2x calories I thought. Going forward will adjust my PB/date intake accordingly. I've also noticed that my caloric is roughly 40% carbs, 40% fats, 20% protein. I want to move this more to 40% carbs, 30% fats, and 30% protein (or roughly 200C, 75F, 150P for 2k calories). A simple adjustment to help achieve this would be to replace one of my regular PB servings with greek yogurt, so will be doing that too.
+
+As of today (Monday) I'm still a little sick but feeling good to workout! Let's get back on the healthy train :)
+
 ### 5/10/2021
 
 This week averaged 150.3lb weight, ~2555cals/day, lifted 2x, BJJ 3x, ran 1x, did a Muay Thai class, and no Judo. My average weight increased this week over last and my calories were way above target mostly due to eating out with friends. This happened towards the end of the week, for the most of the week I ate pretty clean and consistently which led me to having a great mood. I certainly should have reigned it in when eating out, but I definitely let myself go a bit this week. Maybe I needed it, it's been six week since I started and was potentially feeling some diet stress.
