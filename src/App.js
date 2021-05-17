@@ -960,10 +960,10 @@ const Trends = ({
         </div>
       </div>
       <div className="trends-charts-container">
-        <HourlyCalorieHeatMap macroData={nutrientsHourlyStats.calories} />
         <AverageWeekdayCalorieHeatMap
           macroData={nutrientsWeekdayStats.calories}
         />
+        <HourlyCalorieHeatMap macroData={nutrientsHourlyStats.calories} />
         <WeekdayCalorieHeatMap
           title="Daily Calories"
           macroData={nutrientsWeeklyStats.calories}
