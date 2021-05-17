@@ -66,10 +66,10 @@ const HOUR_HEATMAP_LABELS = rotateArrayToVal(
 const GROUPING_CUTOFF_MIN = 45;
 const MEAL_CALORIES_CUTOFF = 500;
 const LARGE_MEAL_CALORIES_CUTOFF = 1000;
-const MORNING_START = 6;
+const MORNING_START = 5;
 const AFTERNOON_START = 12;
 const EVENING_START = 17;
-const LATE_NIGHT_START = 21;
+const LATE_NIGHT_START = 22;
 
 // Used by health.js to export map of health data
 const buildHealthMap = (healthData) => {
@@ -102,12 +102,12 @@ const buildHealthMap = (healthData) => {
 // This is used as the "top-level" data structure for food-related data
 const entriesToDateMap = (entries) => {
   return entries.reduce((xs, x) => {
-    // Adjust hours so entries are grouped starting from 4am
+    // Adjust hours so entries are grouped starting from 5am
     // This is to adjust for "late night" eating. E.g. food at 3am should
     // be grouped with the previous day instead of the next day since I am
     // most likely eating at the "end" of the day instead of the beginning
     const localDate = localTimeToDate(x.eatenAtLocalTime);
-    const dateKey = extractDate(addHours(localDate, -4));
+    const dateKey = extractDate(addHours(localDate, -5));
     x.dateKey = dateKey;
 
     xs[dateKey] = xs[dateKey] || [];
