@@ -388,7 +388,9 @@ const _buildWeekdayNutrientHeatMapSeries = (foods, nutrientName) => {
       name: "Weekday",
       data: Object.keys(groupedBy).map((weekday) => ({
         x: weekday,
-        y: round(_avgFoodsNutrients(groupedBy[weekday], nutrientName), 0),
+        y: groupedBy[weekday].length
+          ? round(_avgFoodsNutrients(groupedBy[weekday], nutrientName), 0)
+          : -1,
       })),
     },
   ];

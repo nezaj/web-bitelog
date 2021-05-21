@@ -378,12 +378,14 @@ body {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .trends-date-selector-row {
   display: flex;
   justify-content: center;
-  margin-bottom: 1em;
+  flex-wrap: wrap;
 }
 
 .trends-date-option {
@@ -404,7 +406,6 @@ body {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
-  margin-top: 30px;
   margin-bottom: 20px;
 }
 
@@ -470,6 +471,11 @@ body {
   font-size: 18px;
 }
 
+.trends-chart-average-intraday {
+  margin-top: -15px;
+  margin-bottom: -15px;
+}
+
 .trends-chart-data {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -479,8 +485,6 @@ body {
 @media (min-width: 801px) {
   .trends-date-selector {
     width: 100%;
-    margin-top: 30px;
-    margin-bottom: 30px;
   }
 
   .trends-date-option {
@@ -503,7 +507,6 @@ body {
 
   .trends-summary {
     width: 66%;
-    margin-top: 50px;
     margin-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
@@ -546,6 +549,10 @@ body {
 
   .trends-chart-title {
     font-size: 24px;
+  }
+
+  .trends-chart-average-intraday {
+    margin-top: -25px;
   }
 
   .trends-chart-data {

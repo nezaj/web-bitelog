@@ -30,9 +30,11 @@ import {
 } from "./marshal.js";
 import {
   addDays,
+  addWeeks,
   eatingWindow,
   extractDate,
   friendlyDate,
+  mostRecentWeekDayDate,
   getImageId,
   round,
   sum,
@@ -56,14 +58,14 @@ const MIN_ENTRY_PAGE = 1;
 const ENTRIES_PER_PAGE = 7;
 
 // Trends date range options
-const LAST_7_DAYS = "lastWeek";
-const LAST_30_DAYS = "last30Days";
-const LAST_90_DAYS = "last90Days";
+const THIS_WEEK = "thisWeek";
+const LAST_5_WEEKS = "last5weeks";
+const LAST_10_WEEKS = "last10weeks";
 const THIS_YEAR = "thisYear";
 const ALL_TIME = "allTime";
 const YEAR_2020 = "year2020";
 const HEATMAP_DAYS = "heatmapdays";
-const DEFAULT_TRENDS_DATE_RANGE = LAST_7_DAYS;
+const DEFAULT_TRENDS_DATE_RANGE = THIS_WEEK;
 
 // Heatmap Options
 const HOURLY_HEATMAP_HEIGHT = window.screen.width > 800 ? 200 : 125;
@@ -101,7 +103,7 @@ const MAX_X_AXIS_ROTATION = 0; // Don't rotate dates, we want them to be easy to
 const MAX_TICKS = window.screen.width > 800 ? 6 : 3; // Don't crowd the axis
 const STATS_BACKGROUND_COLOR = "rgba(68, 65, 106, 0.3)";
 const NO_DATA_TOOLTIP_VALUE = "N/A";
-const NO_DATA_COLOR = "#fff";
+const NO_DATA_COLOR = "#FFFFFF";
 
 // Reflections
 const REFLECTION_THRESHOLD = 80;
@@ -155,13 +157,17 @@ const filterEntries = (dateRange, entriesToDateMap) => {
   const latestDate = sortedDate[0];
   const earliestDate = sortedDate.slice(-1)[0];
   let minDate;
-  let maxDate = new Date();
+  let maxDate = new Date(latestDate);
   switch (dateRange) {
-    case LAST_30_DAYS:
-      minDate = addDays(latestDate, -30);
+    case LAST_5_WEEKS:
+      minDate = new Date(
+        mostRecentWeekDayDate(addWeeks(maxDate, -4), "Monday")
+      );
       break;
-    case LAST_90_DAYS:
-      minDate = addDays(latestDate, -90);
+    case LAST_10_WEEKS:
+      minDate = new Date(
+        mostRecentWeekDayDate(addWeeks(maxDate, -9), "Monday")
+      );
       break;
     case THIS_YEAR:
       minDate = new Date(new Date().getFullYear(), 0, 0);
@@ -174,17 +180,17 @@ const filterEntries = (dateRange, entriesToDateMap) => {
       maxDate = new Date(2021, 0, 1);
       break;
     case HEATMAP_DAYS:
-      minDate = addDays(maxDate, -182 - maxDate.getDay());
+      minDate = addDays(maxDate, -181 - maxDate.getDay());
       break;
-    case LAST_7_DAYS:
+    case THIS_WEEK:
     default:
-      minDate = addDays(latestDate, -7);
+      minDate = new Date(mostRecentWeekDayDate(maxDate, "Monday"));
       break;
   }
 
   const keep = new Set(
     Object.keys(entriesToDateMap).filter(
-      (x) => new Date(x) > minDate && (maxDate ? new Date(x) <= maxDate : true)
+      (x) => new Date(x) >= minDate && (maxDate ? new Date(x) <= maxDate : true)
     )
   );
   return Object.keys(entriesToDateMap)
@@ -209,9 +215,9 @@ const getLocationDateRange = (queryString) => {
   const rawValue = new URLSearchParams(queryString).get("dateRange");
   return (
     [
-      LAST_7_DAYS,
-      LAST_30_DAYS,
-      LAST_90_DAYS,
+      THIS_WEEK,
+      LAST_5_WEEKS,
+      LAST_10_WEEKS,
       THIS_YEAR,
       ALL_TIME,
       YEAR_2020,
@@ -585,7 +591,7 @@ const HourlyCalorieHeatMap = ({ macroData }) => {
   };
 
   return (
-    <div className="trends-chart">
+    <div className="trends-chart trends-chart-average-intraday">
       <div className="trends-chart-data">
         <ApexChart
           series={heatMapSeries}
@@ -601,7 +607,10 @@ const HourlyCalorieHeatMap = ({ macroData }) => {
 const AverageWeekdayCalorieHeatMap = ({ macroData }) => {
   const { labels, heatMapSeries } = macroData;
   const options = {
-    dataLabels: { enabled: true },
+    dataLabels: {
+      enabled: true,
+      formatter: (val, _) => (val !== -1 ? val : undefined),
+    },
     chart: { toolbar: { show: false } },
     title: {
       text: "Average weekday calorie consumption",
@@ -885,27 +894,35 @@ const Trends = ({
         <div className="trends-date-selector-row">
           <div
             className={`trends-date-option ${
-              dateRange === LAST_7_DAYS ? "active" : "inactive"
+              dateRange === THIS_WEEK ? "active" : "inactive"
             }`}
-            onClick={() => updateDateRange(LAST_7_DAYS)}
+            onClick={() => updateDateRange(THIS_WEEK)}
           >
-            Last 7 Days
+            This Week
           </div>
           <div
             className={`trends-date-option ${
-              dateRange === LAST_30_DAYS ? "active" : "inactive"
+              dateRange === LAST_5_WEEKS ? "active" : "inactive"
             }`}
-            onClick={() => updateDateRange(LAST_30_DAYS)}
+            onClick={() => updateDateRange(LAST_5_WEEKS)}
           >
-            Last 30 Days
+            Last 5 Weeks
           </div>
           <div
             className={`trends-date-option ${
-              dateRange === LAST_90_DAYS ? "active" : "inactive"
+              dateRange === LAST_10_WEEKS ? "active" : "inactive"
             }`}
-            onClick={() => updateDateRange(LAST_90_DAYS)}
+            onClick={() => updateDateRange(LAST_10_WEEKS)}
           >
-            Last 90 Days
+            Last 10 Weeks
+          </div>
+          <div
+            className={`trends-date-option ${
+              dateRange === THIS_YEAR ? "active" : "inactive"
+            }`}
+            onClick={() => updateDateRange(THIS_YEAR)}
+          >
+            This Year
           </div>
           <div
             className={`trends-date-option ${
@@ -914,16 +931,6 @@ const Trends = ({
             onClick={() => updateDateRange(ALL_TIME)}
           >
             All Time
-          </div>
-        </div>
-        <div className="trends-date-selector-row">
-          <div
-            className={`trends-date-option ${
-              dateRange === THIS_YEAR ? "active" : "inactive"
-            }`}
-            onClick={() => updateDateRange(THIS_YEAR)}
-          >
-            This Year
           </div>
           <div
             className={`trends-date-option ${
