@@ -214,6 +214,14 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.empty-feed-week {
+  text-align: center;
+  margin: 1em auto;
+}
+
+@media (max-widh: 800px) {
+}
+
 /* Mobile/Tablet */
 @media (max-width: 800px) {
   .feed {

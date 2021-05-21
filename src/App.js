@@ -1374,7 +1374,15 @@ class App extends React.Component {
                 🏠
               </span>
             )}
-            {renderedEntries}
+            {renderedEntries.length ? (
+              renderedEntries
+            ) : (
+              <div className="empty-feed-week">
+                {`Mea culpa! I didn't log anything for the week ending on ${friendlyDate(
+                  extractDate(maxEntry)
+                )} 😅`}
+              </div>
+            )}
             {/* Pagination navigation  */}
             <div className="entry-navs">
               {entryPage > MIN_ENTRY_PAGE && (
