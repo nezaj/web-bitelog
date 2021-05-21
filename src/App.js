@@ -31,6 +31,7 @@ import {
 import {
   addDays,
   addWeeks,
+  weeksBetween,
   eatingWindow,
   extractDate,
   friendlyDate,
@@ -55,7 +56,6 @@ const DEFAULT_TAB = ENTRIES_TAB;
 
 // Entries
 const MIN_ENTRY_PAGE = 1;
-const ENTRIES_PER_PAGE = 7;
 
 // Trends date range options
 const THIS_WEEK = "thisWeek";
@@ -114,7 +114,6 @@ const COMPRESSED_SET = new Set(COMPRESSED_LIST);
 // Utils
 // ---------------------------------------------------------------------------
 const roundedAvg = (items) => Math.round(avg(items));
-const descSort = (second, first) => second - first;
 const ascLocalTime = (second, first) =>
   second.localTimeInt <= first.localTimeInt ? -1 : 1;
 const descCalorieSort = (second, first) =>
@@ -145,17 +144,29 @@ const getImage = (url) => {
 };
 // Entry Helpers
 // ---------------------------------------------------------------------------
-const getMaxEntryPage = (numEntries) =>
-  Math.ceil(numEntries / ENTRIES_PER_PAGE);
+const sortEntriesDesc = (entriesToDateMap) =>
+  Object.keys(entriesToDateMap).sort((second, first) =>
+    new Date(second) <= new Date(first) ? 1 : -1
+  );
+
+const getMaxEntryPage = (entriesToDateMap) => {
+  const sortedEntries = sortEntriesDesc(entriesToDateMap);
+  const latestDate = sortedEntries[0];
+  const earliestDate = sortedEntries.slice(-1)[0];
+  return (
+    weeksBetween(
+      mostRecentWeekDayDate(earliestDate, "Monday"),
+      mostRecentWeekDayDate(latestDate, "Monday")
+    ) + MIN_ENTRY_PAGE
+  );
+};
 
 // Trend Helpers
 // ---------------------------------------------------------------------------
 const filterEntries = (dateRange, entriesToDateMap) => {
-  const sortedDate = Object.keys(entriesToDateMap).sort((second, first) =>
-    new Date(second) <= new Date(first) ? 1 : -1
-  );
-  const latestDate = sortedDate[0];
-  const earliestDate = sortedDate.slice(-1)[0];
+  const sortedEntries = sortEntriesDesc(entriesToDateMap);
+  const latestDate = sortedEntries[0];
+  const earliestDate = sortedEntries.slice(-1)[0];
   let minDate;
   let maxDate = new Date(latestDate);
   // Uncomment below to set custom max date (useful for late weekly reflections)
@@ -230,7 +241,7 @@ const getLocationDetailKey = (queryString) => {
   return new URLSearchParams(queryString).get("detailKey");
 };
 
-const getLocationEntryPage = (queryString, numEntries) => {
+const getLocationEntryPage = (queryString, maxEntryPage) => {
   const entryPage = new URLSearchParams(queryString).get("entryPage");
   if (!entryPage || entryPage < MIN_ENTRY_PAGE || isNaN(entryPage)) {
     updateLocation("entryPage", MIN_ENTRY_PAGE);
@@ -238,7 +249,6 @@ const getLocationEntryPage = (queryString, numEntries) => {
   }
 
   // Limit entry page to max page
-  const maxEntryPage = getMaxEntryPage(numEntries);
   if (entryPage > maxEntryPage) {
     updateLocation("entryPage", maxEntryPage);
     return maxEntryPage;
@@ -1177,12 +1187,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     const { entriesToDateMap } = this.props;
-    const numEntries = Object.keys(entriesToDateMap).length;
+    const maxEntryPage = getMaxEntryPage(entriesToDateMap);
     this.state = {
       tab: getLocationTab(window.location.search),
       dateRange: getLocationDateRange(window.location.search),
       detailKey: getLocationDetailKey(window.location.search),
-      entryPage: getLocationEntryPage(window.location.search, numEntries),
+      entryPage: getLocationEntryPage(window.location.search, maxEntryPage),
     };
   }
 
@@ -1222,15 +1232,22 @@ class App extends React.Component {
     const { dateRange, detailKey, tab, entryPage } = this.state;
 
     // Pagination helpers
-    const numEntries = Object.keys(entriesToDateMap).length;
-    const maxEntryPage = getMaxEntryPage(numEntries);
-    const entryStart = (entryPage - 1) * ENTRIES_PER_PAGE;
-    const entryEnd = entryPage * ENTRIES_PER_PAGE;
+    // Display "one week" per page where a week is defined starting on a weekday
+    // (e.g. weeks start on Monday). This means the first page may have less than
+    // 7 days of entries, but then all subsequent weeks should have exactly 7 days
+    const maxEntryPage = getMaxEntryPage(entriesToDateMap);
+    const sortedEntries = sortEntriesDesc(entriesToDateMap);
+    const latestEntry = new Date(sortedEntries[0]);
+    // (XXX): This only works for Monday -> Sunday week, generalize it if you want more flexibility
+    const maxEntry = addDays(
+      addWeeks(latestEntry, -1 * (entryPage - MIN_ENTRY_PAGE)),
+      7 - (latestEntry.getDay() || 7)
+    );
+    const minEntry = addDays(mostRecentWeekDayDate(maxEntry, "Monday"), -1);
 
     // Entry Feed
-    const renderedEntries = Object.keys(entriesToDateMap)
-      .sort(descSort)
-      .slice(entryStart, entryEnd) // Paginate
+    const renderedEntries = sortedEntries
+      .filter((ds) => new Date(ds) > minEntry && new Date(ds) <= maxEntry)
       .map((ds, idx) => {
         const items = entriesToDateMap[ds];
         // Notes date format doesn't neccesarily have to be the same as entries date format
@@ -1346,7 +1363,7 @@ class App extends React.Component {
         {entryDetail && renderedEntryDetail}
         {tab === ENTRIES_TAB && (
           <div className="feed">
-            {entryPage && entryPage > 1 && (
+            {entryPage && entryPage > MIN_ENTRY_PAGE && (
               <span
                 className="feed-home"
                 tite="Go back to home page"
