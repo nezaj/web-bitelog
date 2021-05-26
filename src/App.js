@@ -170,7 +170,7 @@ const filterEntries = (dateRange, entriesToDateMap) => {
   let minDate;
   let maxDate = new Date(latestDate);
   // Uncomment below to set custom max date (useful for late weekly reflections)
-  // maxDate = new Date("05/16/21");
+  // maxDate = new Date("05/23/21");
   switch (dateRange) {
     case LAST_5_WEEKS:
       minDate = new Date(

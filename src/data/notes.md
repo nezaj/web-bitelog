@@ -1,3 +1,9 @@
+### 5/26/2021
+
+Last week was ruff as well. Averaged 2570cals, 2x of BJJ+Judo+Lifting, 1x Running. Was still recovering a bit for sickness and back to 100% on Wednesday. We had people over on Tuesday which lead to major overage and then I just let myself go on the weekend. I had two weigh-ins at 150.2 and 151.2 -- so weight is drifting up again!!
+
+As I'm writing this reflection for last week on Wednesday, I notice I have again eaten excess calories when having friends over (yesterday). I think in general I'm being too lax with the diet. As I'm now starting week 9 of 20 of my six pack goal, it's really time to get serious again
+
 ### 5/17/2021
 
 This was a tough week, was sick from Wednesday onwards (still a little sick today). Didn't get around to weighing myself once. Averaged ~2661cals/day (well above 2000cals/day target). I lifted, judo-d, and jiu-jitsued 1x, and ran 2x. Basically from Wednesday onwards I took it easy with just a couple bike rides and one run. I let myself go Saturday night after Stopa brought home some cookies -- ate two pints of ben and jerrys and several oreos. I haven't done that in awhile, I think I was fed up with being sick and trying to stick with diet goals. I ate excess calories earlier in the week and was doing a good job offsetting it, but the hunger/stress caught up with me. Offsetting excess definitely takes a toll.
