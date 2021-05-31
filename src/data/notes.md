@@ -1,3 +1,13 @@
+### 5/30/2021
+
+This week was an improvement over last week. Averaged 2345cals, 3x lifting, 2x BJJ/Jduo/Running. My calories were still over my target, but overall I felt much more stable this week.
+
+I had two red days due to social events. I still need to be better about that. One difference this week is that I didn't try as hard to "make up" for my excess eating. This made me feel more stable throughout the week and gave me good energy for my workouts.
+
+This was also the first week I lifted 3x in awhile. Made me realize I need to get back on the daily lifting. Although it's been nice to focus on BJJ/Judo, I've seen lots of skill improvements, I think I want to go back to focusing more on physique. For this week Stopa and I are gonna be focusing on YC interview so will not start daily workouts yet, but will keep this in mind.
+
+For next week will shoot to keep calories below 2100 average. I also want at least 5 green days again. Let's do this!
+
 ### 5/26/2021
 
 Last week was ruff as well. Averaged 2570cals, 2x of BJJ+Judo+Lifting, 1x Running. Was still recovering a bit for sickness and back to 100% on Wednesday. We had people over on Tuesday which lead to major overage and then I just let myself go on the weekend. I had two weigh-ins at 150.2 and 151.2 -- so weight is drifting up again!!
