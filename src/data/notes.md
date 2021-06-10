@@ -1,3 +1,15 @@
+### 6/6/2021
+
+Averaged 2027cals last week, but only logged for 5/7 days. This is because I visited family in Boston for a big celebration on the weekend, and didn't bother to log. I indulged in BBQ and cake and definitely overdid it a bit. I realize I associate excess eating with family but it doesn't have to be this way. Next time I go to a family event I'll be more mindful about how I would normally eat and try to replicate that.
+
+For the rest of the days I ate really clean and consistent. A big motivator is that Stopa and I want to make our startup around getting people six packs. From my own attempts so far, I know for sure being consistent in making good eating choices would make the biggest difference for me. I could be better about exercise and sleep, but honestly, if I didn't indulge in the late night treats and the excess eating with friends / family I would have achieved this a long time ago. Doing this startup is extra motivation.
+
+Another thing that really helped this week is using a fasting timer app. The app I'm using itself isn't great, but what's nice is that it makes me more mindful each day when I start and stop eating. I start the timer after having my last planned calories for the day. On pressing the button, I'm making a comittment to not eat any more calories until the next morning. When I do press the button to begin the next day it feels rewarding. Now if I want to grab some food at night, I have a little added friction in that I must stop my timer. This alone has been pretty effective so far in not making indulge. I didn't even need to reach out for my SOS app.
+
+Workout wise it was a lighter week. 2x BJJ/Lift and 1x Judo. No running. The less workouts was mostly due to us fleshing out the idea and prepping for our YC interview. Will still be pushing hard on YC stuff next week, but should be back to normal workout the week after.
+
+Overall ate clean during the week, didn't log during the weekend but that should be a one-off, next time will be more mindful about eating with family (although the damage wasn't too bad). Working on Consistent is definitely a big motivator for the six-pack so super excited for the upcoming weeks!
+
 ### 5/30/2021
 
 This week was an improvement over last week. Averaged 2345cals, 3x lifting, 2x BJJ/Jduo/Running. My calories were still over my target, but overall I felt much more stable this week.
