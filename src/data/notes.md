@@ -1,3 +1,11 @@
+### 6/18/2021
+
+Late review! This has been happening more often than not lately. Will try to be mindful and ensure to do these reviews on time by Sunday/Monday going forward!
+
+I logged 6/7 days for an average of 1894cals per day. Exercise-wise was a lighter week with 2x Judo/Lift, 1x Jiu-Jitsu/Run. This was mainly due to having more social activities and YC interview early in the week taking up my evening workout time. Should be back to normal workout schedule next week. I was much better about avoiding excess calories with social eating this week! Had dinner with a friend on Wednesday and a party on Saturday but was able to stay within calorie budget. We also had friends staying with us starting from Sunday where I didn't log but calories weren't too bad. Weight-wise this was my lowest average for the week since I started tracking -- 149lbs!
+
+Overall I feel like I'm making great progress. To do even better, I want to be mindful and not lose my consistency with some habits. I wasn't 7/7 logging or on-time with my review two weeks in a row. Let's change that!
+
 ### 6/6/2021
 
 Averaged 2027cals last week, but only logged for 5/7 days. This is because I visited family in Boston for a big celebration on the weekend, and didn't bother to log. I indulged in BBQ and cake and definitely overdid it a bit. I realize I associate excess eating with family but it doesn't have to be this way. Next time I go to a family event I'll be more mindful about how I would normally eat and try to replicate that.
