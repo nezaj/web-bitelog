@@ -1,3 +1,17 @@
+### 6/20/2021
+
+Overall would say this was a solid week. Calories averaged higher, 2351, but this was mainly due to one day of excess calories. This was the day when we had guests with us and we are out twice and had snacks afterwards.
+
+The rest of the week I was able to stay green while having other social events. I’m doing a better job of planning ahead and making healthier choices with social events. Will try to keep this up in the coming weeks!
+
+Exercise-wise was more than last two weeks, 4x BJJ, 2x Judo/Lifting/Yoga. Exercised 7/7 of the days!
+
+Weight-wise logged my lowest average weight to date — 147.1lb
+
+One thing I notice is that by not “making up” for the excess of one day it makes it easier to be consistent for the others. Instead of yo-yoing between red/blue, staying green keeps me sharp and in a good mood. This does mean my weekly average suffers, but if I can focus on making good choices on a daily basis, and coming to peace with off days, I think this will be better for long term success.
+
+Onwards!
+
 ### 6/18/2021
 
 Late review! This has been happening more often than not lately. Will try to be mindful and ensure to do these reviews on time by Sunday/Monday going forward!
