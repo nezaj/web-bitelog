@@ -26,6 +26,7 @@ import {
   weeklyNutrientsStatsMap,
   weeklyHealthStatsMap,
   weekdayNutrientsStatsMap,
+  weekdayHealthStatsMap,
   hourlyNutrientsStatsMap,
 } from "./marshal.js";
 import {
@@ -38,6 +39,8 @@ import {
   mostRecentWeekDayDate,
   getImageId,
   round,
+  max,
+  min,
   sum,
   avg,
   SHORT_MONTHS,
@@ -694,6 +697,86 @@ const AverageWeekdayCalorieHeatMap = ({ macroData }) => {
   );
 };
 
+const AverageWeekdayWeightHeatMap = ({ macroData }) => {
+  const { labels, heatMapSeries } = macroData;
+  const vals = heatMapSeries[0].data
+    .map((item) => item.y)
+    .filter((val) => val > 0);
+  const minVal = min(vals);
+  const maxVal = max(vals);
+  const options = {
+    dataLabels: {
+      enabled: true,
+      formatter: (val, _) => (val !== -1 ? val : undefined),
+    },
+    chart: { toolbar: { show: false } },
+    title: {
+      text: "Average weekday weight",
+      align: "center",
+    },
+
+    stroke: { width: 1 },
+    tooltip: {
+      enabled: false,
+    },
+    plotOptions: {
+      heatmap: {
+        useFillColorAsStroke: true,
+        enableShades: true,
+        colorScale: {
+          ranges: [
+            {
+              from: -1,
+              to: 0,
+              name: `No data`,
+              color: NO_DATA_COLOR,
+            },
+            {
+              from: minVal,
+              to: minVal,
+              color: LOW_RANGE_COLOR,
+            },
+            {
+              from: minVal + 0.1,
+              to: maxVal - 0.1,
+              color: "#343434",
+            },
+            {
+              from: maxVal,
+              to: maxVal,
+              color: EXCESS_RANGE_COLOR,
+            },
+          ],
+        },
+      },
+    },
+    xaxis: {
+      type: "category",
+      categories: labels,
+      tickPlacement: "on",
+      labels: {
+        rotate: MAX_X_AXIS_ROTATION,
+      },
+    },
+    yaxis: {
+      show: false,
+    },
+  };
+
+  return (
+    <div className="trends-chart">
+      <div className="trends-chart-data">
+        <ApexChart
+          series={heatMapSeries}
+          options={options}
+          height={AVERAGE_WEEKDAY_HEATMAP_HEIGHT}
+          type="heatmap"
+        />
+      </div>
+    </div>
+  );
+};
+
 // WeekdayCalorieHeatmap helpers
 const _formatChartDate = (dateStr) => {
   const date = new Date(dateStr);
@@ -882,6 +965,7 @@ const Trends = ({
   nutrientsWeeklyStats,
   nutrientsWeekdayStats,
   nutrientsHourlyStats,
+  healthWeekdayStats,
   healthWeeklyStats,
 }) => {
   const averageCalories = roundedAvg(
@@ -982,6 +1066,7 @@ const Trends = ({
         <AverageWeekdayCalorieHeatMap
           macroData={nutrientsWeekdayStats.calories}
         />
+        <AverageWeekdayWeightHeatMap macroData={healthWeekdayStats.weight} />
         <HourlyCalorieHeatMap macroData={nutrientsHourlyStats.calories} />
         <WeekdayCalorieHeatMap
           title="Daily Calories"
@@ -1289,6 +1374,10 @@ class App extends React.Component {
     const nutrientsHourlyStats = hourlyNutrientsStatsMap(
       filterEntries(dateRange, entriesToDateMap)
     );
+
+    const healthWeekdayStats = weekdayHealthStatsMap(
+      healthToDailyTotalsMap(filterEntries(dateRange, healthData))
+    );
     const healthWeeklyStats = weeklyHealthStatsMap(
       healthToDailyTotalsMap(filterEntries(HEATMAP_DAYS, healthData))
     );
@@ -1416,6 +1505,7 @@ class App extends React.Component {
             nutrientsWeeklyStats={nutrientsWeeklyStats}
             nutrientsWeekdayStats={nutrientsWeekdayStats}
             nutrientsHourlyStats={nutrientsHourlyStats}
+            healthWeekdayStats={healthWeekdayStats}
             healthWeeklyStats={healthWeeklyStats}
           />
         )}

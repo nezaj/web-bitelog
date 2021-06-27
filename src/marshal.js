@@ -179,6 +179,17 @@ const weeklyHealthStatsMap = (dailyHealthMap) => {
   return _buildWeeklyStatsMap(dailyHealthMap, ["weight", "water"]);
 };
 
+// Transforms daily health data into weekday statistics
+const weekdayHealthStatsMap = (dailyHealthMap) => {
+  return ["weight", "water"].reduce((res, key) => {
+    res[key] = {
+      labels: ORDERED_WEEKDAYS,
+      heatMapSeries: _buildWeekdayHealthHeatMapSeries(dailyHealthMap[key]),
+    };
+    return res;
+  }, {});
+};
+
 // Transforms daily nutrients data into weekday statistics
 const weekdayNutrientsStatsMap = (dateToEntriesMap) => {
   const flattenedEntries = Object.keys(dateToEntriesMap).reduce(
@@ -372,6 +383,25 @@ const _buildHourlyNutrientHeatMapSeries = (foods, nutrientName) => {
           groupedByHour[hour],
           nutrientName
         ),
+      })),
+    },
+  ];
+};
+
+const _buildWeekdayHealthHeatMapSeries = (healthItems) => {
+  const groupedBy = Object.assign(
+    {},
+    defaultMap(ORDERED_WEEKDAYS, []), // Ensures values for all labels, even if there are no food entries
+    collect((x) => _extractWeekdayLabel(_dailyTupleDate(x)), healthItems)
+  );
+  return [
+    {
+      name: "Weekday",
+      data: Object.keys(groupedBy).map((weekday) => ({
+        x: weekday,
+        y: groupedBy[weekday].length
+          ? round(avg(groupedBy[weekday].map(_dailyTupleValue)), 1)
+          : -1,
       })),
     },
   ];
@@ -610,5 +640,6 @@ module.exports.nutrientsToDailyTotalsMap = nutrientsToDailyTotalsMap;
 module.exports.healthToDailyTotalsMap = healthToDailyTotalsMap;
 module.exports.weeklyNutrientsStatsMap = weeklyNutrientsStatsMap;
 module.exports.weeklyHealthStatsMap = weeklyHealthStatsMap;
+module.exports.weekdayHealthStatsMap = weekdayHealthStatsMap;
 module.exports.weekdayNutrientsStatsMap = weekdayNutrientsStatsMap;
 module.exports.hourlyNutrientsStatsMap = hourlyNutrientsStatsMap;
