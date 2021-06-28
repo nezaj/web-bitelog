@@ -1,3 +1,15 @@
+### 6/27/2021
+
+This was a great week. Averaged 1983cals/day and macros were on point. All seven days were green days despite eating out twice. Planning ahead made a big difference, by knowing ahead of time I was eating out I was able to budget calories appropriately. For the days I ate in, eating two snapkitchens a day (with fruit + protein) and a protein shake has fulfilled my calorie/macro targets and kept me satiated.
+
+Most of the days where I ate in two meals of snapkitchen with fruit and protein (yogurt or eggs) and a third meal of a protein shake.
+
+Exercise-wise 3x Lifting/Judo, 2x Jiu-Jitsu. Little bit less than last week, and only 6/7 days exercised. This was mainly due to increased amount of work this week. It's been very exciting launching Consistent and the reality is it's been a bit harder to fit the workouts in. At the same time my body may have needed the rest. Overall though I love the volume of workouts I'm doing and want to do more. I even made an "ideal" schedule this week outlining 4x Lift, 3x Judo, 3x Gi BJJ, 3x No-Gi BJJ, 1x Yoga. This may not be realistic week over week, but aiming for it seem pretty fun.
+
+Ever since we started working on Consistent my fitness has much more on-point. The data speaks for itself, this week I logged both my lowest weight since starting joelogs over a year ago, weighing in at 144.4lb twice this week, and my lowest average weekly weight at 146.5lb. My bodyfat scale put me at 13.5%, crossing below the 14% bodyfat threshold for my first time in years.
+
+Goal for next week is to basically repeat my performance this week. And for myself try to fit in some more BJJ!
+
 ### 6/20/2021
 
 Overall would say this was a solid week. Calories averaged higher, 2351, but this was mainly due to one day of excess calories. This was the day when we had guests with us and we are out twice and had snacks afterwards.
