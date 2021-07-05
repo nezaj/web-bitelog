@@ -1,3 +1,13 @@
+### 7/4/2021
+
+This week started off strong, but went off the rails over the weekend. Averaged 2358cals per day, and carbs came out to 300g due to weekend excess. I'm definitely feeling the bloat as I write this. We had a friend bring candy from Israel on Thursday evening and that set in motion a series of excess decisions. Friday night I went to a friends party and also over-indulged into the hunger. I honestly let myself go, and I think if I came in with a plan for both evenings I would have done better.
+
+Monday -> Thursday were pretty clean, but was definitely getting hungry on Thursday. My weight was dropping a ton too, getting as low as 143.4lb. My weekly average weight came out to 145.1lb, which is a 1.5lb drop from last week. This include the heavier weigh-ins on Saturday and Sunday following the excess days. So although some poor decisions were made, I should be on track for the six pack. Will do better next week!
+
+Exercise-wise 3x Lifting, 2x Cardio, 1x BJJ/Judo. Was definitely a bummer that I didn't get to fit more training. Was busy with work and social activities and had to skip classes. I started using FitnessAI for lifting at the gym and it's been great. Takes all the hassle out of planning / recording workouts. The app itself feels fun, and I look forward to the workouts. On Saturday and Sunday I did 2x cardio to help make up for the nights beforehand. I think doing more exercise to help offset extra calories is a good strategy for me.
+
+Goal for next week: Let's get 7/7 green days!
+
 ### 6/27/2021
 
 This was a great week. Averaged 1983cals/day and macros were on point. All seven days were green days despite eating out twice. Planning ahead made a big difference, by knowing ahead of time I was eating out I was able to budget calories appropriately. For the days I ate in, eating two snapkitchens a day (with fruit + protein) and a protein shake has fulfilled my calorie/macro targets and kept me satiated.
