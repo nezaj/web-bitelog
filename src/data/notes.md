@@ -1,8 +1,8 @@
 ### 7/11/2021
 
-This week was better than last! Almost perfect, 6/7 days were green and macros for those days were on point!, but went off the rails Saturday night. Averaged 2317cals per day (vs 2358cals last week). Carbs came in lower at 270g (vs 300g last week) but still high due to the excess.
+This week was better than last! Almost perfect, 6/7 days were green and macros for those days were on point!, but went off the rails Saturday night. Averaged 2317cals per day (vs 2358cals last week). Carbs came in lower at 270g (vs 300g last week) but still high due to the excess. My average weight came out to 143.5 this week, a 1.6lb drop from last week (vs 1.5lb drop last week).
 
-On my way home from a party on Saturday I walked into a convenience store with the intent of buying some fruit to satiate some late night munchies. I saw a bag of frosted animal circus cookies which I craved the week before. I told myself I could have some and do a double cardio workout on Sunday. What actually happened was I ate the whole bag and although I went hard on the Stairmaster on Sunday, I knew if I did 2x again I would blow out my legs.
+On my way home from a party on Saturday I walked into a convenience store with the intent of buying some fruit to satiate some late night munchies. I saw a bag of frosted animal circus cookies which I craved the week before. I told myself I could have some and do a double cardio workout on Sunday. What actually happened was I ate the whole bag and although I went hard on the Stairmaster on Sunday, I knew if I did 2x again I would blow out my legs, so I kept the workout to 1hr.
 
 All the other days were pretty clean. Even though I had other social activities throughout the week, I was able to budget in some ice cream and dinners with friends while still keeping macros and calories at target. I am happy with my improvement over last week, and I think just one more mental adjustment will get me to 7/7 green days again.
 
@@ -10,10 +10,10 @@ Aside from excess, looking at the quality of my diet now vs where it was months 
 
 Exercise-wise 3x Jiu-Jitsu, 2x Judo, 1x Cardio. Did not at all this week which was a fail. I prefer to lift in the morning since I have Judo/Jiu-Jitsu in the evenings. Last week was very busy with running Consistent operationally and coding up tooling. Happy to say I find the work engaging on multiple fronts. However I want to keep an eye on balance, make sure I'm getting in sleep, not burning out, and making time for my own fitness.
 
-
 This week I commit to the following
-* 7/7 green days. I'm going to the beach on Sunday, so I have extra motivation to hit this!
-* Lift at least 3x. Feels good to be getting lean, and I'm happy with the cardio. If I get back into the lifitng habit now, 10 weeks from now I think I'll get results that really pop!
+
+-   7/7 green days. I'm going to the beach on Sunday, so I have extra motivation to hit this!
+-   Lift at least 3x. I'm happy with my cardio and its time to layer in that resistance training for real. If I get back into the lifitng habit now, 10 weeks from now I should get results that really pop!
 
 ### 7/4/2021
 
