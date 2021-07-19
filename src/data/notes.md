@@ -1,3 +1,20 @@
+### 7/18/2021
+
+This was my best week to date. 7/7 green days, averaged 2000cals per day (vs 2317cals last week) and met my exercise goal of lifting 3x (in addition to Judo/Jiu-Jitsu). Macros were better too, with carbs coming in at 228g (vs 270g last week), which is still a little high. This week my average weight was higher, coming in at 143.9lb (vs 143.5lb) but both my top weight and lowest weight were lower this week, so directionally I'm feeling good!
+
+This was one of my most social weeks as well, and really tested me to stick within calorie budgets. I had to abstain from eating with friends on two occasions. I think some people found it strange, but I could tell others respected the discpline. I notice I'm feeling more comfortable with this lifestyle around others.
+
+Exercise-wise I lifted/Judo/Jiu-Jitsu 3x each -- the most exercise I've done in three weeks! Really happy to have gotten the lifting in, and I want to do even more for next week!
+
+Reviewing my diet, I realized my carbs have been coming in higher due to some excess in fruit. The main offender is the amount of grapes and cherries I eat in one sitting, usually 10oz at a time, which is double the calories/carbs of strawberries/apples. An easy fix is to just cut the grapes/cherries portion in half and eat an extra egg instead -- this should move me much closer to the 40/30/30 split.
+
+Overall happy about this week and pumped to do even better for next week!
+
+Goals for next week:
+* 7/7 green days again
+* Replace 1/2 grapes/cherries with an egg (closer to 40/30/30)
+* Lift 4x (1 more than last week)
+
 ### 7/11/2021
 
 This week was better than last! Almost perfect, 6/7 days were green and macros for those days were on point!, but went off the rails Saturday night. Averaged 2317cals per day (vs 2358cals last week). Carbs came in lower at 270g (vs 300g last week) but still high due to the excess. My average weight came out to 143.5 this week, a 1.6lb drop from last week (vs 1.5lb drop last week).
