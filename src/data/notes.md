@@ -1,3 +1,14 @@
+### 7/25/2021
+
+Whereas last week was my best to date -- this one was my worst. 5/7 green days, averaged 2843cals per day (vs 2000 cals last week) with only 22% coming from protein. This miss is entirely due to large excess on Friday and Saturday post birthday parties. I did lots of exercise though with 3x Jiu-Jitsu, lifting, cardio, and 2x Judo. I originally wanted to do 4x lifting, but because of the caloric excess I piled on the cardio. By end of week my average weight stayed the same as the previous week, with my highs/lows staying roughly the same as well.
+
+Reviewing these last two red days and my three red days in previous weeks, they all have one thing in common. I smoked weed. For the remaining 8 weeks I will cut out weed completely. If I feel like I want unwind at a party I can drink instead. I rarely finish even one beer so from a caloric standpoint, one beer is much better than the damage done from munchies.
+
+Let's turn things aorund this week and get that average weight lower! Goals for next week:
+
+-   7/7 green days
+-   Lift 4x
+
 ### 7/18/2021
 
 This was my best week to date. 7/7 green days, averaged 2000cals per day (vs 2317cals last week) and met my exercise goal of lifting 3x (in addition to Judo/Jiu-Jitsu). Macros were better too, with carbs coming in at 228g (vs 270g last week), which is still a little high. This week my average weight was higher, coming in at 143.9lb (vs 143.5lb) but both my top weight and lowest weight were lower this week, so directionally I'm feeling good!
@@ -11,9 +22,10 @@ Reviewing my diet, I realized my carbs have been coming in higher due to some ex
 Overall happy about this week and pumped to do even better for next week!
 
 Goals for next week:
-* 7/7 green days again
-* Replace 1/2 grapes/cherries with an egg (closer to 40/30/30)
-* Lift 4x (1 more than last week)
+
+-   7/7 green days again
+-   Replace 1/2 grapes/cherries with an egg (closer to 40/30/30)
+-   Lift 4x (1 more than last week)
 
 ### 7/11/2021
 
