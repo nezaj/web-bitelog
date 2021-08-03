@@ -1,3 +1,22 @@
+### 8/1/2021
+
+This week was better than last. 5/7 green days, with a red day and a blue day, averaging out to 2182cal/day vs 2843cals/day last week. This was still above my target of 2000 cals per day. The main offender was due to my over-excitement with a the protein ice-cream. It's delicious and nutritious, but I was curious about experimenting with various combinations and over-indulged a bit. My macros were still pretty good though, and I averaged 150g of protein per day.
+
+It was interesting to have a "light" day this week. After eating 3k calories on Wednesday I just had very little appetite the next day. I personally don't like having large variability in calories -- easy for things to go off the rails. But sometimes you need to listen to your body -- and I think the lower calories the next day was a nice reset.
+
+It was also nice to eat clean over the weekend -- my weight did not jump up this weekend which was nice. Although my average weight this week went up vs last week, I feel a downward trend coming.
+
+Lots of exercise this week, but I missed one day, so came out to 6 / 7. That day I worked a lot so skipped both morning and evening workouts. Indeed I find it tricky to balance work, fitness, and being social. Often I con only do 2 / 3 really well. I feel like my fitness was a bit off the last two weeks, and I want to lean into this more.
+
+I want to re-affirm my original "why." I've wanted a six-pack since I was 15. This is the last item on my before 30 bucket list. The six-pack requires planning, commitment, execution, and consistency. There are times where it will be tough, I want to perservere and morph myself into the person. The deeper reason I want this six-pack is because I want to overcome myself.
+
+Some changes I want to make to re-invigorate my goal:
+* Get back on using my fasting timer -- I've been slacking on that and snacking a bit at night.
+* I'm committing to getting morning strength training in on Tuesday, Wednesday and Thursday this week. I can miss a morning workout, but ideally I will make that decision the day before. When skipping a workout, I will commit in advance to do it another day.
+* Remove processed drinks. I don't drink soda, but I've been indulging in lower calorie drinks. I think these are secretly adding up
+
+These are small changes in addition to my goal for 7 / 7 target + exercise days. If I do all of these I will be super proud, and this will be my best week to date. Feeling pumped!
+
 ### 7/25/2021
 
 Whereas last week was my best to date -- this one was my worst. 5/7 green days, averaged 2843cals per day (vs 2000 cals target) with only 22% coming from protein. This miss is entirely due to large excess on Friday and Saturday post birthday parties. I did lots of exercise though with 3x Jiu-Jitsu, lifting, cardio, and 2x Judo. I originally wanted to do 4x lifting, but because of the caloric excess I piled on the cardio. By end of week my average weight stayed the same as the previous week, with my highs/lows staying roughly the same as well.
