@@ -1,3 +1,20 @@
+### 8/10/2021
+
+Weight: I had my largest intra-week weight range this past week, ranging from 141.2lbs -> 147.4lbs. At the start of the week I was getting back into my routine so weight came down fast as expected. However from Wednesday onwards we the week was very social and there were a two excess days on Thursday and Saturday. I also had a date on Friday which resulted in some dirnking and ultimately lead to my top weigh-in at 147.4lbs.
+
+Nutrition: Average calories came out higher this week at 2531 vs 2182. My low/target/excess day split was a bit worse too, with two excess days. Similarly, my macro split had less protein and more carbs and fat. The main cause of the excess was due to hosting friends Thursday night. I let myself go and indulged in double portions + cake, calories came out to 4.5k that day. I also overate on Saturday due to feeling run down, but those calories were mostly clean.
+
+Exercise: Lots of exercise this week, but strength training was a fail. We hosted a friend from Wednesday onwards and that really disrupted my normal flow. Fiting in exercise outside of Judo/Jiu-Jitsu was tough in combination with work.
+
+Sleep/Stress: I want to start being more mindful about sleep/stress. My sleep has been getting worse the last few weeks as I've been feeling more stressed with getting things done with work, fitting in fitness, and being social. Balancing everything is both fun and stressful. Having a friend over this week made it much harder to get things done for Consistent and I was feeling guilty about that. It also threw off my morning exercise schedule so I felt bad about not delivering on my strength training. I was saved by still making it to Judo/Jiu-Jitsu and fitting in a couple of late-night coding sessions. All of this came at the expense of sleep, which probably built up some more stress too. Was feeling run-down on Saturday so caloried up, which was a big help. Our friend is taking off Tuesday morning so I'm looking to get back into the normal routine.
+
+Overall: This was a tough week mentally and it manifested in the large weight range. I'm thankful I was still able to fit movement in and eat nutriously for the most part. This week I have a friend dinner on Tuesday, a date on Wednesday, and my cousin visiting from Friday -> Sunday. Although that's a lot of social things, it feels like it will be much easier this week.
+
+Goals for this week:
+* 0 excess days
+* 3x Strength Training
+* Start tracking stress
+
 ### 8/1/2021
 
 This week was better than last. 5/7 green days, with a red day and a blue day, averaging out to 2182cal/day vs 2843cals/day last week. This was still above my target of 2000 cals per day. The main offender was due to my over-excitement with a the protein ice-cream. It's delicious and nutritious, but I was curious about experimenting with various combinations and over-indulged a bit. My macros were still pretty good though, and I averaged 150g of protein per day.
