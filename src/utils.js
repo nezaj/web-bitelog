@@ -261,6 +261,8 @@ const round = (num, precision) =>
   Math.round((num + Number.EPSILON) * Math.pow(10, precision)) /
   Math.pow(10, precision);
 
+const perc = (x, y) => Math.round((x / y) * 100);
+
 // chunk([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3) => [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
 // Thanks: https://stackoverflow.com/a/50766024
 const chunk = (arr, size) => {
@@ -376,6 +378,7 @@ module.exports.max = max;
 module.exports.sum = sum;
 module.exports.avg = avg;
 module.exports.round = round;
+module.exports.perc = perc;
 
 module.exports.chunk = chunk;
 module.exports.rotateArrayToVal = rotateArrayToVal;

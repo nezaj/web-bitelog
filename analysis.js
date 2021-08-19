@@ -8,8 +8,14 @@ const path = require("path");
 
 const ObjectsToCsv = require("objects-to-csv");
 
-const { collect, round } = require("./src/utils.js");
-const { sumNutrients } = require("./src/nutrients.js");
+const utils = require("./src/utils.js");
+const {
+  extractCalories,
+  extractProtein,
+  extractFat,
+  extractCarbs,
+  sumNutrients,
+} = require("./src/nutrients.js");
 const { entriesToDateMap } = require("./src/marshal.js");
 
 const foodPath = path.resolve(__dirname, "src", "data", "food.json");
@@ -21,11 +27,58 @@ const allFoods = Object.keys(entriesData)
   .map((k) => entriesData[k])
   .reduce((acc, x) => acc.concat(x));
 
-const allFoodsByDate = (dateKey) =>
-  allFoods.filter((x) => new Date(x.dateKey) < new Date(dateKey));
+// start/end in the form of MM/DD/YYYY -- not inclusive of end
+const allFoodsBetween = ({ start, end }) =>
+  allFoods.filter(
+    (x) =>
+      (end ? new Date(x.dateKey) < new Date(end) : true) &&
+      (start ? new Date(x.dateKey) >= new Date(start) : true)
+  );
+
+const macroSummary = ({ start, end }) => {
+  const foods = allFoodsBetween({ start, end }).reduce(
+    (xs, { dateKey, nutrients }) => {
+      xs["calories"] = xs["calories"] += utils.round(
+        extractCalories(nutrients),
+        0
+      );
+      xs["proteins"] = xs["proteins"] += utils.round(
+        extractProtein(nutrients),
+        0
+      );
+      xs["carbs"] = xs["carbs"] += utils.round(extractCarbs(nutrients), 0);
+      xs["fats"] = xs["fats"] += utils.round(extractFat(nutrients), 0);
+      xs["days"].add(dateKey);
+      return xs;
+    },
+    { calories: 0, proteins: 0, carbs: 0, fats: 0, days: new Set() }
+  );
+
+  const temp = {
+    start: utils.minDate([...foods.days]),
+    end: utils.maxDate([...foods.days]),
+    numDays: foods.days.size,
+    calories: foods.calories,
+    avgCals: utils.round(foods.calories / (1.0 * foods.days.size), 0),
+    avgCarbs: utils.round(foods.carbs / (1.0 * foods.days.size), 0),
+    avgFats: utils.round(foods.fats / (1.0 * foods.days.size), 0),
+    avgProteins: utils.round(foods.proteins / (1.0 * foods.days.size), 0),
+  };
+
+  return {
+    ...temp,
+    pctCarbs: utils.perc(temp.avgCarbs * 4, temp.avgCals),
+    pctFats: utils.perc(temp.avgFats * 9, temp.avgCals),
+    pctProteins: utils.perc(temp.avgProteins * 4, temp.avgCals),
+    numDaysMissing: utils.round(
+      utils.daysBetween(temp.start, end || temp.end) - foods.days.size,
+      0
+    ),
+  };
+};
 
 const orderedByCalories = (allFoods) => {
-  const grouped = collect((x) => x.foodItemName, allFoods);
+  const grouped = utils.collect((x) => x.foodItemName, allFoods);
   const sorted = Object.keys(grouped)
     .map((k) => grouped[k])
     .sort((a, b) => sumNutrients(b, "calories") - sumNutrients(a, "calories"));
@@ -33,7 +86,7 @@ const orderedByCalories = (allFoods) => {
     .map((g) => ({
       name: g[0].foodItemName,
       calories: sumNutrients(g, "calories"),
-      avgCalories: round(sumNutrients(g, "calories") / g.length, 0),
+      avgCalories: utils.round(sumNutrients(g, "calories") / g.length, 0),
       count: g.length,
     }))
     .filter((x) => x.count >= 5); // Remove in-frequent foods
@@ -59,33 +112,64 @@ const orderedByCalories = (allFoods) => {
   return withRunningPct;
 };
 
-// These 20 foods made up ~80% of my total calories for 2020
-const foods2020 = () => {
-  const data = allFoodsByDate("12/31/2020");
-  const top20 = orderedByCalories(data)
+function topFoods({ num, start, end }) {
+  const data = allFoodsBetween({ start, end });
+  const top = orderedByCalories(data)
     .map((f) => ({
       rank: f.rank,
       name: f.name,
       totalCalories: f.calories,
       count: f.count,
       avgCalories: f.avgCalories,
-      pct: round(100.0 * f.pct, 2),
-      runningPct: round(100.0 * f.runningPct, 2),
+      pct: utils.round(100.0 * f.pct, 2),
+      runningPct: utils.round(100.0 * f.runningPct, 2),
     }))
-    .slice(0, 20);
-  const lastItem = top20[top20.length - 1];
-  console.log([top20, lastItem.runningPct]);
+    .slice(0, num);
+  const lastItem = top[top.length - 1];
+  console.log([top, "Total % of calories ", lastItem.runningPct]);
+  return top;
+}
 
-  const csv = new ObjectsToCsv(top20);
-  csv.toDisk("./foods2020.csv");
-  console.log("Saved 2020 foods to csv!");
+function topFoodsCSV({ num, start, end, filename }) {
+  if (!filename) {
+    console.log("Must have a filename!");
+    return;
+  }
+  const top = topFoods({ num, start, end });
+  const csv = new ObjectsToCsv(top);
+  csv.toDisk(`./${filename}.csv`);
+  console.log(`Saved top ${num} foods to ${filename}.csv!`);
+}
+
+const foods2020 = () => {
+  topFoodsCSV({
+    num: 20,
+    start: "01/01/2020",
+    end: "12/31/2020",
+    filename: "foods2020",
+  });
+};
+
+const macroSummaries = () => {
+  return [
+    { start: "06/01/2020", end: "09/01/2020" },
+    { start: "09/01/2020", end: "12/01/2020" },
+    { start: "12/01/2020", end: "03/01/2021" },
+    { start: "03/01/2021", end: "06/01/2021" },
+    { start: "06/01/2021" },
+  ].map((args) => macroSummary(args));
 };
 
 function initializeContext(context) {
   context.allFoods = allFoods;
-  context.allFoodsByDate = allFoodsByDate;
+  context.allFoodsBetween = allFoodsBetween;
   context.orderedByCalories = orderedByCalories;
+  context.topFoods = topFoods;
+  context.topFoodsCSV = topFoodsCSV;
   context.foods2020 = foods2020;
+  context.macroSummary = macroSummary;
+  context.macroSummaries = macroSummaries;
+  context.utils = utils;
 }
 
 // Start repl
