@@ -18,6 +18,7 @@ Goals for this week:
 
 Additional notes:
 
+* I feel like I've been "falling behind" on my personal Consistent fitness. I'm logging food to MFP later and have been late with my reviews twice in a row now. These are "yellow flags" to me that things are going off the rails. I want to be timely with my logging and review this week
 -   I notice that sometimes when I'm running errands I want to "treat" myself to a pastry or snack, something around 200-300 calories. I don't think this is neccesarily bad, but I do feel like I may be over-indulging at times. I'm trying to be more mindful of eating more meals at home rather than out
 -   Going cold turkey on weed has resulted in me going "all out" when I have the option to indulge on the weekend. Instead I want to experiment with allowing myself to have gummies and simply track it. So far I've avoided munchies 3/3 times, so perhaps this is more sustainable. I do something similar with ice cream -- now that I allow myself it time to time I'm content with one scoop. Let's see if this actually works.
 
