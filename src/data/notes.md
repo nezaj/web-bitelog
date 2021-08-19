@@ -1,3 +1,26 @@
+### 8/19/2021
+
+Weight: Last week I saw my largest weight range -- and this week it was even larger. I went up as high as 149.2lbs -- nearly a 2lb top weight increase. Weight was coming down the whole week and then escalated quickly Saturday and Sunday morning. My cousing was visiting from Friday onwards so we had late dinners and snacks throughout. It shows in the scale
+
+Nutrition: This was my most in-consistent week to date. Three red days and a blue day at the beginning of the week. Calories were 500+ above target, and protein was 5% below target. Basically this week and last week were both bad weeks nutrition-wise, and I would say this is mainly due to all the social activity.
+
+Exercise: I fit in more exercise this week than last, but less Judo and Jiu-Jitsu which was a bummer. Again missed clases due to all the social activity.
+
+Sleep/Stress: Sleep was better this week and was stress. I started explicitly tracking stress in Streaks so I should have visibility on this going forward. Some "invisible" stress I've been having is feeling anxious about fitting in work, six-pack, Judo/Jiu-Jitsu, and friends.
+
+Overall: This was another tough week. The social activities are fun but I'm feeling anxious about not delivering in other aspects -- especially in the six-pack goal. I want us to do a great job with Consistent and make an amazing business out of it -- but a part of that also involves making sure I get the six-pack and get the results that we want for others. I'm feeling motivated to double-down again on fitness. This week I really want to prioritize eating right and getting in my workouts. I'm happy during the week I have no social obligations so it will allow me to reset.
+
+Goals for this week:
+
+-   Re-vitalize fitness focus. Have one of my best weeks to date
+-   0 excess days
+-   3x Strength Training
+
+Additional notes:
+
+-   I notice that sometimes when I'm running errands I want to "treat" myself to a pastry or snack, something around 200-300 calories. I don't think this is neccesarily bad, but I do feel like I may be over-indulging at times. I'm trying to be more mindful of eating more meals at home rather than out
+-   Going cold turkey on weed has resulted in me going "all out" when I have the option to indulge on the weekend. Instead I want to experiment with allowing myself to have gummies and simply track it. So far I've avoided munchies 3/3 times, so perhaps this is more sustainable. I do something similar with ice cream -- now that I allow myself it time to time I'm content with one scoop. Let's see if this actually works.
+
 ### 8/10/2021
 
 Weight: I had my largest intra-week weight range this past week, ranging from 141.2lbs -> 147.4lbs. At the start of the week I was getting back into my routine so weight came down fast as expected. However from Wednesday onwards we the week was very social and there were a two excess days on Thursday and Saturday. I also had a date on Friday which resulted in some dirnking and ultimately lead to my top weigh-in at 147.4lbs.
@@ -11,9 +34,10 @@ Sleep/Stress: I want to start being more mindful about sleep/stress. My sleep ha
 Overall: This was a tough week mentally and it manifested in the large weight range. I'm thankful I was still able to fit movement in and eat nutriously for the most part. This week I have a friend dinner on Tuesday, a date on Wednesday, and my cousin visiting from Friday -> Sunday. Although that's a lot of social things, it feels like it will be much easier this week.
 
 Goals for this week:
-* 0 excess days
-* 3x Strength Training
-* Start tracking stress
+
+-   0 excess days
+-   3x Strength Training
+-   Start tracking stress
 
 ### 8/1/2021
 
@@ -28,9 +52,10 @@ Lots of exercise this week, but I missed one day, so came out to 6 / 7. That day
 I want to re-affirm my original "why." I've wanted a six-pack since I was 15. This is the last item on my before 30 bucket list. The six-pack requires planning, commitment, execution, and consistency. There are times where it will be tough, I want to perservere and morph myself into the person. The deeper reason I want this six-pack is because I want to overcome myself.
 
 Some changes I want to make to re-invigorate my goal:
-* Get back on using my fasting timer -- I've been slacking on that and snacking a bit at night.
-* I'm committing to getting morning strength training in on Tuesday, Wednesday and Thursday this week. I can miss a morning workout, but ideally I will make that decision the day before. When skipping a workout, I will commit in advance to do it another day.
-* Remove processed drinks. I don't drink soda, but I've been indulging in lower calorie drinks. I think these are secretly adding up
+
+-   Get back on using my fasting timer -- I've been slacking on that and snacking a bit at night.
+-   I'm committing to getting morning strength training in on Tuesday, Wednesday and Thursday this week. I can miss a morning workout, but ideally I will make that decision the day before. When skipping a workout, I will commit in advance to do it another day.
+-   Remove processed drinks. I don't drink soda, but I've been indulging in lower calorie drinks. I think these are secretly adding up
 
 These are small changes in addition to my goal for 7 / 7 target + exercise days. If I do all of these I will be super proud, and this will be my best week to date. Feeling pumped!
 
@@ -43,7 +68,7 @@ Reviewing these last two red days and my three red days in previous weeks, they 
 Let's turn things around this week and get that average weight lower! Goals for next week:
 
 -   7/7 green days
-- 7/7 movement days (exercise or walking/biking for at least 1hr)
+-   7/7 movement days (exercise or walking/biking for at least 1hr)
 -   Lift 4x
 
 ### 7/18/2021
