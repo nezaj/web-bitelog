@@ -1,3 +1,30 @@
+### 9/6/2021
+
+Last three weeks have been in-consistent. It's time to get back on top of things. Will roll-up three weeks of reviews into one since I missed my previous two unfortunately due to work / moving. Missing one review is a yellow flag, missing two took it to red status. Time to turn things around!
+
+Weight: These last three weeks were filled with scale anxiety where I missed 7 / 7 weigh-ins. I'm back to the routine now, been doing weigh-ins daily since Tuesday and got 6 / 7 this week. Will be sure to hit 7 / 7 next week. Over the last three weeks my weight-range has been all over the place. This is mainly due to a combination of social activity and late-night eating. Looking to get a handle on things again by going back to taking photos of everything I eat and using a fasting timer.
+
+Nutrition: Similar to weight, nutrition has been spotty the last several weeks. Again I chalk this up to in-consistency in some key habits. Took on an extended fast this week to help myself reset. I had two insights over the last week -- when I'm feeling evening cravings, I realize this isn’t for food, this is likely due to dehydration. Instead of eating I should drink water, and ultimately stick with fasting timer. Also, I shouldn't eat PB as a snack, rather only as part of protein shake.
+
+Exercise: Although weigh-ins / nutrition were bad, lots of movement the last few weeks. The good was that I've been fitting in BJJ/Judo/Cardio, the bad is that there has been little strength training. This following week let's try to get back to 3x lifting. As an aside, I've been intentionally doing walks / bike-rides for days where I can't fit in a proper workout -- this has been a win and I'm happy I've been keeping this up.
+
+Sleep / Stress: Although there have been some late social nights these last few weeks, sleep has been pretty good. Still much stress related to working and moving, but I don't feel like it's been overwhelming. For the most part don't think there was much stress related eating. I've been good about letting things go and pro-actively getting in movement to help me relax.
+
+Overall: The last five weeks were not as good as my previous five. I was sloppy with habits and entered the danger zone. I was skipping weigh-ins, not writing reviews, not using my fasting timer, not taking photos of everything I eat, and even declared logging bankruptcy for two days. I'm ready to turn things around. Kicked off an extended fast over the weekend to help myself reset and get centered. Excited to execute in the coming week :)
+
+Goals for next week:
+
+-   Daily weigh-ins
+-   6 / 7 target nutrition days (my birthday is on Thursday, will try to stay in target but will give myself some space)
+-   7 / 7 movement days
+
+Things to keep in mind:
+
+-   Take photos of everything I eat, this makes me more mindful and make better decisions
+-   Use the fasting timer, it's a big help in staying within target nutrition
+-   Evening cravings are likely due to dehydration. Don't indulge in food, drink water
+-   Don’t eat PB as a stand-alone snack, eat it only as part of a protein shake
+
 ### 8/19/2021
 
 Weight: Last week I saw my largest weight range -- and this week it was even larger. I went up as high as 149.2lbs -- nearly a 2lb top weight increase. Weight was coming down the whole week and then escalated quickly Saturday and Sunday morning. My cousing was visiting from Friday onwards so we had late dinners and snacks throughout. It shows in the scale
