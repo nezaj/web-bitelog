@@ -1,3 +1,21 @@
+### 9/14/2021
+
+Weight: Weight started low this week post 60hr fast and settled around the 145 area. I wish I was further along, but considering some of the excess I've had over the month or so I'm happy I've somewhat maintained my weight. I definitely want to push it lower. Happy though I'm back on the daily weigh-ins. Scale anxiety can be real and I'm glad I'm facing it. There's something interesting about waking up excited to weigh yourself because you know you did a good job the night before. On the other hand, it can be dreadful to do the morning weigh-in when you know you ate excess previously.
+
+Nutrition: Last review I called out not eating PB standalone. Definitely did not deliver on this. A lot of my calories come from PB, if I kept it to just having it in shakes would be a major caloric reduction that I could replace with less caloric dense food. I had one "excellent" day this week which was Wednesday where I had 3 full meals and a snack. This is what I want to emulate as much as I can.
+
+Exercise: Tons of exercise this week which probably mitigated some of the excess damage. Still no strength training, not sure how I want to fit those in. I do want to do more BJJ as well. Would love to get in a routine of going to bed early and working out 2x a day (morning + evening). Doing this I could fit in BJJ 5x week and strength training 3x.
+
+Sleep / Stress: Was my birthday week and very social towards the weekend. But overall not feeling stressed. Was getting less sleep though which made the mornings tougher. Would be great to establish a better night-time routine
+
+Overall: This week felt better than the previous week, but due to things like my birthday and social events, calories were a bit erratic. Biggest offender remains PB, I think fixing that will be a huge win.
+
+Goals for next week:
+* Nutrition: Reduce eating PB as a standalone food
+* Habit: Keep up with fasting timer, it's been useful!
+* Habit: Drink water instead of giving into cravings at night
+* Exercise: Try to get at 2 morning workouts in during the week -- let's build up this habit!
+
 ### 9/6/2021
 
 Last three weeks have been in-consistent. It's time to get back on top of things. Will roll-up three weeks of reviews into one since I missed my previous two unfortunately due to work / moving. Missing one review is a yellow flag, missing two took it to red status. Time to turn things around!
