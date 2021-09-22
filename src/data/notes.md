@@ -1,3 +1,20 @@
+### 9/22/2021
+
+Weight: Only three weigh-ins this week -- mainly due to poor eating! I definitely didn't want to face the scale. Even with the three weigh-ins, my average weight was the highest in the last three months. Looking at my weight ranges for the last month, I've definitely been stalling. Let's do a full reset
+
+Nutrition: This week saw my highest single calorie day of the year (nearly ~7k) and highest weekly average. 5 / 7 days were red -- which is pretty excessive, I don't think I've had a single one of these since starting logging. The prior week was my birthday and that definitely loosened me up. Let's turn this around and get a full-on target week
+
+Exercise: My one saving grace, another exercise-filled week. Averaged 2hrs/day this week again. This whole month has been great on exercise. The month prior I was averaging a little over 60min a day, but now I'm fitting in 2x workouts consistently.
+
+Sleep / Stress: Lots of parties and events this week + poor eating contributed to disorderly sleep. Would end up taking more naps during the day. Hoping to fix this by getting back to target calories.
+
+Overall: In terms of nutrition, this was one of my poorest weeks to date. In terms of exercise, it was one of my best. I'm happy to be meeting target exercise everyday week over week now for the last month. Let's do the same for nutrition (both calories and protein). I want to work towards triple greens (7/7 target calories, protein, and exercise)
+
+Goals for next week:
+* 7 / 7 calories
+* 5+ protein
+* 7 / 7 exercise
+
 ### 9/14/2021
 
 Weight: Weight started low this week post 60hr fast and settled around the 145 area. I wish I was further along, but considering some of the excess I've had over the month or so I'm happy I've somewhat maintained my weight. I definitely want to push it lower. Happy though I'm back on the daily weigh-ins. Scale anxiety can be real and I'm glad I'm facing it. There's something interesting about waking up excited to weigh yourself because you know you did a good job the night before. On the other hand, it can be dreadful to do the morning weigh-in when you know you ate excess previously.
