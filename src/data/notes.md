@@ -1,21 +1,16 @@
-### 10/28/2021
+### 10/23/2021
 
-WEIGHT-FEELING
-Weight started moving down again! Part of this was due to food poisoning though which wasn’t great
+Weight: Weight started moving down again! Part of this was due to food poisoning though which wasn’t great
 
-NUTRITION-FEELING
-Much better. No binges, lots of protein, getting things back on track
+Nutrition: Much better. No binges, lots of protein, getting things back on track
 
-SLEEP-FEELING
-Sleep was good enough, definitely need to be getting 7+ hours
+Sleep: Sleep was good enough, definitely need to be getting 7+ hours
 
-STRESS-FEELING
-Stress is better than last week. Running Consistent and getting our guys results is still a concern
+Stress: Stress is better than last week. Running Consistent and getting our guys results is still a concern
 
-OVERALL-THOUGHTS
-First week went well, aside from food poisoning. Exercise was a miss though and would love to get back to daily movement
+Overall: First week went well, aside from food poisoning. Exercise was a miss though and would love to get back to daily movement
 
-NUTRITION-GOALS
+Nutrition Goals:
 
 -   Keep average calories below target
 -   Continue being mindful with food
