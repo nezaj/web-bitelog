@@ -1,3 +1,25 @@
+### 10/28/2021
+
+WEIGHT-FEELING
+Weight started moving down again! Part of this was due to food poisoning though which wasn’t great
+
+NUTRITION-FEELING
+Much better. No binges, lots of protein, getting things back on track
+
+SLEEP-FEELING
+Sleep was good enough, definitely need to be getting 7+ hours
+
+STRESS-FEELING
+Stress is better than last week. Running Consistent and getting our guys results is still a concern
+
+OVERALL-THOUGHTS
+First week went well, aside from food poisoning. Exercise was a miss though and would love to get back to daily movement
+
+NUTRITION-GOALS
+
+-   Keep average calories below target
+-   Continue being mindful with food
+
 ### 9/22/2021
 
 Weight: Only three weigh-ins this week -- mainly due to poor eating! I definitely didn't want to face the scale. Even with the three weigh-ins, my average weight was the highest in the last three months. Looking at my weight ranges for the last month, I've definitely been stalling. Let's do a full reset
@@ -11,9 +33,10 @@ Sleep / Stress: Lots of parties and events this week + poor eating contributed t
 Overall: In terms of nutrition, this was one of my poorest weeks to date. In terms of exercise, it was one of my best. I'm happy to be meeting target exercise everyday week over week now for the last month. Let's do the same for nutrition (both calories and protein). I want to work towards triple greens (7/7 target calories, protein, and exercise)
 
 Goals for next week:
-* 7 / 7 calories
-* 5+ protein
-* 7 / 7 exercise
+
+-   7 / 7 calories
+-   5+ protein
+-   7 / 7 exercise
 
 ### 9/14/2021
 
@@ -28,10 +51,11 @@ Sleep / Stress: Was my birthday week and very social towards the weekend. But ov
 Overall: This week felt better than the previous week, but due to things like my birthday and social events, calories were a bit erratic. Biggest offender remains PB, I think fixing that will be a huge win.
 
 Goals for next week:
-* Nutrition: Reduce eating PB as a standalone food
-* Habit: Keep up with fasting timer, it's been useful!
-* Habit: Drink water instead of giving into cravings at night
-* Exercise: Try to get at 2 morning workouts in during the week -- let's build up this habit!
+
+-   Nutrition: Reduce eating PB as a standalone food
+-   Habit: Keep up with fasting timer, it's been useful!
+-   Habit: Drink water instead of giving into cravings at night
+-   Exercise: Try to get at 2 morning workouts in during the week -- let's build up this habit!
 
 ### 9/6/2021
 
