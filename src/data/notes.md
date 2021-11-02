@@ -1,3 +1,15 @@
+### 11/2/2021
+
+Weight: Feeling good! Last week had food poisoning so weight was artificially lowered. Feels like it’s settling lower now. Was traveling this weekend and didn’t have access to scale one of the days
+
+Nutrition: Lots of good stuff. Biggest thing now is to curb the late night eating. Unless it’s a late dinner, will try to curb eating after 8pm
+
+Wellness: Overall sleep, stress, and energy were good!
+
+Overall: Week two went well. Looking forward to week three!
+
+Goals: Main focus this week — curb late night eating
+
 ### 10/23/2021
 
 Weight: Weight started moving down again! Part of this was due to food poisoning though which wasn’t great
