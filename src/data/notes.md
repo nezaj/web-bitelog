@@ -1,3 +1,24 @@
+### 11/7/2021
+
+Weight: Another wide range. Lots of social events but poor sleep and feeling stress definitely had an impact
+
+Nutrition: I tried to be good! It was tough due to all the social events. Eating low cal alternatives was helpful for satisfying cravings, but I think I overdid it
+
+Energy: Energy was okay  most days but not great
+Sleep: Definitely poor. Staying up late to finish readings is not sustainable
+Stress: I would say the main stress was associated with poor sleep. There was some stress due to interviewing with YC too
+
+Overall: I tried my best to be nutritionally good this week but with all the social activities, poor sleep, and high stress it was tough
+
+Nutrition Goals:
+* Stay within 2k calorie average
+* Curb late night eating unless it’s an event
+* Limit eating of low-cal / highly processed foods
+
+Fitness Goals:
+* Lift 3x
+* Jiu-Jitsu 3x
+
 ### 11/2/2021
 
 Weight: Feeling good! Last week had food poisoning so weight was artificially lowered. Feels like it’s settling lower now. Was traveling this weekend and didn’t have access to scale one of the days
