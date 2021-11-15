@@ -1,3 +1,29 @@
+### 11/15/2021
+
+Weight: Weight still seems bound between 145-149 which is higher than I want, but I’m feeling good about it. I feel like my habits are getting better, I’m fitting in movement almost every day, and not bingeing so I think the weight will come down eventually.
+
+Nutrition: Another social week. I declared logging bankruptcy on Friday and Saturday since I was on the cabin trip. Didn’t eat clean and snacked on the trip, but compared to my previous binges it was way less calories.
+
+Had little late night eating otherwise which felt great.
+
+Energy:
+Energy started off lower but recovered a ton with good sleep and low stress!
+
+Sleep:
+Sleep was much better, offloading some of the writing responsibilities was a huge help!
+
+Stress:
+Similar with sleep, much less stress this week. I also felt like I got to do more research / fitness reading which was fun!
+
+Overall:
+Given that it was hyper social the week went pretty well. In general I’m feeling good about my nutrition and fitness habits.
+
+Goals:
+* Continue limiting late night eating unless there is a social dinner
+* Keep average below 2100 calories
+* Lift 3x this week
+* Jiu-Jitsu 4x
+
 ### 11/7/2021
 
 Weight: Another wide range. Lots of social events but poor sleep and feeling stress definitely had an impact
@@ -5,7 +31,9 @@ Weight: Another wide range. Lots of social events but poor sleep and feeling str
 Nutrition: I tried to be good! It was tough due to all the social events. Eating low cal alternatives was helpful for satisfying cravings, but I think I overdid it
 
 Energy: Energy was okay  most days but not great
+
 Sleep: Definitely poor. Staying up late to finish readings is not sustainable
+
 Stress: I would say the main stress was associated with poor sleep. There was some stress due to interviewing with YC too
 
 Overall: I tried my best to be nutritionally good this week but with all the social activities, poor sleep, and high stress it was tough
