@@ -20,6 +20,7 @@ Goals:
 * Daily movement for at least 60 minutes each day
 
 ### 12/06/2021
+
 Weight: It’s tough to see it go up
 
 Nutrition: Definitely gave in to late night eating again. Made me sloppy on logging too. Did fasts to offset, but very disordered
