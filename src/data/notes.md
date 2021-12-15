@@ -1,3 +1,88 @@
+### 12/13/2021
+
+Weight: Only had one weigh-in so not much to say. But my weight has definitely crept up on me these 8 weeks. Time to turn the trend around
+
+Nutrition: Was visiting family last week. Tried to be good for a day, but then let go for the following days. By the end of my visit I was motivated to fix the trend
+
+Exercise: I didn’t log everything while I was visiting family but I went on walks and/or runs everyday. Overall though less movement than usual because no access to Jiu-Jitsu / Judo. Although I realize in the future can bring my Jiu-Jitsu gi with me when visiting family
+
+Energy: Energy was impacted due to poor diet. Felt sluggish due to the excess carbs and fats
+
+Sleep: Lots of sleep which was nice, needed the recovery since my body was feeling beat up
+
+Stress: I relaxed a lot with my family so low stress.
+
+Overall: I think this week took me to the limit in terms of excess. I’m ready for a change
+
+Goals:
+
+* No binges this week
+* Daily movement for at least 60 minutes each day
+
+### 12/06/2021
+Weight: It’s tough to see it go up
+
+Nutrition: Definitely gave in to late night eating again. Made me sloppy on logging too. Did fasts to offset, but very disordered
+
+Exercise: Was still able to get movement in most days which helped keep me sane
+
+Energy: After the days of overeating at night my energy is bad in the mornings. Need to correct the eating to fix the energy
+
+Sleep: I think I’ve been oversleeping. I be been using the curtain in my bedroom but it seems to be too effective at blocking the light. Will switch back to stop using it
+
+Stress: Pretty low !
+
+Overall: Not a great week diet wise. Really want to reverse course as my weight has drifted up far beyond what so wanted. Weight of 150 is appearing more often which is way above my goal
+
+Goals: This week will be visiting family so it’s going to be unclear how clean I can eat. On the plus side there should be much less junk eating at night. Will try to get walks and runs in while at my parents
+
+
+### 11/29/2021
+
+Weight: I skipped most weigh-ins this week because I decided to take a “break” from Wednesday onwards
+
+Nutrition: I was on a break, but definitely overdid it. Useful to reflect on for where my current habits are
+
+Exercise: Lots of exercise even though I didn’t log
+
+Energy: Good energy! But in the mornings I felt sluggish due to excess calories from night before
+
+Sleep: Slept a ton! I close the curtains in my room now and it makes a serious difference!
+
+Stress: Low stress! Taking a break and enjoying the thanksgiving holiday was nice
+
+Overall: Wasn’t my best week, but I learned some stuff for me. Feeling refreshed
+
+Goals:
+
+* Get back to logging, get back to target!
+* Judo 2x
+* BJJ 3x
+* Lift 2x
+
+### 11/22/2021
+
+Weight: Weight continues to drift up. Last few weeks I wasn’t worried about it but now that’s been 4x weeks in a row I’m taking note. I gave in to late night snacking and that definitely caused the scale to be higher
+
+Nutrition: This week was off due to the following:
+* Overdid it on the low calorie snacks
+* Binged on the weekend with cookies and ice cream (did not log on the weekend either)
+
+Exercise: Tons of BJJ and Judo which was awesome but taxing on the body. No lifting though which was a bummer
+
+Energy: Overall it was neutral / lower maybe due to physical stress
+
+Sleep: Great sleep
+
+Stress: Stressed at beginning of week due to work. Stressed at end of week due to BJJ fatigue
+
+Overall: Not my best week, late night snacking and weekend binge was no good
+
+Goals:
+* Curb late night snacking
+* Reset my mindset for nutrition / avoid binge
+* Won’t set any fitness this week. I’ve been wanting to lift more but finding it difficult to motivate myself. BJJ/Judo/Stairmaster feel way more appealing. Will just let myself feel out if I want to lift
+
 ### 11/15/2021
 
 Weight: Weight still seems bound between 145-149 which is higher than I want, but I’m feeling good about it. I feel like my habits are getting better, I’m fitting in movement almost every day, and not bingeing so I think the weight will come down eventually.
