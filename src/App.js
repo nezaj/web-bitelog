@@ -1228,12 +1228,8 @@ class App extends React.Component {
   };
 
   render() {
-    const {
-      entriesToDateMap,
-      entryDetailMap,
-      notesData,
-      healthData,
-    } = this.props;
+    const { entriesToDateMap, entryDetailMap, notesData, healthData } =
+      this.props;
     const { dateRange, detailKey, tab, entryPage } = this.state;
 
     // Pagination helpers
