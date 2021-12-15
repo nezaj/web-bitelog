@@ -987,10 +987,15 @@ const Trends = ({
           title="Daily Calories"
           macroData={nutrientsWeeklyStats.calories}
         />
+        {/*
+          // 12/15/21
+          // Commenting out water heatmap for now since haven't been tracking
+          // water in awhile
         <WeekdayWaterHeatMap
           title="Daily Water"
           macroData={healthWeeklyStats.water}
         />
+        */}
         <MultiLineChart title="Weight" macroData={healthWeeklyStats.weight} />
         <MultiLineChart
           title="Weekly Calories"
