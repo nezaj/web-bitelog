@@ -1,3 +1,46 @@
+### 12/26/2021
+
+Weight: Not much to say since I was sick.
+
+Nutrition: Ate well but didn’t record since I was sick. Was planning to backfill but got too behind. In the future will be more deliberate about when I don’t log for one day and make sure I don’t skip 2x in a row unless circumstances prevent me
+
+Exercise: Was only able to do one walk this week. Most of the time was spent in bed this week
+
+Energy: Also very low
+
+Sleep: Lots of sleep throughout the day, couldn’t get much continuous sleep at night due to sickness. Finally able to get full sleep by the weekend
+
+Stress: Very low
+
+Overall: Lost week due to sickness, but I think I’m over the sickness now!
+
+Goals:
+
+* Get back to tracking and diet as usual
+* BJJ/Judo is closed this week so will do lifts and runs
+
+
+### 12/19/2021
+
+Weight: Looks like I crossed the 150 line for real. Definitely stinks, but it’s all good. I’m looking to turn this around :)
+
+Nutrition: One of the best weeks I’ve had cals / macros wise in a long time. No excess sugar or late night binges. Had only one day of excess due to overdoing nuts
+
+Exercise: Worked out everyday except Sunday since I was sick
+
+Energy: Energy was definitely lower. I think again actually sticking to calories for the first time in awhile was a minor shock. I also started feeling sick Saturday night and had to spend the whole Sunday recovering
+
+Sleep: I started waking up very early a couple days to do morning Jiu-Jitsu. As a result my sleep was less a few days, will try to adjust to new sleeping schedule in the new year
+
+Stress: Stress was low but I could tell I was feeling off a bit from sugar cravings, was able to fend it off though
+
+Overall: Despite the road bumps with low energy and sickness, I think I’m back on track with nutrition
+
+Goals:
+
+* Stay within 2k average cals, hit my protein, and try to get a little more fats into the diet (noticed it was on lower end for most days)
+* Try to do BJJ/Judo assuming not sick anymore. From the 24th onwards classes are paused until the new year so will hit some lifts instead
+
 ### 12/13/2021
 
 Weight: Only had one weigh-in so not much to say. But my weight has definitely crept up on me these 8 weeks. Time to turn the trend around
