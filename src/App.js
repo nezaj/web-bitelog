@@ -63,6 +63,7 @@ const LAST_5_WEEKS = "last5weeks";
 const LAST_10_WEEKS = "last10weeks";
 const THIS_YEAR = "thisYear";
 const ALL_TIME = "allTime";
+const YEAR_2021 = "year2021";
 const YEAR_2020 = "year2020";
 const HEATMAP_DAYS = "heatmapdays";
 const DEFAULT_TRENDS_DATE_RANGE = THIS_WEEK;
@@ -188,6 +189,10 @@ const filterEntries = (dateRange, entriesToDateMap) => {
     case ALL_TIME:
       minDate = addDays(earliestDate, -1);
       break;
+    case YEAR_2021:
+      minDate = new Date(2021, 0, 0);
+      maxDate = new Date(2022, 0, 1);
+      break;
     case YEAR_2020:
       minDate = new Date(2020, 0, 0);
       maxDate = new Date(2021, 0, 1);
@@ -233,6 +238,7 @@ const getLocationDateRange = (queryString) => {
       LAST_10_WEEKS,
       THIS_YEAR,
       ALL_TIME,
+      YEAR_2021,
       YEAR_2020,
     ].find((x) => x === rawValue) || DEFAULT_TRENDS_DATE_RANGE
   );
@@ -943,6 +949,14 @@ const Trends = ({
             onClick={() => updateDateRange(ALL_TIME)}
           >
             All Time
+          </div>
+          <div
+            className={`trends-date-option ${
+              dateRange === YEAR_2021 ? "active" : "inactive"
+            }`}
+            onClick={() => updateDateRange(YEAR_2021)}
+          >
+            2021
           </div>
           <div
             className={`trends-date-option ${
