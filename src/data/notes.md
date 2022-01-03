@@ -40,7 +40,7 @@ Goals:
 * BJJ/Judo is closed this week so will do lifts and runs
 
 
-### 12/18/2021
+### 12/19/2021
 
 Weight: Looks like I crossed the 150 line for real. Definitely stinks, but it’s all good. I’m looking to turn this around :)
 
@@ -61,7 +61,7 @@ Goals:
 * Stay within 2k average cals, hit my protein, and try to get a little more fats into the diet (noticed it was on lower end for most days)
 * Try to do BJJ/Judo assuming not sick anymore. From the 24th onwards classes are paused until the new year so will hit some lifts instead
 
-### 12/13/2021
+### 12/12/2021
 
 Weight: Only had one weigh-in so not much to say. But my weight has definitely crept up on me these 8 weeks. Time to turn the trend around
 
