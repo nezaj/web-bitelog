@@ -1,3 +1,23 @@
+### 1/2/2022
+
+Weight: I feel like it’s trending down. This week didn’t even have my usual BJJ and Judo so I expect next week to push lower. Overall feeling good
+
+Nutrition: Chia seeds, olive oil, and cheese did the trick to for getting my fats up. No sugar or binges either. A little bit of excess on NYE, but nothing major. Calories may be a bit high overall for the week, but I felt good energy wise. Will try to have a lower overall intake for next week. But will interesting to see how energy feels as I go back to BJJ and Judo
+
+Exercise: No BJJ or Judo due to holidays, but was able to get 3x lifting this week. First time in over a month I lifted this much which felt great. Excited to work towards 120 sessions in 2022
+
+Energy: Energy was okay -> good. Was getting back from being sick and feeling more like my usual self!
+
+Sleep: Lots of sleep! Maybe even too much. All is well
+
+Stress: Stress was low!
+
+Overall: I’m happy with this week. I’m now three weeks in a row of no sweets or late night excess eating. Body is feeling clean
+
+Goals:
+* Keep eating clean, try to  keep weekly average to <2150 calories
+* Lift 3x, BJJ 3x, Judo 3x
+
 ### 12/26/2021
 
 Weight: Not much to say since I was sick.
