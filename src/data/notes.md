@@ -40,7 +40,7 @@ Goals:
 * BJJ/Judo is closed this week so will do lifts and runs
 
 
-### 12/19/2021
+### 12/18/2021
 
 Weight: Looks like I crossed the 150 line for real. Definitely stinks, but it’s all good. I’m looking to turn this around :)
 
