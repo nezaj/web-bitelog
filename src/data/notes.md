@@ -1,3 +1,25 @@
+### 1/9/2022
+
+Weight: My weight was higher this week, which  indicates to me more improvements to be made
+
+Nutrition: I’m happy that I ate clean throughout the week. However there are some improvements to be made. Specifically around dealing with hunger
+
+Exercise: Did not hit my exercise goals. Mainly due to not waking up on time and work
+
+Energy: Pretty good!
+
+Sleep: I want to go to bed earlier this week and wake up earlier as well
+
+Stress: Pretty low
+
+Overall: This week I noticed some behaviors to improve. I let hunger at night take control and ate excess calories two evenings. I also found myself indulging in shredded cheese and fruits a couple of times.
+
+I am happy though that sweets / junk-y food is very minimal. It’s been a month like this now and Im really noticing the differences in my energy and mood
+
+Goals:
+* Be more pro-active and aware when dealing with my hunger. Don’t indulge on shredded cheese or fruit. Be more on top of staying within weekly average calories
+* Let’s try again to do 3x Jiu-Jitsu + Judo + lifting
+
 ### 1/2/2022
 
 Weight: I feel like it’s trending down. This week didn’t even have my usual BJJ and Judo so I expect next week to push lower. Overall feeling good
