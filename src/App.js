@@ -198,7 +198,7 @@ const filterEntries = (dateRange, entriesToDateMap) => {
       maxDate = new Date(2021, 0, 1);
       break;
     case HEATMAP_DAYS:
-      minDate = addDays(maxDate, -181 - maxDate.getDay());
+      minDate = addDays(maxDate, -91 - maxDate.getDay());
       break;
     case THIS_WEEK:
     default:

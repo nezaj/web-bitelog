@@ -1,3 +1,29 @@
+### 1/16/2022
+
+Weight: It went up again, and I notice myself “avoiding” weigh-ins. Will aim for at least 5x weigh-ins this week to counter (4x in last two weeks)
+
+Nutrition: The good: tons of nutrient dense foods. Good choices even when eating out
+
+The bad: Eating excess calories. I’m adjusting to training 2x a day M-F and this is requiring some timing / appetite tweaking
+
+Exercise: The good: Did Jiu-Jitsu 4x. Judo was only 2x, but this wasn’t because I didn’t want to go, rather, had something scheduled
+
+The bad: Only lifted once. This was mainly due to laziness. Will try to get at least 2x sessions in this week
+
+Energy: Pretty good! Training 2x is kind of tough but not too bad. Was more exhausted / lazy on the weekend. I hope to have more energy Sat / Sun next week
+
+Sleep: The days I got to Jiu-Jitsu I wake up at 6am. I usually go to bed  around midnight though due to work and late night catch-ups. I slept like 12 hours Sat night
+
+Stres: Pretty low!
+
+Overall: I switched to a new eating schedule Wednesday onwards this week where  I eat breakfast after BJJ in the morning, snack / protein shake during the day; 2nd meal around 530pm (for energy for 7pm training) and then my last meal after training.
+
+I switched to this because I noticed I was ravenously hungry after my 2nd training and this was leading to excess on Tuesdays and Thursdays. I want to experiment with this eating schedule because ai think it will allow me to focus more during the day (no long lunch break) and be more pro-active about eating well at night
+
+One downside though is my weigh-ins will come in heavier now since I eat closer to bed and my eating window is longer. I don’t think this is a big deal, but yea seeing the number go up when you don’t want it to is tough.
+
+Goals: Really work on those average calories. Let’s keep things to <2200 weekly average. This is my third attempt so giving myself a little more wiggle room (+50 I’m determined to make it happen this week. Fitness-wise -- 4x BJJ, 2x Judo, 2x lifting
+
 ### 1/9/2022
 
 Weight: My weight was higher this week, which  indicates to me more improvements to be made
