@@ -1,3 +1,35 @@
+### 1/23/2022
+
+Weight: Weight trended down towards end of week which felt great!
+
+Nutrition: This week was interesting. After Wednesday I realized I needed to adjust my caloric intake. Although I was eating clean I was just eating too much
+
+Thursday and Friday I adjusted my calories to make up for the excess
+
+I was averaging 2k calories a week as of Saturday. I told a friend I would go out clubbing with them but was dead tired. I fueled up on calories to give me energy and we stayed out late. Indulged in a slice of pizza afterwards which set me off on eating a bunch of cookies.
+
+The excess sugar definitely made me feel lower energy on Sunday. Was planning to fast at first be decided to eat at maintenance to just reset mentally and get ready for the week ahead
+
+Going forward if I do have a late night I think I’ll just load up on coffee since I think that was actually what heat me going instead of the food. In general though I think I want to avoid late night partying for awhile (unless it’s a house party / event for a friend). I find myself enjoying activities during the day more
+
+Monday -> Wednesday I ate at maintenance and this was psychologically easier than Thursday and Friday at a deficit. Although tougher mentally to be at deficit, it wasn’t that bad and I would feel great the next day
+
+Being on the cut definitely takes some mental fortitude. I want to embrace this more this week and stick to calorie targets. I could feel myself leaning out Friday and Sat (before the excess) and want to continue that trend
+
+Exercise: Missed all my lift sessions this week :( I had a paronichya from BJJ on Tuesday so that slowed me down. Luckily I was able to treat it at home and no need for antibotics.  Will aim to get those lift sessions this week !
+
+Energy: Was pretty good except post sugar excess Sat night
+
+Sleep: During the week sleep is less. Mainly because of the early wake-ups. It doesn’t seem to bother me tho and I make up the sleep on the weekends. Will keep an eye on this
+
+Stress: Was feeling a bit restless with work this week.  I want to get more done but finding myself slow
+
+Overall: Interesting week. Definitely not consistent, but informative. I do feel from my progress pic and weight that if I stick with the proper cals I can get lean real quick
+
+Nutrition: Let’s average <2100 cals this week !
+
+Fitness: BJJ 4x, Judo 2x, Lift 2x
+
 ### 1/16/2022
 
 Weight: It went up again, and I notice myself “avoiding” weigh-ins. Will aim for at least 5x weigh-ins this week to counter (4x in last two weeks)
