@@ -1,3 +1,37 @@
+### 1/30/2022
+
+Weight: I avoided the scale after Thursday so no idea where I’m at right now. I definitely dislike weighing myself after big calorie days!
+
+Will keep an eye on this. If this becomes a pattern it means I’m having lots of big calorie days which is def a problem. Overall though would say my weight is probably stagnant at the moment
+
+Nutrition: It started of really good but blew up Thursday -> Saturday. Here’s what happened.
+
+Thursday had verrrry little sleep and was feeling TOAST from all the BJJ and Judo. My body was aching all over and I wanted to re-fuel. Looking back I think the answer was actually to just sleep more
+
+Friday I was still feeling exhausted and also stressed with work. Went out with the Judo crew at night and joined in on dinner, busting my calories
+
+Saturday I spent most of the day fasting since felt quite fed. I didn’t have anything cooked at home either so went grocery shopping in the evening. I was hungry at that point and convinced myself I could buy a few sugary snacks and cheese to just nibble on. I got on the phone with my uncle and mindless ate 4K calories within 30 minutes
+
+The tl;dr of this was that I was physically exhausted which started a cycling of refueling that led to mindless eating.
+
+This week will be more on top of the sleep. If do overeat one day will not try to make up for it the next either (fasting right now seems to lead to more excess)
+
+Exercise: No lifting again. I’ve decided I’m going to stop setting lifting goals. My heart is just not into it atm. If I want to tho I can definitely go lift. Will revisit my yearly lifting goal end of Feb to see if i’m motivated.
+
+Part of the reason I didn’t lift was because I was exhausted. 3x BJJ and 3x Judo kicked my bum this week. Not entirely sure why, No big injuries this week but lots of little injuries that piled up. I think low sleep and some stress had an effect
+
+Energy: Was lower energy towards end of week. On the weekend I had to be a vegetable
+
+Sleep: Was not good during the week. Wednesday night especially put things in a red state. I slept 3 hours that night and felt destroyed post Jiu Jitsu on Thursday. It was until end of weekend I was recovered
+
+Stress: Got higher towards end of week with work and poor sleep
+
+Overall: Tough week. Nutrition felt great Monday -> Wednesday but the poor sleep Wednesday night with the accumulated physical stress from BJJ/Judo + mental stress from work just piled up. I tried to deal with it via re-fueling, but I think the better move would have been to just sleep more
+
+Goals:
+* Let’s try to go for <2200 calories again :)
+* 3x BJJ + 3x Judo. No lifting goals, if I get it done, that’s gravy
+
 ### 1/23/2022
 
 Weight: Weight trended down towards end of week which felt great!
@@ -26,9 +60,9 @@ Stress: Was feeling a bit restless with work this week.  I want to get more done
 
 Overall: Interesting week. Definitely not consistent, but informative. I do feel from my progress pic and weight that if I stick with the proper cals I can get lean real quick
 
-Nutrition: Let’s average <2100 cals this week !
-
-Fitness: BJJ 4x, Judo 2x, Lift 2x
+Goals:
+* Let’s average <2100 cals this week !
+* BJJ 4x, Judo 2x, Lift 2x
 
 ### 1/16/2022
 
