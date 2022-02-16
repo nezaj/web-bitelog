@@ -1,3 +1,29 @@
+### 2/13/2022
+
+Weight: I avoided the scale the whole week. Didn’t want to face the weight since I had a huge calorie intake for the week. At the time of writing this review though I’ve started weighing myself again and am relieved to see there wasn’t a dramatic increase
+
+Nutrition: I loaded up hard on calories. There was some excess with sugar too. I was less mindful about my intake this week, sort of just let go.
+
+Exercise: Little bit less than last week but still 10+ hours which is fine by me
+
+Energy: My energy has been much better last two weeks thanks to increased calories and sleep
+
+Sleep: Better than previous week. allowing myself to sleep in if need be
+
+Stress: Pretty good.
+
+Overall: I feel like I wasn’t as mindful with my eating and thrown off from not eating home cooked meals. Looking to reign things back in next week
+
+Goals: For this week I want to try the following:
+
+* 2000 calories for days with 0-1x workouts
+* 2500 calories for days with 2x workouts
+* Workout 10+ hours again
+
+Working out 10+ hours a week takes a toll and I think I need both the extra calories and sleep.
+
+I’m also starting creatine this week. Will skip loading phase and just take 2.5G daily, I should be fully saturated by mid March. Will be curious to see effects over next 4 weeks
+
 ### 1/30/2022
 
 Weight: I avoided the scale after Thursday so no idea where I’m at right now. I definitely dislike weighing myself after big calorie days!
