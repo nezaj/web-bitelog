@@ -24,6 +24,31 @@ Working out 10+ hours a week takes a toll and I think I need both the extra calo
 
 I’m also starting creatine this week. Will skip loading phase and just take 2.5G daily, I should be fully saturated by mid March. Will be curious to see effects over next 4 weeks
 
+### 2/06/2022
+
+Weight: Ate excess calories at night Wednesday onwards and avoided the scale. Not sure where I’m at right now, but would guess ~150 again
+
+Nutrition: Lots of excess calories this week.
+
+On one hand there was little sugar and energy wise felt great with workouts.
+
+On the other hand I think I overdid it. 5 days in a row of ~3k calories because of eating at night. Will reel this in
+
+Exercise: Awesome. First full week of 5x BJJ and 3x Judo
+
+Energy: Wayyyy better than last week! Likely due to better sleep
+
+Sleep: A little better! Still on the lower side
+
+Stress: Pretty low
+
+Overall: Energy wise felt better. Calorie wise overdid it. Also ate out more this week due to working outside of the house. Will keep an eye on this
+
+Goals:
+
+* Let’s curb the late night eating
+* 4x BJJ + 2x Judo
+
 ### 1/30/2022
 
 Weight: I avoided the scale after Thursday so no idea where I’m at right now. I definitely dislike weighing myself after big calorie days!
