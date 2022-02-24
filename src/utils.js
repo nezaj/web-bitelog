@@ -143,7 +143,7 @@ const friendlyDate = (dateStr) => {
   return `${weekday}, ${month} ${day}, ${year}`;
 };
 
-// Extract date from local time integer: 20200715182210 -> 2020-07-16T01:22:00.000Z
+// Extract date from local time integer: 20200715182210 -> 2020-07-15T22:22:00.000Z
 const localTimeToDate = (localTimeInt) => {
   const dateStr = localTimeInt.toString();
   const year = dateStr.slice(0, 4);
