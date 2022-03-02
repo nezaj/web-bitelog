@@ -1343,7 +1343,7 @@ class App extends React.Component {
               className="header-avatar"
             ></img>
           </a>
-          <div className="header-title">Heya I'm Joe!</div>
+          <div className="header-title">Heya, I'm Joe!</div>
           <div className="header-subtitle">This is where I track my food</div>
           <div className="separator"></div>
         </div>
