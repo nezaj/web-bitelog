@@ -1389,6 +1389,24 @@ class App extends React.Component {
                 🏠
               </span>
             )}
+            {entryPage && entryPage == MIN_ENTRY_PAGE && (
+              <p
+                style={{
+                  fontSize: "16px",
+                  display: "flex",
+                  margin: "0 auto",
+                  textAlign: "center",
+                  maxWidth: "720px",
+                }}
+              >
+                <span>
+                  Note: I'm still tracking but now using{" "}
+                  <a href="https://consistent.fit">Consistent</a> for recording
+                  my diet. I haven't written the logic yet to share that data
+                  here. Will get to it eventually :)
+                </span>
+              </p>
+            )}
             {renderedEntries.length ? (
               renderedEntries
             ) : (
