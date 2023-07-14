@@ -16,7 +16,7 @@
         "react-chartjs-2": "^2.9.0",
         "react-dom": "^16.13.1",
         "react-markdown": "^5.0.2",
-        "react-scripts": "3.4.1",
+        "react-scripts": "5.0.1",
         "react-swipeable": "^5.5.1",
         "react-swipeable-views": "^0.13.9",
         "remark-gfm": "^1.0.0",
